@@ -1,0 +1,11 @@
+{
+  "item.betterbuilding.screw": "Screw",
+  "item.betterbuilding.dowsing_rod": "Dowsing Rod",
+
+  "block.betterbuilding.reinforced_oak_planks": "Reinforced Oak Planks",
+  "block.betterbuilding.oak_side": "Oak Side",
+
+  "itemGroup.betterbuilding.building": "Better Building",
+
+  "item.betterbuilding.dowsing_rod.no_valuables": "Nothing to be found!"
+}
