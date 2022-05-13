@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "betterbuilding:reinforced_oak_planks"
+    "betterbuilding:reinforced_oak_planks",
+    "betterbuilding:oak_side"
   ]
 }
