@@ -25,7 +25,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
-public class SideBlock extends Block implements Waterloggable{
+public class SideBlock extends Block implements Waterloggable {
     public static final EnumProperty<SideType> TYPE = Properties.SIDE_TYPE;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     protected static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 16.0, 8.0);    //x: west -> east
@@ -35,7 +35,7 @@ public class SideBlock extends Block implements Waterloggable{
 
     public SideBlock(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState((BlockState)((BlockState)this.getDefaultState().with(TYPE, SideType.NORTH)).with(WATERLOGGED, false));
+        this.setDefaultState((this.getDefaultState().with(TYPE, SideType.NORTH)).with(WATERLOGGED, false));
     }
 
     @Override
@@ -74,21 +74,37 @@ public class SideBlock extends Block implements Waterloggable{
         BlockPos blockPos = ctx.getBlockPos();
         BlockState blockState = ctx.getWorld().getBlockState(blockPos);
         if (blockState.isOf(this)) {
-            return (BlockState)((BlockState)blockState.with(TYPE, SideType.DOUBLE)).with(WATERLOGGED, false);
+            return (blockState.with(TYPE, SideType.DOUBLE)).with(WATERLOGGED, false);
         }
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
-        BlockState blockStateDefault = (BlockState)((BlockState)this.getDefaultState().with(TYPE, SideType.NORTH)).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
-        Direction direction = ctx.getSide();
-        if (direction == Direction.EAST || direction != Direction.WEST && ctx.getHitPos().x - (double)blockPos.getX() <= 0.5) {
-            return (BlockState)blockStateDefault.with(TYPE, SideType.WEST);
+        BlockState blockStateDefault = (this.getDefaultState().with(TYPE, SideType.NORTH)).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+        Direction clickedOn = ctx.getSide();
+        Direction facing = ctx.getPlayerFacing();
+        if (clickedOn == Direction.EAST || clickedOn == Direction.WEST) {
+            if (ctx.getHitPos().z - (double) blockPos.getZ() <= 0.5) {
+                return blockStateDefault.with(TYPE, SideType.NORTH);
+            } else {
+                return blockStateDefault.with(TYPE, SideType.SOUTH);
+            }
         }
-        if (direction == Direction.WEST || ctx.getHitPos().x - (double)blockPos.getX() > 0.5) {     //direction != Direction.EAST is redundant
-            return (BlockState)blockStateDefault.with(TYPE, SideType.EAST);
+        if (clickedOn == Direction.NORTH || clickedOn == Direction.SOUTH) {
+            if (ctx.getHitPos().x - (double) blockPos.getX() <= 0.5) {
+                return blockStateDefault.with(TYPE, SideType.WEST);
+            } else {
+                return blockStateDefault.with(TYPE, SideType.EAST);
+            }
         }
-        if (direction == Direction.NORTH || direction != Direction.SOUTH && ctx.getHitPos().z - (double)blockPos.getZ() > 0.5) {
-            return (BlockState)blockStateDefault.with(TYPE, SideType.SOUTH);
+        if (facing == Direction.EAST || facing == Direction.WEST) {
+            if (ctx.getHitPos().z - (double) blockPos.getZ() <= 0.5) {
+                return blockStateDefault.with(TYPE, SideType.NORTH);
+            } else {
+                return blockStateDefault.with(TYPE, SideType.SOUTH);
+            }
         }
-        return blockStateDefault; //North
+        if (ctx.getHitPos().x - (double) blockPos.getX() <= 0.5) {
+            return blockStateDefault.with(TYPE, SideType.WEST);
+        }
+        return blockStateDefault.with(TYPE, SideType.EAST);
     }
 
     @Override
@@ -99,8 +115,8 @@ public class SideBlock extends Block implements Waterloggable{
             return false;
         }
         if (context.canReplaceExisting()) {
-            boolean eastClicked = context.getHitPos().x - (double)context.getBlockPos().getX() > 0.5;
-            boolean southClicked = context.getHitPos().z - (double)context.getBlockPos().getZ() > 0.5;
+            boolean eastClicked = context.getHitPos().x - (double) context.getBlockPos().getX() > 0.5;
+            boolean southClicked = context.getHitPos().z - (double) context.getBlockPos().getZ() > 0.5;
             Direction direction = context.getSide();
             if (sideType == SideType.WEST) {
                 return direction == Direction.EAST || eastClicked && direction.getAxis().isVertical();
