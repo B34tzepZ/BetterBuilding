@@ -72,39 +72,24 @@ public class SideBlock extends Block implements Waterloggable {
     @Nullable
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         BlockPos blockPos = ctx.getBlockPos();
-        BlockState blockState = ctx.getWorld().getBlockState(blockPos);
-        if (blockState.isOf(this)) {
+        if (ctx.getWorld().getBlockState(blockPos).isOf(this)) {
+            BlockState blockState = ctx.getWorld().getBlockState(blockPos);
             return (blockState.with(TYPE, SideType.DOUBLE)).with(WATERLOGGED, false);
         }
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
-        BlockState blockStateDefault = (this.getDefaultState().with(TYPE, SideType.NORTH)).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
-        Direction clickedOn = ctx.getSide();
+        BlockState blockState = (this.getDefaultState().with(TYPE, SideType.NORTH)).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
         Direction facing = ctx.getPlayerFacing();
-        if (clickedOn == Direction.EAST || clickedOn == Direction.WEST) {
-            if (ctx.getHitPos().z - (double) blockPos.getZ() <= 0.5) {
-                return blockStateDefault.with(TYPE, SideType.NORTH);
+        if (facing.getHorizontal() % 2 == 1) {
+            if (ctx.getHitPos().z - (double) blockPos.getZ() < 0.5) {
+                return blockState.with(TYPE, SideType.NORTH);
             } else {
-                return blockStateDefault.with(TYPE, SideType.SOUTH);
+                return blockState.with(TYPE, SideType.SOUTH);
             }
         }
-        if (clickedOn == Direction.NORTH || clickedOn == Direction.SOUTH) {
-            if (ctx.getHitPos().x - (double) blockPos.getX() <= 0.5) {
-                return blockStateDefault.with(TYPE, SideType.WEST);
-            } else {
-                return blockStateDefault.with(TYPE, SideType.EAST);
-            }
+        if (ctx.getHitPos().x - (double) blockPos.getX() < 0.5) {
+            return blockState.with(TYPE, SideType.WEST);
         }
-        if (facing == Direction.EAST || facing == Direction.WEST) {
-            if (ctx.getHitPos().z - (double) blockPos.getZ() <= 0.5) {
-                return blockStateDefault.with(TYPE, SideType.NORTH);
-            } else {
-                return blockStateDefault.with(TYPE, SideType.SOUTH);
-            }
-        }
-        if (ctx.getHitPos().x - (double) blockPos.getX() <= 0.5) {
-            return blockStateDefault.with(TYPE, SideType.WEST);
-        }
-        return blockStateDefault.with(TYPE, SideType.EAST);
+        return blockState.with(TYPE, SideType.EAST);
     }
 
     @Override
