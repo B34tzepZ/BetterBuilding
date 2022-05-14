@@ -2,13 +2,15 @@ package net.b34tzepz.betterbuilding.block.custom;
 
 import net.b34tzepz.betterbuilding.block.enums.CornerShape;
 import net.b34tzepz.betterbuilding.state.property.Properties;
-import net.minecraft.block.*;
-import net.minecraft.block.enums.BlockHalf;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.ShapeContext;
+import net.minecraft.block.Waterloggable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -32,7 +34,6 @@ import java.util.stream.IntStream;
 public class CornerBlock extends Block implements Waterloggable {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final DirectionProperty EXTENSION = HorizontalFacingBlock.FACING;
-    //public static final EnumProperty<BlockHalf> HALF = Properties.BLOCK_HALF;
     public static final EnumProperty<CornerShape> SHAPE = Properties.CORNER_SHAPE;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     protected static final VoxelShape WEST_SHAPE = SideBlock.WEST_SHAPE;
@@ -51,6 +52,12 @@ public class CornerBlock extends Block implements Waterloggable {
     protected static final VoxelShape[] EAST_SHAPES = CornerBlock.composeShapes(EAST_SHAPE, BOTTOM_NORTH_WEST_CORNER_SHAPE, TOP_NORTH_WEST_CORNER_SHAPE, BOTTOM_SOUTH_WEST_CORNER_SHAPE, TOP_SOUTH_WEST_CORNER_SHAPE);
     protected static final VoxelShape[] NORTH_SHAPES = CornerBlock.composeShapes(NORTH_SHAPE, BOTTOM_SOUTH_WEST_CORNER_SHAPE, TOP_SOUTH_WEST_CORNER_SHAPE, BOTTOM_SOUTH_EAST_CORNER_SHAPE, TOP_SOUTH_EAST_CORNER_SHAPE);
     protected static final VoxelShape[] SOUTH_SHAPES = CornerBlock.composeShapes(SOUTH_SHAPE, BOTTOM_NORTH_WEST_CORNER_SHAPE, TOP_NORTH_WEST_CORNER_SHAPE, BOTTOM_NORTH_EAST_CORNER_SHAPE, TOP_NORTH_EAST_CORNER_SHAPE);
+    /*
+    12: South 5: West 3: North 10: East 14:
+    14: NONorthWest 13: NONorthEast 7: NOSouthEast 11: NOSouthWest
+    8: SouthEast 4: SouthWest 1: NorthWest 2: NorthEast
+    [0,3]: Straight [4,7]: Inner_Left [8,11]: Inner_Right [12,15]: Outer_Left [16,19]: Outer_Right
+    */
     private static final int[] SHAPE_INDICES = new int[]{12, 5, 3, 10, 14, 13, 7, 11, 13, 7, 11, 14, 8, 4, 1, 2, 4, 1, 2, 8};
     private final Block baseBlock;
     private final BlockState baseBlockState;
