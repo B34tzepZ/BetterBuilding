@@ -9,6 +9,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.Waterloggable;
+import net.minecraft.block.enums.StairShape;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -33,8 +34,8 @@ import java.util.stream.IntStream;
 
 public class CornerBlock extends Block implements Waterloggable {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
-    public static final DirectionProperty EXTENSION = HorizontalFacingBlock.FACING;
-    public static final EnumProperty<CornerShape> SHAPE = Properties.CORNER_SHAPE;
+    public static final DirectionProperty HALF = HorizontalFacingBlock.FACING;
+    public static final EnumProperty<StairShape> SHAPE = Properties.STAIR_SHAPE;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     protected static final VoxelShape WEST_SHAPE = SideBlock.WEST_SHAPE;
     protected static final VoxelShape EAST_SHAPE = SideBlock.EAST_SHAPE;
@@ -85,7 +86,7 @@ public class CornerBlock extends Block implements Waterloggable {
 
     protected CornerBlock(BlockState baseBlockState, AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState(((((this.stateManager.getDefaultState()).with(FACING, Direction.NORTH)).with(EXTENSION, Direction.WEST)).with(SHAPE, CornerShape.STRAIGHT)).with(WATERLOGGED, false));
+        this.setDefaultState(((((this.stateManager.getDefaultState()).with(FACING, Direction.NORTH)).with(HALF, Direction.WEST)).with(SHAPE, StairShape.STRAIGHT)).with(WATERLOGGED, false));
         this.baseBlock = baseBlockState.getBlock();
         this.baseBlockState = baseBlockState;
     }
