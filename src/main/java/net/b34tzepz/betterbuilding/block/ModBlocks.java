@@ -18,6 +18,9 @@ public class ModBlocks {
     public static final Block Reinforced_Oak_Planks = registerBlock("reinforced_oak_planks",
             new Block(FabricBlockSettings.of(Material.WOOD).strength(3, 4.5f)), ModItemGroup.Building);
 
+    public static final Block Reinforced_Spruce_Planks = registerBlock("reinforced_spruce_planks",
+            new Block(FabricBlockSettings.of(Material.WOOD).strength(3, 4.5f)), ModItemGroup.Building);
+
     public static final Block Oak_Side = registerBlock("oak_side",
             new SideBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3)), ModItemGroup.Building);
 
