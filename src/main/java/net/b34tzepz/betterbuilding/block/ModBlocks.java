@@ -1,6 +1,7 @@
 package net.b34tzepz.betterbuilding.block;
 
 import net.b34tzepz.betterbuilding.BetterBuilding;
+import net.b34tzepz.betterbuilding.block.custom.OakChairBlock;
 import net.b34tzepz.betterbuilding.block.custom.SideBlock;
 import net.b34tzepz.betterbuilding.item.ModItemGroup;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -23,6 +24,9 @@ public class ModBlocks {
 
     public static final Block Oak_Side = registerBlock("oak_side",
             new SideBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3)), ModItemGroup.Building);
+
+    public static final Block Oak_Chair = registerBlock("oak_chair",
+            new OakChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque()), ModItemGroup.Building);
 
     //public static final Block Oak_Corner = registerBlock("oak_corner",
       //      new StairsBlock(), ModItemGroup.Building);
