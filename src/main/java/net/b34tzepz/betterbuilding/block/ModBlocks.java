@@ -1,11 +1,13 @@
 package net.b34tzepz.betterbuilding.block;
 
 import net.b34tzepz.betterbuilding.BetterBuilding;
+import net.b34tzepz.betterbuilding.block.custom.CornerBlock;
 import net.b34tzepz.betterbuilding.block.custom.SideBlock;
 import net.b34tzepz.betterbuilding.item.ModItemGroup;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.item.BlockItem;
@@ -22,7 +24,7 @@ public class ModBlocks {
             new SideBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3)), ModItemGroup.Building);
 
     //public static final Block Oak_Corner = registerBlock("oak_corner",
-      //      new StairsBlock(), ModItemGroup.Building);
+      //      new CornerBlock(Blocks.OAK_PLANKS.getDefaultState(),FabricBlockSettings.of(Material.WOOD)), ModItemGroup.Building);
 
 
     private static Block registerBlock(String name, Block block, ItemGroup group){

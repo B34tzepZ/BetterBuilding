@@ -2,21 +2,21 @@ package net.b34tzepz.betterbuilding.block.custom;
 
 import net.b34tzepz.betterbuilding.block.enums.CornerShape;
 import net.b34tzepz.betterbuilding.state.property.Properties;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.HorizontalFacingBlock;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.block.Waterloggable;
-import net.minecraft.block.enums.StairShape;
+import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -33,9 +33,9 @@ import java.util.stream.IntStream;
 
 
 public class CornerBlock extends Block implements Waterloggable {
-    public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
-    public static final DirectionProperty HALF = HorizontalFacingBlock.FACING;
-    public static final EnumProperty<StairShape> SHAPE = Properties.STAIR_SHAPE;
+    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
+    public static final DirectionProperty HALF = Properties.HORIZONTAL_FACING;
+    public static final EnumProperty<CornerShape> SHAPE = Properties.CORNER_SHAPE;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     protected static final VoxelShape WEST_SHAPE = SideBlock.WEST_SHAPE;
     protected static final VoxelShape EAST_SHAPE = SideBlock.EAST_SHAPE;
@@ -54,7 +54,7 @@ public class CornerBlock extends Block implements Waterloggable {
     protected static final VoxelShape[] NORTH_SHAPES = CornerBlock.composeShapes(NORTH_SHAPE, BOTTOM_SOUTH_WEST_CORNER_SHAPE, TOP_SOUTH_WEST_CORNER_SHAPE, BOTTOM_SOUTH_EAST_CORNER_SHAPE, TOP_SOUTH_EAST_CORNER_SHAPE);
     protected static final VoxelShape[] SOUTH_SHAPES = CornerBlock.composeShapes(SOUTH_SHAPE, BOTTOM_NORTH_WEST_CORNER_SHAPE, TOP_NORTH_WEST_CORNER_SHAPE, BOTTOM_NORTH_EAST_CORNER_SHAPE, TOP_NORTH_EAST_CORNER_SHAPE);
     /*
-    12: South 5: West 3: North 10: East 14:
+    12: South 5: West 3: North 10: East
     14: NONorthWest 13: NONorthEast 7: NOSouthEast 11: NOSouthWest
     8: SouthEast 4: SouthWest 1: NorthWest 2: NorthEast
     [0,3]: Straight [4,7]: Inner_Left [8,11]: Inner_Right [12,15]: Outer_Left [16,19]: Outer_Right
@@ -84,9 +84,9 @@ public class CornerBlock extends Block implements Waterloggable {
         return voxelShape;
     }
 
-    protected CornerBlock(BlockState baseBlockState, AbstractBlock.Settings settings) {
+    public CornerBlock(BlockState baseBlockState, AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState(((((this.stateManager.getDefaultState()).with(FACING, Direction.NORTH)).with(HALF, Direction.WEST)).with(SHAPE, StairShape.STRAIGHT)).with(WATERLOGGED, false));
+        this.setDefaultState(((((this.stateManager.getDefaultState()).with(FACING, Direction.NORTH)).with(HALF, Direction.WEST)).with(SHAPE, CornerShape.STRAIGHT)).with(WATERLOGGED, false));
         this.baseBlock = baseBlockState.getBlock();
         this.baseBlockState = baseBlockState;
     }
@@ -98,7 +98,7 @@ public class CornerBlock extends Block implements Waterloggable {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        switch (state.get(FACING)){
+        switch (state.get(FACING)) {
             case WEST -> {
                 return WEST_SHAPES[SHAPE_INDICES[this.getShapeIndexIndex(state)]];
             }
@@ -183,12 +183,135 @@ public class CornerBlock extends Block implements Waterloggable {
         this.baseBlock.onDestroyedByExplosion(world, pos, explosion);
     }
 
-    /*@Override
+    @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        Direction direction = ctx.getSide();
+        //Direction direction = ctx.getSide();
+        Direction direction = Direction.EAST;
         BlockPos blockPos = ctx.getBlockPos();
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
-        BlockState blockState = ((this.getDefaultState().with(FACING, ctx.getPlayerFacing())).with(HALF, direction == Direction.DOWN || direction != Direction.UP && ctx.getHitPos().y - (double)blockPos.getY() > 0.5 ? BlockHalf.TOP : BlockHalf.BOTTOM)).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
-        return (BlockState)blockState.with(SHAPE, StairsBlock.getStairShape(blockState, ctx.getWorld(), blockPos));
-    }//*/
+        if (ctx.getPlayerFacing().getHorizontal() % 2 == 1) {
+            if (ctx.getHitPos().z - (double) blockPos.getZ() < 0.5) {
+                direction = Direction.NORTH;
+            } else {
+                direction = Direction.SOUTH;
+            }
+        } else if (ctx.getHitPos().x - (double) blockPos.getX() < 0.5) {
+            direction = Direction.WEST;
+        }
+
+        BlockState blockState = ((this.getDefaultState().with(FACING, ctx.getPlayerFacing())).with(HALF, direction)).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+        return blockState.with(SHAPE, CornerBlock.getCornerShape(blockState, ctx.getWorld(), blockPos));
+    }
+
+    @Override
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+        if (state.get(WATERLOGGED)) {
+            world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+        }
+        if (direction.getAxis().isHorizontal()) {
+            return state.with(SHAPE, CornerBlock.getCornerShape(state, world, pos));
+        }
+        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+    }
+
+    private static CornerShape getCornerShape(BlockState state, BlockView world, BlockPos pos) {
+        Direction direction3;
+        Direction direction2;
+        Direction direction = state.get(FACING);
+        BlockState blockState = world.getBlockState(pos.offset(direction));
+        if (CornerBlock.isCorner(blockState) && state.get(HALF) == blockState.get(HALF) && (direction2 = blockState.get(FACING)).getAxis() != state.get(FACING).getAxis() && CornerBlock.isDifferentOrientation(state, world, pos, direction2.getOpposite())) {
+            if (direction2 == direction.rotateYCounterclockwise()) {
+                return CornerShape.OUTER_LEFT;
+            }
+            return CornerShape.OUTER_RIGHT;
+        }
+        BlockState blockState2 = world.getBlockState(pos.offset(direction.getOpposite()));
+        if (CornerBlock.isCorner(blockState2) && state.get(HALF) == blockState2.get(HALF) && (direction3 = blockState2.get(FACING)).getAxis() != state.get(FACING).getAxis() && CornerBlock.isDifferentOrientation(state, world, pos, direction3)) {
+            if (direction3 == direction.rotateYCounterclockwise()) {
+                return CornerShape.INNER_LEFT;
+            }
+            return CornerShape.INNER_RIGHT;
+        }
+        return CornerShape.STRAIGHT;
+    }
+
+    private static boolean isDifferentOrientation(BlockState state, BlockView world, BlockPos pos, Direction dir) {
+        BlockState blockState = world.getBlockState(pos.offset(dir));
+        return !CornerBlock.isCorner(blockState) || blockState.get(FACING) != state.get(FACING) || blockState.get(HALF) != state.get(HALF);
+    }
+
+    public static boolean isCorner(BlockState state) {
+        return state.getBlock() instanceof CornerBlock;
+    }
+
+    @Override
+    public BlockState rotate(BlockState state, BlockRotation rotation) {
+        return state.with(FACING, rotation.rotate(state.get(FACING)));
+    }
+
+    @Override
+    public BlockState mirror(BlockState state, BlockMirror mirror) {
+        Direction direction = state.get(FACING);
+        CornerShape stairShape = state.get(SHAPE);
+        switch (mirror) {
+            case LEFT_RIGHT: {
+                if (direction.getAxis() != Direction.Axis.Z) break;
+                switch (stairShape) {
+                    case INNER_LEFT: {
+                        return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, CornerShape.INNER_RIGHT);
+                    }
+                    case INNER_RIGHT: {
+                        return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, CornerShape.INNER_LEFT);
+                    }
+                    case OUTER_LEFT: {
+                        return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, CornerShape.OUTER_RIGHT);
+                    }
+                    case OUTER_RIGHT: {
+                        return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, CornerShape.OUTER_LEFT);
+                    }
+                }
+                return state.rotate(BlockRotation.CLOCKWISE_180);
+            }
+            case FRONT_BACK: {
+                if (direction.getAxis() != Direction.Axis.X) break;
+                switch (stairShape) {
+                    case INNER_LEFT: {
+                        return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, CornerShape.INNER_LEFT);
+                    }
+                    case INNER_RIGHT: {
+                        return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, CornerShape.INNER_RIGHT);
+                    }
+                    case OUTER_LEFT: {
+                        return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, CornerShape.OUTER_RIGHT);
+                    }
+                    case OUTER_RIGHT: {
+                        return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, CornerShape.OUTER_LEFT);
+                    }
+                    case STRAIGHT: {
+                        return state.rotate(BlockRotation.CLOCKWISE_180);
+                    }
+                }
+                break;
+            }
+        }
+        return super.mirror(state, mirror);
+    }
+
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(FACING, HALF, SHAPE, WATERLOGGED);
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState state) {
+        if (state.get(WATERLOGGED)) {
+            return Fluids.WATER.getStill(false);
+        }
+        return super.getFluidState(state);
+    }
+
+    @Override
+    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+        return false;
+    }
 }
