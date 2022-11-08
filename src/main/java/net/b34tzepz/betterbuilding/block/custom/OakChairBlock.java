@@ -15,6 +15,7 @@ import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -28,6 +29,7 @@ public class OakChairBlock extends HorizontalFacingBlock {
 
     public OakChairBlock(Settings settings){
         super(settings);
+        setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
         //this.setDefaultState((this.getDefaultState().with(TYPE, ChairType.NORTH)));
     }
 
@@ -86,8 +88,23 @@ public class OakChairBlock extends HorizontalFacingBlock {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        /*ChairType chairType = state.get(TYPE);
-        switch (chairType) {
+        Direction dir = state.get(FACING);
+        switch (dir){
+            case NORTH:
+                return NORTH_SHAPE;
+
+            case SOUTH:
+                return SOUTH_SHAPE;
+
+            case WEST:
+                return WEST_SHAPE;
+
+            case EAST:
+                return EAST_SHAPE;
+        }
+        //ChairType chairType = state.get(TYPE);
+        //System.out.println(chairType);
+        /*switch (chairType) {
             case WEST -> {
                 return WEST_SHAPE;
             }

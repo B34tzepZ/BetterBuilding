@@ -8,5 +8,5 @@ import net.minecraft.state.property.EnumProperty;
 public class Properties extends net.minecraft.state.property.Properties {
     public static final EnumProperty<SideType> SIDE_TYPE = EnumProperty.of("type", SideType.class);
     public static final EnumProperty<CornerShape> CORNER_SHAPE = EnumProperty.of("shape", CornerShape.class);
-    public static final EnumProperty<ChairType> CHAIR_TYPE = EnumProperty.of("type",ChairType.class);
+    public static final EnumProperty<ChairType> CHAIR_TYPE = EnumProperty.of("facing",ChairType.class);
 }
