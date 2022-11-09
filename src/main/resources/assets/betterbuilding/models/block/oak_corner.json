@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/stairs",
+  "parent": "betterbuilding:block/corner",
   "textures": {
     "bottom": "minecraft:block/oak_planks",
     "top": "minecraft:block/oak_planks",

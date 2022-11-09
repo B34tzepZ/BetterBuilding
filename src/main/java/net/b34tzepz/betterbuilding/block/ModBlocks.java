@@ -17,14 +17,14 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class ModBlocks {
-    public static final Block Reinforced_Oak_Planks = registerBlock("reinforced_oak_planks",
+    public static final Block REINFORCED_OAK_PLANKS = registerBlock("reinforced_oak_planks",
             new Block(FabricBlockSettings.of(Material.WOOD).strength(3, 4.5f)), ModItemGroup.Building);
 
-    public static final Block Oak_Side = registerBlock("oak_side",
+    public static final Block OAK_SIDE = registerBlock("oak_side",
             new SideBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3)), ModItemGroup.Building);
 
-    //public static final Block Oak_Corner = registerBlock("oak_corner",
-      //      new CornerBlock(Blocks.OAK_PLANKS.getDefaultState(),FabricBlockSettings.of(Material.WOOD)), ModItemGroup.Building);
+    public static final Block OAK_CORNER = registerBlock("oak_corner",
+            new CornerBlock(Blocks.OAK_PLANKS.getDefaultState(),FabricBlockSettings.of(Material.WOOD)), ModItemGroup.Building);
 
 
     private static Block registerBlock(String name, Block block, ItemGroup group){

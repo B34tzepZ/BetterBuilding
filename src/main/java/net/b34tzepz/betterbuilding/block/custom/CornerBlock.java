@@ -2,7 +2,12 @@ package net.b34tzepz.betterbuilding.block.custom;
 
 import net.b34tzepz.betterbuilding.block.enums.CornerShape;
 import net.b34tzepz.betterbuilding.state.property.Properties;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.ShapeContext;
+import net.minecraft.block.Waterloggable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -185,7 +190,6 @@ public class CornerBlock extends Block implements Waterloggable {
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        //Direction direction = ctx.getSide();
         Direction direction = Direction.EAST;
         BlockPos blockPos = ctx.getBlockPos();
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
@@ -254,44 +258,43 @@ public class CornerBlock extends Block implements Waterloggable {
         Direction direction = state.get(FACING);
         CornerShape stairShape = state.get(SHAPE);
         switch (mirror) {
-            case LEFT_RIGHT: {
+            case LEFT_RIGHT -> {
                 if (direction.getAxis() != Direction.Axis.Z) break;
                 switch (stairShape) {
-                    case INNER_LEFT: {
+                    case INNER_LEFT -> {
                         return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, CornerShape.INNER_RIGHT);
                     }
-                    case INNER_RIGHT: {
+                    case INNER_RIGHT -> {
                         return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, CornerShape.INNER_LEFT);
                     }
-                    case OUTER_LEFT: {
+                    case OUTER_LEFT -> {
                         return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, CornerShape.OUTER_RIGHT);
                     }
-                    case OUTER_RIGHT: {
+                    case OUTER_RIGHT -> {
                         return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, CornerShape.OUTER_LEFT);
                     }
                 }
                 return state.rotate(BlockRotation.CLOCKWISE_180);
             }
-            case FRONT_BACK: {
+            case FRONT_BACK -> {
                 if (direction.getAxis() != Direction.Axis.X) break;
                 switch (stairShape) {
-                    case INNER_LEFT: {
+                    case INNER_LEFT -> {
                         return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, CornerShape.INNER_LEFT);
                     }
-                    case INNER_RIGHT: {
+                    case INNER_RIGHT -> {
                         return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, CornerShape.INNER_RIGHT);
                     }
-                    case OUTER_LEFT: {
+                    case OUTER_LEFT -> {
                         return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, CornerShape.OUTER_RIGHT);
                     }
-                    case OUTER_RIGHT: {
+                    case OUTER_RIGHT -> {
                         return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, CornerShape.OUTER_LEFT);
                     }
-                    case STRAIGHT: {
+                    case STRAIGHT -> {
                         return state.rotate(BlockRotation.CLOCKWISE_180);
                     }
                 }
-                break;
             }
         }
         return super.mirror(state, mirror);
@@ -299,7 +302,7 @@ public class CornerBlock extends Block implements Waterloggable {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING, HALF, SHAPE, WATERLOGGED);
+        builder.add(/*FACING,*/ HALF, SHAPE, WATERLOGGED);
     }
 
     @Override
