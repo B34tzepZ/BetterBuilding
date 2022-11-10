@@ -1,6 +1,7 @@
 package net.b34tzepz.betterbuilding.block.custom;
 
 import net.b34tzepz.betterbuilding.block.enums.CornerShape;
+import net.b34tzepz.betterbuilding.block.enums.RelativeDirection;
 import net.b34tzepz.betterbuilding.state.property.Properties;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -39,7 +40,7 @@ import java.util.stream.IntStream;
 
 public class CornerBlock extends Block implements Waterloggable {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    public static final DirectionProperty HALF = Properties.HORIZONTAL_FACING;
+    public static final EnumProperty<RelativeDirection> HALF = Properties.RELATIVE_DIRECTION;
     public static final EnumProperty<CornerShape> SHAPE = Properties.CORNER_SHAPE;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     protected static final VoxelShape WEST_SHAPE = SideBlock.WEST_SHAPE;
@@ -91,7 +92,7 @@ public class CornerBlock extends Block implements Waterloggable {
 
     public CornerBlock(BlockState baseBlockState, AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState(((((this.stateManager.getDefaultState()).with(FACING, Direction.NORTH)).with(HALF, Direction.WEST)).with(SHAPE, CornerShape.STRAIGHT)).with(WATERLOGGED, false));
+        this.setDefaultState((((this.stateManager.getDefaultState().with(FACING, Direction.NORTH)).with(HALF, RelativeDirection.LEFT)).with(SHAPE, CornerShape.STRAIGHT)).with(WATERLOGGED, false));
         this.baseBlock = baseBlockState.getBlock();
         this.baseBlockState = baseBlockState;
     }
@@ -190,20 +191,33 @@ public class CornerBlock extends Block implements Waterloggable {
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        Direction direction = Direction.EAST;
+        RelativeDirection relativeDirection = RelativeDirection.RIGHT;
         BlockPos blockPos = ctx.getBlockPos();
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
-        if (ctx.getPlayerFacing().getHorizontal() % 2 == 1) {
-            if (ctx.getHitPos().z - (double) blockPos.getZ() < 0.5) {
-                direction = Direction.NORTH;
-            } else {
-                direction = Direction.SOUTH;
+        switch (ctx.getPlayerFacing()) {
+            case EAST -> {
+                if (ctx.getHitPos().z - (double) blockPos.getZ() < 0.5) {
+                    relativeDirection = RelativeDirection.LEFT;
+                }
             }
-        } else if (ctx.getHitPos().x - (double) blockPos.getX() < 0.5) {
-            direction = Direction.WEST;
+            case WEST -> {
+                if (ctx.getHitPos().z - (double) blockPos.getZ() > 0.5) {
+                    relativeDirection = RelativeDirection.LEFT;
+                }
+            }
+            case NORTH -> {
+                if (ctx.getHitPos().x - (double) blockPos.getX() < 0.5) {
+                    relativeDirection = RelativeDirection.LEFT;
+                }
+            }
+            case SOUTH -> {
+                if (ctx.getHitPos().x - (double) blockPos.getX() > 0.5) {
+                    relativeDirection = RelativeDirection.LEFT;
+                }
+            }
         }
 
-        BlockState blockState = ((this.getDefaultState().with(FACING, ctx.getPlayerFacing())).with(HALF, direction)).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+        BlockState blockState = ((this.getDefaultState().with(FACING, ctx.getPlayerFacing())).with(HALF, relativeDirection)).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
         return blockState.with(SHAPE, CornerBlock.getCornerShape(blockState, ctx.getWorld(), blockPos));
     }
 
@@ -302,7 +316,7 @@ public class CornerBlock extends Block implements Waterloggable {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(/*FACING,*/ HALF, SHAPE, WATERLOGGED);
+        builder.add(FACING, HALF, SHAPE, WATERLOGGED);
     }
 
     @Override
