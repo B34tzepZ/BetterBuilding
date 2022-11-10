@@ -24,15 +24,15 @@ public class ModBlocks {
             new SideBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3)), ModItemGroup.Building);
 
     public static final Block OAK_CORNER = registerBlock("oak_corner",
-            new CornerBlock(Blocks.OAK_PLANKS.getDefaultState(),FabricBlockSettings.of(Material.WOOD)), ModItemGroup.Building);
+            new CornerBlock(Blocks.OAK_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD)), ModItemGroup.Building);
 
 
-    private static Block registerBlock(String name, Block block, ItemGroup group){
+    private static Block registerBlock(String name, Block block, ItemGroup group) {
         registerBlockItem(name, block, group);
         return Registry.register(Registry.BLOCK, new Identifier(BetterBuilding.MOD_ID, name), block);
     }
 
-    private static Item registerBlockItem(String name, Block block, ItemGroup group){
+    private static Item registerBlockItem(String name, Block block, ItemGroup group) {
         return Registry.register(Registry.ITEM, new Identifier(BetterBuilding.MOD_ID, name),
                 new BlockItem(block, new FabricItemSettings().group(group)));
     }
