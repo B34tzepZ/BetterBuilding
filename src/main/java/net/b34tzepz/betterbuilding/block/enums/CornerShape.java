@@ -12,7 +12,7 @@ public enum CornerShape implements StringIdentifiable {
 
     private final String name;
 
-    private CornerShape(String name) {
+    CornerShape(String name) {
         this.name = name;
     }
 
