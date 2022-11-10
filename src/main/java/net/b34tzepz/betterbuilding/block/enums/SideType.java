@@ -11,7 +11,7 @@ public enum SideType implements StringIdentifiable {
 
     private final String name;
 
-    private SideType(String name) {
+    SideType(String name) {
         this.name = name;
     }
 
