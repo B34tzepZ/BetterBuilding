@@ -191,28 +191,28 @@ public class CornerBlock extends Block implements Waterloggable {
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        RelativeDirection relativeDirection = RelativeDirection.RIGHT;
+        RelativeDirection relativeDirection = RelativeDirection.LEFT;
         BlockPos blockPos = ctx.getBlockPos();
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
         switch (ctx.getPlayerFacing()) {
             case EAST -> {
-                if (ctx.getHitPos().z - (double) blockPos.getZ() < 0.5) {
-                    relativeDirection = RelativeDirection.LEFT;
+                if (ctx.getHitPos().z - (double) blockPos.getZ() > 0.5) {
+                    relativeDirection = RelativeDirection.RIGHT;
                 }
             }
             case WEST -> {
-                if (ctx.getHitPos().z - (double) blockPos.getZ() > 0.5) {
-                    relativeDirection = RelativeDirection.LEFT;
+                if (ctx.getHitPos().z - (double) blockPos.getZ() < 0.5) {
+                    relativeDirection = RelativeDirection.RIGHT;
                 }
             }
             case NORTH -> {
-                if (ctx.getHitPos().x - (double) blockPos.getX() < 0.5) {
-                    relativeDirection = RelativeDirection.LEFT;
+                if (ctx.getHitPos().x - (double) blockPos.getX() > 0.5) {
+                    relativeDirection = RelativeDirection.RIGHT;
                 }
             }
             case SOUTH -> {
-                if (ctx.getHitPos().x - (double) blockPos.getX() > 0.5) {
-                    relativeDirection = RelativeDirection.LEFT;
+                if (ctx.getHitPos().x - (double) blockPos.getX() < 0.5) {
+                    relativeDirection = RelativeDirection.RIGHT;
                 }
             }
         }
