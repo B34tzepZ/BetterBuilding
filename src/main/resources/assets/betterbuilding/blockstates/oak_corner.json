@@ -1,206 +1,206 @@
 {
   "variants": {
-    "facing=east,half=bottom,shape=inner_left": {
-      "model": "minecraft:block/oak_stairs_inner",
+    "facing=east,relative_direction=left,shape=inner_left": {
+      "model": "betterbuilding:block/oak_corner_inner",
       "y": 270,
       "uvlock": true
     },
-    "facing=east,half=bottom,shape=inner_right": {
-      "model": "minecraft:block/oak_stairs_inner"
+    "facing=east,relative_direction=left,shape=inner_right": {
+      "model": "betterbuilding:block/oak_corner_inner"
     },
-    "facing=east,half=bottom,shape=outer_left": {
-      "model": "minecraft:block/oak_stairs_outer",
+    "facing=east,relative_direction=left,shape=outer_left": {
+      "model": "betterbuilding:block/oak_corner_outer",
       "y": 270,
       "uvlock": true
     },
-    "facing=east,half=bottom,shape=outer_right": {
-      "model": "minecraft:block/oak_stairs_outer"
+    "facing=east,relative_direction=left,shape=outer_right": {
+      "model": "betterbuilding:block/oak_corner_outer"
     },
-    "facing=east,half=bottom,shape=straight": {
-      "model": "minecraft:block/oak_stairs"
+    "facing=east,relative_direction=left,shape=straight": {
+      "model": "betterbuilding:block/oak_corner"
     },
-    "facing=east,half=top,shape=inner_left": {
-      "model": "minecraft:block/oak_stairs_inner",
+    "facing=east,relative_direction=top,shape=inner_left": {
+      "model": "betterbuilding:block/oak_corner_inner",
       "x": 180,
       "uvlock": true
     },
-    "facing=east,half=top,shape=inner_right": {
-      "model": "minecraft:block/oak_stairs_inner",
+    "facing=east,relative_direction=right,shape=inner_right": {
+      "model": "betterbuilding:block/oak_corner_inner",
       "x": 180,
       "y": 90,
       "uvlock": true
     },
-    "facing=east,half=top,shape=outer_left": {
-      "model": "minecraft:block/oak_stairs_outer",
+    "facing=east,relative_direction=right,shape=outer_left": {
+      "model": "betterbuilding:block/oak_corner_outer",
       "x": 180,
       "uvlock": true
     },
-    "facing=east,half=top,shape=outer_right": {
-      "model": "minecraft:block/oak_stairs_outer",
+    "facing=east,relative_direction=right,shape=outer_right": {
+      "model": "betterbuilding:block/oak_corner_outer",
       "x": 180,
       "y": 90,
       "uvlock": true
     },
-    "facing=east,half=top,shape=straight": {
-      "model": "minecraft:block/oak_stairs",
+    "facing=east,relative_direction=right,shape=straight": {
+      "model": "betterbuilding:block/oak_corner",
       "x": 180,
       "uvlock": true
     },
-    "facing=north,half=bottom,shape=inner_left": {
-      "model": "minecraft:block/oak_stairs_inner",
+    "facing=north,relative_direction=left,shape=inner_left": {
+      "model": "betterbuilding:block/oak_corner_inner",
       "y": 180,
       "uvlock": true
     },
-    "facing=north,half=bottom,shape=inner_right": {
-      "model": "minecraft:block/oak_stairs_inner",
+    "facing=north,relative_direction=left,shape=inner_right": {
+      "model": "betterbuilding:block/oak_corner_inner",
       "y": 270,
       "uvlock": true
     },
-    "facing=north,half=bottom,shape=outer_left": {
-      "model": "minecraft:block/oak_stairs_outer",
+    "facing=north,relative_direction=left,shape=outer_left": {
+      "model": "betterbuilding:block/oak_corner_outer",
       "y": 180,
       "uvlock": true
     },
-    "facing=north,half=bottom,shape=outer_right": {
-      "model": "minecraft:block/oak_stairs_outer",
+    "facing=north,relative_direction=left,shape=outer_right": {
+      "model": "betterbuilding:block/oak_corner_outer",
       "y": 270,
       "uvlock": true
     },
-    "facing=north,half=bottom,shape=straight": {
-      "model": "minecraft:block/oak_stairs",
+    "facing=north,relative_direction=left,shape=straight": {
+      "model": "betterbuilding:block/oak_corner",
       "y": 270,
       "uvlock": true
     },
-    "facing=north,half=top,shape=inner_left": {
-      "model": "minecraft:block/oak_stairs_inner",
-      "x": 180,
-      "y": 270,
-      "uvlock": true
-    },
-    "facing=north,half=top,shape=inner_right": {
-      "model": "minecraft:block/oak_stairs_inner",
-      "x": 180,
-      "uvlock": true
-    },
-    "facing=north,half=top,shape=outer_left": {
-      "model": "minecraft:block/oak_stairs_outer",
+    "facing=north,relative_direction=right,shape=inner_left": {
+      "model": "betterbuilding:block/oak_corner_inner",
       "x": 180,
       "y": 270,
       "uvlock": true
     },
-    "facing=north,half=top,shape=outer_right": {
-      "model": "minecraft:block/oak_stairs_outer",
+    "facing=north,relative_direction=right,shape=inner_right": {
+      "model": "betterbuilding:block/oak_corner_inner",
       "x": 180,
       "uvlock": true
     },
-    "facing=north,half=top,shape=straight": {
-      "model": "minecraft:block/oak_stairs",
+    "facing=north,relative_direction=right,shape=outer_left": {
+      "model": "betterbuilding:block/oak_corner_outer",
       "x": 180,
       "y": 270,
       "uvlock": true
     },
-    "facing=south,half=bottom,shape=inner_left": {
-      "model": "minecraft:block/oak_stairs_inner"
+    "facing=north,relative_direction=right,shape=outer_right": {
+      "model": "betterbuilding:block/oak_corner_outer",
+      "x": 180,
+      "uvlock": true
     },
-    "facing=south,half=bottom,shape=inner_right": {
-      "model": "minecraft:block/oak_stairs_inner",
+    "facing=north,relative_direction=right,shape=straight": {
+      "model": "betterbuilding:block/oak_corner",
+      "x": 180,
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=south,relative_direction=left,shape=inner_left": {
+      "model": "betterbuilding:block/oak_corner_inner"
+    },
+    "facing=south,relative_direction=left,shape=inner_right": {
+      "model": "betterbuilding:block/oak_corner_inner",
       "y": 90,
       "uvlock": true
     },
-    "facing=south,half=bottom,shape=outer_left": {
-      "model": "minecraft:block/oak_stairs_outer"
+    "facing=south,relative_direction=left,shape=outer_left": {
+      "model": "betterbuilding:block/oak_corner_outer"
     },
-    "facing=south,half=bottom,shape=outer_right": {
-      "model": "minecraft:block/oak_stairs_outer",
+    "facing=south,relative_direction=left,shape=outer_right": {
+      "model": "betterbuilding:block/oak_corner_outer",
       "y": 90,
       "uvlock": true
     },
-    "facing=south,half=bottom,shape=straight": {
-      "model": "minecraft:block/oak_stairs",
+    "facing=south,relative_direction=left,shape=straight": {
+      "model": "betterbuilding:block/oak_corner",
       "y": 90,
       "uvlock": true
     },
-    "facing=south,half=top,shape=inner_left": {
-      "model": "minecraft:block/oak_stairs_inner",
+    "facing=south,relative_direction=right,shape=inner_left": {
+      "model": "betterbuilding:block/oak_corner_inner",
       "x": 180,
       "y": 90,
       "uvlock": true
     },
-    "facing=south,half=top,shape=inner_right": {
-      "model": "minecraft:block/oak_stairs_inner",
-      "x": 180,
-      "y": 180,
-      "uvlock": true
-    },
-    "facing=south,half=top,shape=outer_left": {
-      "model": "minecraft:block/oak_stairs_outer",
-      "x": 180,
-      "y": 90,
-      "uvlock": true
-    },
-    "facing=south,half=top,shape=outer_right": {
-      "model": "minecraft:block/oak_stairs_outer",
+    "facing=south,relative_direction=right,shape=inner_right": {
+      "model": "betterbuilding:block/oak_corner_inner",
       "x": 180,
       "y": 180,
       "uvlock": true
     },
-    "facing=south,half=top,shape=straight": {
-      "model": "minecraft:block/oak_stairs",
+    "facing=south,relative_direction=right,shape=outer_left": {
+      "model": "betterbuilding:block/oak_corner_outer",
       "x": 180,
       "y": 90,
       "uvlock": true
     },
-    "facing=west,half=bottom,shape=inner_left": {
-      "model": "minecraft:block/oak_stairs_inner",
-      "y": 90,
-      "uvlock": true
-    },
-    "facing=west,half=bottom,shape=inner_right": {
-      "model": "minecraft:block/oak_stairs_inner",
-      "y": 180,
-      "uvlock": true
-    },
-    "facing=west,half=bottom,shape=outer_left": {
-      "model": "minecraft:block/oak_stairs_outer",
-      "y": 90,
-      "uvlock": true
-    },
-    "facing=west,half=bottom,shape=outer_right": {
-      "model": "minecraft:block/oak_stairs_outer",
-      "y": 180,
-      "uvlock": true
-    },
-    "facing=west,half=bottom,shape=straight": {
-      "model": "minecraft:block/oak_stairs",
-      "y": 180,
-      "uvlock": true
-    },
-    "facing=west,half=top,shape=inner_left": {
-      "model": "minecraft:block/oak_stairs_inner",
+    "facing=south,relative_direction=right,shape=outer_right": {
+      "model": "betterbuilding:block/oak_corner_outer",
       "x": 180,
       "y": 180,
       "uvlock": true
     },
-    "facing=west,half=top,shape=inner_right": {
-      "model": "minecraft:block/oak_stairs_inner",
+    "facing=south,relative_direction=right,shape=straight": {
+      "model": "betterbuilding:block/oak_corner",
+      "x": 180,
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=west,relative_direction=left,shape=inner_left": {
+      "model": "betterbuilding:block/oak_corner_inner",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=west,relative_direction=left,shape=inner_right": {
+      "model": "betterbuilding:block/oak_corner_inner",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west,relative_direction=left,shape=outer_left": {
+      "model": "betterbuilding:block/oak_corner_outer",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=west,relative_direction=left,shape=outer_right": {
+      "model": "betterbuilding:block/oak_corner_outer",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west,relative_direction=left,shape=straight": {
+      "model": "betterbuilding:block/oak_corner",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west,relative_direction=right,shape=inner_left": {
+      "model": "betterbuilding:block/oak_corner_inner",
+      "x": 180,
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west,relative_direction=right,shape=inner_right": {
+      "model": "betterbuilding:block/oak_corner_inner",
       "x": 180,
       "y": 270,
       "uvlock": true
     },
-    "facing=west,half=top,shape=outer_left": {
-      "model": "minecraft:block/oak_stairs_outer",
+    "facing=west,relative_direction=right,shape=outer_left": {
+      "model": "betterbuilding:block/oak_corner_outer",
       "x": 180,
       "y": 180,
       "uvlock": true
     },
-    "facing=west,half=top,shape=outer_right": {
-      "model": "minecraft:block/oak_stairs_outer",
+    "facing=west,relative_direction=right,shape=outer_right": {
+      "model": "betterbuilding:block/oak_corner_outer",
       "x": 180,
       "y": 270,
       "uvlock": true
     },
-    "facing=west,half=top,shape=straight": {
-      "model": "minecraft:block/oak_stairs",
+    "facing=west,relative_direction=right,shape=straight": {
+      "model": "betterbuilding:block/oak_corner",
       "x": 180,
       "y": 180,
       "uvlock": true
