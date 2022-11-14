@@ -24,7 +24,7 @@ public class ModBlocks {
     public static final Block Oak_Side = registerBlock("oak_side",
             new SideBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3)), ModItemGroup.Building);
 
-    public static final Block Oak_Chair = registerBlock("oak_chair",
+    public static final Block OAK_CHAIR = registerBlock("oak_chair",
             new OakChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque()), ModItemGroup.Building);
 
 

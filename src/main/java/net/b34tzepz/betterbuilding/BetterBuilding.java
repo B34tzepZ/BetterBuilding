@@ -1,6 +1,7 @@
 package net.b34tzepz.betterbuilding;
 
 import net.b34tzepz.betterbuilding.block.ModBlocks;
+import net.b34tzepz.betterbuilding.block.entity.ModBlockEntities;
 import net.b34tzepz.betterbuilding.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
@@ -14,5 +15,6 @@ public class BetterBuilding implements ModInitializer {
 	public void onInitialize() {
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
+		ModBlockEntities.registerAllEntities();
 	}
 }

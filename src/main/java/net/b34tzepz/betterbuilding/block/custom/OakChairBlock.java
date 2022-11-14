@@ -1,13 +1,14 @@
 package net.b34tzepz.betterbuilding.block.custom;
 
+import net.b34tzepz.betterbuilding.block.entity.OakChairEntity;
 import net.b34tzepz.betterbuilding.block.enums.ChairType;
 import net.b34tzepz.betterbuilding.block.enums.SideType;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.vehicle.MinecartEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
@@ -32,7 +33,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.stream.Stream;
 
-public class OakChairBlock extends HorizontalFacingBlock {
+public class OakChairBlock extends BlockWithEntity implements BlockEntityProvider {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final EnumProperty<ChairType> TYPE = net.b34tzepz.betterbuilding.state.property.Properties.CHAIR_TYPE;
 
@@ -42,7 +43,6 @@ public class OakChairBlock extends HorizontalFacingBlock {
         //this.setDefaultState((this.getDefaultState().with(TYPE, ChairType.NORTH)));
     }
 
-    //TODO: VoxelShape dreht sich nicht korrekt mit
     private static final VoxelShape NORTH_SHAPE = Stream.of(
             Block.createCuboidShape(0, 12, 2, 2, 14, 15),
             Block.createCuboidShape(14, 0, 0, 16, 10, 2),
@@ -148,5 +148,18 @@ public class OakChairBlock extends HorizontalFacingBlock {
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
+
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new OakChairEntity(pos, state);
+    }
+
+
 
 }
