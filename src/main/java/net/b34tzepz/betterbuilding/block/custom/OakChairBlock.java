@@ -120,6 +120,7 @@ public class OakChairBlock extends HorizontalFacingBlock {
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         if (placer instanceof PlayerEntity) ((PlayerEntity) placer).sendMessage(new LiteralText("placed"), false);
+
         super.onPlaced(world, pos, state, placer, itemStack);
     }
 
