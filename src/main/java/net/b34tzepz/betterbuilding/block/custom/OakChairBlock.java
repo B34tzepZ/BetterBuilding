@@ -6,19 +6,28 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.LiteralText;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
+import net.minecraft.util.Hand;
 import net.minecraft.util.function.BooleanBiFunction;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.stream.Stream;
@@ -90,9 +99,6 @@ public class OakChairBlock extends HorizontalFacingBlock {
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         Direction dir = state.get(FACING);
         switch (dir){
-            case NORTH:
-                return NORTH_SHAPE;
-
             case SOUTH:
                 return SOUTH_SHAPE;
 
@@ -102,19 +108,6 @@ public class OakChairBlock extends HorizontalFacingBlock {
             case EAST:
                 return EAST_SHAPE;
         }
-        //ChairType chairType = state.get(TYPE);
-        //System.out.println(chairType);
-        /*switch (chairType) {
-            case WEST -> {
-                return WEST_SHAPE;
-            }
-            case EAST -> {
-                return EAST_SHAPE;
-            }
-            case SOUTH -> {
-                return SOUTH_SHAPE;
-            }
-        }*/
         return NORTH_SHAPE;
     }
 
@@ -122,6 +115,22 @@ public class OakChairBlock extends HorizontalFacingBlock {
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return this.getDefaultState().with(FACING, ctx.getPlayerFacing()); //.getOpposite()
+    }
+
+    @Override
+    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+        if (placer instanceof PlayerEntity) ((PlayerEntity) placer).sendMessage(new LiteralText("placed"), false);
+        super.onPlaced(world, pos, state, placer, itemStack);
+    }
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if(world.isClient()){
+            if(hand == Hand.MAIN_HAND){
+                //player.startRiding(); //Stuhl muss entity sein bzw im Stuhl muss entity erstellt werden
+            }
+        }
+        return ActionResult.SUCCESS;
     }
 
     @Override

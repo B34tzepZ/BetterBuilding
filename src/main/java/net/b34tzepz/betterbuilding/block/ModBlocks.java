@@ -8,7 +8,6 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
-import net.minecraft.block.StairsBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -27,9 +26,6 @@ public class ModBlocks {
 
     public static final Block Oak_Chair = registerBlock("oak_chair",
             new OakChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque()), ModItemGroup.Building);
-
-    //public static final Block Oak_Corner = registerBlock("oak_corner",
-      //      new StairsBlock(), ModItemGroup.Building);
 
 
     private static Block registerBlock(String name, Block block, ItemGroup group){
