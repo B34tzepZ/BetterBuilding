@@ -5,13 +5,16 @@ import net.b34tzepz.betterbuilding.block.enums.ChairType;
 import net.b34tzepz.betterbuilding.block.enums.SideType;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.Hopper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.entity.vehicle.MinecartEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
@@ -36,6 +39,7 @@ import java.util.stream.Stream;
 public class OakChairBlock extends BlockWithEntity implements BlockEntityProvider {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final EnumProperty<ChairType> TYPE = net.b34tzepz.betterbuilding.state.property.Properties.CHAIR_TYPE;
+    public static BooleanProperty OCCUPIED = BooleanProperty.of("OCCUPIED");
 
     public OakChairBlock(Settings settings){
         super(settings);
@@ -120,7 +124,6 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         if (placer instanceof PlayerEntity) ((PlayerEntity) placer).sendMessage(new LiteralText("placed"), false);
-
         super.onPlaced(world, pos, state, placer, itemStack);
     }
 
@@ -128,7 +131,9 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if(world.isClient()){
             if(hand == Hand.MAIN_HAND){
-                //player.startRiding(); //Stuhl muss entity sein bzw im Stuhl muss entity erstellt werden
+                //MinecartEntity minecart = new MinecartEntity(world, pos.getX(),pos.getY(),pos.getZ());
+                BoatEntity boat = new BoatEntity(world,  pos.getX(),pos.getY(),pos.getZ());
+                player.startRiding(boat); //Stuhl muss entity sein bzw im Stuhl muss entity erstellt werden
             }
         }
         return ActionResult.SUCCESS;
@@ -159,7 +164,4 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new OakChairEntity(pos, state);
     }
-
-
-
 }

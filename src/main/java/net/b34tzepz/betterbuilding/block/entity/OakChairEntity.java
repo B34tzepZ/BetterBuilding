@@ -2,7 +2,6 @@ package net.b34tzepz.betterbuilding.block.entity;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.NamedScreenHandlerFactory;
@@ -16,8 +15,6 @@ public class OakChairEntity extends BlockEntity implements NamedScreenHandlerFac
     public OakChairEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.OAK_CHAIR, pos, state);
     }
-
-
 
 
     @Override
