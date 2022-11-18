@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.block.Waterloggable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.pathing.NavigationType;
@@ -236,8 +237,8 @@ public class CornerBlock extends Block implements Waterloggable {
         Direction direction3;
         Direction direction2;
         Direction direction = state.get(FACING);
-        BlockState blockState = world.getBlockState(pos.offset(direction));
-        if (CornerBlock.isCorner(blockState) && state.get(HALF) == blockState.get(HALF) && (direction2 = blockState.get(FACING)).getAxis() != state.get(FACING).getAxis() && CornerBlock.isDifferentOrientation(state, world, pos, direction2.getOpposite())) {
+        BlockState blockState = world.getBlockState(pos.offset(direction.rotateYCounterclockwise()));
+        if (StairsBlock.isStairs(blockState) && state.get(FACING) == blockState.get(FACING) && (direction2 = blockState.get(FACING)).getAxis() != state.get(FACING).getAxis() && CornerBlock.isDifferentOrientation(state, world, pos, direction2.getOpposite())) {
             if (direction2 == direction.rotateYCounterclockwise()) {
                 return CornerShape.OUTER_LEFT;
             }
