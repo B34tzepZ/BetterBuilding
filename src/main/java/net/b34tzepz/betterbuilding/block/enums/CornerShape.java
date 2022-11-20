@@ -5,10 +5,10 @@ import net.minecraft.util.StringIdentifiable;
 public enum CornerShape implements StringIdentifiable {
 
     STRAIGHT("straight"),
-    INNER_LEFT("inner_left"),
-    INNER_RIGHT("inner_right"),
-    OUTER_LEFT("outer_left"),
-    OUTER_RIGHT("outer_right");
+    INNER_BOTTOM("inner_bottom"),
+    INNER_TOP("inner_top"),
+    OUTER_BOTTOM("outer_bottom"),
+    OUTER_TOP("outer_top");
 
     private final String name;
 
