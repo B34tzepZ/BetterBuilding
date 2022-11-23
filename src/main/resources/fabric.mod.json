@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "net.b34tzepz.betterbuilding.BetterBuilding"
+    ],
+    "client": [
+      "net.b34tzepz.betterbuilding.BetterBuildingClient"
     ]
   },
   "mixins": [
