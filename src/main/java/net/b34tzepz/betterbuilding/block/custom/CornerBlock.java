@@ -61,12 +61,6 @@ public class CornerBlock extends Block implements Waterloggable {
     protected static final VoxelShape[] EAST_SHAPES = CornerBlock.composeShapes(EAST_SHAPE, BOTTOM_NORTH_WEST_CORNER_SHAPE, TOP_NORTH_WEST_CORNER_SHAPE, BOTTOM_SOUTH_WEST_CORNER_SHAPE, TOP_SOUTH_WEST_CORNER_SHAPE);
     protected static final VoxelShape[] NORTH_SHAPES = CornerBlock.composeShapes(NORTH_SHAPE, BOTTOM_SOUTH_WEST_CORNER_SHAPE, TOP_SOUTH_WEST_CORNER_SHAPE, BOTTOM_SOUTH_EAST_CORNER_SHAPE, TOP_SOUTH_EAST_CORNER_SHAPE);
     protected static final VoxelShape[] SOUTH_SHAPES = CornerBlock.composeShapes(SOUTH_SHAPE, BOTTOM_NORTH_EAST_CORNER_SHAPE, TOP_NORTH_EAST_CORNER_SHAPE, BOTTOM_NORTH_WEST_CORNER_SHAPE, TOP_NORTH_WEST_CORNER_SHAPE);
-    /*
-    12: South 5: West 3: North 10: East
-    14: NONorthWest 13: NONorthEast 7: NOSouthEast 11: NOSouthWest
-    8: SouthEast 4: SouthWest 1: NorthWest 2: NorthEast
-    [0,3]: Straight [4,7]: Inner_Left [8,11]: Inner_Right [12,15]: Outer_Left [16,19]: Outer_Right
-    */
     private static final int[] SHAPE_INDICES = new int[]{3, 12, 7, 13, 11, 14, 1, 4, 2, 8};
     private final Block baseBlock;
     private final BlockState baseBlockState;
@@ -243,29 +237,29 @@ public class CornerBlock extends Block implements Waterloggable {
             neighborInDirection = world.getBlockState(pos.offset(direction.rotateYClockwise()));
             neighborOppositeDirection = world.getBlockState(pos.offset(direction.rotateYCounterclockwise()));
         }
-        if (isStairsConnectable(state, neighborInDirection)) {
-            if (neighborInDirection.get(StairsBlock.HALF) == BlockHalf.BOTTOM) {
-                return CornerShape.OUTER_BOTTOM;
+        if (StairsBlock.isStairs(neighborInDirection)) {
+            if (state.get(FACING) == neighborInDirection.get(FACING)) {
+                if (!((neighborInDirection.get(StairsBlock.SHAPE) == StairShape.INNER_RIGHT && state.get(DIRECTION) == RelativeDirection.LEFT) ||
+                        (neighborInDirection.get(StairsBlock.SHAPE) == StairShape.INNER_LEFT && state.get(DIRECTION) == RelativeDirection.RIGHT))) {
+                    if (neighborInDirection.get(StairsBlock.HALF) == BlockHalf.BOTTOM) {
+                        return CornerShape.OUTER_BOTTOM;
+                    }
+                    return CornerShape.OUTER_TOP;
+                }
             }
-            return CornerShape.OUTER_TOP;
         }
-        if (isStairsConnectable(state, neighborOppositeDirection)) {
-            if (neighborOppositeDirection.get(StairsBlock.HALF) == BlockHalf.BOTTOM) {
-                return CornerShape.INNER_BOTTOM;
+        if (StairsBlock.isStairs(neighborOppositeDirection)) {
+            if (state.get(FACING) == neighborOppositeDirection.get(FACING)) {
+                if (!((neighborOppositeDirection.get(StairsBlock.SHAPE) == StairShape.INNER_RIGHT && state.get(DIRECTION) == RelativeDirection.RIGHT) ||
+                        (neighborOppositeDirection.get(StairsBlock.SHAPE) == StairShape.INNER_LEFT && state.get(DIRECTION) == RelativeDirection.LEFT))) {
+                    if (neighborOppositeDirection.get(StairsBlock.HALF) == BlockHalf.BOTTOM) {
+                        return CornerShape.INNER_BOTTOM;
+                    }
+                    return CornerShape.INNER_TOP;
+                }
             }
-            return CornerShape.INNER_TOP;
         }
         return CornerShape.STRAIGHT;
-    }
-
-    private static boolean isStairsConnectable(BlockState cornerState, BlockState stairsState) {
-        if (StairsBlock.isStairs(stairsState)) {
-            boolean matchingFacing = cornerState.get(FACING) == stairsState.get(FACING);
-            boolean changeShape = !((stairsState.get(StairsBlock.SHAPE) == StairShape.INNER_RIGHT && cornerState.get(DIRECTION) == RelativeDirection.LEFT) ||
-                    (stairsState.get(StairsBlock.SHAPE) == StairShape.INNER_LEFT && cornerState.get(DIRECTION) == RelativeDirection.RIGHT));
-            return (matchingFacing && changeShape);
-        }
-        return false;
     }
 
     @Override
