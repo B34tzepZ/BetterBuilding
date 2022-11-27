@@ -9,5 +9,6 @@
   "block.betterbuilding.oak_corner": "Oak Corner",
 
   "itemGroup.betterbuilding.building": "Better Building",
-  "item.betterbuilding.dowsing_rod.no_valuables": "Nothing to be found!"
+  "item.betterbuilding.dowsing_rod.no_valuables": "Nothing to be found!",
+  "item.betterbuilding.raccoon_spawn_egg": "Raccoon Spawn Egg"
 }
