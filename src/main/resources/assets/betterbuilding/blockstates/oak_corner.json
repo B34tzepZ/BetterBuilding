@@ -1,208 +1,213 @@
 {
   "variants": {
-    "facing=east,relative_direction=left,shape=inner_left": {
+    "facing=east,relative_direction=left,shape=inner_bottom": {
       "model": "betterbuilding:block/oak_corner_inner",
       "y": 270,
       "uvlock": true
     },
-    "facing=east,relative_direction=left,shape=inner_right": {
-      "model": "betterbuilding:block/oak_corner_inner"
-    },
-    "facing=east,relative_direction=left,shape=outer_left": {
-      "model": "betterbuilding:block/oak_corner_outer",
-      "y": 270,
+    "facing=east,relative_direction=left,shape=inner_top": {
+      "model": "betterbuilding:block/oak_corner_inner",
+      "x": 180,
       "uvlock": true
     },
-    "facing=east,relative_direction=left,shape=outer_right": {
-      "model": "betterbuilding:block/oak_corner_outer"
+    "facing=east,relative_direction=left,shape=outer_bottom": {
+      "model": "betterbuilding:block/oak_corner_outer",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=east,relative_direction=left,shape=outer_top": {
+      "model": "betterbuilding:block/oak_corner_outer",
+      "x": 90,
+      "y": 180,
+      "uvlock": true
     },
     "facing=east,relative_direction=left,shape=straight": {
-      "model": "betterbuilding:block/oak_corner"
-    },
-    "facing=east,relative_direction=top,shape=inner_left": {
-      "model": "betterbuilding:block/oak_corner_inner",
-      "x": 180,
+      "model": "betterbuilding:block/oak_corner",
+      "y": 180,
       "uvlock": true
     },
-    "facing=east,relative_direction=right,shape=inner_right": {
+    "facing=east,relative_direction=right,shape=inner_bottom": {
+      "model": "betterbuilding:block/oak_corner_inner"
+    },
+    "facing=east,relative_direction=right,shape=inner_top": {
       "model": "betterbuilding:block/oak_corner_inner",
       "x": 180,
       "y": 90,
       "uvlock": true
     },
-    "facing=east,relative_direction=right,shape=outer_left": {
+    "facing=east,relative_direction=right,shape=outer_bottom": {
       "model": "betterbuilding:block/oak_corner_outer",
-      "x": 180,
+      "x": 270,
+      "y": 180,
       "uvlock": true
     },
-    "facing=east,relative_direction=right,shape=outer_right": {
+    "facing=east,relative_direction=right,shape=outer_top": {
       "model": "betterbuilding:block/oak_corner_outer",
       "x": 180,
-      "y": 90,
+      "y": 180,
       "uvlock": true
     },
     "facing=east,relative_direction=right,shape=straight": {
       "model": "betterbuilding:block/oak_corner",
       "x": 180,
+      "y": 180,
       "uvlock": true
     },
-    "facing=north,relative_direction=left,shape=inner_left": {
+    "facing=north,relative_direction=left,shape=inner_bottom": {
       "model": "betterbuilding:block/oak_corner_inner",
       "y": 180,
       "uvlock": true
     },
-    "facing=north,relative_direction=left,shape=inner_right": {
+    "facing=north,relative_direction=left,shape=inner_top": {
       "model": "betterbuilding:block/oak_corner_inner",
+      "x": 180,
       "y": 270,
       "uvlock": true
     },
-    "facing=north,relative_direction=left,shape=outer_left": {
+    "facing=north,relative_direction=left,shape=outer_bottom": {
       "model": "betterbuilding:block/oak_corner_outer",
-      "y": 180,
+      "y": 90,
       "uvlock": true
     },
-    "facing=north,relative_direction=left,shape=outer_right": {
+    "facing=north,relative_direction=left,shape=outer_top": {
       "model": "betterbuilding:block/oak_corner_outer",
-      "y": 270,
+      "x": 90,
+      "y": 90,
       "uvlock": true
     },
     "facing=north,relative_direction=left,shape=straight": {
       "model": "betterbuilding:block/oak_corner",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=north,relative_direction=right,shape=inner_bottom": {
+      "model": "betterbuilding:block/oak_corner_inner",
       "y": 270,
       "uvlock": true
     },
-    "facing=north,relative_direction=right,shape=inner_left": {
+    "facing=north,relative_direction=right,shape=inner_top": {
       "model": "betterbuilding:block/oak_corner_inner",
       "x": 180,
-      "y": 270,
       "uvlock": true
     },
-    "facing=north,relative_direction=right,shape=inner_right": {
-      "model": "betterbuilding:block/oak_corner_inner",
-      "x": 180,
+    "facing=north,relative_direction=right,shape=outer_bottom": {
+      "model": "betterbuilding:block/oak_corner_outer",
+      "x": 270,
+      "y": 90,
       "uvlock": true
     },
-    "facing=north,relative_direction=right,shape=outer_left": {
+    "facing=north,relative_direction=right,shape=outer_top": {
       "model": "betterbuilding:block/oak_corner_outer",
       "x": 180,
-      "y": 270,
-      "uvlock": true
-    },
-    "facing=north,relative_direction=right,shape=outer_right": {
-      "model": "betterbuilding:block/oak_corner_outer",
-      "x": 180,
+      "y": 90,
       "uvlock": true
     },
     "facing=north,relative_direction=right,shape=straight": {
       "model": "betterbuilding:block/oak_corner",
       "x": 180,
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south,relative_direction=left,shape=inner_bottom": {
+      "model": "betterbuilding:block/oak_corner_inner"
+    },
+    "facing=south,relative_direction=left,shape=inner_top": {
+      "model": "betterbuilding:block/oak_corner_inner",
+      "x": 180,
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south,relative_direction=left,shape=outer_bottom": {
+      "model": "betterbuilding:block/oak_corner_outer",
       "y": 270,
       "uvlock": true
     },
-    "facing=south,relative_direction=left,shape=inner_left": {
-      "model": "betterbuilding:block/oak_corner_inner"
-    },
-    "facing=south,relative_direction=left,shape=inner_right": {
-      "model": "betterbuilding:block/oak_corner_inner",
-      "y": 90,
-      "uvlock": true
-    },
-    "facing=south,relative_direction=left,shape=outer_left": {
-      "model": "betterbuilding:block/oak_corner_outer"
-    },
-    "facing=south,relative_direction=left,shape=outer_right": {
+    "facing=south,relative_direction=left,shape=outer_top": {
       "model": "betterbuilding:block/oak_corner_outer",
-      "y": 90,
+      "x": 90,
+      "y": 270,
       "uvlock": true
     },
     "facing=south,relative_direction=left,shape=straight": {
       "model": "betterbuilding:block/oak_corner",
-      "y": 90,
+      "y": 270,
       "uvlock": true
     },
-    "facing=south,relative_direction=right,shape=inner_left": {
+    "facing=south,relative_direction=right,shape=inner_bottom": {
       "model": "betterbuilding:block/oak_corner_inner",
-      "x": 180,
       "y": 90,
       "uvlock": true
     },
-    "facing=south,relative_direction=right,shape=inner_right": {
+    "facing=south,relative_direction=right,shape=inner_top": {
       "model": "betterbuilding:block/oak_corner_inner",
       "x": 180,
       "y": 180,
       "uvlock": true
     },
-    "facing=south,relative_direction=right,shape=outer_left": {
+    "facing=south,relative_direction=right,shape=outer_bottom": {
       "model": "betterbuilding:block/oak_corner_outer",
-      "x": 180,
-      "y": 90,
+      "x": 270,
+      "y": 270,
       "uvlock": true
     },
-    "facing=south,relative_direction=right,shape=outer_right": {
+    "facing=south,relative_direction=right,shape=outer_top": {
       "model": "betterbuilding:block/oak_corner_outer",
       "x": 180,
-      "y": 180,
+      "y": 270,
       "uvlock": true
     },
     "facing=south,relative_direction=right,shape=straight": {
       "model": "betterbuilding:block/oak_corner",
       "x": 180,
-      "y": 90,
+      "y": 270,
       "uvlock": true
     },
-    "facing=west,relative_direction=left,shape=inner_left": {
+    "facing=west,relative_direction=left,shape=inner_bottom": {
       "model": "betterbuilding:block/oak_corner_inner",
       "y": 90,
       "uvlock": true
     },
-    "facing=west,relative_direction=left,shape=inner_right": {
+    "facing=west,relative_direction=left,shape=inner_top": {
       "model": "betterbuilding:block/oak_corner_inner",
+      "x": 180,
       "y": 180,
       "uvlock": true
     },
-    "facing=west,relative_direction=left,shape=outer_left": {
-      "model": "betterbuilding:block/oak_corner_outer",
-      "y": 90,
-      "uvlock": true
+    "facing=west,relative_direction=left,shape=outer_bottom": {
+      "model": "betterbuilding:block/oak_corner_outer"
     },
-    "facing=west,relative_direction=left,shape=outer_right": {
+    "facing=west,relative_direction=left,shape=outer_top": {
       "model": "betterbuilding:block/oak_corner_outer",
-      "y": 180,
+      "x": 90,
       "uvlock": true
     },
     "facing=west,relative_direction=left,shape=straight": {
-      "model": "betterbuilding:block/oak_corner",
-      "y": 180,
-      "uvlock": true
+      "model": "betterbuilding:block/oak_corner"
     },
-    "facing=west,relative_direction=right,shape=inner_left": {
+    "facing=west,relative_direction=right,shape=inner_bottom": {
       "model": "betterbuilding:block/oak_corner_inner",
-      "x": 180,
       "y": 180,
       "uvlock": true
     },
-    "facing=west,relative_direction=right,shape=inner_right": {
+    "facing=west,relative_direction=right,shape=inner_top": {
       "model": "betterbuilding:block/oak_corner_inner",
       "x": 180,
       "y": 270,
       "uvlock": true
     },
-    "facing=west,relative_direction=right,shape=outer_left": {
+    "facing=west,relative_direction=right,shape=outer_bottom": {
       "model": "betterbuilding:block/oak_corner_outer",
-      "x": 180,
-      "y": 180,
+      "x": 270,
       "uvlock": true
     },
-    "facing=west,relative_direction=right,shape=outer_right": {
+    "facing=west,relative_direction=right,shape=outer_top": {
       "model": "betterbuilding:block/oak_corner_outer",
       "x": 180,
-      "y": 270,
       "uvlock": true
     },
     "facing=west,relative_direction=right,shape=straight": {
       "model": "betterbuilding:block/oak_corner",
       "x": 180,
-      "y": 180,
       "uvlock": true
     }
   }
