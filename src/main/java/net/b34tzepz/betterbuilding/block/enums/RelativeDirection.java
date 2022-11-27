@@ -2,17 +2,13 @@ package net.b34tzepz.betterbuilding.block.enums;
 
 import net.minecraft.util.StringIdentifiable;
 
-public enum CornerShape implements StringIdentifiable {
-
-    STRAIGHT("straight"),
-    INNER_BOTTOM("inner_bottom"),
-    INNER_TOP("inner_top"),
-    OUTER_BOTTOM("outer_bottom"),
-    OUTER_TOP("outer_top");
+public enum RelativeDirection implements StringIdentifiable {
+    LEFT("left"),
+    RIGHT("right");
 
     private final String name;
 
-    CornerShape(String name) {
+    RelativeDirection(String name) {
         this.name = name;
     }
 
@@ -25,4 +21,3 @@ public enum CornerShape implements StringIdentifiable {
         return this.name;
     }
 }
-
