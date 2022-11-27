@@ -8,7 +8,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class ModItems {
-    public static final Item Screw = registerItem("screw",              //Screw is colored because its the icon of ModItemGroup.Building
+    public static final Item Screw = registerItem("screw",              //Screw is colored because it's the icon of ModItemGroup.Building
             new Item(new FabricItemSettings().group(ModItemGroup.Building)));
 
     public static final Item Dowsing_Rod = registerItem("dowsing_rod",
