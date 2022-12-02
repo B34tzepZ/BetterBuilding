@@ -15,8 +15,8 @@ public class BetterBuilding implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
+		ModItems.registerModItems();
 		ModBlockEntities.registerAllEntities();
 		ModRegistries.registerModStuffs();
 
