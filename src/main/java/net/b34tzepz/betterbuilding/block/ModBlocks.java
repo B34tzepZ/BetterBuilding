@@ -13,24 +13,25 @@ import net.minecraft.block.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class ModBlocks {
     public static final Block REINFORCED_OAK_PLANKS = registerBlock("reinforced_oak_planks",
-            new Block(FabricBlockSettings.of(Material.WOOD).strength(3, 4.5f)), ModItemGroup.Building);
+            new Block(FabricBlockSettings.of(Material.WOOD).strength(3.5f, 5).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
 
     public static final Block REINFORCED_BIRCH_PLANKS = registerBlock("reinforced_birch_planks",
-            new Block(FabricBlockSettings.of(Material.WOOD).strength(3, 4.5f)), ModItemGroup.Building);
+            new Block(FabricBlockSettings.of(Material.WOOD).strength(3.5f, 5).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
 
     public static final Block OAK_SIDE = registerBlock("oak_side",
-            new SideBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3)), ModItemGroup.Building);
+            new SideBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
 
     public static final Block OAK_CHAIR = registerBlock("oak_chair",
-            new OakChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque()), ModItemGroup.Building);
+            new OakChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque().sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
 
     public static final Block OAK_CORNER = registerBlock("oak_corner",
-            new CornerBlock(Blocks.OAK_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD)), ModItemGroup.Building);
+            new CornerBlock(Blocks.OAK_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
 
 
     private static Block registerBlock(String name, Block block, ItemGroup group) {
