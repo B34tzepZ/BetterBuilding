@@ -1,0 +1,15 @@
+{
+  "item.betterbuilding.screw": "Schraube",
+  "item.betterbuilding.dowsing_rod": "Wünschelrute",
+
+  "block.betterbuilding.reinforced_oak_planks": "Verstärkte Eichenholzbretter",
+  "block.betterbuilding.reinforced_birch_planks": "Verstärkte Birkenholzbretter",
+  "block.betterbuilding.oak_side": "Eichenholzwand",
+  "block.betterbuilding.oak_chair": "Stuhl aus deutschem Eichenholz",
+  "block.betterbuilding.oak_corner": "Eichenholzecke",
+
+  "itemGroup.betterbuilding.building": "Better Building",
+  "item.betterbuilding.dowsing_rod.no_valuables": "Es wurde nichts gefunden!",
+  "item.betterbuilding.raccoon_spawn_egg": "Waschbär Spawn-Ei",
+  "item.betterbuilding.tiger_spawn_egg": "Tiger Spawn-Ei"
+}

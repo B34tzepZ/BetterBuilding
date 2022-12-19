@@ -4,10 +4,14 @@
   "item.betterbuilding.table_leg": "Table Leg",
 
   "block.betterbuilding.reinforced_oak_planks": "Reinforced Oak Planks",
+  "block.betterbuilding.reinforced_birch_planks": "Reinforced Birch Planks",
   "block.betterbuilding.reinforced_spruce_planks": "Reinforced Spruce Planks",
   "block.betterbuilding.oak_side": "Oak Side",
+  "block.betterbuilding.oak_chair": "Oak Chair",
+  "block.betterbuilding.oak_corner": "Oak Corner",
 
   "itemGroup.betterbuilding.building": "Better Building",
-
-  "item.betterbuilding.dowsing_rod.no_valuables": "Nothing to be found!"
+  "item.betterbuilding.dowsing_rod.no_valuables": "Nothing to be found!",
+  "item.betterbuilding.raccoon_spawn_egg": "Raccoon Spawn Egg",
+  "item.betterbuilding.tiger_spawn_egg": "Tiger Spawn Egg"
 }
