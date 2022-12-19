@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "betterbuilding:block/oak_table"
+    },
+    "facing=south": {
+      "model": "betterbuilding:block/oak_table",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "betterbuilding:block/oak_table",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "betterbuilding:block/oak_table",
+      "y": 90
+    }
+  }
+}

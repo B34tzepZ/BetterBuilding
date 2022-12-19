@@ -4,6 +4,7 @@ import net.b34tzepz.betterbuilding.BetterBuilding;
 import net.b34tzepz.betterbuilding.block.custom.OakChairBlock;
 import net.b34tzepz.betterbuilding.block.custom.CornerBlock;
 import net.b34tzepz.betterbuilding.block.custom.SideBlock;
+import net.b34tzepz.betterbuilding.block.custom.TableBlock;
 import net.b34tzepz.betterbuilding.item.ModItemGroup;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -24,9 +25,6 @@ public class ModBlocks {
     public static final Block REINFORCED_BIRCH_PLANKS = registerBlock("reinforced_birch_planks",
             new Block(FabricBlockSettings.of(Material.WOOD).strength(3.5f, 5).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
 
-    public static final Block OAK_SIDE = registerBlock("oak_side",
-            new SideBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
-
     public static final Block Reinforced_Spruce_Planks = registerBlock("reinforced_spruce_planks",
             new Block(FabricBlockSettings.of(Material.WOOD).strength(3, 4.5f)), ModItemGroup.Building);
 
@@ -35,6 +33,9 @@ public class ModBlocks {
 
     public static final Block OAK_CHAIR = registerBlock("oak_chair",
             new OakChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque().sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
+
+    public static final Block OAK_TABLE = registerBlock("oak_table",
+            new TableBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque().sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
 
     public static final Block OAK_CORNER = registerBlock("oak_corner",
             new CornerBlock(Blocks.OAK_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
