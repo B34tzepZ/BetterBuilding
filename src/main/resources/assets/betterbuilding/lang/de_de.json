@@ -7,6 +7,7 @@
   "block.betterbuilding.oak_side": "Eichenholzwand",
   "block.betterbuilding.oak_chair": "Stuhl aus deutschem Eichenholz",
   "block.betterbuilding.oak_corner": "Eichenholzecke",
+  "block.betterbuilding.teleporter_block": "Teleporter",
 
   "itemGroup.betterbuilding.building": "Better Building",
   "item.betterbuilding.dowsing_rod.no_valuables": "Es wurde nichts gefunden!",

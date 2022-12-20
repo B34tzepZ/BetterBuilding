@@ -32,6 +32,7 @@ public class ModBlocks {
     public static final Block OAK_CORNER = registerBlock("oak_corner",
             new CornerBlock(Blocks.OAK_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD)), ModItemGroup.Building);
 
+    public static final Block TELEPORTER_BLOCK = registerBlock("teleporter_block", new Block(FabricBlockSettings.of(Material.METAL).strength(6f).requiresTool()), ItemGroup.MISC);
 
     private static Block registerBlock(String name, Block block, ItemGroup group) {
         registerBlockItem(name, block, group);

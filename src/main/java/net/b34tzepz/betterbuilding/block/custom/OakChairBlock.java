@@ -2,6 +2,7 @@ package net.b34tzepz.betterbuilding.block.custom;
 
 import net.b34tzepz.betterbuilding.block.entity.OakChairEntity;
 import net.b34tzepz.betterbuilding.block.enums.ChairType;
+import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockRenderType;
@@ -9,11 +10,15 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -34,6 +39,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public class OakChairBlock extends BlockWithEntity implements BlockEntityProvider {
@@ -124,16 +130,49 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         if (placer instanceof PlayerEntity) ((PlayerEntity) placer).sendMessage(new LiteralText("placed"), false);
+        ZombieEntity zombie = new ZombieEntity(world);
+
         super.onPlaced(world, pos, state, placer, itemStack);
     }
+
+   /* public boolean startRiding(Entity entity, boolean force) {
+        if (entity == this.vehicle) {
+            return false;
+        } else {
+            for(Entity entity2 = entity; entity2.vehicle != null; entity2 = entity2.vehicle) {
+                if (entity2.vehicle == this) {
+                    return false;
+                }
+            }
+
+            if (!force && (!this.canStartRiding(entity) || !entity.canAddPassenger(this))) {
+                return false;
+            } else {
+                if (this.hasVehicle()) {
+                    this.stopRiding();
+                }
+
+                this.setPose(EntityPose.STANDING);
+                this.vehicle = entity;
+                this.vehicle.addPassenger(this);
+                entity.streamIntoPassengers().filter((passenger) -> {
+                    return passenger instanceof ServerPlayerEntity;
+                }).forEach((player) -> {
+                    Criteria.STARTED_RIDING.trigger((ServerPlayerEntity)player);
+                });
+                return true;
+            }
+        }
+    }*/
+
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if(world.isClient()){
             if(hand == Hand.MAIN_HAND){
                 //MinecartEntity minecart = new MinecartEntity(world, pos.getX(),pos.getY(),pos.getZ());
-                BoatEntity boat = new BoatEntity(world,  pos.getX(),pos.getY(),pos.getZ());
-                player.startRiding(boat); //Stuhl muss entity sein bzw im Stuhl muss entity erstellt werden
+                //BoatEntity boat = new BoatEntity(world, pos.getX(),pos.getY(),pos.getZ());
+                //player.startRiding(boat); //Stuhl muss entity sein bzw im Stuhl muss entity erstellt werden
             }
         }
         return ActionResult.SUCCESS;
@@ -156,7 +195,7 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
 
     @Override
     public BlockRenderType getRenderType(BlockState state) {
-        return net.minecraft.block.BlockRenderType.MODEL;
+        return BlockRenderType.MODEL;
     }
 
     @Nullable
