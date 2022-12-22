@@ -1,19 +1,77 @@
 {
   "variants": {
-    "facing=north": {
-      "model": "betterbuilding:block/oak_table"
-    },
-    "facing=south": {
+    "north_bowl_placed=false,south_bowl_placed=false,east_bowl_placed=false,west_bowl_placed=false": {
       "model": "betterbuilding:block/oak_table",
-      "y": 180
+      "uvlock": true
     },
-    "facing=west": {
-      "model": "betterbuilding:block/oak_table",
-      "y": 270
+    "north_bowl_placed=true,south_bowl_placed=false,east_bowl_placed=false,west_bowl_placed=false": {
+      "model": "betterbuilding:block/table1bowl",
+      "uvlock": true
     },
-    "facing=east": {
-      "model": "betterbuilding:block/oak_table",
-      "y": 90
+    "north_bowl_placed=false,south_bowl_placed=true,east_bowl_placed=false,west_bowl_placed=false": {
+      "model": "betterbuilding:block/table1bowl",
+      "y": 180,
+      "uvlock": true
+    },
+    "north_bowl_placed=false,south_bowl_placed=false,east_bowl_placed=true,west_bowl_placed=false": {
+      "model": "betterbuilding:block/table1bowl",
+      "y": 90,
+      "uvlock": true
+    },
+    "north_bowl_placed=false,south_bowl_placed=false,east_bowl_placed=false,west_bowl_placed=true": {
+      "model": "betterbuilding:block/table1bowl",
+      "y": 270,
+      "uvlock": true
+    },"north_bowl_placed=true,south_bowl_placed=true,east_bowl_placed=false,west_bowl_placed=false": {
+      "model": "betterbuilding:block/table2bowls1",
+      "uvlock": true
+    },
+    "north_bowl_placed=false,south_bowl_placed=false,east_bowl_placed=true,west_bowl_placed=true": {
+      "model": "betterbuilding:block/table2bowls1",
+      "y": 270,
+      "uvlock": true
+    },
+    "north_bowl_placed=true,south_bowl_placed=false,east_bowl_placed=true,west_bowl_placed=false": {
+      "model": "betterbuilding:block/table2bowls2",
+      "uvlock": true
+    },
+    "north_bowl_placed=false,south_bowl_placed=true,east_bowl_placed=true,west_bowl_placed=false": {
+      "model": "betterbuilding:block/table2bowls2",
+      "y": 90,
+      "uvlock": true
+    },
+    "north_bowl_placed=false,south_bowl_placed=true,east_bowl_placed=false,west_bowl_placed=true": {
+      "model": "betterbuilding:block/table2bowls2",
+      "y": 180,
+      "uvlock": true
+    },
+    "north_bowl_placed=true,south_bowl_placed=false,east_bowl_placed=false,west_bowl_placed=true": {
+      "model": "betterbuilding:block/table2bowls2",
+      "y": 270,
+      "uvlock": true
+    },
+    "north_bowl_placed=true,south_bowl_placed=true,east_bowl_placed=true,west_bowl_placed=false": {
+      "model": "betterbuilding:block/table3bowls",
+      "uvlock": true
+    },
+    "north_bowl_placed=false,south_bowl_placed=true,east_bowl_placed=true,west_bowl_placed=true": {
+      "model": "betterbuilding:block/table3bowls",
+      "y": 90,
+      "uvlock": true
+    },
+    "north_bowl_placed=true,south_bowl_placed=true,east_bowl_placed=false,west_bowl_placed=true": {
+      "model": "betterbuilding:block/table3bowls",
+      "y": 180,
+      "uvlock": true
+    },
+    "north_bowl_placed=true,south_bowl_placed=false,east_bowl_placed=true,west_bowl_placed=true": {
+      "model": "betterbuilding:block/table3bowls",
+      "y": 270,
+      "uvlock": true
+    },
+    "north_bowl_placed=true,south_bowl_placed=true,east_bowl_placed=true,west_bowl_placed=true": {
+      "model": "betterbuilding:block/table4bowls",
+      "uvlock": true
     }
   }
 }
