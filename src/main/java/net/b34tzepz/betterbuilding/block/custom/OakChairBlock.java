@@ -41,9 +41,8 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final EnumProperty<ChairType> TYPE = net.b34tzepz.betterbuilding.state.property.Properties.CHAIR_TYPE;
     public static BooleanProperty OCCUPIED = BooleanProperty.of("OCCUPIED");
-    public static BoatEntity boat = null;
 
-    public OakChairBlock(Settings settings){
+    public OakChairBlock(Settings settings) {
         super(settings);
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
         //this.setDefaultState((this.getDefaultState().with(TYPE, ChairType.NORTH)));
@@ -104,7 +103,7 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         Direction dir = state.get(FACING);
-        switch (dir){
+        switch (dir) {
             case SOUTH:
                 return SOUTH_SHAPE;
 
@@ -164,8 +163,8 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if(world.isClient()){
-            if(hand == Hand.MAIN_HAND){
+        if (world.isClient()) {
+            if (hand == Hand.MAIN_HAND) {
                 //MinecartEntity minecart = new MinecartEntity(world, pos.getX(),pos.getY(),pos.getZ());
                /* BoatEntity boat = new BoatEntity(world, pos.getX(),pos.getY(),pos.getZ());
                 ItemScatterer.spawn(world,pos,boat);
@@ -180,23 +179,16 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
                 /*LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, world); // Create the lightning bolt
                 lightning.setPosition(player.getPos()); // Set its position. This will make the lightning bolt strike the player (probably not what you want)
                 world.spawnEntity(lightning);*/
-
-
-                boat = new BoatEntity(world, pos.getX(),pos.getY(),pos.getZ());
-                world.spawnEntity(boat);
-
             }
 
         }
-        if(!world.isClient){
-            if(boat!=null){
-                return player.startRiding(boat) ? ActionResult.CONSUME : ActionResult.PASS;
-            }
-            else {
-                boat = new BoatEntity(world, pos.getX(),pos.getY(),pos.getZ());
-                world.spawnEntity(boat);
-                return player.startRiding(boat) ? ActionResult.CONSUME : ActionResult.PASS;
-            }
+        if (!world.isClient) {
+            LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, world); // Create the lightning bolt
+            lightning.setPosition(player.getPos()); // Set its position. This will make the lightning bolt strike the player (probably not what you want)
+            world.spawnEntity(lightning);
+            BoatEntity boat = new BoatEntity(world, pos.getX(), pos.getY() + 1, pos.getZ());
+            world.spawnEntity(boat);
+            return player.startRiding(boat) ? ActionResult.CONSUME : ActionResult.PASS;
         }
         return ActionResult.SUCCESS;
     }
@@ -213,9 +205,9 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        BlockPos above = new BlockPos(pos.getX(),pos.getY()+1,pos.getZ());
-        if(!world.isAir(above)){
-           // replace(state, Blocks.AIR.getDefaultState(), world, pos,1);
+        BlockPos above = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
+        if (!world.isAir(above)) {
+            // replace(state, Blocks.AIR.getDefaultState(), world, pos,1);
             return Blocks.AIR.getDefaultState();
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
