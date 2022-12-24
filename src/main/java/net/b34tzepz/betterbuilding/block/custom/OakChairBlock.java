@@ -3,32 +3,26 @@ package net.b34tzepz.betterbuilding.block.custom;
 import net.b34tzepz.betterbuilding.block.entity.OakChairEntity;
 import net.b34tzepz.betterbuilding.block.enums.ChairType;
 import net.minecraft.advancement.criterion.Criteria;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityPose;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.entity.*;
 import net.minecraft.entity.mob.ZombieEntity;
+import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.LiteralText;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Hand;
+import net.minecraft.util.*;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -37,6 +31,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
@@ -129,10 +124,10 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
 
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        if (placer instanceof PlayerEntity) ((PlayerEntity) placer).sendMessage(new LiteralText("placed"), false);
+        /*if (placer instanceof PlayerEntity) ((PlayerEntity) placer).sendMessage(new LiteralText("placed"), false);
         ZombieEntity zombie = new ZombieEntity(world);
 
-        super.onPlaced(world, pos, state, placer, itemStack);
+        super.onPlaced(world, pos, state, placer, itemStack);*/
     }
 
    /* public boolean startRiding(Entity entity, boolean force) {
@@ -171,16 +166,39 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
         if(world.isClient()){
             if(hand == Hand.MAIN_HAND){
                 //MinecartEntity minecart = new MinecartEntity(world, pos.getX(),pos.getY(),pos.getZ());
-                //BoatEntity boat = new BoatEntity(world, pos.getX(),pos.getY(),pos.getZ());
-                //player.startRiding(boat); //Stuhl muss entity sein bzw im Stuhl muss entity erstellt werden
+               /* BoatEntity boat = new BoatEntity(world, pos.getX(),pos.getY(),pos.getZ());
+                ItemScatterer.spawn(world,pos,boat);
+                player.startRiding(boat);*/ //Stuhl muss entity sein bzw im Stuhl muss entity erstellt werden
+                /*CatEntity catEntity = (CatEntity) EntityType.CAT.create(world);
+                if (catEntity == null) {
+                    return 0;
+                } else {
+                    catEntity.initialize(world, world.getLocalDifficulty(pos), SpawnReason.NATURAL, (EntityData)null, (NbtCompound)null);
+                    catEntity.refreshPositionAndAngles(pos, 0.0F, 0.0F);
+                    world.spawnEntityAndPassengers(catEntity);*/
             }
         }
         return ActionResult.SUCCESS;
     }
 
+    public PistonBehavior getPistonBehavior(BlockState state) {
+        return PistonBehavior.DESTROY;
+    }
+
+
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {
         return state.with(FACING, rotation.rotate(state.get(FACING)));
+    }
+
+    @Override
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+        BlockPos above = new BlockPos(pos.getX(),pos.getY()+1,pos.getZ());
+        if(!world.isAir(above)){
+           // replace(state, Blocks.AIR.getDefaultState(), world, pos,1);
+            return Blocks.AIR.getDefaultState();
+        }
+        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
     @Override

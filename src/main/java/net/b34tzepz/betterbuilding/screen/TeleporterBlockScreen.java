@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 
 public class TeleporterBlockScreen extends HandledScreen<TeleporterBlockScreenHandler> {
     private static final Identifier TEXTURE =
-            new Identifier(BetterBuilding.MOD_ID, "textures/gui/orichalcum_blaster_gui.png");
+            new Identifier(BetterBuilding.MOD_ID, "textures/gui/teleporter_block_gui.png");
 
     public TeleporterBlockScreen(TeleporterBlockScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
