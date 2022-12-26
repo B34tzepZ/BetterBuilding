@@ -2,26 +2,21 @@ package net.b34tzepz.betterbuilding.block.custom;
 
 import net.b34tzepz.betterbuilding.block.entity.OakChairEntity;
 import net.b34tzepz.betterbuilding.block.enums.ChairType;
-import net.minecraft.advancement.criterion.Criteria;
+import net.b34tzepz.betterbuilding.entity.ModEntities;
+import net.b34tzepz.betterbuilding.entity.custom.SeatEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.*;
-import net.minecraft.entity.mob.ZombieEntity;
-import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.text.LiteralText;
 import net.minecraft.util.*;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
@@ -34,7 +29,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
 import java.util.stream.Stream;
 
 public class OakChairBlock extends BlockWithEntity implements BlockEntityProvider {
@@ -130,65 +124,30 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
         super.onPlaced(world, pos, state, placer, itemStack);*/
     }
 
-   /* public boolean startRiding(Entity entity, boolean force) {
-        if (entity == this.vehicle) {
-            return false;
-        } else {
-            for(Entity entity2 = entity; entity2.vehicle != null; entity2 = entity2.vehicle) {
-                if (entity2.vehicle == this) {
-                    return false;
-                }
-            }
 
-            if (!force && (!this.canStartRiding(entity) || !entity.canAddPassenger(this))) {
-                return false;
-            } else {
-                if (this.hasVehicle()) {
-                    this.stopRiding();
-                }
-
-                this.setPose(EntityPose.STANDING);
-                this.vehicle = entity;
-                this.vehicle.addPassenger(this);
-                entity.streamIntoPassengers().filter((passenger) -> {
-                    return passenger instanceof ServerPlayerEntity;
-                }).forEach((player) -> {
-                    Criteria.STARTED_RIDING.trigger((ServerPlayerEntity)player);
-                });
-                return true;
-            }
-        }
-    }*/
 
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (world.isClient()) {
+        /*if (world.isClient()) {
             if (hand == Hand.MAIN_HAND) {
-                //MinecartEntity minecart = new MinecartEntity(world, pos.getX(),pos.getY(),pos.getZ());
-               /* BoatEntity boat = new BoatEntity(world, pos.getX(),pos.getY(),pos.getZ());
-                ItemScatterer.spawn(world,pos,boat);
-                player.startRiding(boat);*/ //Stuhl muss entity sein bzw im Stuhl muss entity erstellt werden
-                /*CatEntity catEntity = (CatEntity) EntityType.CAT.create(world);
-                if (catEntity == null) {
-                    return 0;
-                } else {
-                    catEntity.initialize(world, world.getLocalDifficulty(pos), SpawnReason.NATURAL, (EntityData)null, (NbtCompound)null);
-                    catEntity.refreshPositionAndAngles(pos, 0.0F, 0.0F);
-                    world.spawnEntityAndPassengers(catEntity);*/
-                /*LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, world); // Create the lightning bolt
-                lightning.setPosition(player.getPos()); // Set its position. This will make the lightning bolt strike the player (probably not what you want)
-                world.spawnEntity(lightning);*/
             }
 
-        }
+        }*/
         if (!world.isClient) {
-            LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, world); // Create the lightning bolt
-            lightning.setPosition(player.getPos()); // Set its position. This will make the lightning bolt strike the player (probably not what you want)
-            world.spawnEntity(lightning);
-            BoatEntity boat = new BoatEntity(world, pos.getX(), pos.getY() + 1, pos.getZ());
+            /*LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, world);
+            lightning.setPosition(player.getPos());
+            world.spawnEntity(lightning);*/
+           /* BoatEntity boat = new BoatEntity(world, pos.getX(), pos.getY() + 1, pos.getZ());
             world.spawnEntity(boat);
-            return player.startRiding(boat) ? ActionResult.CONSUME : ActionResult.PASS;
+            boat.setInvisible(true);
+            boat.setInvulnerable(true);
+            boat.setVelocity(0,0,0);*/
+            SeatEntity seat= new SeatEntity(ModEntities.SEAT, world);
+            seat.setInvulnerable(true);
+            seat.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
+            world.spawnEntity(seat);
+            return player.startRiding(seat) ? ActionResult.CONSUME : ActionResult.PASS;
         }
         return ActionResult.SUCCESS;
     }
