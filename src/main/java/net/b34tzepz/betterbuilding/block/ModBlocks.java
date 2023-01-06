@@ -22,24 +22,44 @@ public class ModBlocks {
     public static final Block REINFORCED_OAK_PLANKS = registerBlock("reinforced_oak_planks",
             new Block(FabricBlockSettings.of(Material.WOOD).strength(3.5f, 5).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
 
+    public static final Block REINFORCED_SPRUCE_PLANKS = registerBlock("reinforced_spruce_planks",
+            new Block(FabricBlockSettings.of(Material.WOOD).strength(3.5f, 5).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
+
     public static final Block REINFORCED_BIRCH_PLANKS = registerBlock("reinforced_birch_planks",
             new Block(FabricBlockSettings.of(Material.WOOD).strength(3.5f, 5).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
 
-    public static final Block Reinforced_Spruce_Planks = registerBlock("reinforced_spruce_planks",
-            new Block(FabricBlockSettings.of(Material.WOOD).strength(3, 4.5f)), ModItemGroup.Building);
+    public static final Block OAK_SIDE = registerBlock("oak_side",
+            new SideBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
 
-    public static final Block Oak_Side = registerBlock("oak_side",
-            new SideBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3)), ModItemGroup.Building);
+    public static final Block SPRUCE_SIDE = registerBlock("spruce_side",
+            new SideBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
+
+    public static final Block BIRCH_SIDE = registerBlock("birch_side",
+            new SideBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
+
+    public static final Block JUNGLE_SIDE = registerBlock("jungle_side",
+            new SideBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
+
+    public static final Block ACACIA_SIDE = registerBlock("acacia_side",
+            new SideBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
+
+    public static final Block DARK_OAK_SIDE = registerBlock("dark_oak_side",
+            new SideBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
+
+    public static final Block CRIMSON_SIDE = registerBlock("crimson_side",
+            new SideBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
+
+    public static final Block WARPED_SIDE = registerBlock("warped_side",
+            new SideBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
+
+    public static final Block OAK_CORNER = registerBlock("oak_corner",
+            new CornerBlock(Blocks.OAK_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
 
     public static final Block OAK_CHAIR = registerBlock("oak_chair",
             new OakChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque().sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
 
     public static final Block OAK_TABLE = registerBlock("oak_table",
             new TableBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque().sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
-
-    public static final Block OAK_CORNER = registerBlock("oak_corner",
-            new CornerBlock(Blocks.OAK_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
-
 
     private static Block registerBlock(String name, Block block, ItemGroup group) {
         registerBlockItem(name, block, group);

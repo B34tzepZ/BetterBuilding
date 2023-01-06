@@ -2,17 +2,26 @@
   "item.betterbuilding.screw": "Screw",
   "item.betterbuilding.dowsing_rod": "Dowsing Rod",
   "item.betterbuilding.table_leg": "Table Leg",
+  "item.betterbuilding.raccoon_spawn_egg": "Raccoon Spawn Egg",
+  "item.betterbuilding.tiger_spawn_egg": "Tiger Spawn Egg",
 
   "block.betterbuilding.reinforced_oak_planks": "Reinforced Oak Planks",
-  "block.betterbuilding.reinforced_birch_planks": "Reinforced Birch Planks",
   "block.betterbuilding.reinforced_spruce_planks": "Reinforced Spruce Planks",
+  "block.betterbuilding.reinforced_birch_planks": "Reinforced Birch Planks",
   "block.betterbuilding.oak_side": "Oak Side",
+  "block.betterbuilding.spruce_side": "Spruce Side",
+  "block.betterbuilding.birch_side": "Birch Side",
+  "block.betterbuilding.jungle_side": "Jungle Side",
+  "block.betterbuilding.acacia_side": "Acacia Side",
+  "block.betterbuilding.dark_oak_side": "Dark Oak Side",
+  "block.betterbuilding.crimson_side": "Crimson Side",
+  "block.betterbuilding.warped_side": "Warped Side",
   "block.betterbuilding.oak_chair": "Oak Chair",
   "block.betterbuilding.oak_corner": "Oak Corner",
   "block.betterbuilding.oak_table": "Oak Table",
 
   "itemGroup.betterbuilding.building": "Better Building",
-  "item.betterbuilding.dowsing_rod.no_valuables": "Nothing to be found!",
-  "item.betterbuilding.raccoon_spawn_egg": "Raccoon Spawn Egg",
-  "item.betterbuilding.tiger_spawn_egg": "Tiger Spawn Egg"
+
+  "item.betterbuilding.dowsing_rod.no_valuables": "Nothing to be found!"
+
 }

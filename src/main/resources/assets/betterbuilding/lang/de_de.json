@@ -1,16 +1,26 @@
 {
   "item.betterbuilding.screw": "Schraube",
   "item.betterbuilding.dowsing_rod": "Wünschelrute",
+  "item.betterbuilding.table_leg": "Tischbein",
+  "item.betterbuilding.raccoon_spawn_egg": "Waschbär Spawn-Ei",
+  "item.betterbuilding.tiger_spawn_egg": "Tiger Spawn-Ei",
 
   "block.betterbuilding.reinforced_oak_planks": "Verstärkte Eichenholzbretter",
+  "block.betterbuilding.reinforced_spruce_planks": "Verstärkte Fichtenholzbretter",
   "block.betterbuilding.reinforced_birch_planks": "Verstärkte Birkenholzbretter",
   "block.betterbuilding.oak_side": "Eichenholzwand",
-  "block.betterbuilding.oak_chair": "Stuhl aus deutschem Eichenholz",
+  "block.betterbuilding.spruce_side": "Fichtenholzwand",
+  "block.betterbuilding.birch_side": "Birkenholzwand",
+  "block.betterbuilding.jungle_side": "Tropenholzwand",
+  "block.betterbuilding.acacia_side": "Akazienholzwand",
+  "block.betterbuilding.dark_oak_side": "Schwarzeichenholzwand",
+  "block.betterbuilding.crimson_side": "Karmesinwand",
+  "block.betterbuilding.warped_side": "Wirrwand",
   "block.betterbuilding.oak_corner": "Eichenholzecke",
+  "block.betterbuilding.oak_chair": "Stuhl aus deutschem Eichenholz",
   "block.betterbuilding.oak_table": "Eichenholztisch",
 
   "itemGroup.betterbuilding.building": "Better Building",
-  "item.betterbuilding.dowsing_rod.no_valuables": "Es wurde nichts gefunden!",
-  "item.betterbuilding.raccoon_spawn_egg": "Waschbär Spawn-Ei",
-  "item.betterbuilding.tiger_spawn_egg": "Tiger Spawn-Ei"
+  "item.betterbuilding.dowsing_rod.no_valuables": "Es wurde nichts gefunden!"
+
 }
