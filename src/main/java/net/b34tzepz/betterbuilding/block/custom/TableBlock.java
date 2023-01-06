@@ -32,11 +32,11 @@ public class TableBlock extends HorizontalFacingBlock {
     public static final BooleanProperty WESTBOWLPLACED = BooleanProperty.of("west_bowl_placed");
 
     public static VoxelShape SHAPE = Stream.of(
-            Block.createCuboidShape(12, 0, 2, 14, 12, 4),
-            Block.createCuboidShape(12, 0, 12, 14, 12, 14),
-            Block.createCuboidShape(2, 0, 2, 4, 12, 4),
-            Block.createCuboidShape(2, 0, 12, 4, 12, 14),
-            Block.createCuboidShape(0, 12, 0, 16, 14, 16)
+            Block.createCuboidShape(12, 0, 2, 14, 14, 4),
+            Block.createCuboidShape(12, 0, 12, 14, 14, 14),
+            Block.createCuboidShape(2, 0, 2, 4, 14, 4),
+            Block.createCuboidShape(2, 0, 12, 4, 14, 14),
+            Block.createCuboidShape(0, 14, 0, 16, 16, 16)
     ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
 
     public TableBlock(Settings settings) {
