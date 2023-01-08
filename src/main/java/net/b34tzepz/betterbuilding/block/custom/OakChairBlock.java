@@ -126,7 +126,11 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
 
 
 
-
+/**
+ * hilfreich?
+ https://github.com/MrCrayfish/MrCrayfishFurnitureMod/blob/1.19.X/src/main/java/com/mrcrayfish/furniture/block/ChairBlock.java
+ https://github.com/MrCrayfish/MrCrayfishFurnitureMod/blob/1.19.X/src/main/java/com/mrcrayfish/furniture/entity/SeatEntity.java
+ */
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         /*if (world.isClient()) {
@@ -138,16 +142,17 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
             /*LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, world);
             lightning.setPosition(player.getPos());
             world.spawnEntity(lightning);*/
-           /* BoatEntity boat = new BoatEntity(world, pos.getX(), pos.getY() + 1, pos.getZ());
+            BoatEntity boat = new BoatEntity(world, pos.getX(), pos.getY() + 1, pos.getZ());
+            boat.setInvisible(true);
             world.spawnEntity(boat);
             boat.setInvisible(true);
             boat.setInvulnerable(true);
-            boat.setVelocity(0,0,0);*/
-            SeatEntity seat= new SeatEntity(ModEntities.SEAT, world);
+            boat.setVelocity(0,0,0);
+            /*SeatEntity seat= new SeatEntity(ModEntities.SEAT, world);
             seat.setInvulnerable(true);
             seat.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
-            world.spawnEntity(seat);
-            return player.startRiding(seat) ? ActionResult.CONSUME : ActionResult.PASS;
+            world.spawnEntity(seat);*/
+            return player.startRiding(boat) ? ActionResult.CONSUME : ActionResult.PASS;
         }
         return ActionResult.SUCCESS;
     }
