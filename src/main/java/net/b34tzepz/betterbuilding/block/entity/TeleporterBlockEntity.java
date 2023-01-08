@@ -23,13 +23,13 @@ import net.minecraft.nbt.NbtCompound;
 public class TeleporterBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
     private final DefaultedList<ItemStack> inventory= DefaultedList.ofSize(4, ItemStack.EMPTY);
 
-    public TeleporterBlockEntity( BlockPos pos, BlockState state) {
+    public TeleporterBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.TELEPORTER_BLOCK, pos, state);
     }
 
     @Override
     public DefaultedList<ItemStack> getItems() {
-        return null;
+        return inventory;
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, TeleporterBlockEntity entity) {
@@ -43,14 +43,14 @@ public class TeleporterBlockEntity extends BlockEntity implements NamedScreenHan
         entity.removeStack(1, 1);
         entity.removeStack(2, 1);
 
-        entity.setStack(3, new ItemStack(ModItems.DOWSING_ROD, //Platzhalter
+        entity.setStack(3, new ItemStack(ModItems.SCREW, //Platzhalter
                 entity.getStack(3).getCount() + 1));
     }
 
     private static boolean hasRecipe(TeleporterBlockEntity entity) {
-        boolean hasItemInFirstSlot = entity.getStack(0).getItem() == ModItems.DOWSING_ROD;
+        boolean hasItemInFirstSlot = entity.getStack(0).getItem() == ModItems.SCREW;
         boolean hasItemInSecondSlot = entity.getStack(1).getItem() == Items.GOLDEN_PICKAXE;
-        boolean hasItemInThirdSlot = entity.getStack(2).getItem() == ModItems.DOWSING_ROD;
+        boolean hasItemInThirdSlot = entity.getStack(2).getItem() == ModItems.SCREW;
 
         return hasItemInFirstSlot && hasItemInSecondSlot && hasItemInThirdSlot;
     }
