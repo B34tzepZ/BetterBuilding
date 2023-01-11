@@ -1,0 +1,7 @@
+{
+  "parent": "betterbuilding:block/side",
+  "textures": {
+    "top": "minecraft:block/jungle_planks",
+    "side": "minecraft:block/jungle_planks"
+  }
+}

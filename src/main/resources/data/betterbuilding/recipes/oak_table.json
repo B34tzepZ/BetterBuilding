@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "___",
+    "# #",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "betterbuilding:table_leg"
+    },
+    "_": {
+      "item": "minecraft:oak_slab"
+    }
+  },
+  "result": {
+    "item": "betterbuilding:oak_table"
+  }
+}

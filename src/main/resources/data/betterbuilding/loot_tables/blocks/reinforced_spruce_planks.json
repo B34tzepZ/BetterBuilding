@@ -42,7 +42,7 @@
                   ]
                 }
               ],
-              "name": "betterbuilding:reinforced_oak_planks"
+              "name": "betterbuilding:reinforced_spruce_planks"
             },
             {
               "type": "minecraft:item",
@@ -51,7 +51,7 @@
                   "condition": "minecraft:survives_explosion"
                 }
               ],
-              "name": "minecraft:oak_planks"
+              "name": "minecraft:spruce_planks"
             }
           ]
         }

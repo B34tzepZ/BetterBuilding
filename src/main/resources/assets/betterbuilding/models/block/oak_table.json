@@ -1,0 +1,6 @@
+{
+	"parent": "betterbuilding:block/table",
+	"textures": {
+		"0": "minecraft:block/oak_planks"
+	}
+}

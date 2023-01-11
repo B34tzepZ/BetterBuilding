@@ -13,7 +13,10 @@ public class ModItems {
     public static final Item SCREW = registerItem("screw",              //Screw is colored because it's the icon of ModItemGroup.Building
             new Item(new FabricItemSettings().group(ModItemGroup.Building)));
 
-    public static final Item DOWSING_ROD = registerItem("dowsing_rod",
+    public static final Item Table_Leg = registerItem("table_leg",
+            new Item(new FabricItemSettings().group(ModItemGroup.Building)));
+
+    public static final Item Dowsing_Rod = registerItem("dowsing_rod",
             new DowsingRodItem(new FabricItemSettings().group(ModItemGroup.Building).maxDamage(64)));
 
     public static final Item RACCOON_SPAWN_EGG = registerItem("raccoon_spawn_egg",
