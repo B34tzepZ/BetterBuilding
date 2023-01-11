@@ -4,6 +4,7 @@ import net.b34tzepz.betterbuilding.BetterBuilding;
 import net.b34tzepz.betterbuilding.block.custom.OakChairBlock;
 import net.b34tzepz.betterbuilding.block.custom.CornerBlock;
 import net.b34tzepz.betterbuilding.block.custom.SideBlock;
+import net.b34tzepz.betterbuilding.block.custom.TeleporterBlock;
 import net.b34tzepz.betterbuilding.item.ModItemGroup;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -31,6 +32,9 @@ public class ModBlocks {
 
     public static final Block OAK_CORNER = registerBlock("oak_corner",
             new CornerBlock(Blocks.OAK_PLANKS.getDefaultState(), FabricBlockSettings.of(Material.WOOD)), ModItemGroup.Building);
+
+    public static final Block TELEPORTER_BLOCK = registerBlock("teleporter_block",
+            new TeleporterBlock(FabricBlockSettings.of(Material.METAL).strength(5, 6)), ModItemGroup.Building);
 
 
     private static Block registerBlock(String name, Block block, ItemGroup group) {
