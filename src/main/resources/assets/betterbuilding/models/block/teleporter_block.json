@@ -1,6 +1,11 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "betterbuilding:block/teleporter_block"
+    "down": "betterbuilding:block/teleporter_bottom",
+    "up": "betterbuilding:block/teleporter_top",
+    "north": "betterbuilding:block/teleporter_side",
+    "east": "betterbuilding:block/teleporter_side",
+    "south": "betterbuilding:block/teleporter_side",
+    "west": "betterbuilding:block/teleporter_side"
   }
 }
