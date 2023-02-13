@@ -61,6 +61,9 @@ public class ModBlocks {
     public static final Block TELEPORTER_BLOCK = registerBlock("teleporter_block",
             new TeleporterBlock(FabricBlockSettings.of(Material.METAL).strength(6f).requiresTool()), ItemGroup.MISC);
 
+    public static final Block GLASS_PANE = registerBlock("glass_pane",
+            new PaneBlock(FabricBlockSettings.of(Material.GLASS)), ModItemGroup.Building);
+
 
     private static Block registerBlock(String name, Block block, ItemGroup group) {
         registerBlockItem(name, block, group);
