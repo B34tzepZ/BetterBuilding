@@ -214,7 +214,7 @@ public class CornerBlock extends Block implements Waterloggable {
             }
         }
         BlockState blockState = ((this.getDefaultState().with(FACING, ctx.getPlayerFacing())).with(DIRECTION, relativeDirection)).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
-        return blockState.with(SHAPE, CornerBlock.getCornerShape(blockState, ctx.getWorld(), blockPos));
+        return blockState.with(SHAPE, getCornerShape(blockState, ctx.getWorld(), blockPos));
     }
 
     @Override
@@ -223,7 +223,7 @@ public class CornerBlock extends Block implements Waterloggable {
             world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
         if (direction.getAxis().isHorizontal()) {
-            return state.with(SHAPE, CornerBlock.getCornerShape(state, world, pos));
+            return state.with(SHAPE, getCornerShape(state, world, pos));
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }

@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "betterbuilding:oak_side",
+    "betterbuilding:spruce_side",
+    "betterbuilding:birch_side",
+    "betterbuilding:jungle_side",
+    "betterbuilding:acacia_side",
+    "betterbuilding:dark_oak_side",
+    "betterbuilding:crimson_side",
+    "betterbuilding:warped_side"
+  ]
+}
