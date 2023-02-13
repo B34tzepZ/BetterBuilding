@@ -1,16 +1,12 @@
 package net.b34tzepz.betterbuilding.block.custom;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.function.BooleanBiFunction;
@@ -21,10 +17,11 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 
 import java.util.stream.Stream;
 
-public class TableBlock extends HorizontalFacingBlock {
+public class TableBlock extends Block {
 
 
     public static final BooleanProperty NORTHBOWLPLACED = BooleanProperty.of("north_bowl_placed");
@@ -46,11 +43,15 @@ public class TableBlock extends HorizontalFacingBlock {
 
     public TableBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(((((this.stateManager.getDefaultState()
+        this.setDefaultState((((((((this.stateManager.getDefaultState()
                 .with(NORTHBOWLPLACED, false))
                 .with(SOUTHBOWLPLACED, false))
                 .with(EASTBOWLPLACED, false))
-                .with(WESTBOWLPLACED, false)));
+                .with(WESTBOWLPLACED, false))
+                .with(NORTHERNTABLE, false))
+                .with(SOUTHERNTABLE, false))
+                .with(WESTERNTABLE, false))
+                .with(EASTERNTABLE, false));
     }
 
     @Override
@@ -60,59 +61,53 @@ public class TableBlock extends HorizontalFacingBlock {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(NORTHBOWLPLACED,SOUTHBOWLPLACED,EASTBOWLPLACED,WESTBOWLPLACED);
+        builder.add(NORTHBOWLPLACED, SOUTHBOWLPLACED, EASTBOWLPLACED, WESTBOWLPLACED, NORTHERNTABLE, SOUTHERNTABLE, EASTERNTABLE, WESTERNTABLE);
     }
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         ItemStack itemStack = player.getStackInHand(hand);
 
-        if(itemStack.isOf(Items.BOWL) && hand == Hand.MAIN_HAND){
+        if (itemStack.isOf(Items.BOWL) && hand == Hand.MAIN_HAND) {
             return placeBowl(state, world, pos, player, itemStack);
-        }
-        else{
+        } else {
             return takeBowl(state, world, pos, player);
         }
-
-//        return ActionResult.PASS;
     }
 
-    private ActionResult placeBowl(BlockState state, World world, BlockPos pos, PlayerEntity player, ItemStack itemStack){
+    private ActionResult placeBowl(BlockState state, World world, BlockPos pos, PlayerEntity player, ItemStack itemStack) {
         Direction dir = player.getHorizontalFacing();
 
-        if(dir == Direction.NORTH && !state.get(SOUTHBOWLPLACED)){
+        if (dir == Direction.NORTH && !state.get(SOUTHBOWLPLACED) && !state.get(SOUTHERNTABLE)) {
             world.setBlockState(pos, state.with(SOUTHBOWLPLACED, true), NOTIFY_ALL);
-        }
-        else if(dir == Direction.WEST && !state.get(EASTBOWLPLACED)){
+            itemStack.decrement(1);
+        } else if (dir == Direction.WEST && !state.get(EASTBOWLPLACED) && !state.get(EASTERNTABLE)) {
             world.setBlockState(pos, state.with(EASTBOWLPLACED, true), NOTIFY_ALL);
-        }
-        else if(dir == Direction.EAST && !state.get(WESTBOWLPLACED)){
+            itemStack.decrement(1);
+        } else if (dir == Direction.EAST && !state.get(WESTBOWLPLACED) && !state.get(WESTERNTABLE)) {
             world.setBlockState(pos, state.with(WESTBOWLPLACED, true), NOTIFY_ALL);
-        }
-        else if(dir == Direction.SOUTH && !state.get(NORTHBOWLPLACED)){
+            itemStack.decrement(1);
+        } else if (dir == Direction.SOUTH && !state.get(NORTHBOWLPLACED) && !state.get(NORTHERNTABLE)) {
             world.setBlockState(pos, state.with(NORTHBOWLPLACED, true), NOTIFY_ALL);
+            itemStack.decrement(1);
         }
 
-        itemStack.decrement(1);
         return ActionResult.SUCCESS;
     }
 
-    private ActionResult takeBowl(BlockState state, World world, BlockPos pos, PlayerEntity player){
+    private ActionResult takeBowl(BlockState state, World world, BlockPos pos, PlayerEntity player) {
         Direction dir = player.getHorizontalFacing();
 
-        if(dir == Direction.NORTH && state.get(SOUTHBOWLPLACED)){
+        if (dir == Direction.NORTH && state.get(SOUTHBOWLPLACED)) {
             world.setBlockState(pos, state.with(SOUTHBOWLPLACED, false), NOTIFY_ALL);
             dropBowl(world, pos);
-        }
-        else if(dir == Direction.WEST && state.get(EASTBOWLPLACED)){
+        } else if (dir == Direction.WEST && state.get(EASTBOWLPLACED)) {
             world.setBlockState(pos, state.with(EASTBOWLPLACED, false), NOTIFY_ALL);
             dropBowl(world, pos);
-        }
-        else if(dir == Direction.EAST && state.get(WESTBOWLPLACED)){
+        } else if (dir == Direction.EAST && state.get(WESTBOWLPLACED)) {
             world.setBlockState(pos, state.with(WESTBOWLPLACED, false), NOTIFY_ALL);
             dropBowl(world, pos);
-        }
-        else if(dir == Direction.SOUTH && state.get(NORTHBOWLPLACED)){
+        } else if (dir == Direction.SOUTH && state.get(NORTHBOWLPLACED)) {
             world.setBlockState(pos, state.with(NORTHBOWLPLACED, false), NOTIFY_ALL);
             dropBowl(world, pos);
         }
@@ -120,16 +115,39 @@ public class TableBlock extends HorizontalFacingBlock {
         return ActionResult.SUCCESS;
     }
 
-    private void dropBowl(World world, BlockPos pos){
+    private void dropBowl(World world, BlockPos pos) {
         if (!world.isClient) {
-            double d = (double)(world.random.nextFloat() * 0.7f) + (double)0.15f;
-            double e = (double)(world.random.nextFloat() * 0.7f) + 0.06000000238418579 + 0.6;
-            double g = (double)(world.random.nextFloat() * 0.7f) + (double)0.15f;
-            ItemEntity itemEntity = new ItemEntity(world, (double)pos.getX() + d, (double)pos.getY() + e, (double)pos.getZ() + g, new ItemStack(Items.BOWL));
+            double d = (double) (world.random.nextFloat() * 0.7f) + (double) 0.15f;
+            double e = (double) (world.random.nextFloat() * 0.7f) + 0.06000000238418579 + 0.6;
+            double g = (double) (world.random.nextFloat() * 0.7f) + (double) 0.15f;
+            ItemEntity itemEntity = new ItemEntity(world, (double) pos.getX() + d, (double) pos.getY() + e, (double) pos.getZ() + g, new ItemStack(Items.BOWL));
             itemEntity.setToDefaultPickupDelay();
             world.spawnEntity(itemEntity);
-        }}
+        }
+    }
 
+    @Override
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+        if (direction.getAxis().isHorizontal()) {
+            if(direction == Direction.NORTH) {
+                return state.with(NORTHERNTABLE, TableBlock.isTable(neighborState));
+            }
+            else if(direction == Direction.SOUTH){
+                return state.with(SOUTHERNTABLE, TableBlock.isTable(neighborState));
+            }
+            else if(direction == Direction.WEST){
+                return state.with(WESTERNTABLE, TableBlock.isTable(neighborState));
+            }
+            else if(direction == Direction.EAST){
+                return state.with(EASTERNTABLE, TableBlock.isTable(neighborState));
+            }
+        }
+        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+    }
+
+    public static boolean isTable(BlockState state) {
+        return state.getBlock() instanceof TableBlock;
+    }
 
 
 }
