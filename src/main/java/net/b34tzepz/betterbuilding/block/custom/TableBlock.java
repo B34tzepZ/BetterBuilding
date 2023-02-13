@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -30,6 +31,10 @@ public class TableBlock extends HorizontalFacingBlock {
     public static final BooleanProperty SOUTHBOWLPLACED = BooleanProperty.of("south_bowl_placed");
     public static final BooleanProperty EASTBOWLPLACED = BooleanProperty.of("east_bowl_placed");
     public static final BooleanProperty WESTBOWLPLACED = BooleanProperty.of("west_bowl_placed");
+    public static final BooleanProperty NORTHERNTABLE = BooleanProperty.of("northern_table");
+    public static final BooleanProperty SOUTHERNTABLE = BooleanProperty.of("southern_table");
+    public static final BooleanProperty EASTERNTABLE = BooleanProperty.of("eastern_table");
+    public static final BooleanProperty WESTERNTABLE = BooleanProperty.of("western_table");
 
     public static VoxelShape SHAPE = Stream.of(
             Block.createCuboidShape(12, 0, 2, 14, 14, 4),
@@ -61,31 +66,69 @@ public class TableBlock extends HorizontalFacingBlock {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         ItemStack itemStack = player.getStackInHand(hand);
-        boolean north = state.get(NORTHBOWLPLACED);
-        boolean west = state.get(WESTBOWLPLACED);
-        boolean south = state.get(SOUTHBOWLPLACED);
-        boolean east = state.get(EASTBOWLPLACED);
 
         if(itemStack.isOf(Items.BOWL) && hand == Hand.MAIN_HAND){
-            Direction dir = player.getHorizontalFacing();
-
-            if(dir == Direction.NORTH && !south){
-                world.setBlockState(pos, state.with(SOUTHBOWLPLACED, true), NOTIFY_ALL);
-            }
-            else if(dir == Direction.WEST && !east){
-                world.setBlockState(pos, state.with(EASTBOWLPLACED, true), NOTIFY_ALL);
-            }
-            else if(dir == Direction.EAST && !west){
-                world.setBlockState(pos, state.with(WESTBOWLPLACED, true), NOTIFY_ALL);
-            }
-            else if(dir == Direction.SOUTH && !north){
-                world.setBlockState(pos, state.with(NORTHBOWLPLACED, true), NOTIFY_ALL);
-            }
-            return ActionResult.SUCCESS;
+            return placeBowl(state, world, pos, player, itemStack);
+        }
+        else{
+            return takeBowl(state, world, pos, player);
         }
 
-        return ActionResult.PASS;
+//        return ActionResult.PASS;
     }
+
+    private ActionResult placeBowl(BlockState state, World world, BlockPos pos, PlayerEntity player, ItemStack itemStack){
+        Direction dir = player.getHorizontalFacing();
+
+        if(dir == Direction.NORTH && !state.get(SOUTHBOWLPLACED)){
+            world.setBlockState(pos, state.with(SOUTHBOWLPLACED, true), NOTIFY_ALL);
+        }
+        else if(dir == Direction.WEST && !state.get(EASTBOWLPLACED)){
+            world.setBlockState(pos, state.with(EASTBOWLPLACED, true), NOTIFY_ALL);
+        }
+        else if(dir == Direction.EAST && !state.get(WESTBOWLPLACED)){
+            world.setBlockState(pos, state.with(WESTBOWLPLACED, true), NOTIFY_ALL);
+        }
+        else if(dir == Direction.SOUTH && !state.get(NORTHBOWLPLACED)){
+            world.setBlockState(pos, state.with(NORTHBOWLPLACED, true), NOTIFY_ALL);
+        }
+
+        itemStack.decrement(1);
+        return ActionResult.SUCCESS;
+    }
+
+    private ActionResult takeBowl(BlockState state, World world, BlockPos pos, PlayerEntity player){
+        Direction dir = player.getHorizontalFacing();
+
+        if(dir == Direction.NORTH && state.get(SOUTHBOWLPLACED)){
+            world.setBlockState(pos, state.with(SOUTHBOWLPLACED, false), NOTIFY_ALL);
+            dropBowl(world, pos);
+        }
+        else if(dir == Direction.WEST && state.get(EASTBOWLPLACED)){
+            world.setBlockState(pos, state.with(EASTBOWLPLACED, false), NOTIFY_ALL);
+            dropBowl(world, pos);
+        }
+        else if(dir == Direction.EAST && state.get(WESTBOWLPLACED)){
+            world.setBlockState(pos, state.with(WESTBOWLPLACED, false), NOTIFY_ALL);
+            dropBowl(world, pos);
+        }
+        else if(dir == Direction.SOUTH && state.get(NORTHBOWLPLACED)){
+            world.setBlockState(pos, state.with(NORTHBOWLPLACED, false), NOTIFY_ALL);
+            dropBowl(world, pos);
+        }
+
+        return ActionResult.SUCCESS;
+    }
+
+    private void dropBowl(World world, BlockPos pos){
+        if (!world.isClient) {
+            double d = (double)(world.random.nextFloat() * 0.7f) + (double)0.15f;
+            double e = (double)(world.random.nextFloat() * 0.7f) + 0.06000000238418579 + 0.6;
+            double g = (double)(world.random.nextFloat() * 0.7f) + (double)0.15f;
+            ItemEntity itemEntity = new ItemEntity(world, (double)pos.getX() + d, (double)pos.getY() + e, (double)pos.getZ() + g, new ItemStack(Items.BOWL));
+            itemEntity.setToDefaultPickupDelay();
+            world.spawnEntity(itemEntity);
+        }}
 
 
 
