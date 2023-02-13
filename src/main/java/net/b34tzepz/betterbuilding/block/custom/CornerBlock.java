@@ -183,13 +183,14 @@ public class CornerBlock extends Block implements Waterloggable {
     @Override
     public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
         this.baseBlock.onDestroyedByExplosion(world, pos, explosion);
-    }
+    }//*/
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         RelativeDirection relativeDirection = RelativeDirection.LEFT;
         BlockPos blockPos = ctx.getBlockPos();
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
+
         switch (ctx.getPlayerFacing()) {
             case EAST -> {
                 if (ctx.getHitPos().z - (double) blockPos.getZ() > 0.5) {
@@ -237,6 +238,7 @@ public class CornerBlock extends Block implements Waterloggable {
             neighborInDirection = world.getBlockState(pos.offset(direction.rotateYClockwise()));
             neighborOppositeDirection = world.getBlockState(pos.offset(direction.rotateYCounterclockwise()));
         }
+
         if (StairsBlock.isStairs(neighborInDirection)) {
             if (state.get(FACING) == neighborInDirection.get(FACING)) {
                 if (!((neighborInDirection.get(StairsBlock.SHAPE) == StairShape.INNER_RIGHT && state.get(DIRECTION) == RelativeDirection.LEFT) ||
@@ -248,6 +250,7 @@ public class CornerBlock extends Block implements Waterloggable {
                 }
             }
         }
+
         if (StairsBlock.isStairs(neighborOppositeDirection)) {
             if (state.get(FACING) == neighborOppositeDirection.get(FACING)) {
                 if (!((neighborOppositeDirection.get(StairsBlock.SHAPE) == StairShape.INNER_RIGHT && state.get(DIRECTION) == RelativeDirection.RIGHT) ||
