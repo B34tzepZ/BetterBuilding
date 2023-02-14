@@ -27,6 +27,8 @@ public class TeleporterBlockEntity extends BlockEntity implements NamedScreenHan
         super(ModBlockEntities.TELEPORTER_BLOCK, pos, state);
     }
 
+
+
     @Override
     public DefaultedList<ItemStack> getItems() {
         return inventory;
