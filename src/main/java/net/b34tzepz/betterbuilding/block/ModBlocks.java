@@ -15,7 +15,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public class ModBlocks {
+public class ModBlocks{
     public static final Block REINFORCED_OAK_PLANKS = registerBlock("reinforced_oak_planks",
             new Block(FabricBlockSettings.of(Material.WOOD).strength(3.5f, 5).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
 
@@ -60,10 +60,6 @@ public class ModBlocks {
 
     public static final Block TELEPORTER_BLOCK = registerBlock("teleporter_block",
             new TeleporterBlock(FabricBlockSettings.of(Material.METAL).strength(6f).requiresTool()), ItemGroup.MISC);
-
-    public static final Block GLASS_PANE = registerBlock("glass_pane",
-            new PaneBlock(FabricBlockSettings.of(Material.GLASS)), ModItemGroup.Building);
-
 
     private static Block registerBlock(String name, Block block, ItemGroup group) {
         registerBlockItem(name, block, group);
