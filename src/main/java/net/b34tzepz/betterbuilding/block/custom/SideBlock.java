@@ -35,7 +35,7 @@ public class SideBlock extends Block implements Waterloggable {
 
     public SideBlock(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState((this.getDefaultState().with(TYPE, SideType.NORTH)).with(WATERLOGGED, false));
+        this.setDefaultState(getDefaultState().with(TYPE, SideType.NORTH).with(WATERLOGGED, false));
     }
 
     @Override
@@ -77,19 +77,19 @@ public class SideBlock extends Block implements Waterloggable {
             return (blockState.with(TYPE, SideType.DOUBLE)).with(WATERLOGGED, false);
         }
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
-        BlockState blockState = (this.getDefaultState().with(TYPE, SideType.NORTH)).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+        BlockState blockState = getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
         Direction facing = ctx.getPlayerFacing();
         if (facing.getHorizontal() % 2 == 1) {
-            if (ctx.getHitPos().z - (double) blockPos.getZ() < 0.5) {
-                return blockState.with(TYPE, SideType.NORTH);
+            if (ctx.getHitPos().x - (double) blockPos.getX() < 0.5) {
+                return blockState.with(TYPE, SideType.WEST);
             } else {
-                return blockState.with(TYPE, SideType.SOUTH);
+                return blockState.with(TYPE, SideType.EAST);
             }
         }
-        if (ctx.getHitPos().x - (double) blockPos.getX() < 0.5) {
-            return blockState.with(TYPE, SideType.WEST);
+        if (ctx.getHitPos().z - (double) blockPos.getZ() < 0.5) {
+            return blockState.with(TYPE, SideType.NORTH);
         }
-        return blockState.with(TYPE, SideType.EAST);
+        return blockState.with(TYPE, SideType.SOUTH);
     }
 
     @Override
