@@ -6,6 +6,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -78,6 +79,10 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         if (world.isClient) teleporters.add(pos);
         super.onPlaced(world, pos, state, placer, itemStack);
+    }
+
+    public PistonBehavior getPistonBehavior(BlockState state) {
+        return PistonBehavior.DESTROY;
     }
 
     @Override
