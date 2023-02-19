@@ -30,6 +30,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -37,12 +38,15 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty PLAYING_SOUND = BooleanProperty.of("playing_sound");
     public static final IntProperty SOUND_COOLDOWN = IntProperty.of("sound_cooldown",0,25);
+    public static final IntProperty TELEPORT_COOLDOWN = IntProperty.of("teleport_cooldown",0,110);
     public boolean play_sound=true;
+    public static ArrayList<BlockPos> teleporters = new ArrayList<BlockPos>();
 
     public TeleporterBlock(Settings settings) {
         super(settings);
         this.setDefaultState((BlockState)this.getDefaultState().with(PLAYING_SOUND, false));
         this.setDefaultState((BlockState)this.getDefaultState().with(SOUND_COOLDOWN, 0));
+        this.setDefaultState((BlockState)this.getDefaultState().with(TELEPORT_COOLDOWN, 0));
     }
 
 
@@ -65,12 +69,18 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING,PLAYING_SOUND, SOUND_COOLDOWN);
+        builder.add(FACING,PLAYING_SOUND, SOUND_COOLDOWN,TELEPORT_COOLDOWN);
     }
 
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
+    }
+
+    @Override
+    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+        if (world.isClient) teleporters.add(pos);
+        super.onPlaced(world, pos, state, placer, itemStack);
     }
 
     @Override
@@ -81,6 +91,7 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
                 ItemScatterer.spawn(world, pos, (TeleporterBlockEntity)blockEntity);
                 world.updateComparators(pos,this);
             }
+            teleporters.remove(pos);
             super.onStateReplaced(state, world, pos, newState, moved);
         }
     }
@@ -101,6 +112,40 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
 
     @Override
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
+        if(state.get(TELEPORT_COOLDOWN)<100)world.setBlockState(pos, state.with(TELEPORT_COOLDOWN, state.get(TELEPORT_COOLDOWN)+2), NOTIFY_ALL);
+        if(state.get(TELEPORT_COOLDOWN)>=100){
+            BlockEntity origin =world.getBlockEntity(pos);
+            BlockPos destination= null;
+            int destnumber=0;
+            if(origin instanceof TeleporterBlockEntity){
+                for (BlockPos destpos:
+                     teleporters) {
+                    if(!destpos.equals(pos)){
+                        BlockEntity destinationEntity=world.getBlockEntity(destpos);
+                        if(destinationEntity instanceof TeleporterBlockEntity){
+                            if(((TeleporterBlockEntity) destinationEntity).getItem().equals(((TeleporterBlockEntity) origin).getItem())){
+                                destnumber+=1;
+                                destination=destpos;
+                                if(destnumber>1){
+                                    break; //too many teleporters with same identifier item
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if(destnumber==1){
+                entity.teleport(destination.getX(),destination.getY()+1,destination.getZ());
+            }
+            else if(destnumber<1){
+                if (!world.isClient) if (entity instanceof PlayerEntity) ((PlayerEntity) entity).sendMessage(new LiteralText("There is no different teleporter with this identifier item."), false);
+            }
+            else {
+                if (!world.isClient) if (entity instanceof PlayerEntity) ((PlayerEntity) entity).sendMessage(new LiteralText("There are too many teleporters with this identifier item: "+(destnumber+1)), false);
+            }
+
+            world.setBlockState(pos, state.with(TELEPORT_COOLDOWN, 0), NOTIFY_ALL);
+        }
 
         if (world.isClient) {
             if (!play_sound &&state.get(SOUND_COOLDOWN) == 0) {
@@ -129,6 +174,7 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
 
 
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        if(state.get(TELEPORT_COOLDOWN)>0)world.setBlockState(pos, state.with(TELEPORT_COOLDOWN, state.get(TELEPORT_COOLDOWN)-1), NOTIFY_ALL);
         if(!state.get(PLAYING_SOUND)&&state.get(SOUND_COOLDOWN)<25) {
             world.setBlockState(pos, state.with(SOUND_COOLDOWN, state.get(SOUND_COOLDOWN)+1), NOTIFY_ALL);
         }

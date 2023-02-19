@@ -6,6 +6,7 @@
     "north": "betterbuilding:block/teleporter_side",
     "east": "betterbuilding:block/teleporter_side",
     "south": "betterbuilding:block/teleporter_side",
-    "west": "betterbuilding:block/teleporter_side"
+    "west": "betterbuilding:block/teleporter_side",
+    "particle": "#east"
   }
 }

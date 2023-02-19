@@ -7,6 +7,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
@@ -21,26 +22,28 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 
 public class TeleporterBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
-    private final DefaultedList<ItemStack> inventory= DefaultedList.ofSize(4, ItemStack.EMPTY);
+    private final DefaultedList<ItemStack> inventory= DefaultedList.ofSize(1, ItemStack.EMPTY);
 
     public TeleporterBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.TELEPORTER_BLOCK, pos, state);
     }
-
-
 
     @Override
     public DefaultedList<ItemStack> getItems() {
         return inventory;
     }
 
-    public static void tick(World world, BlockPos pos, BlockState state, TeleporterBlockEntity entity) {
-        if(hasRecipe(entity) && hasNotReachedStackLimit(entity)) {
-            craftItem(entity);
-        }
+    public Item getItem(){
+        return inventory.get(0).getItem();
     }
 
-    private static void craftItem(TeleporterBlockEntity entity) {
+    public static void tick(World world, BlockPos pos, BlockState state, TeleporterBlockEntity entity) {
+        /*if(hasRecipe(entity) && hasNotReachedStackLimit(entity)) {
+            craftItem(entity);
+        }*/
+    }
+
+    /*private static void craftItem(TeleporterBlockEntity entity) {
         entity.removeStack(0, 1);
         entity.removeStack(1, 1);
         entity.removeStack(2, 1);
@@ -59,7 +62,7 @@ public class TeleporterBlockEntity extends BlockEntity implements NamedScreenHan
 
     private static boolean hasNotReachedStackLimit(TeleporterBlockEntity entity) {
         return entity.getStack(3).getCount() < entity.getStack(3).getMaxCount();
-    }
+    }*/
 
     @Override
     public Text getDisplayName() {
