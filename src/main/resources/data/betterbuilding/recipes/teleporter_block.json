@@ -23,6 +23,7 @@
     }
   },
   "result": {
-    "item": "betterbuilding:teleporter_block"
+    "item": "betterbuilding:teleporter_block",
+    "count": 2
   }
 }
