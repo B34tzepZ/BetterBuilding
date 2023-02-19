@@ -12,17 +12,12 @@ public class ModSymbolSlot extends Slot {
 
     @Override
     public boolean canInsert(ItemStack stack) {
-        //return AbstractFurnaceBlockEntity.canUseAsFuel(stack) || ModFuelSlot.isBucket(stack);
         return true;
     }
 
     @Override
     public int getMaxItemCount(ItemStack stack) {
         return 1;
-        //return ModFuelSlot.isBucket(stack) ? 1 : super.getMaxItemCount(stack);
-    }
 
-    public static boolean isBucket(ItemStack stack) {
-        return stack.isOf(Items.BUCKET);
     }
 }
