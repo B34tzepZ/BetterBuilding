@@ -78,17 +78,8 @@ public class TableBlock extends Block {
     private ActionResult placeBowl(BlockState state, World world, BlockPos pos, PlayerEntity player, ItemStack itemStack) {
         Direction dir = player.getHorizontalFacing();
 
-        if (dir == Direction.NORTH && !state.get(SOUTHBOWLPLACED) && !state.get(SOUTHERNTABLE)) {
-            world.setBlockState(pos, state.with(SOUTHBOWLPLACED, true), NOTIFY_ALL);
-            itemStack.decrement(1);
-        } else if (dir == Direction.WEST && !state.get(EASTBOWLPLACED) && !state.get(EASTERNTABLE)) {
-            world.setBlockState(pos, state.with(EASTBOWLPLACED, true), NOTIFY_ALL);
-            itemStack.decrement(1);
-        } else if (dir == Direction.EAST && !state.get(WESTBOWLPLACED) && !state.get(WESTERNTABLE)) {
-            world.setBlockState(pos, state.with(WESTBOWLPLACED, true), NOTIFY_ALL);
-            itemStack.decrement(1);
-        } else if (dir == Direction.SOUTH && !state.get(NORTHBOWLPLACED) && !state.get(NORTHERNTABLE)) {
-            world.setBlockState(pos, state.with(NORTHBOWLPLACED, true), NOTIFY_ALL);
+        if(!state.get(getOppositeAdjTablePropertyByDir(dir)) && !state.get(getOppositeBowlPropertyByDir(dir))){
+            world.setBlockState(pos, state.with(getOppositeBowlPropertyByDir(dir), true), NOTIFY_ALL);
             itemStack.decrement(1);
         }
 
@@ -98,17 +89,8 @@ public class TableBlock extends Block {
     private ActionResult takeBowl(BlockState state, World world, BlockPos pos, PlayerEntity player) {
         Direction dir = player.getHorizontalFacing();
 
-        if (dir == Direction.NORTH && state.get(SOUTHBOWLPLACED)) {
-            world.setBlockState(pos, state.with(SOUTHBOWLPLACED, false), NOTIFY_ALL);
-            dropBowl(world, pos);
-        } else if (dir == Direction.WEST && state.get(EASTBOWLPLACED)) {
-            world.setBlockState(pos, state.with(EASTBOWLPLACED, false), NOTIFY_ALL);
-            dropBowl(world, pos);
-        } else if (dir == Direction.EAST && state.get(WESTBOWLPLACED)) {
-            world.setBlockState(pos, state.with(WESTBOWLPLACED, false), NOTIFY_ALL);
-            dropBowl(world, pos);
-        } else if (dir == Direction.SOUTH && state.get(NORTHBOWLPLACED)) {
-            world.setBlockState(pos, state.with(NORTHBOWLPLACED, false), NOTIFY_ALL);
+        if(state.get(getOppositeBowlPropertyByDir(dir))){
+            world.setBlockState(pos, state.with(getOppositeBowlPropertyByDir(dir), false), NOTIFY_ALL);
             dropBowl(world, pos);
         }
 
@@ -129,20 +111,51 @@ public class TableBlock extends Block {
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (direction.getAxis().isHorizontal()) {
-            if(direction == Direction.NORTH) {
-                return state.with(NORTHERNTABLE, TableBlock.isTable(neighborState));
-            }
-            else if(direction == Direction.SOUTH){
-                return state.with(SOUTHERNTABLE, TableBlock.isTable(neighborState));
-            }
-            else if(direction == Direction.WEST){
-                return state.with(WESTERNTABLE, TableBlock.isTable(neighborState));
-            }
-            else if(direction == Direction.EAST){
-                return state.with(EASTERNTABLE, TableBlock.isTable(neighborState));
-            }
+            boolean newBlockIsTable = TableBlock.isTable(neighborState);
+
+            return state.with(getAdjTablePropertyByDir(direction), newBlockIsTable);
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+    }
+
+    private BooleanProperty getAdjTablePropertyByDir(Direction dir){
+        return switch (dir) {
+            case NORTH -> NORTHERNTABLE;
+            case SOUTH -> SOUTHERNTABLE;
+            case EAST -> EASTERNTABLE;
+            case WEST -> WESTERNTABLE;
+            default -> null;//TODO
+        };
+    }
+
+    private BooleanProperty getOppositeAdjTablePropertyByDir(Direction dir){
+        return switch (dir) {
+            case SOUTH -> NORTHERNTABLE;
+            case NORTH -> SOUTHERNTABLE;
+            case WEST -> EASTERNTABLE;
+            case EAST -> WESTERNTABLE;
+            default -> null;//TODO
+        };
+    }
+
+    private BooleanProperty getBowlPropertyByDir(Direction dir){
+        return switch (dir) {
+            case NORTH -> NORTHBOWLPLACED;
+            case SOUTH -> SOUTHBOWLPLACED;
+            case EAST -> EASTBOWLPLACED;
+            case WEST -> WESTBOWLPLACED;
+            default -> null;//TODO
+        };
+    }
+
+    private BooleanProperty getOppositeBowlPropertyByDir(Direction dir){
+        return switch (dir) {
+            case SOUTH -> NORTHBOWLPLACED;
+            case NORTH -> SOUTHBOWLPLACED;
+            case WEST -> EASTBOWLPLACED;
+            case EAST -> WESTBOWLPLACED;
+            default -> null;//TODO
+        };
     }
 
     public static boolean isTable(BlockState state) {

@@ -1,13 +1,15 @@
 package net.b34tzepz.betterbuilding.block.entity;
 
-import net.b34tzepz.betterbuilding.item.ModItems;
 import net.b34tzepz.betterbuilding.item.inventory.ImplementedInventory;
 import net.b34tzepz.betterbuilding.screen.TeleporterBlockScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.Inventories;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.LiteralText;
@@ -16,12 +18,16 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
+
+import java.util.ArrayList;
 
 public class TeleporterBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
-    private final DefaultedList<ItemStack> inventory= DefaultedList.ofSize(4, ItemStack.EMPTY);
+    private final DefaultedList<ItemStack> inventory= DefaultedList.ofSize(1, ItemStack.EMPTY);
+    public static ArrayList<BlockPos> teleporters = new ArrayList<BlockPos>();
+    public static int arraylength=0;
+    public static int[] posX = new int[arraylength];
+    public static int[] posY = new int[arraylength];
+    public static int[] posZ = new int[arraylength];
 
     public TeleporterBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.TELEPORTER_BLOCK, pos, state);
@@ -32,32 +38,14 @@ public class TeleporterBlockEntity extends BlockEntity implements NamedScreenHan
         return inventory;
     }
 
+    public Item getItem(){
+        return inventory.get(0).getItem();
+    }
+
     public static void tick(World world, BlockPos pos, BlockState state, TeleporterBlockEntity entity) {
-        if(hasRecipe(entity) && hasNotReachedStackLimit(entity)) {
-            craftItem(entity);
-        }
+
     }
 
-    private static void craftItem(TeleporterBlockEntity entity) {
-        entity.removeStack(0, 1);
-        entity.removeStack(1, 1);
-        entity.removeStack(2, 1);
-
-        entity.setStack(3, new ItemStack(ModItems.SCREW, //Platzhalter
-                entity.getStack(3).getCount() + 1));
-    }
-
-    private static boolean hasRecipe(TeleporterBlockEntity entity) {
-        boolean hasItemInFirstSlot = entity.getStack(0).getItem() == ModItems.SCREW;
-        boolean hasItemInSecondSlot = entity.getStack(1).getItem() == Items.GOLDEN_PICKAXE;
-        boolean hasItemInThirdSlot = entity.getStack(2).getItem() == ModItems.SCREW;
-
-        return hasItemInFirstSlot && hasItemInSecondSlot && hasItemInThirdSlot;
-    }
-
-    private static boolean hasNotReachedStackLimit(TeleporterBlockEntity entity) {
-        return entity.getStack(3).getCount() < entity.getStack(3).getMaxCount();
-    }
 
     @Override
     public Text getDisplayName() {
@@ -70,15 +58,47 @@ public class TeleporterBlockEntity extends BlockEntity implements NamedScreenHan
         return new TeleporterBlockScreenHandler(syncId, inv, this);
     }
 
+    public void transferToArrays(){
+        posX = new int[arraylength];
+        posY = new int[arraylength];
+        posZ = new int[arraylength];
+        for (int i = 0; i < arraylength; i++) {
+            posX[i]=teleporters.get(i).getX();
+        }
+        for (int i = 0; i < arraylength; i++) {
+            posY[i]=teleporters.get(i).getY();
+        }
+        for (int i = 0; i < arraylength; i++) {
+            posZ[i]=teleporters.get(i).getZ();
+        }
+    }
+
+    public void transferFromArrays(){
+        teleporters = new ArrayList<BlockPos>();
+        for (int i = 0; i < arraylength; i++) {
+            teleporters.add(new BlockPos(posX[i],posY[i],posZ[i]));
+        }
+    }
+
     @Override
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, inventory);
+        nbt.putInt("arraylength",arraylength);
+        transferToArrays();
+        nbt.putIntArray("posX",posX);
+        nbt.putIntArray("posY",posY);
+        nbt.putIntArray("posZ",posZ);
     }
 
     @Override
     public void readNbt(NbtCompound nbt) {
         Inventories.readNbt(nbt, inventory);
+        arraylength = nbt.getInt("arraylength");
+        posX=nbt.getIntArray("posX");
+        posY=nbt.getIntArray("posY");
+        posZ=nbt.getIntArray("posZ");
         super.readNbt(nbt);
+        transferFromArrays();
     }
 }
