@@ -1,0 +1,8 @@
+{
+  "parent": "betterbuilding:block/inner_corner",
+  "textures": {
+    "bottom": "minecraft:block/acacia_planks",
+    "top": "minecraft:block/acacia_planks",
+    "side": "minecraft:block/acacia_planks"
+  }
+}
