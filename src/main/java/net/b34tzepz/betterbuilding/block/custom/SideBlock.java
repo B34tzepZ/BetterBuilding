@@ -122,7 +122,7 @@ public class SideBlock extends Block implements Waterloggable {
         if (state.get(WATERLOGGED)) {
             return Fluids.WATER.getStill(false);
         }
-        return super.getFluidState(state);
+        return Fluids.EMPTY.getDefaultState();
     }
 
     public boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState) {
@@ -145,15 +145,6 @@ public class SideBlock extends Block implements Waterloggable {
         if (state.get(WATERLOGGED)) {
             world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
-        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+        return state;
     }
-
-    @Override
-    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
-        if (type == NavigationType.WATER) {
-            return world.getFluidState(pos).isIn(FluidTags.WATER);
-        }
-        return false;
-    }
-
 }
