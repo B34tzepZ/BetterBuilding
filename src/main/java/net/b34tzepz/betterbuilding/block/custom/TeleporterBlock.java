@@ -38,7 +38,7 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
     public static final IntProperty SOUND_COOLDOWN = IntProperty.of("sound_cooldown",0,25);
     public static final IntProperty TELEPORT_COOLDOWN = IntProperty.of("teleport_cooldown",0,110);
     public boolean play_sound=true;
-    public static ArrayList<BlockPos> teleporters = new ArrayList<BlockPos>();
+    //public static ArrayList<BlockPos> teleporters = new ArrayList<BlockPos>();
 
     public TeleporterBlock(Settings settings) {
         super(settings);
@@ -77,7 +77,10 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
 
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        if (world.isClient) teleporters.add(pos);
+        if (world.isClient) {
+            TeleporterBlockEntity.teleporters.add(pos);
+            TeleporterBlockEntity.arraylength=TeleporterBlockEntity.teleporters.size();
+        }
         super.onPlaced(world, pos, state, placer, itemStack);
     }
 
@@ -93,7 +96,8 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
                 ItemScatterer.spawn(world, pos, (TeleporterBlockEntity)blockEntity);
                 world.updateComparators(pos,this);
             }
-            teleporters.remove(pos);
+            TeleporterBlockEntity.teleporters.remove(pos);
+            TeleporterBlockEntity.arraylength=TeleporterBlockEntity.teleporters.size();
             super.onStateReplaced(state, world, pos, newState, moved);
         }
     }
@@ -121,7 +125,7 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
             int destnumber=0;
             if(origin instanceof TeleporterBlockEntity){
                 for (BlockPos destpos:
-                     teleporters) {
+                        TeleporterBlockEntity.teleporters) {
                     if(!destpos.equals(pos)){
                         BlockEntity destinationEntity=world.getBlockEntity(destpos);
                         if(destinationEntity instanceof TeleporterBlockEntity){
