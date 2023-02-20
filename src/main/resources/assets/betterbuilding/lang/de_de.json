@@ -5,8 +5,9 @@
   "block.betterbuilding.reinforced_oak_planks": "Verstärkte Eichenholzbretter",
   "block.betterbuilding.reinforced_birch_planks": "Verstärkte Birkenholzbretter",
   "block.betterbuilding.oak_side": "Eichenholzwand",
-  "block.betterbuilding.oak_chair": "Stuhl aus deutschem Eichenholz",
+  "block.betterbuilding.oak_chair": "Eichenholzstuhl",
   "block.betterbuilding.oak_corner": "Eichenholzecke",
+  "block.betterbuilding.teleporter_block": "Teleporter",
 
   "itemGroup.betterbuilding.building": "Better Building",
   "item.betterbuilding.dowsing_rod.no_valuables": "Es wurde nichts gefunden!",

@@ -1,7 +1,6 @@
 package net.b34tzepz.betterbuilding.screen;
 
-import net.b34tzepz.betterbuilding.screen.slot.ModFuelSlot;
-import net.b34tzepz.betterbuilding.screen.slot.ModResultSlot;
+import net.b34tzepz.betterbuilding.screen.slot.ModSymbolSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -16,21 +15,17 @@ public class TeleporterBlockScreenHandler extends ScreenHandler {
     private final World world;
 
     public TeleporterBlockScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId, playerInventory, new SimpleInventory(4));
+        this(syncId, playerInventory, new SimpleInventory(1));
     }
 
     public TeleporterBlockScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
         super(ModScreenHandlers.TELEPORTER_BLOCK_SCREEN_HANDLER, syncId);
-        checkSize(inventory, 4);
+        checkSize(inventory, 1);
         this.inventory = inventory;
         this.world = playerInventory.player.world;
         inventory.onOpen(playerInventory.player);
 
-        // Our Slots
-        this.addSlot(new ModFuelSlot(inventory, 0, 18, 50));
-        this.addSlot(new Slot(inventory, 1, 66, 16));
-        this.addSlot(new Slot(inventory, 2, 66, 50));
-        this.addSlot(new ModResultSlot(inventory, 3, 114, 33));
+        this.addSlot(new ModSymbolSlot(inventory, 0, 81, 36));
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);

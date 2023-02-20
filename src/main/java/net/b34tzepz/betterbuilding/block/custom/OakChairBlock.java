@@ -36,7 +36,7 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final EnumProperty<ChairType> TYPE = net.b34tzepz.betterbuilding.state.property.Properties.CHAIR_TYPE;
     public static BooleanProperty OCCUPIED = BooleanProperty.of("OCCUPIED");
-
+    //Boot als nicht static speichern?
     public OakChairBlock(Settings settings) {
         super(settings);
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
