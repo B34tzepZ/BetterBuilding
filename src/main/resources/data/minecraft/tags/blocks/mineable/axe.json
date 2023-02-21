@@ -4,6 +4,7 @@
     "betterbuilding:reinforced_oak_planks",
     "betterbuilding:reinforced_spruce_planks",
     "betterbuilding:reinforced_birch_planks",
+
     "betterbuilding:oak_side",
     "betterbuilding:spruce_side",
     "betterbuilding:birch_side",
@@ -11,6 +12,15 @@
     "betterbuilding:acacia_side",
     "betterbuilding:dark_oak_side",
     "betterbuilding:crimson_side",
-    "betterbuilding:warped_side"
+    "betterbuilding:warped_side",
+
+    "betterbuilding:oak_corner",
+    "betterbuilding:spruce_corner",
+    "betterbuilding:birch_corner",
+    "betterbuilding:jungle_corner",
+    "betterbuilding:acacia_corner",
+    "betterbuilding:dark_oak_corner",
+    "betterbuilding:crimson_corner",
+    "betterbuilding:warped_corner"
   ]
 }

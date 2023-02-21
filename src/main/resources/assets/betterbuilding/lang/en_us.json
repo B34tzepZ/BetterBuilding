@@ -1,16 +1,38 @@
 {
+  "block.betterbuilding.reinforced_oak_planks": "Reinforced Oak Planks",
+  "block.betterbuilding.reinforced_spruce_planks": "Reinforced Spruce Planks",
+  "block.betterbuilding.reinforced_birch_planks": "Reinforced Birch Planks",
+  "block.betterbuilding.reinforced_jungle_planks": "Reinforced Jungle Planks",
+  "block.betterbuilding.reinforced_acacia_planks": "Reinforced Acacia Planks",
+  "block.betterbuilding.reinforced_dark_oak_planks": "Reinforced Dark Oak Planks",
+  "block.betterbuilding.reinforced_crimson_planks": "Reinforced Crimson Planks",
+  "block.betterbuilding.reinforced_warped_planks": "Reinforced Warped Planks",
+
+  "block.betterbuilding.oak_side": "Oak Side",
+  "block.betterbuilding.spruce_side": "Spruce Side",
+  "block.betterbuilding.birch_side": "Birch Side",
+  "block.betterbuilding.jungle_side": "Jungle Side",
+  "block.betterbuilding.acacia_side": "Acacia Side",
+  "block.betterbuilding.dark_oak_side": "Dark Oak Side",
+  "block.betterbuilding.crimson_side": "Crimson Side",
+  "block.betterbuilding.warped_side": "Warped Side",
+
+  "block.betterbuilding.oak_corner": "Oak Corner",
+  "block.betterbuilding.spruce_corner": "Spruce Corner",
+  "block.betterbuilding.birch_corner": "Birch Corner",
+  "block.betterbuilding.jungle_corner": "Jungle Corner",
+  "block.betterbuilding.acacia_corner": "Acacia Corner",
+  "block.betterbuilding.dark_oak_corner": "Dark Oak Corner",
+  "block.betterbuilding.crimson_corner": "Crimson Corner",
+  "block.betterbuilding.warped_corner": "Warped Corner",
+
+  "block.betterbuilding.oak_chair": "Oak Chair",
+
   "item.betterbuilding.screw": "Screw",
   "item.betterbuilding.dowsing_rod": "Dowsing Rod",
-
-  "block.betterbuilding.reinforced_oak_planks": "Reinforced Oak Planks",
-  "block.betterbuilding.reinforced_birch_planks": "Reinforced Birch Planks",
-  "block.betterbuilding.oak_side": "Oak Side",
-  "block.betterbuilding.oak_chair": "Oak Chair",
-  "block.betterbuilding.oak_corner": "Oak Corner",
-  "block.betterbuilding.teleporter_block": "Teleporter",
-
-  "itemGroup.betterbuilding.building": "Better Building",
-  "item.betterbuilding.dowsing_rod.no_valuables": "Nothing to be found!",
   "item.betterbuilding.raccoon_spawn_egg": "Raccoon Spawn Egg",
-  "item.betterbuilding.tiger_spawn_egg": "Tiger Spawn Egg"
+  "item.betterbuilding.tiger_spawn_egg": "Tiger Spawn Egg",
+
+  "item.betterbuilding.dowsing_rod.no_valuables": "Nothing to be found!",
+  "itemGroup.betterbuilding.building": "Better Building"
 }

@@ -62,8 +62,6 @@ public class CornerBlock extends Block implements Waterloggable {
     protected static final VoxelShape[] NORTH_SHAPES = CornerBlock.composeShapes(NORTH_SHAPE, BOTTOM_SOUTH_WEST_CORNER_SHAPE, TOP_SOUTH_WEST_CORNER_SHAPE, BOTTOM_SOUTH_EAST_CORNER_SHAPE, TOP_SOUTH_EAST_CORNER_SHAPE);
     protected static final VoxelShape[] SOUTH_SHAPES = CornerBlock.composeShapes(SOUTH_SHAPE, BOTTOM_NORTH_EAST_CORNER_SHAPE, TOP_NORTH_EAST_CORNER_SHAPE, BOTTOM_NORTH_WEST_CORNER_SHAPE, TOP_NORTH_WEST_CORNER_SHAPE);
     private static final int[] SHAPE_INDICES = new int[]{3, 12, 7, 13, 11, 14, 1, 4, 2, 8};
-    private final Block baseBlock;
-    private final BlockState baseBlockState;
 
     private static VoxelShape[] composeShapes(VoxelShape base, VoxelShape bottomLeft, VoxelShape topLeft, VoxelShape bottomRight, VoxelShape topRight) {
         return IntStream.range(0, 16).mapToObj(i -> CornerBlock.composeShape(i, base, bottomLeft, topLeft, bottomRight, topRight)).toArray(VoxelShape[]::new);
@@ -86,11 +84,12 @@ public class CornerBlock extends Block implements Waterloggable {
         return voxelShape;
     }
 
-    public CornerBlock(BlockState baseBlockState, AbstractBlock.Settings settings) {
+    public CornerBlock(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState((((this.stateManager.getDefaultState().with(FACING, Direction.NORTH)).with(DIRECTION, RelativeDirection.LEFT)).with(SHAPE, CornerShape.STRAIGHT)).with(WATERLOGGED, false));
-        this.baseBlock = baseBlockState.getBlock();
-        this.baseBlockState = baseBlockState;
+        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH)
+                .with(DIRECTION, RelativeDirection.LEFT)
+                .with(SHAPE, CornerShape.STRAIGHT)
+                .with(WATERLOGGED, false));
     }
 
     @Override
@@ -117,73 +116,6 @@ public class CornerBlock extends Block implements Waterloggable {
     private int getShapeIndexIndex(BlockState state) {
         return state.get(SHAPE).ordinal() * 2 + state.get(DIRECTION).ordinal();
     }
-
-    @Override
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        this.baseBlock.randomDisplayTick(state, world, pos, random);
-    }
-
-    @Override
-    public void onBlockBreakStart(BlockState state, World world, BlockPos pos, PlayerEntity player) {
-        this.baseBlockState.onBlockBreakStart(world, pos, player);
-    }
-
-    @Override
-    public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
-        this.baseBlock.onBroken(world, pos, state);
-    }
-
-    @Override
-    public float getBlastResistance() {
-        return this.baseBlock.getBlastResistance();
-    }
-
-    @Override
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        if (state.isOf(state.getBlock())) {
-            return;
-        }
-        this.baseBlockState.neighborUpdate(world, pos, Blocks.AIR, pos, false);
-        this.baseBlock.onBlockAdded(this.baseBlockState, world, pos, oldState, false);
-    }
-
-    @Override
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (state.isOf(newState.getBlock())) {
-            return;
-        }
-        this.baseBlockState.onStateReplaced(world, pos, newState, moved);
-    }
-
-    @Override
-    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
-        this.baseBlock.onSteppedOn(world, pos, state, entity);
-    }
-
-    @Override
-    public boolean hasRandomTicks(BlockState state) {
-        return this.baseBlock.hasRandomTicks(state);
-    }
-
-    @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        this.baseBlock.randomTick(state, world, pos, random);
-    }
-
-    @Override
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        this.baseBlock.scheduledTick(state, world, pos, random);
-    }
-
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        return this.baseBlockState.onUse(world, player, hand, hit);
-    }
-
-    @Override
-    public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
-        this.baseBlock.onDestroyedByExplosion(world, pos, explosion);
-    }//*/
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
@@ -225,7 +157,7 @@ public class CornerBlock extends Block implements Waterloggable {
         if (direction.getAxis().isHorizontal()) {
             return state.with(SHAPE, getCornerShape(state, world, pos));
         }
-        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+        return state;
     }
 
     private static CornerShape getCornerShape(BlockState state, BlockView world, BlockPos pos) {
@@ -314,7 +246,7 @@ public class CornerBlock extends Block implements Waterloggable {
                 }
             }
         }
-        return super.mirror(state, mirror);
+        return state;
     }
 
     @Override
@@ -327,7 +259,7 @@ public class CornerBlock extends Block implements Waterloggable {
         if (state.get(WATERLOGGED)) {
             return Fluids.WATER.getStill(false);
         }
-        return super.getFluidState(state);
+        return Fluids.EMPTY.getDefaultState();
     }
 
     @Override

@@ -1,16 +1,38 @@
 {
+  "block.betterbuilding.reinforced_oak_planks": "Verstärkte Eichenholzbretter",
+  "block.betterbuilding.reinforced_spruce_planks": "Verstärkte Fichtenholzbretter",
+  "block.betterbuilding.reinforced_birch_planks": "Verstärkte Birkenholzbretter",
+  "block.betterbuilding.reinforced_jungle_planks": "Verstärkte Tropenholzbretter",
+  "block.betterbuilding.reinforced_acacia_planks": "Verstärkte Akazienholzbretter",
+  "block.betterbuilding.reinforced_dark_oak_planks": "Verstärkte Schwarzeichenholzbretter",
+  "block.betterbuilding.reinforced_crimson_planks": "Verstärkte Karmesinbretter",
+  "block.betterbuilding.reinforced_warped_planks": "Verstärkte Wirrbretter",
+
+  "block.betterbuilding.oak_side": "Eichenholzwand",
+  "block.betterbuilding.spruce_side": "Fichtenholzwand",
+  "block.betterbuilding.birch_side": "Birkenholzwand",
+  "block.betterbuilding.jungle_side": "Tropenholzwand",
+  "block.betterbuilding.acacia_side": "Akazienholzwand",
+  "block.betterbuilding.dark_oak_side": "Scharzeichenholzwand",
+  "block.betterbuilding.crimson_side": "Karmesinwand",
+  "block.betterbuilding.warped_side": "Wirrwand",
+
+  "block.betterbuilding.oak_corner": "Eichenholzecke",
+  "block.betterbuilding.spruce_corner": "Fichtenholzecke",
+  "block.betterbuilding.birch_corner": "Birkenholzecke",
+  "block.betterbuilding.jungle_corner": "Tropenholzecke",
+  "block.betterbuilding.acacia_corner": "Akazienholzecke",
+  "block.betterbuilding.dark_oak_corner": "Schwarzeichenholzecke",
+  "block.betterbuilding.crimson_corner": "Karmesinecke",
+  "block.betterbuilding.warped_corner": "Wirrecke",
+
+  "block.betterbuilding.oak_chair": "Stuhl aus deutschem Eichenholz",
+
   "item.betterbuilding.screw": "Schraube",
   "item.betterbuilding.dowsing_rod": "Wünschelrute",
-
-  "block.betterbuilding.reinforced_oak_planks": "Verstärkte Eichenholzbretter",
-  "block.betterbuilding.reinforced_birch_planks": "Verstärkte Birkenholzbretter",
-  "block.betterbuilding.oak_side": "Eichenholzwand",
-  "block.betterbuilding.oak_chair": "Eichenholzstuhl",
-  "block.betterbuilding.oak_corner": "Eichenholzecke",
-  "block.betterbuilding.teleporter_block": "Teleporter",
-
-  "itemGroup.betterbuilding.building": "Better Building",
-  "item.betterbuilding.dowsing_rod.no_valuables": "Es wurde nichts gefunden!",
   "item.betterbuilding.raccoon_spawn_egg": "Waschbär Spawn-Ei",
-  "item.betterbuilding.tiger_spawn_egg": "Tiger Spawn-Ei"
+  "item.betterbuilding.tiger_spawn_egg": "Tiger Spawn-Ei",
+
+  "item.betterbuilding.dowsing_rod.no_valuables": "Es wurde nichts gefunden!",
+  "itemGroup.betterbuilding.building": "Better Building"
 }
