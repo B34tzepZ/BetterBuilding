@@ -7,7 +7,6 @@ import net.b34tzepz.betterbuilding.util.ModRegistries;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import software.bernie.geckolib3.GeckoLib;
 
 public class BetterBuilding implements ModInitializer {
 	public static final String MOD_ID = "betterbuilding";
@@ -20,6 +19,5 @@ public class BetterBuilding implements ModInitializer {
 		ModBlockEntities.registerAllEntities();
 		ModRegistries.registerModStuffs();
 
-		GeckoLib.initialize();
 	}
 }

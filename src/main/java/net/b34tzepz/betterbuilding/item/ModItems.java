@@ -19,13 +19,6 @@ public class ModItems {
     public static final Item Dowsing_Rod = registerItem("dowsing_rod",
             new DowsingRodItem(new FabricItemSettings().group(ModItemGroup.Building).maxDamage(64)));
 
-    public static final Item RACCOON_SPAWN_EGG = registerItem("raccoon_spawn_egg",
-            new SpawnEggItem(ModEntities.RACCOON,0x948e8d, 0x3b3635,
-                    new FabricItemSettings().group(ModItemGroup.Building)));
-
-    public static final Item TIGER_SPAWN_EGG = registerItem("tiger_spawn_egg",
-            new SpawnEggItem(ModEntities.TIGER,0xfcb603, 0x242321,
-                    new FabricItemSettings().group(ModItemGroup.Building)));
 
     private static Item registerItem(String name, Item item){
         return Registry.register(Registry.ITEM, new Identifier(BetterBuilding.MOD_ID, name), item);
