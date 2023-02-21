@@ -26,7 +26,8 @@
   "block.betterbuilding.crimson_corner": "Karmesinecke",
   "block.betterbuilding.warped_corner": "Wirrecke",
 
-  "block.betterbuilding.oak_chair": "Stuhl aus deutschem Eichenholz",
+  "block.betterbuilding.oak_chair": "Stuhl aus Eichenholz",
+  "block.betterbuilding.teleporter_block": "Teleporter",
 
   "item.betterbuilding.screw": "Schraube",
   "item.betterbuilding.dowsing_rod": "Wünschelrute",
