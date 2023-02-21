@@ -22,6 +22,7 @@ import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.LiteralText;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -132,9 +133,6 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
                             if(((TeleporterBlockEntity) destinationEntity).getItem().equals(((TeleporterBlockEntity) origin).getItem())){
                                 destnumber+=1;
                                 destination=destpos;
-                                if(destnumber>1){
-                                    break; //too many teleporters with same identifier item
-                                }
                             }
                         }
                     }
@@ -144,10 +142,10 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
                 entity.teleport(destination.getX(),destination.getY()+1,destination.getZ());
             }
             else if(destnumber<1){
-                if (!world.isClient) if (entity instanceof PlayerEntity) ((PlayerEntity) entity).sendMessage(new LiteralText("There is no different teleporter with this identifier item."), false);
+                if (!world.isClient) if (entity instanceof PlayerEntity) ((PlayerEntity) entity).sendMessage(new TranslatableText("item.betterbuilding.teleporter_block.error_single"), false);//.sendMessage(new LiteralText("There is no different teleporter with this identifier item."), false);
             }
             else {
-                if (!world.isClient) if (entity instanceof PlayerEntity) ((PlayerEntity) entity).sendMessage(new LiteralText("There are too many teleporters with this identifier item: "+(destnumber+1)), false);
+                if (!world.isClient) if (entity instanceof PlayerEntity) ((PlayerEntity) entity).sendMessage(new TranslatableText("item.betterbuilding.teleporter_block.error_multiple" ).append(Integer.toString(+ (destnumber+1))), false);//sendMessage(new LiteralText("There are too many teleporters with this identifier item: "+(destnumber+1)), false);
             }
 
             world.setBlockState(pos, state.with(TELEPORT_COOLDOWN, 0), NOTIFY_ALL);

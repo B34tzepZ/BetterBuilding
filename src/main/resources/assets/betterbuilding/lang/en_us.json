@@ -28,6 +28,8 @@
 
   "block.betterbuilding.oak_chair": "Oak Chair",
   "block.betterbuilding.teleporter_block": "Teleporter",
+  "item.betterbuilding.teleporter_block.error_single": "There is no different teleporter with this identifier item.",
+  "item.betterbuilding.teleporter_block.error_multiple": "There are too many teleporters with this identifier item: ",
 
   "item.betterbuilding.screw": "Screw",
   "item.betterbuilding.dowsing_rod": "Dowsing Rod",
