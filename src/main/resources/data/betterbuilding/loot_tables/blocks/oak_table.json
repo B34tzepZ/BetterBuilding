@@ -1,0 +1,234 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "betterbuilding:oak_table"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:bowl",
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": 4,
+                  "add": false,
+                  "conditions": [
+                    {
+                      "condition": "minecraft:block_state_property",
+                      "block": "betterbuilding:oak_table",
+                      "properties": {
+                        "north_bowl_placed": "true",
+                        "south_bowl_placed": "true",
+                        "east_bowl_placed": "true",
+                        "west_bowl_placed": "true"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "function": "minecraft:set_count",
+                  "count": 0,
+                  "add": false,
+                  "conditions": [
+                    {
+                      "condition": "minecraft:block_state_property",
+                      "block": "betterbuilding:oak_table",
+                      "properties": {
+                        "east_bowl_placed": "false",
+                        "north_bowl_placed": "false",
+                        "south_bowl_placed": "false",
+                        "west_bowl_placed": "false"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "function": "minecraft:set_count",
+                  "count": 3,
+                  "add": false,
+                  "conditions": [
+                    {
+                      "condition": "minecraft:block_state_property",
+                      "block": "betterbuilding:oak_table",
+                      "properties": {
+                        "north_bowl_placed": "true",
+                        "south_bowl_placed": "true",
+                        "east_bowl_placed": "true",
+                        "west_bowl_placed": "false"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "function": "minecraft:set_count",
+                  "count": 3,
+                  "add": false,
+                  "conditions": [
+                    {
+                      "condition": "minecraft:block_state_property",
+                      "block": "betterbuilding:oak_table",
+                      "properties": {
+                        "north_bowl_placed": "true",
+                        "south_bowl_placed": "true",
+                        "east_bowl_placed": "false",
+                        "west_bowl_placed": "true"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "function": "minecraft:set_count",
+                  "count": 3,
+                  "add": false,
+                  "conditions": [
+                    {
+                      "condition": "minecraft:block_state_property",
+                      "block": "betterbuilding:oak_table",
+                      "properties": {
+                        "north_bowl_placed": "false",
+                        "south_bowl_placed": "true",
+                        "east_bowl_placed": "true",
+                        "west_bowl_placed": "true"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "function": "minecraft:set_count",
+                  "count": 3,
+                  "add": false,
+                  "conditions": [
+                    {
+                      "condition": "minecraft:block_state_property",
+                      "block": "betterbuilding:oak_table",
+                      "properties": {
+                        "north_bowl_placed": "true",
+                        "south_bowl_placed": "false",
+                        "east_bowl_placed": "true",
+                        "west_bowl_placed": "true"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "function": "minecraft:set_count",
+                  "count": 2,
+                  "add": false,
+                  "conditions": [
+                    {
+                      "condition": "minecraft:block_state_property",
+                      "block": "betterbuilding:oak_table",
+                      "properties": {
+                        "north_bowl_placed": "true",
+                        "south_bowl_placed": "true",
+                        "east_bowl_placed": "false",
+                        "west_bowl_placed": "false"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "function": "minecraft:set_count",
+                  "count": 2,
+                  "add": false,
+                  "conditions": [
+                    {
+                      "condition": "minecraft:block_state_property",
+                      "block": "betterbuilding:oak_table",
+                      "properties": {
+                        "north_bowl_placed": "false",
+                        "south_bowl_placed": "false",
+                        "east_bowl_placed": "true",
+                        "west_bowl_placed": "true"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "function": "minecraft:set_count",
+                  "count": 2,
+                  "add": false,
+                  "conditions": [
+                    {
+                      "condition": "minecraft:block_state_property",
+                      "block": "betterbuilding:oak_table",
+                      "properties": {
+                        "north_bowl_placed": "true",
+                        "south_bowl_placed": "false",
+                        "east_bowl_placed": "true",
+                        "west_bowl_placed": "false"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "function": "minecraft:set_count",
+                  "count": 2,
+                  "add": false,
+                  "conditions": [
+                    {
+                      "condition": "minecraft:block_state_property",
+                      "block": "betterbuilding:oak_table",
+                      "properties": {
+                        "north_bowl_placed": "false",
+                        "south_bowl_placed": "true",
+                        "east_bowl_placed": "true",
+                        "west_bowl_placed": "false"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "function": "minecraft:set_count",
+                  "count": 2,
+                  "add": false,
+                  "conditions": [
+                    {
+                      "condition": "minecraft:block_state_property",
+                      "block": "betterbuilding:oak_table",
+                      "properties": {
+                        "north_bowl_placed": "false",
+                        "south_bowl_placed": "true",
+                        "east_bowl_placed": "false",
+                        "west_bowl_placed": "true"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "function": "minecraft:set_count",
+                  "count": 2,
+                  "add": false,
+                  "conditions": [
+                    {
+                      "condition": "minecraft:block_state_property",
+                      "block": "betterbuilding:oak_table",
+                      "properties": {
+                        "north_bowl_placed": "true",
+                        "south_bowl_placed": "false",
+                        "east_bowl_placed": "false",
+                        "west_bowl_placed": "true"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -31,6 +31,9 @@
   "item.betterbuilding.teleporter_block.error_single": "There is no different teleporter with this identifier item.",
   "item.betterbuilding.teleporter_block.error_multiple": "There are too many teleporters with this identifier item: ",
 
+  "item.betterbuilding.table_leg": "Table Leg",
+  "block.betterbuilding.oak_table": "Oak Table",
+
   "item.betterbuilding.screw": "Screw",
   "item.betterbuilding.dowsing_rod": "Dowsing Rod",
   "item.betterbuilding.raccoon_spawn_egg": "Raccoon Spawn Egg",
