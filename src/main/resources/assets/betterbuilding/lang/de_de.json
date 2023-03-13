@@ -26,8 +26,13 @@
   "block.betterbuilding.crimson_corner": "Karmesinecke",
   "block.betterbuilding.warped_corner": "Wirrecke",
 
-  "block.betterbuilding.oak_chair": "Stuhl aus Eichenholz",
+  "block.betterbuilding.oak_chair": "Eichenholzstuhl",
   "block.betterbuilding.teleporter_block": "Teleporter",
+  "item.betterbuilding.teleporter_block.error_single": "Es gibt keinen anderen Teleporter mit diesem Item.",
+  "item.betterbuilding.teleporter_block.error_multiple": "Es gibt zu viele Teleporter mit diesem Item: ",
+
+  "item.betterbuilding.table_leg": "Tischbein",
+  "block.betterbuilding.oak_table": "Eichenholztisch",
 
   "item.betterbuilding.screw": "Schraube",
   "item.betterbuilding.dowsing_rod": "Wünschelrute",

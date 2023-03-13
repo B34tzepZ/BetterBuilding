@@ -17,7 +17,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 
 import java.util.stream.Stream;
 
@@ -28,10 +27,6 @@ public class TableBlock extends Block {
     public static final BooleanProperty SOUTHBOWLPLACED = BooleanProperty.of("south_bowl_placed");
     public static final BooleanProperty EASTBOWLPLACED = BooleanProperty.of("east_bowl_placed");
     public static final BooleanProperty WESTBOWLPLACED = BooleanProperty.of("west_bowl_placed");
-    public static final BooleanProperty NORTHERNTABLE = BooleanProperty.of("northern_table");
-    public static final BooleanProperty SOUTHERNTABLE = BooleanProperty.of("southern_table");
-    public static final BooleanProperty EASTERNTABLE = BooleanProperty.of("eastern_table");
-    public static final BooleanProperty WESTERNTABLE = BooleanProperty.of("western_table");
 
     public static VoxelShape SHAPE = Stream.of(
             Block.createCuboidShape(12, 0, 2, 14, 14, 4),
@@ -43,15 +38,11 @@ public class TableBlock extends Block {
 
     public TableBlock(Settings settings) {
         super(settings);
-        this.setDefaultState((((((((this.stateManager.getDefaultState()
+        this.setDefaultState((((this.stateManager.getDefaultState()
                 .with(NORTHBOWLPLACED, false))
                 .with(SOUTHBOWLPLACED, false))
                 .with(EASTBOWLPLACED, false))
-                .with(WESTBOWLPLACED, false))
-                .with(NORTHERNTABLE, false))
-                .with(SOUTHERNTABLE, false))
-                .with(WESTERNTABLE, false))
-                .with(EASTERNTABLE, false));
+                .with(WESTBOWLPLACED, false));
     }
 
     @Override
@@ -61,7 +52,7 @@ public class TableBlock extends Block {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(NORTHBOWLPLACED, SOUTHBOWLPLACED, EASTBOWLPLACED, WESTBOWLPLACED, NORTHERNTABLE, SOUTHERNTABLE, EASTERNTABLE, WESTERNTABLE);
+        builder.add(NORTHBOWLPLACED, SOUTHBOWLPLACED, EASTBOWLPLACED, WESTBOWLPLACED);
     }
 
     @Override
@@ -78,7 +69,7 @@ public class TableBlock extends Block {
     private ActionResult placeBowl(BlockState state, World world, BlockPos pos, PlayerEntity player, ItemStack itemStack) {
         Direction dir = player.getHorizontalFacing();
 
-        if(!state.get(getOppositeAdjTablePropertyByDir(dir)) && !state.get(getOppositeBowlPropertyByDir(dir))){
+        if(!state.get(getOppositeBowlPropertyByDir(dir))){
             world.setBlockState(pos, state.with(getOppositeBowlPropertyByDir(dir), true), NOTIFY_ALL);
             itemStack.decrement(1);
         }
@@ -108,36 +99,6 @@ public class TableBlock extends Block {
         }
     }
 
-    @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (direction.getAxis().isHorizontal()) {
-            boolean newBlockIsTable = TableBlock.isTable(neighborState);
-
-            return state.with(getAdjTablePropertyByDir(direction), newBlockIsTable);
-        }
-        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
-    }
-
-    private BooleanProperty getAdjTablePropertyByDir(Direction dir){
-        return switch (dir) {
-            case NORTH -> NORTHERNTABLE;
-            case SOUTH -> SOUTHERNTABLE;
-            case EAST -> EASTERNTABLE;
-            case WEST -> WESTERNTABLE;
-            default -> null;//TODO
-        };
-    }
-
-    private BooleanProperty getOppositeAdjTablePropertyByDir(Direction dir){
-        return switch (dir) {
-            case SOUTH -> NORTHERNTABLE;
-            case NORTH -> SOUTHERNTABLE;
-            case WEST -> EASTERNTABLE;
-            case EAST -> WESTERNTABLE;
-            default -> null;//TODO
-        };
-    }
-
     private BooleanProperty getBowlPropertyByDir(Direction dir){
         return switch (dir) {
             case NORTH -> NORTHBOWLPLACED;
@@ -156,10 +117,6 @@ public class TableBlock extends Block {
             case EAST -> WESTBOWLPLACED;
             default -> null;//TODO
         };
-    }
-
-    public static boolean isTable(BlockState state) {
-        return state.getBlock() instanceof TableBlock;
     }
 
 
