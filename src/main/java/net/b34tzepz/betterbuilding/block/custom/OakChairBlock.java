@@ -51,57 +51,69 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
         //this.setDefaultState((this.getDefaultState().with(TYPE, ChairType.NORTH)));
     }
 
-    private static final VoxelShape NORTH_SHAPE = Stream.of(
-            Block.createCuboidShape(0, 12, 2, 2, 14, 15),
-            Block.createCuboidShape(14, 0, 0, 16, 10, 2),
-            Block.createCuboidShape(0, 0, 14, 2, 10, 16),
-            Block.createCuboidShape(0, 0, 0, 2, 10, 2),
-            Block.createCuboidShape(14, 12, 2, 16, 14, 15),
-            Block.createCuboidShape(14, 12, 0, 16, 28, 2),
-            Block.createCuboidShape(0, 12, 0, 2, 28, 2),
-            Block.createCuboidShape(2, 12, 0, 14, 28, 2),
-            Block.createCuboidShape(0, 10, 0, 16, 12, 16),
-            Block.createCuboidShape(14, 0, 14, 16, 10, 16)
-    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get(); //Block.createCuboidShape();
+    private static final VoxelShape NORTH_SHAPE =
 
-    private static final VoxelShape EAST_SHAPE = Stream.of(
-            Block.createCuboidShape(1, 12, 0, 14, 14, 2),
-            Block.createCuboidShape(14, 0, 14, 16, 10, 16),
-            Block.createCuboidShape(0, 0, 0, 2, 10, 2),
-            Block.createCuboidShape(14, 0, 0, 16, 10, 2),
-            Block.createCuboidShape(1, 12, 14, 14, 14, 16),
-            Block.createCuboidShape(14, 12, 14, 16, 28, 16),
-            Block.createCuboidShape(14, 12, 0, 16, 28, 2),
-            Block.createCuboidShape(14, 12, 2, 16, 28, 14),
-            Block.createCuboidShape(0, 10, 0, 16, 12, 16),
-            Block.createCuboidShape(0, 0, 14, 2, 10, 16)
-    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
+            Stream.of(
+                    Block.createCuboidShape(14, 9, 2, 16, 11, 15),
+                    Block.createCuboidShape(0, 9, 0, 2, 22, 2),
+                    Block.createCuboidShape(2, 9, 0, 14, 21, 2),
+                    Block.createCuboidShape(0, 7, 0, 16, 9, 16),
+                    Block.createCuboidShape(0, 0, 14, 2, 7, 14),
+                    Block.createCuboidShape(14, 0, 14, 16, 7, 16),
+                    Block.createCuboidShape(0, 0, 0, 2, 7, 2),
+                    Block.createCuboidShape(14, 0, 0, 16, 7, 2),
+                    Block.createCuboidShape(14, 9, 0, 16, 22, 2),
+                    Block.createCuboidShape(0, 9, 2, 2, 11, 15)
+            ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
 
-    private static final VoxelShape SOUTH_SHAPE = Stream.of(
-            Block.createCuboidShape(14, 12, 1, 16, 14, 14),
-            Block.createCuboidShape(0, 0, 14, 2, 10, 16),
-            Block.createCuboidShape(14, 0, 0, 16, 10, 2),
-            Block.createCuboidShape(14, 0, 14, 16, 10, 16),
-            Block.createCuboidShape(0, 12, 1, 2, 14, 14),
-            Block.createCuboidShape(0, 12, 14, 2, 28, 16),
-            Block.createCuboidShape(14, 12, 14, 16, 28, 16),
-            Block.createCuboidShape(2, 12, 14, 14, 28, 16),
-            Block.createCuboidShape(0, 10, 0, 16, 12, 16),
-            Block.createCuboidShape(0, 0, 0, 2, 10, 2)
-    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
 
-    private static final VoxelShape WEST_SHAPE = Stream.of(
-            Block.createCuboidShape(2, 12, 14, 15, 14, 16),
-            Block.createCuboidShape(0, 0, 0, 2, 10, 2),
-            Block.createCuboidShape(14, 0, 14, 16, 10, 16),
-            Block.createCuboidShape(0, 0, 14, 2, 10, 16),
-            Block.createCuboidShape(2, 12, 0, 15, 14, 2),
-            Block.createCuboidShape(0, 12, 0, 2, 28, 2),
-            Block.createCuboidShape(0, 12, 14, 2, 28, 16),
-            Block.createCuboidShape(0, 12, 2, 2, 28, 14),
-            Block.createCuboidShape(0, 10, 0, 16, 12, 16),
-            Block.createCuboidShape(14, 0, 0, 16, 10, 2)
-    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
+    private static final VoxelShape EAST_SHAPE =
+
+            Stream.of(
+                    Block.createCuboidShape(1, 9, 14, 14, 11, 16),
+                    Block.createCuboidShape(14, 9, 0, 16, 22, 2),
+                    Block.createCuboidShape(14, 9, 2, 16, 21, 14),
+                    Block.createCuboidShape(0, 7, 0, 16, 9, 16),
+                    Block.createCuboidShape(0, 0, 0, 2, 7, 2),
+                    Block.createCuboidShape(0, 0, 14, 2, 7, 16),
+                    Block.createCuboidShape(14, 0, 0, 16, 7, 2),
+                    Block.createCuboidShape(14, 0, 14, 16, 7, 16),
+                    Block.createCuboidShape(14, 9, 14, 16, 22, 16),
+                    Block.createCuboidShape(1, 9, 0, 14, 11, 2)
+            ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
+
+
+    private static final VoxelShape SOUTH_SHAPE =
+
+            Stream.of(
+                    Block.createCuboidShape(0, 9, 1, 2, 11, 14),
+                    Block.createCuboidShape(14, 9, 14, 16, 22, 16),
+                    Block.createCuboidShape(2, 9, 14, 14, 21, 16),
+                    Block.createCuboidShape(0, 7, 0, 16, 9, 16),
+                    Block.createCuboidShape(14, 0, 0, 16, 7, 2),
+                    Block.createCuboidShape(0, 0, 0, 2, 7, 2),
+                    Block.createCuboidShape(14, 0, 14, 16, 7, 16),
+                    Block.createCuboidShape(0, 0, 14, 2, 7, 16),
+                    Block.createCuboidShape(0, 9, 14, 2, 22, 16),
+                    Block.createCuboidShape(14, 9, 1, 16, 11, 14)
+            ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get(); //Block.createCuboidShape()
+
+
+    private static final VoxelShape WEST_SHAPE =
+
+            Stream.of(
+                    Block.createCuboidShape(2, 9, 0, 15, 11, 2),
+                    Block.createCuboidShape(0, 9, 14, 2, 22, 16),
+                    Block.createCuboidShape(0, 9, 2, 2, 21, 14),
+                    Block.createCuboidShape(0, 7, 0, 16, 9, 16),
+                    Block.createCuboidShape(14, 0, 14, 16, 7, 16),
+                    Block.createCuboidShape(14, 0, 0, 16, 7, 2),
+                    Block.createCuboidShape(0, 0, 14, 2, 7, 16),
+                    Block.createCuboidShape(0, 0, 0, 2, 7, 2),
+                    Block.createCuboidShape(0, 9, 0, 2, 22, 2),
+                    Block.createCuboidShape(2, 9, 14, 15, 11, 16)
+            ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
+
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
