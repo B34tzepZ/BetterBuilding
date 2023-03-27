@@ -8,6 +8,10 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.*;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.passive.HorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.vehicle.BoatEntity;
@@ -18,6 +22,7 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.LiteralText;
 import net.minecraft.util.*;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.hit.BlockHitResult;
@@ -30,70 +35,85 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
+import java.time.Duration;
+import java.util.Random;
 import java.util.stream.Stream;
 
 public class OakChairBlock extends BlockWithEntity implements BlockEntityProvider {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final EnumProperty<ChairType> TYPE = net.b34tzepz.betterbuilding.state.property.Properties.CHAIR_TYPE;
     public static BooleanProperty OCCUPIED = BooleanProperty.of("OCCUPIED");
-    //Boot als nicht static speichern?
+    public HorseEntity horse=null;
+    public int horseKillWaitingTime=0;
     public OakChairBlock(Settings settings) {
         super(settings);
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
         //this.setDefaultState((this.getDefaultState().with(TYPE, ChairType.NORTH)));
     }
 
-    private static final VoxelShape NORTH_SHAPE = Stream.of(
-            Block.createCuboidShape(0, 12, 2, 2, 14, 15),
-            Block.createCuboidShape(14, 0, 0, 16, 10, 2),
-            Block.createCuboidShape(0, 0, 14, 2, 10, 16),
-            Block.createCuboidShape(0, 0, 0, 2, 10, 2),
-            Block.createCuboidShape(14, 12, 2, 16, 14, 15),
-            Block.createCuboidShape(14, 12, 0, 16, 28, 2),
-            Block.createCuboidShape(0, 12, 0, 2, 28, 2),
-            Block.createCuboidShape(2, 12, 0, 14, 28, 2),
-            Block.createCuboidShape(0, 10, 0, 16, 12, 16),
-            Block.createCuboidShape(14, 0, 14, 16, 10, 16)
-    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get(); //Block.createCuboidShape();
+    private static final VoxelShape NORTH_SHAPE =
 
-    private static final VoxelShape EAST_SHAPE = Stream.of(
-            Block.createCuboidShape(1, 12, 0, 14, 14, 2),
-            Block.createCuboidShape(14, 0, 14, 16, 10, 16),
-            Block.createCuboidShape(0, 0, 0, 2, 10, 2),
-            Block.createCuboidShape(14, 0, 0, 16, 10, 2),
-            Block.createCuboidShape(1, 12, 14, 14, 14, 16),
-            Block.createCuboidShape(14, 12, 14, 16, 28, 16),
-            Block.createCuboidShape(14, 12, 0, 16, 28, 2),
-            Block.createCuboidShape(14, 12, 2, 16, 28, 14),
-            Block.createCuboidShape(0, 10, 0, 16, 12, 16),
-            Block.createCuboidShape(0, 0, 14, 2, 10, 16)
-    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
+            Stream.of(
+                    Block.createCuboidShape(14, 9, 2, 16, 11, 15),
+                    Block.createCuboidShape(0, 9, 0, 2, 22, 2),
+                    Block.createCuboidShape(2, 9, 0, 14, 21, 2),
+                    Block.createCuboidShape(0, 7, 0, 16, 9, 16),
+                    Block.createCuboidShape(0, 0, 14, 2, 7, 14),
+                    Block.createCuboidShape(14, 0, 14, 16, 7, 16),
+                    Block.createCuboidShape(0, 0, 0, 2, 7, 2),
+                    Block.createCuboidShape(14, 0, 0, 16, 7, 2),
+                    Block.createCuboidShape(14, 9, 0, 16, 22, 2),
+                    Block.createCuboidShape(0, 9, 2, 2, 11, 15)
+            ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
 
-    private static final VoxelShape SOUTH_SHAPE = Stream.of(
-            Block.createCuboidShape(14, 12, 1, 16, 14, 14),
-            Block.createCuboidShape(0, 0, 14, 2, 10, 16),
-            Block.createCuboidShape(14, 0, 0, 16, 10, 2),
-            Block.createCuboidShape(14, 0, 14, 16, 10, 16),
-            Block.createCuboidShape(0, 12, 1, 2, 14, 14),
-            Block.createCuboidShape(0, 12, 14, 2, 28, 16),
-            Block.createCuboidShape(14, 12, 14, 16, 28, 16),
-            Block.createCuboidShape(2, 12, 14, 14, 28, 16),
-            Block.createCuboidShape(0, 10, 0, 16, 12, 16),
-            Block.createCuboidShape(0, 0, 0, 2, 10, 2)
-    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
 
-    private static final VoxelShape WEST_SHAPE = Stream.of(
-            Block.createCuboidShape(2, 12, 14, 15, 14, 16),
-            Block.createCuboidShape(0, 0, 0, 2, 10, 2),
-            Block.createCuboidShape(14, 0, 14, 16, 10, 16),
-            Block.createCuboidShape(0, 0, 14, 2, 10, 16),
-            Block.createCuboidShape(2, 12, 0, 15, 14, 2),
-            Block.createCuboidShape(0, 12, 0, 2, 28, 2),
-            Block.createCuboidShape(0, 12, 14, 2, 28, 16),
-            Block.createCuboidShape(0, 12, 2, 2, 28, 14),
-            Block.createCuboidShape(0, 10, 0, 16, 12, 16),
-            Block.createCuboidShape(14, 0, 0, 16, 10, 2)
-    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
+    private static final VoxelShape EAST_SHAPE =
+
+            Stream.of(
+                    Block.createCuboidShape(1, 9, 14, 14, 11, 16),
+                    Block.createCuboidShape(14, 9, 0, 16, 22, 2),
+                    Block.createCuboidShape(14, 9, 2, 16, 21, 14),
+                    Block.createCuboidShape(0, 7, 0, 16, 9, 16),
+                    Block.createCuboidShape(0, 0, 0, 2, 7, 2),
+                    Block.createCuboidShape(0, 0, 14, 2, 7, 16),
+                    Block.createCuboidShape(14, 0, 0, 16, 7, 2),
+                    Block.createCuboidShape(14, 0, 14, 16, 7, 16),
+                    Block.createCuboidShape(14, 9, 14, 16, 22, 16),
+                    Block.createCuboidShape(1, 9, 0, 14, 11, 2)
+            ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
+
+
+    private static final VoxelShape SOUTH_SHAPE =
+
+            Stream.of(
+                    Block.createCuboidShape(0, 9, 1, 2, 11, 14),
+                    Block.createCuboidShape(14, 9, 14, 16, 22, 16),
+                    Block.createCuboidShape(2, 9, 14, 14, 21, 16),
+                    Block.createCuboidShape(0, 7, 0, 16, 9, 16),
+                    Block.createCuboidShape(14, 0, 0, 16, 7, 2),
+                    Block.createCuboidShape(0, 0, 0, 2, 7, 2),
+                    Block.createCuboidShape(14, 0, 14, 16, 7, 16),
+                    Block.createCuboidShape(0, 0, 14, 2, 7, 16),
+                    Block.createCuboidShape(0, 9, 14, 2, 22, 16),
+                    Block.createCuboidShape(14, 9, 1, 16, 11, 14)
+            ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get(); //Block.createCuboidShape()
+
+
+    private static final VoxelShape WEST_SHAPE =
+
+            Stream.of(
+                    Block.createCuboidShape(2, 9, 0, 15, 11, 2),
+                    Block.createCuboidShape(0, 9, 14, 2, 22, 16),
+                    Block.createCuboidShape(0, 9, 2, 2, 21, 14),
+                    Block.createCuboidShape(0, 7, 0, 16, 9, 16),
+                    Block.createCuboidShape(14, 0, 14, 16, 7, 16),
+                    Block.createCuboidShape(14, 0, 0, 16, 7, 2),
+                    Block.createCuboidShape(0, 0, 14, 2, 7, 16),
+                    Block.createCuboidShape(0, 0, 0, 2, 7, 2),
+                    Block.createCuboidShape(0, 9, 0, 2, 22, 2),
+                    Block.createCuboidShape(2, 9, 14, 15, 11, 16)
+            ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
+
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
@@ -119,10 +139,9 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
 
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        /*if (placer instanceof PlayerEntity) ((PlayerEntity) placer).sendMessage(new LiteralText("placed"), false);
-        ZombieEntity zombie = new ZombieEntity(world);
+        //if (placer instanceof PlayerEntity) ((PlayerEntity) placer).sendMessage(new LiteralText("Coords: "+pos.getX()+" "+pos.getY()+" "+pos.getZ()), false);
 
-        super.onPlaced(world, pos, state, placer, itemStack);*/
+        super.onPlaced(world, pos, state, placer, itemStack);
     }
 
 
@@ -139,22 +158,26 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
             }
 
         }*/
-        if (!world.isClient) {
-            /*LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, world);
+        //if (!world.isClient) {
+           /* LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, world);
             lightning.setPosition(player.getPos());
             world.spawnEntity(lightning);*/
-            BoatEntity boat = new BoatEntity(world, pos.getX(), pos.getY() + 1, pos.getZ());
-            boat.setInvisible(true);
-            world.spawnEntity(boat);
-            boat.setInvisible(true);
-            boat.setInvulnerable(true);
-            boat.setVelocity(0,0,0);
-            /*SeatEntity seat= new SeatEntity(ModEntities.SEAT, world);
-            seat.setInvulnerable(true);
-            seat.setPosition(pos.getX(), pos.getY() + 1, pos.getZ());
-            world.spawnEntity(seat);*/
-            return player.startRiding(boat) ? ActionResult.CONSUME : ActionResult.PASS;
-        }
+
+
+
+            //if(horse==null){
+                HorseEntity horse = new HorseEntity(EntityType.HORSE,world);
+                //horse.setInvulnerable(true);
+                horse.setPosition(pos.getX()+0.5, pos.getY()-0.5, pos.getZ()+0.5); //Position of the chair
+                horse.bondWithPlayer(player);
+                horse.addStatusEffect(new StatusEffectInstance(StatusEffects.INVISIBILITY, Integer.MAX_VALUE, 1,false,false));
+                horse.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS,Integer.MAX_VALUE,200,false,false));
+                world.spawnEntity(horse);
+                horse.setVelocity(0,0,0);
+
+            //return player.startRiding(horse); //? ActionResult.CONSUME : ActionResult.PASS;
+        //}
+        player.startRiding(horse);
         return ActionResult.SUCCESS;
     }
 
@@ -166,6 +189,23 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {
         return state.with(FACING, rotation.rotate(state.get(FACING)));
+    }
+
+    @Override
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        if (horse!=null){
+            if(!horse.hasPlayerRider()) {
+                horseKillWaitingTime+=1;
+                if(horseKillWaitingTime>=3){
+                    horse.kill();
+                    horseKillWaitingTime=0;
+                    horse=null;
+                }
+
+            }
+
+        }
+        super.randomDisplayTick(state, world, pos, random);
     }
 
     @Override
