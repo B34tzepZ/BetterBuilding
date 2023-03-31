@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#O#",
+    " U ",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "O": {
+      "item": "betterbuilding:warped_side"
+    },
+    "U": {
+      "item": "minecraft:warped_slab"
+    }
+  },
+  "result": {
+    "item": "betterbuilding:warped_chair"
+  }
+}

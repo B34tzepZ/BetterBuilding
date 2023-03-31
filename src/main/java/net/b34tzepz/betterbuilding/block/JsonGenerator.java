@@ -7,7 +7,13 @@ import java.nio.file.Paths;
 
 public class JsonGenerator {
     public static void main(String[] args) throws Exception {
-        generateJsons("acacia", "cool", "corner");
+        generateJsons("oak", "spruce", "chair");
+        generateJsons("oak", "birch", "chair");
+        generateJsons("oak", "jungle", "chair");
+        generateJsons("oak", "acacia", "chair");
+        generateJsons("oak", "dark_oak", "chair");
+        generateJsons("oak", "crimson", "chair");
+        generateJsons("oak", "warped", "chair");
     }
 
     private static void generateJsons(String oldMaterial, String newMaterial, String type) throws Exception {

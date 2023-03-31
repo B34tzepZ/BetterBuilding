@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#O#",
+    " U ",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "O": {
+      "item": "betterbuilding:birch_side"
+    },
+    "U": {
+      "item": "minecraft:birch_slab"
+    }
+  },
+  "result": {
+    "item": "betterbuilding:birch_chair"
+  }
+}

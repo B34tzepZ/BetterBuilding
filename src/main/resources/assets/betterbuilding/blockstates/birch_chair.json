@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "betterbuilding:block/birch_chair"
+    },
+    "facing=south": {
+      "model": "betterbuilding:block/birch_chair",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "betterbuilding:block/birch_chair",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "betterbuilding:block/birch_chair",
+      "y": 90
+    }
+  }
+}

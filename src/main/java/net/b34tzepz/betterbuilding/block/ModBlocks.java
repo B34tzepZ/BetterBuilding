@@ -76,6 +76,27 @@ public class ModBlocks {
     public static final Block OAK_CHAIR = registerBlock("oak_chair",
             new ChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque().sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
 
+    public static final Block SPRUCE_CHAIR = registerBlock("spruce_chair",
+            new ChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque().sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
+
+    public static final Block BIRCH_CHAIR = registerBlock("birch_chair",
+            new ChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque().sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
+
+    public static final Block JUNGLE_CHAIR = registerBlock("jungle_chair",
+            new ChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque().sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
+
+    public static final Block ACACIA_CHAIR = registerBlock("acacia_chair",
+            new ChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque().sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
+
+    public static final Block DARK_OAK_CHAIR = registerBlock("dark_oak_chair",
+            new ChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque().sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
+
+    public static final Block CRIMSON_CHAIR = registerBlock("crimson_chair",
+            new ChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque().sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
+
+    public static final Block WARPED_CHAIR = registerBlock("warped_chair",
+            new ChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque().sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
+
     public static final Block OAK_TABLE = registerBlock("oak_table",
             new TableBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS)), ModItemGroup.Building);
 

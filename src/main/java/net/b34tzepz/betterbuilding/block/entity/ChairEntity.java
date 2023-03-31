@@ -13,13 +13,13 @@ import org.jetbrains.annotations.Nullable;
 
 public class ChairEntity extends BlockEntity implements NamedScreenHandlerFactory {
     public ChairEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.CHAIR, pos, state);
+        super(ModBlockEntities.OAK_CHAIR, pos, state);
     }
 
 
     @Override
     public Text getDisplayName() {
-        return new LiteralText("Oak Chair");
+        return new LiteralText("Chair");
     }
 
     @Nullable
