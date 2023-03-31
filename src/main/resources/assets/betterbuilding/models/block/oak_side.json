@@ -1,6 +1,7 @@
 {
   "parent": "betterbuilding:block/side",
   "textures": {
+    "bottom": "minecraft:block/oak_planks",
     "top": "minecraft:block/oak_planks",
     "side": "minecraft:block/oak_planks"
   }
