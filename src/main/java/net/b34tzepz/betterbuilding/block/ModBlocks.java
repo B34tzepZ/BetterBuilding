@@ -85,6 +85,8 @@ public class ModBlocks {
     public static final Block FABRICATOR_BLOCK = registerBlock("fabricator_block",
             new FabricatorBlock(FabricBlockSettings.of(Material.METAL).strength(5, 6).requiresTool()), ModItemGroup.Building);
 
+    public static final Block OAK_LOG_PILLAR = registerBlock("oak_log_pillar",
+            new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG)),ModItemGroup.Pillars);
 
     private static Block registerBlock(String name, Block block, ItemGroup group) {
         registerBlockItem(name, block, group);
