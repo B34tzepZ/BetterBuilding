@@ -74,7 +74,7 @@ public class ModBlocks {
             new CornerBlock(FabricBlockSettings.copyOf(Blocks.WARPED_STAIRS)), ModItemGroup.Building);
 
     public static final Block OAK_CHAIR = registerBlock("oak_chair",
-            new OakChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque().sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
+            new ChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque().sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
 
     public static final Block OAK_TABLE = registerBlock("oak_table",
             new TableBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS)), ModItemGroup.Building);

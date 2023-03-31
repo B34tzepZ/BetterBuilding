@@ -8,13 +8,13 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class ModBlockEntities {
-    public static BlockEntityType<OakChairEntity> OAK_CHAIR;
+    public static BlockEntityType<ChairEntity> OAK_CHAIR;
     public static BlockEntityType<TeleporterBlockEntity> TELEPORTER_BLOCK;
     public static BlockEntityType<FabricatorBlockEntity> FABRICATOR_BLOCK;
 
     public static void  registerAllEntities(){
         OAK_CHAIR = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(BetterBuilding.MOD_ID, "oak_chair"),
-                FabricBlockEntityTypeBuilder.create(OakChairEntity::new,
+                FabricBlockEntityTypeBuilder.create(ChairEntity::new,
                         ModBlocks.OAK_CHAIR).build(null));
 
         TELEPORTER_BLOCK = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(BetterBuilding.MOD_ID, "teleporter_block"),

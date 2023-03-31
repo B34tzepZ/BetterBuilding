@@ -1,6 +1,6 @@
 package net.b34tzepz.betterbuilding.block.custom;
 
-import net.b34tzepz.betterbuilding.block.entity.OakChairEntity;
+import net.b34tzepz.betterbuilding.block.entity.ChairEntity;
 
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -28,11 +28,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 import java.util.stream.Stream;
 
-public class OakChairBlock extends BlockWithEntity implements BlockEntityProvider {
+public class ChairBlock extends BlockWithEntity implements BlockEntityProvider {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public ArmorStandEntity stand = null;
 
-    public OakChairBlock(Settings settings) {
+    public ChairBlock(Settings settings) {
         super(settings);
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
@@ -168,7 +168,6 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
                 stand.kill();
                 stand = null;
             }
-
         }
         super.randomDisplayTick(state, world, pos, random);
     }
@@ -201,6 +200,6 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new OakChairEntity(pos, state);
+        return new ChairEntity(pos, state);
     }
 }

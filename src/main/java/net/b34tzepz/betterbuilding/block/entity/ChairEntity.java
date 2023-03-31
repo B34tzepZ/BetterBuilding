@@ -11,9 +11,9 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
-public class OakChairEntity extends BlockEntity implements NamedScreenHandlerFactory {
-    public OakChairEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.OAK_CHAIR, pos, state);
+public class ChairEntity extends BlockEntity implements NamedScreenHandlerFactory {
+    public ChairEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.CHAIR, pos, state);
     }
 
 
