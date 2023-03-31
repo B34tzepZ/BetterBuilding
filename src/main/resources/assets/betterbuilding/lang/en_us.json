@@ -27,6 +27,14 @@
   "block.betterbuilding.warped_corner": "Warped Corner",
 
   "block.betterbuilding.oak_chair": "Oak Chair",
+  "block.betterbuilding.spruce_chair": "Spruce Chair",
+  "block.betterbuilding.birch_chair": "Birch Chair",
+  "block.betterbuilding.jungle_chair": "Jungle Chair",
+  "block.betterbuilding.acacia_chair": "Acacia Chair",
+  "block.betterbuilding.dark_oak_chair": "Dark Oak Chair",
+  "block.betterbuilding.crimson_chair": "Crimson Chair",
+  "block.betterbuilding.warped_chair": "Warped Chair",
+
   "block.betterbuilding.teleporter_block": "Teleporter",
   "item.betterbuilding.teleporter_block.error_single": "There is no different teleporter with this identifier item.",
   "item.betterbuilding.teleporter_block.error_multiple": "There are too many teleporters with this identifier item: ",

@@ -27,6 +27,14 @@
   "block.betterbuilding.warped_corner": "Wirrecke",
 
   "block.betterbuilding.oak_chair": "Eichenholzstuhl",
+  "block.betterbuilding.spruce_chair": "Fichtenholzstuhl",
+  "block.betterbuilding.birch_chair": "Birkenholzstuhl",
+  "block.betterbuilding.jungle_chair": "Tropenholzstuhl",
+  "block.betterbuilding.acacia_chair": "Akazienholzstuhl",
+  "block.betterbuilding.dark_oak_chair": "Dunkeleichenholzstuhl",
+  "block.betterbuilding.crimson_chair": "Karmesinstuhl",
+  "block.betterbuilding.warped_chair": "Wirrstuhl",
+
   "block.betterbuilding.teleporter_block": "Teleporter",
   "item.betterbuilding.teleporter_block.error_single": "Es gibt keinen anderen Teleporter mit diesem Item.",
   "item.betterbuilding.teleporter_block.error_multiple": "Es gibt zu viele Teleporter mit diesem Item: ",

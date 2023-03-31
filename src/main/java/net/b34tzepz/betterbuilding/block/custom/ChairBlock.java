@@ -1,7 +1,6 @@
 package net.b34tzepz.betterbuilding.block.custom;
 
-import net.b34tzepz.betterbuilding.block.entity.OakChairEntity;
-import net.b34tzepz.betterbuilding.block.enums.ChairType;
+import net.b34tzepz.betterbuilding.block.entity.ChairEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
@@ -20,7 +19,6 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockMirror;
@@ -40,12 +38,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 import java.util.stream.Stream;
 
-public class OakChairBlock extends BlockWithEntity implements BlockEntityProvider {
+public class ChairBlock extends BlockWithEntity implements BlockEntityProvider {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    public static final EnumProperty<ChairType> TYPE = net.b34tzepz.betterbuilding.state.property.Properties.CHAIR_TYPE;
     public ArmorStandEntity stand = null;
 
-    public OakChairBlock(Settings settings) {
+    public ChairBlock(Settings settings) {
         super(settings);
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
@@ -181,7 +178,6 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
                 stand.kill();
                 stand = null;
             }
-
         }
         super.randomDisplayTick(state, world, pos, random);
     }
@@ -214,6 +210,6 @@ public class OakChairBlock extends BlockWithEntity implements BlockEntityProvide
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new OakChairEntity(pos, state);
+        return new ChairEntity(pos, state);
     }
 }
