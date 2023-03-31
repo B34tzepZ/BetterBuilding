@@ -1,7 +1,7 @@
 package net.b34tzepz.betterbuilding.item.custom;
 
+import net.b34tzepz.betterbuilding.util.ModTags;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
@@ -9,6 +9,9 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
+
+import java.util.Objects;
 
 public class DowsingRodItem extends Item {
     public DowsingRodItem(Settings settings) {
@@ -26,6 +29,7 @@ public class DowsingRodItem extends Item {
                 Block blockBelow = context.getWorld().getBlockState(positionClicked.down(i)).getBlock();
 
                 if (isValuableBlock(blockBelow)) {
+                    assert player != null;
                     outputValuableCoordinates(positionClicked.down(i), player, blockBelow);
                     foundBlock = true;
                     break;
@@ -33,24 +37,18 @@ public class DowsingRodItem extends Item {
             }
 
             if (!foundBlock) {
+                assert player != null;
                 player.sendMessage(new TranslatableText("item.betterbuilding.dowsing_rod.no_valuables"), false);
             }
         }
 
-        context.getStack().damage(1, context.getPlayer(), (player) -> player.sendToolBreakStatus(player.getActiveHand()));
+        context.getStack().damage(1, Objects.requireNonNull(context.getPlayer()), (player) -> player.sendToolBreakStatus(player.getActiveHand()));
 
         return super.useOnBlock(context);
     }
 
     private boolean isValuableBlock(Block block) {
-        return block == Blocks.COAL_ORE || block == Blocks.DEEPSLATE_COAL_ORE ||
-                block == Blocks.COPPER_ORE || block == Blocks.DEEPSLATE_COPPER_ORE ||
-                block == Blocks.IRON_ORE || block == Blocks.DEEPSLATE_IRON_ORE ||
-                block == Blocks.GOLD_ORE || block == Blocks.DEEPSLATE_GOLD_ORE ||
-                block == Blocks.REDSTONE_ORE || block == Blocks.DEEPSLATE_REDSTONE_ORE ||
-                block == Blocks.LAPIS_ORE || block == Blocks.DEEPSLATE_LAPIS_ORE ||
-                block == Blocks.DIAMOND_ORE || block == Blocks.DEEPSLATE_DIAMOND_ORE ||
-                block == Blocks.EMERALD_ORE || block == Blocks.DEEPSLATE_EMERALD_ORE;
+        return Registry.BLOCK.getOrCreateEntry(Registry.BLOCK.getKey(block).get()).isIn(ModTags.Blocks.DOWSING_ROD_DETECTABLE_BLOCKS);
     }
 
     private void outputValuableCoordinates(BlockPos blockPos, PlayerEntity player, Block blockBelow) {
