@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import net.b34tzepz.betterbuilding.block.ModBlocks;
 import net.b34tzepz.betterbuilding.block.custom.PillarBlock;
+import net.b34tzepz.betterbuilding.util.ModTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -15,12 +16,13 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import java.util.Map;
 
 public class ChiselItem extends Item {
-    protected static final Map<Block, BlockState> PILLAR_STATES = Maps.newHashMap(new ImmutableMap.Builder<Block, BlockState>().put(Blocks.OAK_LOG, ModBlocks.OAK_LOG_PILLAR.getDefaultState()).put(Blocks.OAK_WOOD, ModBlocks.OAK_WOOD_PILLAR.getDefaultState()).build());
+    protected static final Map<Block, BlockState> PILLAR_STATES = Maps.newHashMap(new ImmutableMap.Builder<Block, BlockState>().put(Blocks.OAK_LOG, ModBlocks.OAK_LOG_PILLAR.getDefaultState()).build());
 
     public ChiselItem(Settings settings) {
         super(settings);
@@ -33,14 +35,10 @@ public class ChiselItem extends Item {
         BlockState blockState = world.getBlockState(blockPos);
         Direction side = context.getSide();
         PlayerEntity playerEntity = context.getPlayer();
-        BlockState blockState2 = PILLAR_STATES.get(blockState.getBlock());
-        if (blockState2 != null) {
+        BlockState blockState2 = PILLAR_STATES.get(blockState.getBlock());//blockState.getBlock().getTranslationKey()
+        if (Registry.BLOCK.getOrCreateEntry(Registry.BLOCK.getKey(blockState.getBlock()).get()).isIn(ModTags.Blocks.TRANSFORMABLE_TO_PILLAR)) {  //Registry.BLOCK.getOrCreateEntry(Registry.BLOCK.getKey(blockState.getBlock()).get()).isIn(ModTags.Blocks.TRANSFORMABLE_TO_PILLAR)
             world.playSound(playerEntity, blockPos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0f, 1.0f);
-            if (side.getHorizontal() % 2 == 1) {
-                blockState2 = blockState2.with(PillarBlock.AXIS, Direction.Axis.X);
-            } else if (side.getHorizontal() % 2 == 0){
-                blockState2 = blockState2.with(PillarBlock.AXIS, Direction.Axis.Z);
-            }
+            blockState2 = blockState2.with(PillarBlock.AXIS, side.getAxis());
         }
         if (!world.isClient) {
             world.setBlockState(blockPos, blockState2, Block.NOTIFY_ALL | Block.REDRAW_ON_MAIN_THREAD);
