@@ -23,6 +23,15 @@
     "betterbuilding:crimson_corner",
     "betterbuilding:warped_corner",
 
+    "betterbuilding:oak_chair",
+    "betterbuilding:spruce_chair",
+    "betterbuilding:birch_chair",
+    "betterbuilding:jungle_chair",
+    "betterbuilding:acacia_chair",
+    "betterbuilding:dark_oak_chair",
+    "betterbuilding:crimson_chair",
+    "betterbuilding:warped_chair",
+
     "betterbuilding:oak_table"
   ]
 }
