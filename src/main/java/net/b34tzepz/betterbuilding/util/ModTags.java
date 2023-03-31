@@ -11,6 +11,7 @@ import net.minecraft.util.registry.Registry;
 public class ModTags {
     public static class Blocks{
         public static final TagKey<Block> DOWSING_ROD_DETECTABLE_BLOCKS = createTag("dowsing_rod_detectable_blocks");
+        public static final TagKey<Block> TRANSFORMABLE_TO_PILLAR = createTag("transformable_to_pillar");
         public static final TagKey<Block> SIDES = createTag("sides");
         public static final TagKey<Block> CORNERS = createTag("corners");
         public static final TagKey<Block> WOODEN_SIDES = createTag("wooden_sides");
