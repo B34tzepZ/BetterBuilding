@@ -32,7 +32,6 @@ import java.util.stream.Stream;
 
 public class OakChairBlock extends BlockWithEntity implements BlockEntityProvider {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    public static final EnumProperty<ChairType> TYPE = net.b34tzepz.betterbuilding.state.property.Properties.CHAIR_TYPE;
     public ArmorStandEntity stand = null;
 
     public OakChairBlock(Settings settings) {
