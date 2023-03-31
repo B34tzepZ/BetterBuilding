@@ -21,7 +21,6 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
@@ -29,7 +28,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -39,7 +37,6 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
     public static final IntProperty SOUND_COOLDOWN = IntProperty.of("sound_cooldown",0,25);
     public static final IntProperty TELEPORT_COOLDOWN = IntProperty.of("teleport_cooldown",0,110);
     public boolean play_sound=true;
-    //public static ArrayList<BlockPos> teleporters = new ArrayList<BlockPos>();
 
     public TeleporterBlock(Settings settings) {
         super(settings);
@@ -119,7 +116,8 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
 
     @Override
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
-        if(state.get(TELEPORT_COOLDOWN)<100)world.setBlockState(pos, state.with(TELEPORT_COOLDOWN, state.get(TELEPORT_COOLDOWN)+2), NOTIFY_ALL);
+        if(state.get(TELEPORT_COOLDOWN)<100)world
+                .setBlockState(pos, state.with(TELEPORT_COOLDOWN, state.get(TELEPORT_COOLDOWN)+2), NOTIFY_ALL);
         if(state.get(TELEPORT_COOLDOWN)>=100){
             BlockEntity origin =world.getBlockEntity(pos);
             BlockPos destination= null;
@@ -142,10 +140,13 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
                 entity.teleport(destination.getX(),destination.getY()+1,destination.getZ());
             }
             else if(destnumber<1){
-                if (!world.isClient) if (entity instanceof PlayerEntity) ((PlayerEntity) entity).sendMessage(new TranslatableText("item.betterbuilding.teleporter_block.error_single"), false);//.sendMessage(new LiteralText("There is no different teleporter with this identifier item."), false);
+                if (!world.isClient) if (entity instanceof PlayerEntity) ((PlayerEntity) entity).
+                        sendMessage(new TranslatableText("item.betterbuilding.teleporter_block.error_single"), false);
             }
             else {
-                if (!world.isClient) if (entity instanceof PlayerEntity) ((PlayerEntity) entity).sendMessage(new TranslatableText("item.betterbuilding.teleporter_block.error_multiple" ).append(Integer.toString(+ (destnumber+1))), false);//sendMessage(new LiteralText("There are too many teleporters with this identifier item: "+(destnumber+1)), false);
+                if (!world.isClient) if (entity instanceof PlayerEntity) ((PlayerEntity) entity)
+                        .sendMessage(new TranslatableText("item.betterbuilding.teleporter_block.error_multiple" )
+                                .append(Integer.toString(+ (destnumber+1))), false);
             }
 
             world.setBlockState(pos, state.with(TELEPORT_COOLDOWN, 0), NOTIFY_ALL);
