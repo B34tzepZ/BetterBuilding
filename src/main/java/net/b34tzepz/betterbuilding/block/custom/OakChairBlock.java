@@ -1,7 +1,6 @@
 package net.b34tzepz.betterbuilding.block.custom;
 
 import net.b34tzepz.betterbuilding.block.entity.OakChairEntity;
-import net.b34tzepz.betterbuilding.block.enums.ChairType;
 
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
