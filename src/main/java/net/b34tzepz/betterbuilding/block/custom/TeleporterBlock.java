@@ -167,7 +167,7 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
                         pos,
                         SoundEvents.BLOCK_PORTAL_TRAVEL,
                         SoundCategory.BLOCKS,
-                        1f,
+                        0.1f,
                         1f
                 );
             }
