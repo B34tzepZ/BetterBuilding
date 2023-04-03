@@ -128,7 +128,7 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
                     if(!destpos.equals(pos)){
                         BlockEntity destinationEntity=world.getBlockEntity(destpos);
                         if(destinationEntity instanceof TeleporterBlockEntity){
-                            if(((TeleporterBlockEntity) destinationEntity).getItem().equals(((TeleporterBlockEntity) origin).getItem())){
+                            if(((TeleporterBlockEntity) destinationEntity).getItem().getName().equals(((TeleporterBlockEntity) origin).getItem().getName())){
                                 destnumber+=1;
                                 destination=destpos;
                             }
