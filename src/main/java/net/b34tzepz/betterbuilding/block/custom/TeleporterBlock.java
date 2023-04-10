@@ -128,7 +128,7 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
                     if(!destpos.equals(pos)){
                         BlockEntity destinationEntity=world.getBlockEntity(destpos);
                         if(destinationEntity instanceof TeleporterBlockEntity){
-                            if(((TeleporterBlockEntity) destinationEntity).getItem().equals(((TeleporterBlockEntity) origin).getItem())){
+                            if(((TeleporterBlockEntity) destinationEntity).getItem().getName().equals(((TeleporterBlockEntity) origin).getItem().getName())){
                                 destnumber+=1;
                                 destination=destpos;
                             }
@@ -167,7 +167,7 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
                         pos,
                         SoundEvents.BLOCK_PORTAL_TRAVEL,
                         SoundCategory.BLOCKS,
-                        1f,
+                        0.1f,
                         1f
                 );
             }
