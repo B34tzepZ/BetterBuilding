@@ -1,7 +1,8 @@
 package net.b34tzepz.betterbuilding.block.entity;
 
 import net.b34tzepz.betterbuilding.item.inventory.ImplementedInventory;
-import net.b34tzepz.betterbuilding.recipe.FabricatorShapedRecipe;
+import net.b34tzepz.betterbuilding.recipe.FabricatorCraftingRecipe;
+import net.b34tzepz.betterbuilding.recipe.ModRecipes;
 import net.b34tzepz.betterbuilding.screen.FabricatorScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -23,7 +24,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Optional;
 
@@ -40,25 +40,18 @@ public class FabricatorBlockEntity extends BlockEntity implements NamedScreenHan
         this.propertyDelegate = new PropertyDelegate() {
             @Override
             public int get(int index) {
-                switch (index) {
-                    case 0:
-                        return FabricatorBlockEntity.this.progress;
-                    case 1:
-                        return FabricatorBlockEntity.this.maxProgress;
-                    default:
-                        return 0;
-                }
+                return switch (index) {
+                    case 0 -> FabricatorBlockEntity.this.progress;
+                    case 1 -> FabricatorBlockEntity.this.maxProgress;
+                    default -> 0;
+                };
             }
 
             @Override
             public void set(int index, int value) {
                 switch (index) {
-                    case 0:
-                        FabricatorBlockEntity.this.progress = value;
-                        break;
-                    case 1:
-                        FabricatorBlockEntity.this.maxProgress = value;
-                        break;
+                    case 0 -> FabricatorBlockEntity.this.progress = value;
+                    case 1 -> FabricatorBlockEntity.this.maxProgress = value;
                 }
             }
 
@@ -141,7 +134,7 @@ public class FabricatorBlockEntity extends BlockEntity implements NamedScreenHan
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, FabricatorBlockEntity entity) {
-        Optional<FabricatorShapedRecipe> match = checkMatch(entity);
+        Optional<FabricatorCraftingRecipe> match = checkMatch(entity);
         if (canCraftRecipe(entity, match)) {
             entity.progress++;
             if (entity.progress > entity.maxProgress) {
@@ -153,18 +146,18 @@ public class FabricatorBlockEntity extends BlockEntity implements NamedScreenHan
         }
     }
 
-    private static Optional<FabricatorShapedRecipe> checkMatch(FabricatorBlockEntity entity) {
+    private static Optional<FabricatorCraftingRecipe> checkMatch(FabricatorBlockEntity entity) {
         World world = entity.world;
         SimpleInventory inventory = new SimpleInventory(entity.inventory.size());
         for (int i = 0; i < entity.inventory.size(); i++) {
             inventory.setStack(i, entity.getStack(i));
         }
 
-        return world.getRecipeManager().getFirstMatch(FabricatorShapedRecipe.Type.INSTANCE, inventory, world);
+        return world.getRecipeManager().getFirstMatch(ModRecipes.FABRICATOR_CRAFTING, inventory, world);
 
     }
 
-    private static boolean canCraftRecipe(FabricatorBlockEntity entity, Optional<FabricatorShapedRecipe> match) {
+    private static boolean canCraftRecipe(FabricatorBlockEntity entity, Optional<FabricatorCraftingRecipe> match) {
         SimpleInventory inventory = new SimpleInventory(entity.inventory.size());
         for (int i = 0; i < entity.inventory.size(); i++) {
             inventory.setStack(i, entity.getStack(i));
@@ -192,7 +185,7 @@ public class FabricatorBlockEntity extends BlockEntity implements NamedScreenHan
         return neededItems.isEmpty();
     }
 
-    private static void craftItem(FabricatorBlockEntity entity, Optional<FabricatorShapedRecipe> match) {
+    private static void craftItem(FabricatorBlockEntity entity, Optional<FabricatorCraftingRecipe> match) {
         SimpleInventory inventory = new SimpleInventory(entity.inventory.size());
         for (int i = 0; i < entity.inventory.size(); i++) {
             inventory.setStack(i, entity.getStack(i));
@@ -255,17 +248,5 @@ public class FabricatorBlockEntity extends BlockEntity implements NamedScreenHan
 
     private static boolean canInsertAmountIntoOutputSlot(SimpleInventory inventory) {
         return inventory.getStack(9).getMaxCount() > inventory.getStack(9).getCount();
-    }
-
-    private ItemStack getCraftingGridStack(int i) {
-        if (i < 9) {
-            return inventory.get(i);
-        } else {
-            throw new IndexOutOfBoundsException();
-        }
-    }
-
-    public static void main(String[] args) {
-
     }
 }

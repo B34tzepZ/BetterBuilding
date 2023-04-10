@@ -9,7 +9,9 @@ import com.google.gson.JsonSyntaxException;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.*;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
@@ -20,7 +22,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-public class FabricatorShapedRecipe implements Recipe<SimpleInventory> {
+public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
 
     private final Identifier id;
     private final ItemStack output;
@@ -92,11 +94,6 @@ public class FabricatorShapedRecipe implements Recipe<SimpleInventory> {
     @Override
     public RecipeSerializer<?> getSerializer() {
         return Serializer.INSTANCE;
-    }
-
-    @Override
-    public RecipeType<?> getType() {
-        return Type.INSTANCE;
     }
 
     static Map<String, Ingredient> mapSymbolsToIngredients(JsonObject json){
@@ -197,12 +194,6 @@ public class FabricatorShapedRecipe implements Recipe<SimpleInventory> {
             throw new JsonSyntaxException("Key defines symbols that aren't used in pattern: " + set);
         }
         return defaultedList;
-    }
-
-    public static class Type implements RecipeType<FabricatorShapedRecipe> {
-        private Type() { }
-        public static final Type INSTANCE = new Type();
-        public static final String ID = "fabricator_shaped";
     }
 
     public static class Serializer implements RecipeSerializer<FabricatorShapedRecipe> {
