@@ -5,19 +5,25 @@ import net.b34tzepz.betterbuilding.screen.slot.ModResultSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
+import net.minecraft.recipe.CraftingRecipe;
+import net.minecraft.recipe.RecipeType;
 import net.minecraft.screen.*;
 import net.minecraft.screen.slot.CraftingResultSlot;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.world.World;
+
+import java.util.Optional;
 
 public class FabricatorScreenHandler extends ScreenHandler {
     private final Inventory inventory;
-//    private final CraftingResultInventory output;
     private final PropertyDelegate propertyDelegate;
     private final PlayerEntity player;
-//    private final ScreenHandlerContext context;
 
     public FabricatorScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, new SimpleInventory(19), new ArrayPropertyDelegate(2));
@@ -32,17 +38,17 @@ public class FabricatorScreenHandler extends ScreenHandler {
         this.inventory = inventory;
 
         //Crafting Grid
-        for(int i = 0; i<3;i++) {
-            for(int j = 0; j<3; j++){
-                this.addSlot(new FabricatorCraftingGridSlot(inventory, i*3+j, 8+j*18, 17+i*18));
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                this.addSlot(new FabricatorCraftingGridSlot(inventory, i * 3 + j, 8 + j * 18, 17 + i * 18));
             }
         }
         //Result slot
-        this.addSlot(new ModResultSlot(inventory,9,80,31));
+        this.addSlot(new ModResultSlot(inventory, 9, 80, 31, player));
         //Inventar
-        for(int i = 0; i<3;i++) {
-            for(int j = 0; j<3; j++){
-                this.addSlot(new Slot(inventory, i*3+j+10, 116+j*18, 17+i*18));
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                this.addSlot(new Slot(inventory, i * 3 + j + 10, 116 + j * 18, 17 + i * 18));
             }
         }
 
@@ -61,7 +67,7 @@ public class FabricatorScreenHandler extends ScreenHandler {
         int maxProgress = this.propertyDelegate.get(1);
         int progressArrowSize = 12;
 
-        return maxProgress != 0 && progress !=0 ? progress * progressArrowSize / maxProgress : 0;
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
     @Override
@@ -74,14 +80,14 @@ public class FabricatorScreenHandler extends ScreenHandler {
         ItemStack newStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(invSlot);
         if (slot != null && slot.hasStack()) {
-            if(invSlot < 9){
+            if (invSlot < 9) {
                 slot.setStack(ItemStack.EMPTY);
                 return ItemStack.EMPTY;
             }
             ItemStack originalStack = slot.getStack();
             newStack = originalStack.copy();
             if (invSlot < this.inventory.size()) {
-                if (!this.insertItem(originalStack, this.inventory.size(), this.slots.size()-9, true)) {
+                if (!this.insertItem(originalStack, this.inventory.size(), this.slots.size() - 9, true)) {
                     return ItemStack.EMPTY;
                 }
             } else if (!this.insertItem(originalStack, 9, this.inventory.size(), false)) {
@@ -112,32 +118,30 @@ public class FabricatorScreenHandler extends ScreenHandler {
         }
     }
 
-    private Slot getFabricatorInventorySlot(int index){
-        if(index < 9) {
+    private Slot getFabricatorInventorySlot(int index) {
+        if (index < 9) {
             return getSlot(10 + index);
-        }
-        else throw new IndexOutOfBoundsException();
+        } else throw new IndexOutOfBoundsException();
     }
 
-    private Slot getCraftingGridSlot(int index){
-        if(index < 9) {
+    private Slot getCraftingGridSlot(int index) {
+        if (index < 9) {
             return getSlot(index);
-        }
-        else throw new IndexOutOfBoundsException();
+        } else throw new IndexOutOfBoundsException();
     }
 
-    private Slot getOutputSlot(){
+    private Slot getOutputSlot() {
         return getSlot(9);
     }
 
 //    protected static void updateResult
-//            (ScreenHandler handler, World world, PlayerEntity player, CraftingInventory craftingInventory,
-//             CraftingResultInventory resultInventory) {
+//            (ScreenHandler handler, World world, PlayerEntity player, CraftingInventory craftingInventory) {
 //        CraftingRecipe craftingRecipe;
 //        if (world.isClient) {
 //            return;
 //        }
-//        ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)player;
+//        CraftingInventory ci = new CraftingInventory(ModScreenHandlers.FABRICATOR_SCREEN_HANDLER.create(this.syncId, ),3,3);
+//        ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) player;
 //        ItemStack itemStack = ItemStack.EMPTY;
 //        Optional<CraftingRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(RecipeType.CRAFTING, craftingInventory, world);
 //        if (optional.isPresent() && resultInventory.shouldCraftRecipe(world, serverPlayerEntity, craftingRecipe = optional.get())) {
@@ -148,17 +152,22 @@ public class FabricatorScreenHandler extends ScreenHandler {
 //        serverPlayerEntity.networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(handler.syncId, handler.nextRevision(), 0, itemStack));
 //    }
 
+//    public static Optional<CraftingRecipe> getRecipe
+//            (ScreenHandler handler, World world, PlayerEntity player, CraftingInventory craftingInventory,
+//             CraftingResultInventory resultInventory) {
+//        CraftingRecipe craftingRecipe;
+//        if (world.isClient) {
+//            return;
+//        }
+//        Optional<CraftingRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(RecipeType.CRAFTING, craftingInventory, world);
+//        return optional;
+//    }
+
 //    @Override
 //    public void onContentChanged(Inventory inventory) {
 //        this.context.run((world, pos) -> FabricatorScreenHandler.updateResult(this, world, this.player, this.craftingGrid, this.output));
 //    }
 
-
-//    @Override
-//    public void populateRecipeFinder(RecipeMatcher finder) {
-//        //TODO
-//        this.craftingGrid.provideRecipeInputs(finder);
-//    }
 //
 //    @Override
 //    public void clearCraftingSlots() {
