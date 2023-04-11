@@ -12,5 +12,5 @@ public class ModItemGroup {
             new Identifier(BetterBuilding.MOD_ID, "building"), () -> new ItemStack(ModItems.SCREW));
 
     public static final ItemGroup Pillars = FabricItemGroupBuilder.build(
-            new Identifier(BetterBuilding.MOD_ID, "pillars"), () -> new ItemStack(ModBlocks.OAK_LOG_PILLAR));
+            new Identifier(BetterBuilding.MOD_ID, "pillars"), () -> new ItemStack(ModBlocks.Pillars.STONE_PILLAR));
 }
