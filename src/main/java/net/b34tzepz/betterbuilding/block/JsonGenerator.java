@@ -1,21 +1,13 @@
 package net.b34tzepz.betterbuilding.block;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.net.URI;
+import java.io.*;
 import java.nio.file.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class JsonGenerator {
     public static void main(String[] args) throws Exception {
-//        generateJsons("oak", "spruce", "chair");
-//        generateJsons("oak", "birch", "chair");
-//        generateJsons("oak", "jungle", "chair");
-//        generateJsons("oak", "acacia", "chair");
-//        generateJsons("oak", "dark_oak", "chair");
-//        generateJsons("oak", "crimson", "chair");
-//        generateJsons("oak", "warped", "chair");
-        copyCraftingRecipesForFabricator();
+        //createPillarBlockstateJson(findNewBlock());
     }
 
     private static void generateJsons(String oldMaterial, String newMaterial, String type) throws Exception {
@@ -117,5 +109,86 @@ public class JsonGenerator {
         }
 
         return result;
+    }
+
+    private static ArrayList<String> findNewBlock() throws IOException {
+        String file = "src/main/java/net/b34tzepz/betterbuilding/block/Blocks.txt";
+        Scanner scanner = new Scanner(new File(file));
+        ArrayList<String> output = new ArrayList<>();
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            if (line.contains("new Block")) {
+                String[] words = line.split(" ");
+                output.add(words[8]);
+            }
+        }
+        System.out.println(output);
+        return output;
+    }
+
+    private static void createRegisterstxt(ArrayList<String> blocks) {
+        try {
+            File file = new File("src/main/java/net/b34tzepz/betterbuilding/block/Registers.txt");
+            FileWriter writer = new FileWriter(file);
+            for (String block : blocks) {
+                writer.write("public static final Block " + block + "_PILLAR = registerBlock(\"" + block.toLowerCase() + "_pillar\",\n" +
+                        "                new PillarBlock(FabricBlockSettings.copyOf(Blocks." + block + ")), ModItemGroup.Pillars);\n");
+            }
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void createHashMaptxt(ArrayList<String> blocks){
+        try {
+            File file = new File("src/main/java/net/b34tzepz/betterbuilding/block/HashMap.txt");
+            FileWriter writer = new FileWriter(file);
+            for (String block : blocks){
+                writer.write(".put(Blocks." + block + ", ModBlocks.Pillars." + block + "_PILLAR.getDefaultState())\n");
+            }
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void createPillarBlockstateJson(ArrayList<String> blocks){
+        try {
+           for (String block : blocks){
+               File file = new File("src/main/resources/assets/betterbuilding/blockstates/" + block.toLowerCase() + "_pillar.json");
+               FileWriter writer = new FileWriter(file);
+               writer.write("{\n" +
+                       "  \"variants\": {\n" +
+                       "    \"axis=x\": {\n" +
+                       "      \"model\": \"betterbuilding:block/" + block.toLowerCase() + "_pillar\",\n" +
+                       "      \"x\": 90,\n" +
+                       "      \"y\": 90\n" +
+                       "    },\n" +
+                       "    \"axis=y\": {\n" +
+                       "      \"model\": \"betterbuilding:block/" + block.toLowerCase() + "_pillar\"\n" +
+                       "    },\n" +
+                       "    \"axis=z\": {\n" +
+                       "      \"model\": \"betterbuilding:block/" + block.toLowerCase() + "_pillar\",\n" +
+                       "      \"x\": 90\n" +
+                       "    }\n" +
+                       "  }\n" +
+                       "}");
+               writer.close();
+           }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void createPillarBlockModelJson(ArrayList<String> blocks){
+        try {
+            for (String block : blocks){
+                File file = new File("src/main/resources/assets/betterbuilding/models/block/" + block.toLowerCase() + "_pillar.json");
+                FileWriter writer = new FileWriter(file);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
