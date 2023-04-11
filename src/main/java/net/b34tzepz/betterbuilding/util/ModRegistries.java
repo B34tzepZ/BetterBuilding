@@ -35,6 +35,8 @@ public class ModRegistries {
         registry.add(ModBlocks.JUNGLE_CHAIR, 300);
         registry.add(ModBlocks.ACACIA_CHAIR, 300);
         registry.add(ModBlocks.DARK_OAK_CHAIR, 300);
+
+        registry.add(ModBlocks.OAK_TABLE, 300);
     }
 
     private static void registerFlammables() {
@@ -62,7 +64,11 @@ public class ModRegistries {
         registry.add(ModBlocks.ACACIA_CHAIR,20,5);
         registry.add(ModBlocks.DARK_OAK_CHAIR,20,5);
 
+        registry.add(ModBlocks.OAK_TABLE,20,5);
+
         registry.add(ModBlocks.TELEPORTER_BLOCK, 0,0);
+
+        registry.add(ModBlocks.FABRICATOR_BLOCK, 0,0);
 
     }
 }
