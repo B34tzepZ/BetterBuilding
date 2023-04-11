@@ -62,6 +62,13 @@ public class JsonGenerator {
         return new String(Files.readAllBytes(Paths.get(file)));
     }
 
+
+    /**
+     * Copies recipe json files and changes their type from minecraft:crafting_shaped/shapeless to
+     * betterbuilding:fabricator_shaped/shapeless, so that the fabricator is able to craft these items. Use after every
+     * Minecraft update to keep the fabricator current. Before usage, make sure to copy all recipe json files from the
+     * base game files into a "minecraft_recipes_copy" directory (see the minecraftRecipesCopyPath variable).
+     * */
     private static void copyCraftingRecipesForFabricator() throws IOException {
         String modRecipesPath = "src/main/resources/data/betterbuilding/recipes";
         String minecraftRecipesCopyPath = "src/main/resources/minecraft_recipes_copy";

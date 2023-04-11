@@ -15,6 +15,7 @@ public class ModTags {
         public static final TagKey<Block> CORNERS = createTag("corners");
         public static final TagKey<Block> WOODEN_SIDES = createTag("wooden_sides");
         public static final TagKey<Block> WOODEN_CORNERS = createTag("wooden_corners");
+        public static final TagKey<Block> TABLES = createTag("tables");
 
         private static TagKey<Block> createTag(String name){
             return TagKey.of(Registry.BLOCK_KEY, new Identifier(BetterBuilding.MOD_ID, name));
@@ -30,6 +31,7 @@ public class ModTags {
         public static final TagKey<Item> CORNERS = createTag("corners");
         public static final TagKey<Item> WOODEN_SIDES = createTag("wooden_sides");
         public static final TagKey<Item> WOODEN_CORNERS = createTag("wooden_corners");
+        public static final TagKey<Item> TABLESS = createTag("tables");
 
         private static TagKey<Item> createTag(String name){
             return TagKey.of(Registry.ITEM_KEY, new Identifier(BetterBuilding.MOD_ID, name));
