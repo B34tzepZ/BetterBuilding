@@ -1,0 +1,12 @@
+{
+  "type": "betterbuilding:fabricator_shapeless",
+  "group": "orange_dye",
+  "ingredients": [
+    {
+      "item": "minecraft:orange_tulip"
+    }
+  ],
+  "result": {
+    "item": "minecraft:orange_dye"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "betterbuilding:fabricator_shapeless",
+  "group": "pink_dye",
+  "ingredients": [
+    {
+      "item": "minecraft:pink_tulip"
+    }
+  ],
+  "result": {
+    "item": "minecraft:pink_dye"
+  }
+}

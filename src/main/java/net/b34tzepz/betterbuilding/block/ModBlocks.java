@@ -103,7 +103,7 @@ public class ModBlocks {
     public static final Block TELEPORTER_BLOCK = registerBlock("teleporter_block",
             new TeleporterBlock(FabricBlockSettings.of(Material.METAL).strength(5, 6).requiresTool()), ModItemGroup.Building);
 
-    public static final Block FABRICATOR_BLOCK = registerBlock("fabricator_block",
+    public static final Block FABRICATOR_BLOCK = registerBlock("fabricator",
             new FabricatorBlock(FabricBlockSettings.of(Material.METAL).strength(5, 6).requiresTool()), ModItemGroup.Building);
 
     public static final Block OAK_LOG_PILLAR = registerBlock("oak_log_pillar",

@@ -1,0 +1,15 @@
+{
+  "type": "betterbuilding:fabricator_shaped",
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "result": {
+    "item": "betterbuilding:screw"
+  }
+}

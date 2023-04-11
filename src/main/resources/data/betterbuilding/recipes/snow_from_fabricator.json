@@ -1,0 +1,15 @@
+{
+  "type": "betterbuilding:fabricator_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:snow_block"
+    }
+  },
+  "result": {
+    "item": "minecraft:snow",
+    "count": 6
+  }
+}

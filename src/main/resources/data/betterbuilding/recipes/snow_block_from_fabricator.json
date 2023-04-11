@@ -1,0 +1,15 @@
+{
+  "type": "betterbuilding:fabricator_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:snowball"
+    }
+  },
+  "result": {
+    "item": "minecraft:snow_block"
+  }
+}

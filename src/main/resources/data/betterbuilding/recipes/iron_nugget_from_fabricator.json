@@ -1,0 +1,12 @@
+{
+  "type": "betterbuilding:fabricator_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "result": {
+    "item": "minecraft:iron_nugget",
+    "count": 9
+  }
+}

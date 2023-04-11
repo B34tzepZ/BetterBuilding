@@ -52,7 +52,7 @@ public class ModBlockEntities {
                 FabricBlockEntityTypeBuilder.create(TeleporterBlockEntity::new,
                         ModBlocks.TELEPORTER_BLOCK).build(null));
 
-        FABRICATOR_BLOCK = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(BetterBuilding.MOD_ID, "fabricator_block"),
+        FABRICATOR_BLOCK = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(BetterBuilding.MOD_ID, "fabricator"),
                 FabricBlockEntityTypeBuilder.create(FabricatorBlockEntity::new,
                         ModBlocks.FABRICATOR_BLOCK).build(null));
     }

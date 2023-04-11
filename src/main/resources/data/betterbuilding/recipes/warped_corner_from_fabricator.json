@@ -1,0 +1,17 @@
+{
+  "type": "betterbuilding:fabricator_shaped",
+  "pattern": [
+    "###",
+    "## ",
+    "#  "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:warped_planks"
+    }
+  },
+  "result": {
+    "item": "betterbuilding:warped_corner",
+    "count": 4
+  }
+}

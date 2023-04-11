@@ -1,0 +1,15 @@
+{
+  "type": "betterbuilding:fabricator_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "minecraft:paper"
+    }
+  ],
+  "result": {
+    "item": "minecraft:firework_rocket",
+    "count": 3
+  }
+}

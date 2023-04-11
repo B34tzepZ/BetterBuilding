@@ -1,0 +1,22 @@
+{
+  "type": "betterbuilding:fabricator_shaped",
+  "pattern": [
+    "###",
+    "#X#",
+    "#R#"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "#": {
+      "item": "minecraft:cobblestone"
+    },
+    "X": {
+      "item": "minecraft:bow"
+    }
+  },
+  "result": {
+    "item": "minecraft:dispenser"
+  }
+}

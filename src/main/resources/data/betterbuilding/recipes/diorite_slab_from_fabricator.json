@@ -1,0 +1,15 @@
+{
+  "type": "betterbuilding:fabricator_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:diorite"
+    }
+  },
+  "result": {
+    "item": "minecraft:diorite_slab",
+    "count": 6
+  }
+}

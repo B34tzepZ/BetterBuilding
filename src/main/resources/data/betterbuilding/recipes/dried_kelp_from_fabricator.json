@@ -1,0 +1,12 @@
+{
+  "type": "betterbuilding:fabricator_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:dried_kelp_block"
+    }
+  ],
+  "result": {
+    "item": "minecraft:dried_kelp",
+    "count": 9
+  }
+}

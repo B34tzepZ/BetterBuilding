@@ -1,0 +1,16 @@
+{
+  "type": "betterbuilding:fabricator_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:granite"
+    }
+  },
+  "result": {
+    "item": "minecraft:granite_wall",
+    "count": 6
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "betterbuilding:fabricator_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:polished_deepslate"
+    }
+  },
+  "result": {
+    "item": "minecraft:polished_deepslate_slab",
+    "count": 6
+  }
+}

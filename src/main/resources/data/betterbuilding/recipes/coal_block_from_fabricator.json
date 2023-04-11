@@ -1,0 +1,16 @@
+{
+  "type": "betterbuilding:fabricator_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:coal"
+    }
+  },
+  "result": {
+    "item": "minecraft:coal_block"
+  }
+}

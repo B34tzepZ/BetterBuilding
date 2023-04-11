@@ -1,0 +1,22 @@
+{
+  "type": "betterbuilding:fabricator_shaped",
+  "pattern": [
+    "#O#",
+    " U ",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "O": {
+      "item": "betterbuilding:crimson_side"
+    },
+    "U": {
+      "item": "minecraft:crimson_slab"
+    }
+  },
+  "result": {
+    "item": "betterbuilding:crimson_chair"
+  }
+}

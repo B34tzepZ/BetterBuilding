@@ -15,29 +15,41 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+
 public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
 
     private final Identifier id;
     private final ItemStack output;
     private final DefaultedList<Ingredient> recipeItems; //Rezept Items
 
-    public FabricatorShapelessRecipe(Identifier id, ItemStack output, DefaultedList<Ingredient> recipeItems){
+    public FabricatorShapelessRecipe(Identifier id, ItemStack output, DefaultedList<Ingredient> recipeItems) {
         this.id = id;
         this.output = output;
         this.recipeItems = recipeItems;
     }
 
+    //TODO Zutaten von Büchern müssen in bestimmter Reihenfolge liegen, alles andere funktioniert
     @Override
     public boolean matches(SimpleInventory inventory, World world) {
-        RecipeMatcher recipeMatcher = new RecipeMatcher();
-        int i = 0;
+        ArrayList<Ingredient> neededItems = new ArrayList<>();
+        for (Ingredient ingr : recipeItems) {
+            neededItems.add(ingr);
+        }
         for (int j = 0; j < 9; ++j) {
             ItemStack itemStack = inventory.getStack(j);
             if (itemStack.isEmpty()) continue;
-            ++i;
-            recipeMatcher.addInput(itemStack, 1);
+            if(neededItems.isEmpty()){
+                return false;
+            }
+            for(int k = 0; k < neededItems.size(); k++){
+                if(neededItems.get(k).test(itemStack)){
+                    neededItems.remove(k);
+                    continue;
+                }
+            }
         }
-        return i == this.recipeItems.size() && recipeMatcher.match(this, null);
+        return neededItems.isEmpty();
     }
 
     @Override

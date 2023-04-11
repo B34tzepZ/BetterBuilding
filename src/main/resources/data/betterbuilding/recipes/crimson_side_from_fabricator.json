@@ -1,0 +1,17 @@
+{
+  "type": "betterbuilding:fabricator_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:crimson_planks"
+    }
+  },
+  "result": {
+    "item": "betterbuilding:crimson_side",
+    "count": 6
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "betterbuilding:fabricator_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:sandstone"
+    }
+  },
+  "result": {
+    "item": "minecraft:sandstone_wall",
+    "count": 6
+  }
+}

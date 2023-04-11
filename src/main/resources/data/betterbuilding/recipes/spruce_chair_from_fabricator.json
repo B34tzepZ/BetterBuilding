@@ -1,0 +1,22 @@
+{
+  "type": "betterbuilding:fabricator_shaped",
+  "pattern": [
+    "#O#",
+    " U ",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "O": {
+      "item": "betterbuilding:spruce_side"
+    },
+    "U": {
+      "item": "minecraft:spruce_slab"
+    }
+  },
+  "result": {
+    "item": "betterbuilding:spruce_chair"
+  }
+}

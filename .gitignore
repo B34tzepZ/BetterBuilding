@@ -32,3 +32,4 @@ bin/
 
 run/
 /src/main/resources/generatedResources/
+/src/main/resources/minecraft_recipes_copy/

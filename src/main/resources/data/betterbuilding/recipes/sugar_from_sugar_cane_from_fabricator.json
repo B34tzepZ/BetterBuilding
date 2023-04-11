@@ -1,0 +1,12 @@
+{
+  "type": "betterbuilding:fabricator_shapeless",
+  "group": "sugar",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar_cane"
+    }
+  ],
+  "result": {
+    "item": "minecraft:sugar"
+  }
+}

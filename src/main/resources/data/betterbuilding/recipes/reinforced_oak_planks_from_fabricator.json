@@ -1,0 +1,19 @@
+{
+  "type": "betterbuilding:fabricator_shaped",
+  "pattern": [
+    "# #",
+    " O ",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "betterbuilding:screw"
+    },
+    "O": {
+      "item": "minecraft:oak_planks"
+    }
+  },
+  "result": {
+    "item": "betterbuilding:reinforced_oak_planks"
+  }
+}

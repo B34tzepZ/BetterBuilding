@@ -1,0 +1,20 @@
+{
+  "type": "betterbuilding:fabricator_shaped",
+  "group": "wooden_fence",
+  "pattern": [
+    "W#W",
+    "W#W"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:crimson_planks"
+    },
+    "#": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "minecraft:crimson_fence",
+    "count": 3
+  }
+}
