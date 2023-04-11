@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "betterbuilding:block/cut_red_sandstone_pillar",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "betterbuilding:block/cut_red_sandstone_pillar"
+    },
+    "axis=z": {
+      "model": "betterbuilding:block/cut_red_sandstone_pillar",
+      "x": 90
+    }
+  }
+}

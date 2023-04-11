@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "betterbuilding:block/jungle_planks_pillar",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "betterbuilding:block/jungle_planks_pillar"
+    },
+    "axis=z": {
+      "model": "betterbuilding:block/jungle_planks_pillar",
+      "x": 90
+    }
+  }
+}
