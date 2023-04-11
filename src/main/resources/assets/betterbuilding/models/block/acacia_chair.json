@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "minecraft:block/acacia_planks",
-		"particle": "minecraft:block/acacia_planks"
+		"0": "block/acacia_planks",
+		"particle": "block/acacia_planks"
 	},
 	"elements": [
 		{
@@ -128,7 +128,11 @@
 	],
 	"display": {
 		"thirdperson_righthand": {
-			"translation": [0, 0.25, 0],
+			"translation": [0, 0.5, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, 0.5, 0],
 			"scale": [0.25, 0.25, 0.25]
 		},
 		"firstperson_righthand": {
@@ -144,7 +148,7 @@
 		},
 		"gui": {
 			"rotation": [16, 44, 0],
-			"translation": [0, -3, 0],
+			"translation": [0, -1.25, 0],
 			"scale": [0.4, 0.4, 0.4]
 		},
 		"fixed": {
