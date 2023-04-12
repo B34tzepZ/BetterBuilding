@@ -17,18 +17,18 @@ Support for Minecraft Bedrock Edition is **not** planned.
 - Install Fabric
     - Download Fabric installer [here](https://fabricmc.net/use/installer/)
     - Run the downloaded file
-    - Select a Minecraft Version corresponding the BetterBuilding Version you want to play
+    - Select your Minecraft Version
     - Make sure Create Profile is checked
     - Click Install
-- Locate your .minecraft directory
+- Locate your *.minecraft* folder
     - Press WIN + R
-    - Type %appdata%
+    - Type *%appdata%*
     - Click OK
-- In your .minecraft directory create a folder called "mods"
+- In your *.minecraft* folder create a folder called *mods*
 - Download Fabric API [here](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
-- Select a Release corresponding the BetterBuilding Version you want to play
-- Put the downloaded .jar in your mods folder
-- Also put the BetterBuilding.jar in your mods folder
+- Select a Release
+- Put the downloaded .jar in your *mods* folder
+- Also put the ```BetterBuilding.jar``` in your mods folder
 - Run Minecraft
 - Make sure the selected profile is the fabric-loader you recently installed
 - Click Play
