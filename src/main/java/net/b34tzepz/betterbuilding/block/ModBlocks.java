@@ -104,7 +104,7 @@ public class ModBlocks {
             new TeleporterBlock(FabricBlockSettings.of(Material.METAL).strength(5, 6).requiresTool()), ModItemGroup.Building);
 
     public static final Block FABRICATOR_BLOCK = registerBlock("fabricator",
-            new FabricatorBlock(FabricBlockSettings.of(Material.METAL).strength(5, 6).requiresTool()), ModItemGroup.Building);
+            new FabricatorBlock(FabricBlockSettings.of(Material.STONE).strength(1.5f, 6).requiresTool()), ModItemGroup.Building);
 
     public static class Pillars{
         public static final Block STONE_PILLAR = registerBlock("stone_pillar",

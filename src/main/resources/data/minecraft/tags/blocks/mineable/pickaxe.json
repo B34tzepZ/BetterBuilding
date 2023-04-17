@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "betterbuilding:teleporter_block"
+    "betterbuilding:teleporter_block",
+    "betterbuilding:fabricator"
   ]
 }
