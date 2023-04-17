@@ -6,7 +6,7 @@ import java.util.*;
 
 public class JsonGenerator {
     public static void main(String[] args) throws Exception {
-        //createPillarBlockModelJson(findNewBlock());
+        createTranslationtxt(findNewBlock());
     }
 
     private static void generateJsons(String oldMaterial, String newMaterial, String type) throws Exception {
@@ -220,5 +220,20 @@ public class JsonGenerator {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static void createTranslationtxt(ArrayList<String> blocks) throws IOException {
+        File file = new File("src/main/java/net/b34tzepz/betterbuilding/block/files/Translation.txt");
+        FileWriter writer = new FileWriter(file);
+        for(String block : blocks){
+            StringBuilder translation = new StringBuilder();
+            String[] words = block.toLowerCase().split("_");
+            for (String word : words) {
+                translation.append(word.substring(0, 1).toUpperCase()).append(word.substring(1)).append(" ");
+            }
+            translation.append("Pillar");
+            writer.write("\"block.betterbuilding." + block.toLowerCase() + "_pillar\": \"" + translation + "\",\n");
+        }
+        writer.close();
     }
 }
