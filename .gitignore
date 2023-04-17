@@ -33,6 +33,4 @@ bin/
 run/
 /src/main/resources/generatedResources/
 /src/main/resources/minecraft_recipes_copy/
-/src/main/java/net/b34tzepz/betterbuilding/block/Blocks.txt
-/src/main/java/net/b34tzepz/betterbuilding/block/Registers.txt
-/src/main/java/net/b34tzepz/betterbuilding/block/HashMap.txt
+/src/main/java/net/b34tzepz/betterbuilding/block/files/
