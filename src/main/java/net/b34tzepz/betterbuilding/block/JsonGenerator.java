@@ -6,7 +6,7 @@ import java.util.*;
 
 public class JsonGenerator {
     public static void main(String[] args) throws Exception {
-        createPillarBlockModelJson(findNewBlock());
+        //createPillarBlockModelJson(findNewBlock());
     }
 
     private static void generateJsons(String oldMaterial, String newMaterial, String type) throws Exception {
