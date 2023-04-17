@@ -1,0 +1,6 @@
+{
+  "parent": "betterbuilding:block/pillar_all",
+  "textures": {
+    "all": "minecraft:block/dirt"
+  }
+}

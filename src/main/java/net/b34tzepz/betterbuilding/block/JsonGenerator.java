@@ -2,12 +2,11 @@ package net.b34tzepz.betterbuilding.block;
 
 import java.io.*;
 import java.nio.file.*;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class JsonGenerator {
     public static void main(String[] args) throws Exception {
-        //createPillarBlockstateJson(findNewBlock());
+        createPillarBlockModelJson(findNewBlock());
     }
 
     private static void generateJsons(String oldMaterial, String newMaterial, String type) throws Exception {
@@ -68,7 +67,7 @@ public class JsonGenerator {
      * betterbuilding:fabricator_shaped/shapeless, so that the fabricator is able to craft these items. Use after every
      * Minecraft update to keep the fabricator current. Before usage, make sure to copy all recipe json files from the
      * base game files into a "minecraft_recipes_copy" directory (see the minecraftRecipesCopyPath variable).
-     * */
+     */
     private static void copyCraftingRecipesForFabricator() throws IOException {
         String modRecipesPath = "src/main/resources/data/betterbuilding/recipes";
         String minecraftRecipesCopyPath = "src/main/resources/minecraft_recipes_copy";
@@ -119,7 +118,7 @@ public class JsonGenerator {
     }
 
     private static ArrayList<String> findNewBlock() throws IOException {
-        String file = "src/main/java/net/b34tzepz/betterbuilding/block/Blocks.txt";
+        String file = "src/main/java/net/b34tzepz/betterbuilding/block/files/Blocks.txt";
         Scanner scanner = new Scanner(new File(file));
         ArrayList<String> output = new ArrayList<>();
         while (scanner.hasNextLine()) {
@@ -135,7 +134,7 @@ public class JsonGenerator {
 
     private static void createRegisterstxt(ArrayList<String> blocks) {
         try {
-            File file = new File("src/main/java/net/b34tzepz/betterbuilding/block/Registers.txt");
+            File file = new File("src/main/java/net/b34tzepz/betterbuilding/block/files/Registers.txt");
             FileWriter writer = new FileWriter(file);
             for (String block : blocks) {
                 writer.write("public static final Block " + block + "_PILLAR = registerBlock(\"" + block.toLowerCase() + "_pillar\",\n" +
@@ -147,11 +146,11 @@ public class JsonGenerator {
         }
     }
 
-    private static void createHashMaptxt(ArrayList<String> blocks){
+    private static void createHashMaptxt(ArrayList<String> blocks) {
         try {
-            File file = new File("src/main/java/net/b34tzepz/betterbuilding/block/HashMap.txt");
+            File file = new File("src/main/java/net/b34tzepz/betterbuilding/block/files/HashMap.txt");
             FileWriter writer = new FileWriter(file);
-            for (String block : blocks){
+            for (String block : blocks) {
                 writer.write(".put(Blocks." + block + ", ModBlocks.Pillars." + block + "_PILLAR.getDefaultState())\n");
             }
             writer.close();
@@ -160,39 +159,63 @@ public class JsonGenerator {
         }
     }
 
-    private static void createPillarBlockstateJson(ArrayList<String> blocks){
+    private static void createPillarBlockstateJson(ArrayList<String> blocks) {
         try {
-           for (String block : blocks){
-               File file = new File("src/main/resources/assets/betterbuilding/blockstates/" + block.toLowerCase() + "_pillar.json");
-               FileWriter writer = new FileWriter(file);
-               writer.write("{\n" +
-                       "  \"variants\": {\n" +
-                       "    \"axis=x\": {\n" +
-                       "      \"model\": \"betterbuilding:block/" + block.toLowerCase() + "_pillar\",\n" +
-                       "      \"x\": 90,\n" +
-                       "      \"y\": 90\n" +
-                       "    },\n" +
-                       "    \"axis=y\": {\n" +
-                       "      \"model\": \"betterbuilding:block/" + block.toLowerCase() + "_pillar\"\n" +
-                       "    },\n" +
-                       "    \"axis=z\": {\n" +
-                       "      \"model\": \"betterbuilding:block/" + block.toLowerCase() + "_pillar\",\n" +
-                       "      \"x\": 90\n" +
-                       "    }\n" +
-                       "  }\n" +
-                       "}");
-               writer.close();
-           }
+            for (String block : blocks) {
+                File file = new File("src/main/resources/assets/betterbuilding/blockstates/" + block.toLowerCase() + "_pillar.json");
+                FileWriter writer = new FileWriter(file);
+                writer.write("{\n" +
+                        "  \"variants\": {\n" +
+                        "    \"axis=x\": {\n" +
+                        "      \"model\": \"betterbuilding:block/" + block.toLowerCase() + "_pillar\",\n" +
+                        "      \"x\": 90,\n" +
+                        "      \"y\": 90\n" +
+                        "    },\n" +
+                        "    \"axis=y\": {\n" +
+                        "      \"model\": \"betterbuilding:block/" + block.toLowerCase() + "_pillar\"\n" +
+                        "    },\n" +
+                        "    \"axis=z\": {\n" +
+                        "      \"model\": \"betterbuilding:block/" + block.toLowerCase() + "_pillar\",\n" +
+                        "      \"x\": 90\n" +
+                        "    }\n" +
+                        "  }\n" +
+                        "}");
+                writer.close();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private static void createPillarBlockModelJson(ArrayList<String> blocks){
+    private static void createPillarBlockModelJson(ArrayList<String> blocks) {
+        String oldString;
         try {
-            for (String block : blocks){
+            for (String block : blocks) {
+                if (block.startsWith("WAXED")) {
+                    oldString = readFileAsString("src/main/java/net/b34tzepz/betterbuilding/block/files/block/" + block.substring(6).toLowerCase() + ".json");
+                } else {
+                    oldString = readFileAsString("src/main/java/net/b34tzepz/betterbuilding/block/files/block/" + block.toLowerCase() + ".json");
+                }
+                String newString = oldString.replace("\"parent\": \"minecraft", "\"parent\": \"betterbuilding").replace("cube", "pillar");
                 File file = new File("src/main/resources/assets/betterbuilding/models/block/" + block.toLowerCase() + "_pillar.json");
                 FileWriter writer = new FileWriter(file);
+                writer.write(newString);
+                writer.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void createPillarItemModelJson(ArrayList<String> blocks){
+        try {
+            for (String block : blocks){
+                File file = new File("src/main/resources/assets/betterbuilding/models/item/" + block.toLowerCase() + "_pillar.json");
+                FileWriter writer = new FileWriter(file);
+                writer.write("{\n" +
+                        "  \"parent\": \"betterbuilding:block/" + block.toLowerCase() + "_pillar\"\n" +
+                        "}");
+                writer.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
