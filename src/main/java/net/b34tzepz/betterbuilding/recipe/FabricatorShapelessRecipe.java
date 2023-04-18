@@ -29,13 +29,8 @@ public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
         this.recipeItems = recipeItems;
     }
 
-    //TODO Zutaten von Büchern müssen in bestimmter Reihenfolge liegen, alles andere funktioniert
     @Override
     public boolean matches(SimpleInventory inventory, World world) {
-        if(this.id.getPath().equals("book_from_fabricator")){
-            int x;
-            x = 54;
-        }
         ArrayList<Ingredient> neededItems = new ArrayList<>();
         for (Ingredient ingr : recipeItems) {
             neededItems.add(ingr);

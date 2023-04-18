@@ -24,10 +24,5 @@ public class FabricatorCraftingGridSlot extends Slot {
 
         return stack;
     }
-
-//    @Override
-//    public boolean canTakeItems(PlayerEntity playerEntity) {
-//        return false;
-//    }
 }
 
