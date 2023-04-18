@@ -99,23 +99,13 @@ public class TableBlock extends Block {
         }
     }
 
-    private BooleanProperty getBowlPropertyByDir(Direction dir){
-        return switch (dir) {
-            case NORTH -> NORTHBOWLPLACED;
-            case SOUTH -> SOUTHBOWLPLACED;
-            case EAST -> EASTBOWLPLACED;
-            case WEST -> WESTBOWLPLACED;
-            default -> null;//TODO
-        };
-    }
-
     private BooleanProperty getOppositeBowlPropertyByDir(Direction dir){
         return switch (dir) {
             case SOUTH -> NORTHBOWLPLACED;
             case NORTH -> SOUTHBOWLPLACED;
             case WEST -> EASTBOWLPLACED;
             case EAST -> WESTBOWLPLACED;
-            default -> null;//TODO
+            default -> null;
         };
     }
 
