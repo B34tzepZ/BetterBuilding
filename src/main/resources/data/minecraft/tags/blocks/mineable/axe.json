@@ -32,6 +32,16 @@
     "betterbuilding:crimson_chair",
     "betterbuilding:warped_chair",
 
-    "betterbuilding:oak_table"
+    "betterbuilding:oak_table",
+
+    "betterbuilding:oak_planks_pillar",
+    "betterbuilding:spruce_planks_pillar",
+    "betterbuilding:birch_planks_pillar",
+    "betterbuilding:jungle_planks_pillar",
+    "betterbuilding:acacia_planks_pillar",
+    "betterbuilding:dark_oak_planks_pillar",
+    "betterbuilding:crimson_planks_pillar",
+    "betterbuilding:warped_planks_pillar",
+    "betterbuilding:bookshelf_pillar"
   ]
 }

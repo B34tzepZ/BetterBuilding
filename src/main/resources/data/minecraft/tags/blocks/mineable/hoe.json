@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-
+    "betterbuilding:nether_wart_block_pillar",
+    "betterbuilding:warped_wart_block_pillar",
+    "bettrebuilding:dried_kelp_block_pillar",
+    "betterbuilding:shroomlight_pillar"
   ]
 }

@@ -1,6 +1,17 @@
 {
   "replace": false,
   "values": [
-
+    "minecraft:iron_block_pillar",
+    "minecraft:raw_iron_block_pillar",
+    "minecraft:lapis_block_pillar",
+    "minecraft:raw_copper_block_pillar",
+    "minecraft:waxed_copper_block_pillar",
+    "minecraft:waxed_cut_copper_pillar",
+    "minecraft:waxed_weathered_copper_pillar",
+    "minecraft:waxed_weathered_cut_copper_pillar",
+    "minecraft:waxed_exposed_copper_pillar",
+    "minecraft:waxed_exposed_cut_copper_pillar",
+    "minecraft:waxed_oxidized_copper_pillar",
+    "minecraft:waxed_oxidized_cut_copper_pillar"
   ]
 }
