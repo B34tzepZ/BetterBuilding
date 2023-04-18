@@ -20,7 +20,9 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 public class FabricatorScreenHandler extends ScreenHandler {
     private final Inventory inventory;
@@ -120,11 +122,57 @@ public class FabricatorScreenHandler extends ScreenHandler {
         }
     }
 
+    private Set<Slot> quickCraftSlots = new HashSet<>();
+
     @Override
     public void onSlotClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player) {
-        if(actionType == SlotActionType.SWAP && slotIndex < 9) return;
+        if (actionType == SlotActionType.SWAP && slotIndex < 9) return;
+
+        ItemStack cursorStack = this.getCursorStack().copy();
+        if (actionType == SlotActionType.QUICK_CRAFT && slotIndex != EMPTY_SPACE_SLOT_INDEX) {
+            if (!quickCraftSlots.contains(this.slots.get(slotIndex))) {
+                quickCraftSlots.add(this.slots.get(slotIndex));
+            }
+            if(quickCraftContainsCraftingGridAndOtherSlots()){
+                quickCraftSlots.clear();
+                this.endQuickCraft();
+            }
+        }
 
         super.onSlotClick(slotIndex, button, actionType, player);
+
+        if (actionType == SlotActionType.QUICK_CRAFT) {
+            if (this.isCraftingGridQuickCraft()) this.setCursorStack(cursorStack);
+        }
+        if (getCursorStack().getCount() != cursorStack.getCount()) quickCraftSlots.clear();
     }
 
+    private boolean isCraftingGridQuickCraft() {
+        boolean bool = true;
+        for (int i = 10; i < this.slots.size(); i++) {
+            if (quickCraftSlots.contains(this.slots.get(i))) {
+                bool = false;
+                break;
+            }
+        }
+
+        return bool;
+    }
+
+    private boolean quickCraftContainsCraftingGridAndOtherSlots() {
+        boolean craftingGridSlot = false;
+        boolean otherSlot = false;
+        for (int i = 0; i < this.slots.size(); i++) {
+            if (quickCraftSlots.contains(this.slots.get(i)))
+                if (i < 9) {
+                    craftingGridSlot = true;
+                    i = 9;
+                } else {
+                    otherSlot = true;
+                    break;
+                }
+        }
+
+        return craftingGridSlot && otherSlot;
+    }
 }
