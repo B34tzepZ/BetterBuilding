@@ -6,7 +6,7 @@ import java.util.*;
 
 public class JsonGenerator {
     public static void main(String[] args) throws Exception {
-        createTranslationtxt(findNewBlock());
+        copyLootTable(findNewBlock());
     }
 
     private static void generateJsons(String oldMaterial, String newMaterial, String type) throws Exception {
@@ -120,16 +120,16 @@ public class JsonGenerator {
     private static ArrayList<String> findNewBlock() throws IOException {
         String file = "src/main/java/net/b34tzepz/betterbuilding/block/files/Blocks.txt";
         Scanner scanner = new Scanner(new File(file));
-        ArrayList<String> output = new ArrayList<>();
+        ArrayList<String> blocks = new ArrayList<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             if (line.contains("new Block")) {
                 String[] words = line.split(" ");
-                output.add(words[8]);
+                blocks.add(words[8]);
             }
         }
-        System.out.println(output);
-        return output;
+        System.out.println(blocks);
+        return blocks;
     }
 
     private static void createRegisterstxt(ArrayList<String> blocks) {
@@ -194,7 +194,7 @@ public class JsonGenerator {
                 if (block.startsWith("WAXED")) {
                     oldString = readFileAsString("src/main/java/net/b34tzepz/betterbuilding/block/files/block/" + block.substring(6).toLowerCase() + ".json");
                 } else {
-                    oldString = readFileAsString("src/main/java/net/b34tzepz/betterbuilding/block/files/block/" + block.toLowerCase() + ".json");
+                    oldString = readFileAsString("src/main/java/net/b34tzepz/betterbuilding/block/files/models/block/" + block.toLowerCase() + ".json");
                 }
                 String newString = oldString.replace("\"parent\": \"minecraft", "\"parent\": \"betterbuilding").replace("cube", "pillar");
                 File file = new File("src/main/resources/assets/betterbuilding/models/block/" + block.toLowerCase() + "_pillar.json");
@@ -207,7 +207,7 @@ public class JsonGenerator {
         }
     }
 
-    private static void createPillarItemModelJson(ArrayList<String> blocks){
+    private static void createPillarItemModelJson(ArrayList<String> blocks) {
         try {
             for (String block : blocks){
                 File file = new File("src/main/resources/assets/betterbuilding/models/item/" + block.toLowerCase() + "_pillar.json");
@@ -222,18 +222,36 @@ public class JsonGenerator {
         }
     }
 
-    private static void createTranslationtxt(ArrayList<String> blocks) throws IOException {
-        File file = new File("src/main/java/net/b34tzepz/betterbuilding/block/files/Translation.txt");
-        FileWriter writer = new FileWriter(file);
-        for(String block : blocks){
-            StringBuilder translation = new StringBuilder();
-            String[] words = block.toLowerCase().split("_");
-            for (String word : words) {
-                translation.append(word.substring(0, 1).toUpperCase()).append(word.substring(1)).append(" ");
+    private static void createTranslationtxt(ArrayList<String> blocks) {
+        try {
+            File file = new File("src/main/java/net/b34tzepz/betterbuilding/block/files/Translation.txt");
+            FileWriter writer = new FileWriter(file);
+            for(String block : blocks){
+                StringBuilder translation = new StringBuilder();
+                String[] words = block.toLowerCase().split("_");
+                for (String word : words) {
+                    translation.append(word.substring(0, 1).toUpperCase()).append(word.substring(1)).append(" ");
+                }
+                translation.append("Pillar");
+                writer.write("\"block.betterbuilding." + block.toLowerCase() + "_pillar\": \"" + translation + "\",\n");
             }
-            translation.append("Pillar");
-            writer.write("\"block.betterbuilding." + block.toLowerCase() + "_pillar\": \"" + translation + "\",\n");
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        writer.close();
+    }
+
+    private static void copyLootTable(ArrayList<String> blocks){
+        try {
+            for (String block : blocks){
+                if (block.equals("BEDROCK")) continue;
+                File file = new File("src/main/resources/data/betterbuilding/loot_tables/blocks/" + block.toLowerCase() + "_pillar.json");
+                FileWriter writer = new FileWriter(file);
+                writer.write(readFileAsString("src/main/java/net/b34tzepz/betterbuilding/block/files/loot_tables/blocks/" + block.toLowerCase() + ".json"));
+                writer.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
