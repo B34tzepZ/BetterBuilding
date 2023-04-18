@@ -15,7 +15,9 @@ import net.minecraft.recipe.RecipeType;
 import net.minecraft.screen.*;
 import net.minecraft.screen.slot.CraftingResultSlot;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
 import java.util.Optional;
@@ -44,7 +46,7 @@ public class FabricatorScreenHandler extends ScreenHandler {
             }
         }
         //Result slot
-        this.addSlot(new ModResultSlot(inventory, 9, 80, 31, player));
+        this.addSlot(new ModResultSlot(inventory, 9, 84, 35, player));
         //Inventar
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -118,94 +120,11 @@ public class FabricatorScreenHandler extends ScreenHandler {
         }
     }
 
-    private Slot getFabricatorInventorySlot(int index) {
-        if (index < 9) {
-            return getSlot(10 + index);
-        } else throw new IndexOutOfBoundsException();
+    @Override
+    public void onSlotClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player) {
+        if(actionType == SlotActionType.SWAP && slotIndex < 9) return;
+
+        super.onSlotClick(slotIndex, button, actionType, player);
     }
 
-    private Slot getCraftingGridSlot(int index) {
-        if (index < 9) {
-            return getSlot(index);
-        } else throw new IndexOutOfBoundsException();
-    }
-
-    private Slot getOutputSlot() {
-        return getSlot(9);
-    }
-
-//    protected static void updateResult
-//            (ScreenHandler handler, World world, PlayerEntity player, CraftingInventory craftingInventory) {
-//        CraftingRecipe craftingRecipe;
-//        if (world.isClient) {
-//            return;
-//        }
-//        CraftingInventory ci = new CraftingInventory(ModScreenHandlers.FABRICATOR_SCREEN_HANDLER.create(this.syncId, ),3,3);
-//        ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) player;
-//        ItemStack itemStack = ItemStack.EMPTY;
-//        Optional<CraftingRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(RecipeType.CRAFTING, craftingInventory, world);
-//        if (optional.isPresent() && resultInventory.shouldCraftRecipe(world, serverPlayerEntity, craftingRecipe = optional.get())) {
-//            itemStack = craftingRecipe.craft(craftingInventory);
-//        }
-//        resultInventory.setStack(0, itemStack);
-//        handler.setPreviousTrackedSlot(0, itemStack);
-//        serverPlayerEntity.networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(handler.syncId, handler.nextRevision(), 0, itemStack));
-//    }
-
-//    public static Optional<CraftingRecipe> getRecipe
-//            (ScreenHandler handler, World world, PlayerEntity player, CraftingInventory craftingInventory,
-//             CraftingResultInventory resultInventory) {
-//        CraftingRecipe craftingRecipe;
-//        if (world.isClient) {
-//            return;
-//        }
-//        Optional<CraftingRecipe> optional = world.getServer().getRecipeManager().getFirstMatch(RecipeType.CRAFTING, craftingInventory, world);
-//        return optional;
-//    }
-
-//    @Override
-//    public void onContentChanged(Inventory inventory) {
-//        this.context.run((world, pos) -> FabricatorScreenHandler.updateResult(this, world, this.player, this.craftingGrid, this.output));
-//    }
-
-//
-//    @Override
-//    public void clearCraftingSlots() {
-//        //TODO
-//    }
-//
-//    @Override
-//    public boolean matches(Recipe<? super CraftingInventory> recipe) {
-//        return recipe.matches(this.craftingGrid, this.player.world);
-//    }
-//
-//    @Override
-//    public int getCraftingResultSlotIndex() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public int getCraftingWidth() {
-//        return 3;
-//    }
-//
-//    @Override
-//    public int getCraftingHeight() {
-//        return 3;
-//    }
-//
-//    @Override
-//    public int getCraftingSlotCount() {
-//        return 19;
-//    }
-//
-//    @Override
-//    public RecipeBookCategory getCategory() {
-//        return RecipeBookCategory.CRAFTING;
-//    }
-//
-//    @Override
-//    public boolean canInsertIntoSlot(int index) {
-//        return index >=10;
-//    }
 }

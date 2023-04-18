@@ -30,7 +30,7 @@ public class FabricatorScreen extends HandledScreen<FabricatorScreenHandler> {
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
-        drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight); //TODO Größe ändern ausprobieren
+        drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
         if(handler.isCrafting()) {
             drawTexture(matrices, x + 63, y + 39, 176, 37, handler.getScaledProgress(), 9);

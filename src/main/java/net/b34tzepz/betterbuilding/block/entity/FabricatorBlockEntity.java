@@ -19,8 +19,10 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -93,15 +95,15 @@ public class FabricatorBlockEntity extends BlockEntity implements NamedScreenHan
         return Inventories.removeStack(getItems(), slot);
     }
 
-    @Override
-    public void onOpen(PlayerEntity player) {
-        System.out.println(inventory);
-        SimpleInventory inventory = new SimpleInventory(this.inventory.size());
-        for (int i = 0; i < this.inventory.size(); i++) {
-            inventory.setStack(i, this.getStack(i));
-        }
-        System.out.println(hasIngredients(inventory));
-    }
+//    @Override
+//    public void onOpen(PlayerEntity player) {
+//        System.out.println(inventory);
+//        SimpleInventory inventory = new SimpleInventory(this.inventory.size());
+//        for (int i = 0; i < this.inventory.size(); i++) {
+//            inventory.setStack(i, this.getStack(i));
+//        }
+//        System.out.println(hasIngredients(inventory));
+//    }
 
     @Override
     public DefaultedList<ItemStack> getItems() {
@@ -110,7 +112,7 @@ public class FabricatorBlockEntity extends BlockEntity implements NamedScreenHan
 
     @Override
     public Text getDisplayName() {
-        return new LiteralText("Fabricator");
+        return new TranslatableText("block.betterbuilding.fabricator");
     }
 
     @Nullable
@@ -248,5 +250,13 @@ public class FabricatorBlockEntity extends BlockEntity implements NamedScreenHan
 
     private static boolean canInsertAmountIntoOutputSlot(SimpleInventory inventory) {
         return inventory.getStack(9).getMaxCount() > inventory.getStack(9).getCount();
+    }
+
+    @Override
+    public int[] getAvailableSlots(Direction side) {
+        if (side == Direction.DOWN) {
+            return new int[]{9};
+        }
+        return new int[]{10,11,12,13,14,15,16,17,18};
     }
 }
