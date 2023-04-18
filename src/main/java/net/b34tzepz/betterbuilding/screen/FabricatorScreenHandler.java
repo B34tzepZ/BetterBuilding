@@ -4,24 +4,16 @@ import net.b34tzepz.betterbuilding.screen.slot.FabricatorCraftingGridSlot;
 import net.b34tzepz.betterbuilding.screen.slot.ModResultSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
-import net.minecraft.recipe.CraftingRecipe;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.screen.*;
-import net.minecraft.screen.slot.CraftingResultSlot;
+import net.minecraft.screen.ArrayPropertyDelegate;
+import net.minecraft.screen.PropertyDelegate;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 public class FabricatorScreenHandler extends ScreenHandler {
@@ -122,7 +114,7 @@ public class FabricatorScreenHandler extends ScreenHandler {
         }
     }
 
-    private Set<Slot> quickCraftSlots = new HashSet<>();
+    private final Set<Slot> quickCraftSlots = new HashSet<>();
 
     @Override
     public void onSlotClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player) {
@@ -130,10 +122,8 @@ public class FabricatorScreenHandler extends ScreenHandler {
 
         ItemStack cursorStack = this.getCursorStack().copy();
         if (actionType == SlotActionType.QUICK_CRAFT && slotIndex != EMPTY_SPACE_SLOT_INDEX) {
-            if (!quickCraftSlots.contains(this.slots.get(slotIndex))) {
-                quickCraftSlots.add(this.slots.get(slotIndex));
-            }
-            if(quickCraftContainsCraftingGridAndOtherSlots()){
+            quickCraftSlots.add(this.slots.get(slotIndex));
+            if (quickCraftContainsCraftingGridAndOtherSlots()) {
                 quickCraftSlots.clear();
                 this.endQuickCraft();
             }
