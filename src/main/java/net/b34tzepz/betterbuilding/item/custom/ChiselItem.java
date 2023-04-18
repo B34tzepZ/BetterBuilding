@@ -187,7 +187,7 @@ public class ChiselItem extends Item {
         PlayerEntity playerEntity = context.getPlayer();
         BlockState blockState2 = PILLAR_STATES.get(blockState.getBlock());
         if (blockState2 != null) {
-            world.playSound(playerEntity, blockPos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0f, 1.0f);
+            world.playSound(playerEntity, blockPos, SoundEvents.BLOCK_PUMPKIN_CARVE, SoundCategory.BLOCKS, 1.0f, 1.0f);
             blockState2 = blockState2.with(PillarBlock.AXIS, side.getAxis());
         }
         if (!world.isClient) {
