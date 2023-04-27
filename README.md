@@ -28,6 +28,7 @@ Support for Minecraft Bedrock Edition is **not** planned.
 - Download Fabric API [here](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
 - Select a Release
 - Put the downloaded .jar in your *mods* folder
+- Download the mod under [Releases](https://github.com/B34tzepZ/BetterBuilding/releases)
 - Also put the ```BetterBuilding.jar``` in your mods folder
 - Run Minecraft
 - Make sure the selected profile is the fabric-loader you recently installed
