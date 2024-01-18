@@ -25,53 +25,162 @@ public class ModBlocks {
     public static final Block REINFORCED_BIRCH_PLANKS = registerBlock("reinforced_birch_planks",
             new Block(FabricBlockSettings.of(Material.WOOD).strength(3.5f, 5).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
 
-    public static final Block OAK_SIDE = registerBlock("oak_side",
-            new SideBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB)), ModItemGroup.Building);
+    public static class Sides{
+        public static final Block OAK_SIDE = registerBlock("oak_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB)), ModItemGroup.Building);
 
-    public static final Block SPRUCE_SIDE = registerBlock("spruce_side",
-            new SideBlock(FabricBlockSettings.copyOf(Blocks.SPRUCE_SLAB)), ModItemGroup.Building);
+        public static final Block SPRUCE_SIDE = registerBlock("spruce_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.SPRUCE_SLAB)), ModItemGroup.Building);
 
-    public static final Block BIRCH_SIDE = registerBlock("birch_side",
-            new SideBlock(FabricBlockSettings.copyOf(Blocks.BIRCH_SLAB)), ModItemGroup.Building);
+        public static final Block BIRCH_SIDE = registerBlock("birch_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.BIRCH_SLAB)), ModItemGroup.Building);
 
-    public static final Block JUNGLE_SIDE = registerBlock("jungle_side",
-            new SideBlock(FabricBlockSettings.copyOf(Blocks.JUNGLE_SLAB)), ModItemGroup.Building);
+        public static final Block JUNGLE_SIDE = registerBlock("jungle_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.JUNGLE_SLAB)), ModItemGroup.Building);
 
-    public static final Block ACACIA_SIDE = registerBlock("acacia_side",
-            new SideBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_SLAB)), ModItemGroup.Building);
+        public static final Block ACACIA_SIDE = registerBlock("acacia_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_SLAB)), ModItemGroup.Building);
 
-    public static final Block DARK_OAK_SIDE = registerBlock("dark_oak_side",
-            new SideBlock(FabricBlockSettings.copyOf(Blocks.DARK_OAK_SLAB)), ModItemGroup.Building);
+        public static final Block DARK_OAK_SIDE = registerBlock("dark_oak_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.DARK_OAK_SLAB)), ModItemGroup.Building);
 
-    public static final Block CRIMSON_SIDE = registerBlock("crimson_side",
-            new SideBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_SLAB)), ModItemGroup.Building);
+        public static final Block CRIMSON_SIDE = registerBlock("crimson_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_SLAB)), ModItemGroup.Building);
 
-    public static final Block WARPED_SIDE = registerBlock("warped_side",
-            new SideBlock(FabricBlockSettings.copyOf(Blocks.WARPED_SLAB)), ModItemGroup.Building);
+        public static final Block WARPED_SIDE = registerBlock("warped_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.WARPED_SLAB)), ModItemGroup.Building);
 
-    public static final Block OAK_CORNER = registerBlock("oak_corner",
-            new CornerBlock(FabricBlockSettings.copyOf(Blocks.OAK_STAIRS)), ModItemGroup.Building);
+        public static final Block STONE_SIDE = registerBlock("stone_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.STONE_SLAB)), ModItemGroup.Building);
 
-    public static final Block SPRUCE_CORNER = registerBlock("spruce_corner",
-            new CornerBlock(FabricBlockSettings.copyOf(Blocks.SPRUCE_STAIRS)), ModItemGroup.Building);
+        public static final Block SMOOTH_STONE_SIDE = registerBlock("smooth_stone_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_STONE_SLAB)), ModItemGroup.Building);
 
-    public static final Block BIRCH_CORNER = registerBlock("birch_corner",
-            new CornerBlock(FabricBlockSettings.copyOf(Blocks.BIRCH_STAIRS)), ModItemGroup.Building);
+        public static final Block SANDSTONE_SIDE = registerBlock("sandstone_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.SANDSTONE_SLAB)), ModItemGroup.Building);
 
-    public static final Block JUNGLE_CORNER = registerBlock("jungle_corner",
-            new CornerBlock(FabricBlockSettings.copyOf(Blocks.JUNGLE_STAIRS)), ModItemGroup.Building);
+        public static final Block CUT_SANDSTONE_SIDE = registerBlock("cut_sandstone_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.CUT_SANDSTONE_SLAB)), ModItemGroup.Building);
 
-    public static final Block ACACIA_CORNER = registerBlock("acacia_corner",
-            new CornerBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_STAIRS)), ModItemGroup.Building);
+        public static final Block COBBLESTONE_SIDE = registerBlock("cobblestone_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.COBBLESTONE_SLAB)), ModItemGroup.Building);
 
-    public static final Block DARK_OAK_CORNER = registerBlock("dark_oak_corner",
-            new CornerBlock(FabricBlockSettings.copyOf(Blocks.DARK_OAK_STAIRS)), ModItemGroup.Building);
+        public static final Block BRICK_SIDE = registerBlock("brick_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.BRICK_SLAB)), ModItemGroup.Building);
 
-    public static final Block CRIMSON_CORNER = registerBlock("crimson_corner",
-            new CornerBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_STAIRS)), ModItemGroup.Building);
+        public static final Block STONE_BRICK_SIDE = registerBlock("stone_brick_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.STONE_BRICK_SLAB)), ModItemGroup.Building);
 
-    public static final Block WARPED_CORNER = registerBlock("warped_corner",
-            new CornerBlock(FabricBlockSettings.copyOf(Blocks.WARPED_STAIRS)), ModItemGroup.Building);
+        public static final Block NETHER_BRICK_SIDE = registerBlock("nether_brick_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.NETHER_BRICK_SLAB)), ModItemGroup.Building);
+
+        public static final Block QUARTZ_SIDE = registerBlock("quartz_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_SLAB)), ModItemGroup.Building);
+
+        public static final Block RED_SANDSTONE_SIDE = registerBlock("red_sandstone_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.RED_SANDSTONE_SLAB)), ModItemGroup.Building);
+
+        public static final Block CUT_RED_SANDSTONE_SIDE = registerBlock("cut_red_sandstone_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.CUT_RED_SANDSTONE_SLAB)), ModItemGroup.Building);
+
+        public static final Block PURPUR_SIDE = registerBlock("purpur_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.PURPUR_SLAB)), ModItemGroup.Building);
+
+        public static final Block PRISMARINE_SIDE = registerBlock("prismarine_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.PRISMARINE_SLAB)), ModItemGroup.Building);
+
+        public static final Block PRISMARINE_BRICK_SIDE = registerBlock("prismarine_brick_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.PRISMARINE_BRICK_SLAB)), ModItemGroup.Building);
+
+        public static final Block DARK_PRISMARINE_SIDE = registerBlock("dark_prismarine_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.DARK_PRISMARINE_SLAB)), ModItemGroup.Building);
+
+        public static final Block POLISHED_GRANITE_SIDE = registerBlock("polished_granite_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_GRANITE_SLAB)), ModItemGroup.Building);
+
+        public static final Block SMOOTH_RED_SANDSTONE_SIDE = registerBlock("smooth_red_sandstone_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_RED_SANDSTONE_SLAB)), ModItemGroup.Building);
+
+        public static final Block MOSSY_STONE_BRICK_SIDE = registerBlock("mossy_stone_brick_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.MOSSY_STONE_BRICK_SLAB)), ModItemGroup.Building);
+
+        public static final Block POLISHED_DIORITE_SIDE = registerBlock("polished_diorite_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_DIORITE_SLAB)), ModItemGroup.Building);
+
+        public static final Block MOSSY_COBBLESTONE_SIDE = registerBlock("mossy_cobblestone_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.MOSSY_COBBLESTONE_SLAB)), ModItemGroup.Building);
+
+        public static final Block END_STONE_BRICK_SIDE = registerBlock("end_stone_brick_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.END_STONE_BRICK_SLAB)), ModItemGroup.Building);
+
+        public static final Block SMOOTH_SANDSTONE_SIDE = registerBlock("smooth_sandstone_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_SANDSTONE_SLAB)), ModItemGroup.Building);
+
+        public static final Block SMOOTH_QUARTZ_SIDE = registerBlock("smooth_quartz_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_QUARTZ_SLAB)), ModItemGroup.Building);
+
+        public static final Block GRANITE_SIDE = registerBlock("granite_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.GRANITE_SLAB)), ModItemGroup.Building);
+
+        public static final Block ANDESITE_SIDE = registerBlock("andesite_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.ANDESITE_SLAB)), ModItemGroup.Building);
+
+        public static final Block RED_NETHER_BRICK_SIDE = registerBlock("red_nether_brick_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.RED_NETHER_BRICK_SLAB)), ModItemGroup.Building);
+
+        public static final Block POLISHED_ANDESITE_SIDE = registerBlock("polished_andesite_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_ANDESITE_SLAB)), ModItemGroup.Building);
+
+        public static final Block DIORITE_SIDE = registerBlock("diorite_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.DIORITE_SLAB)), ModItemGroup.Building);
+
+        public static final Block COBBLED_DEEPSLATE_SIDE = registerBlock("cobbled_deepslate_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.COBBLED_DEEPSLATE_SLAB)), ModItemGroup.Building);
+
+        public static final Block POLISHED_DEEPSLATE_SIDE = registerBlock("polished_deepslate_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_DEEPSLATE_SLAB)), ModItemGroup.Building);
+
+        public static final Block DEEPSLATE_BRICK_SIDE = registerBlock("deepslate_brick_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICK_SLAB)), ModItemGroup.Building);
+
+        public static final Block DEEPSLATE_TILE_SIDE = registerBlock("deepslate_tile_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_TILE_SLAB)), ModItemGroup.Building);
+
+        public static final Block BLACKSTONE_SIDE = registerBlock("blackstone_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.BLACKSTONE_SLAB)), ModItemGroup.Building);
+
+        public static final Block POLISHED_BLACKSTONE_SIDE = registerBlock("polished_blackstone_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_BLACKSTONE_SLAB)), ModItemGroup.Building);
+
+        public static final Block POLISHED_BLACKSTONE_BRICK_SIDE = registerBlock("polished_blackstone_brick_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_BLACKSTONE_BRICK_SLAB)), ModItemGroup.Building);
+    }
+
+    public static class Corners{
+        public static final Block OAK_CORNER = registerBlock("oak_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.OAK_STAIRS)), ModItemGroup.Building);
+
+        public static final Block SPRUCE_CORNER = registerBlock("spruce_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.SPRUCE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block BIRCH_CORNER = registerBlock("birch_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.BIRCH_STAIRS)), ModItemGroup.Building);
+
+        public static final Block JUNGLE_CORNER = registerBlock("jungle_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.JUNGLE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block ACACIA_CORNER = registerBlock("acacia_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_STAIRS)), ModItemGroup.Building);
+
+        public static final Block DARK_OAK_CORNER = registerBlock("dark_oak_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.DARK_OAK_STAIRS)), ModItemGroup.Building);
+
+        public static final Block CRIMSON_CORNER = registerBlock("crimson_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_STAIRS)), ModItemGroup.Building);
+
+        public static final Block WARPED_CORNER = registerBlock("warped_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.WARPED_STAIRS)), ModItemGroup.Building);
+    }
 
     public static final Block OAK_CHAIR = registerBlock("oak_chair",
             new ChairBlock(FabricBlockSettings.of(Material.WOOD).strength(2, 3).nonOpaque().sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);

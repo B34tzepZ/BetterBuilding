@@ -6,7 +6,37 @@ import java.util.*;
 
 public class JsonGenerator {
     public static void main(String[] args) throws Exception {
-        //copyLootTable(findNewBlock());
+        generateJsons("stone", "cobblestone", "side");
+        generateJsons("stone", "brick", "side");
+        generateJsons("stone", "stone_brick", "side");
+        generateJsons("stone", "nether_brick", "side");
+        generateJsons("stone", "quartz", "side");
+        generateJsons("sandstone", "red_sandstone", "side");
+        generateJsons("cut_sandstone", "cut_red_sandstone", "side");
+        generateJsons("stone", "purpur", "side");
+        generateJsons("stone", "prismarine", "side");
+        generateJsons("stone", "prismarine_brick", "side");
+        generateJsons("stone", "dark_prismarine", "side");
+        generateJsons("stone", "polished_granite", "side");
+        generateJsons("sandstone", "smooth_red_sandstone", "side");
+        generateJsons("stone", "mossy_stone_brick", "side");
+        generateJsons("stone", "polished_diorite", "side");
+        generateJsons("stone", "mossy_cobblestone", "side");
+        generateJsons("stone", "end_stone_brick", "side");
+        generateJsons("sandstone", "smooth_sandstone", "side");
+        generateJsons("stone", "smooth_quartz", "side");
+        generateJsons("stone", "granite", "side");
+        generateJsons("stone", "andesite", "side");
+        generateJsons("stone", "red_nether_brick", "side");
+        generateJsons("stone", "polished_andesite", "side");
+        generateJsons("stone", "diorite", "side");
+        generateJsons("stone", "cobbled_deepslate", "side");
+        generateJsons("stone", "polished_deepslate", "side");
+        generateJsons("stone", "deepslate_brick", "side");
+        generateJsons("stone", "deepslate_tile", "side");
+        generateJsons("stone", "blackstone", "side");
+        generateJsons("stone", "polished_blackstone", "side");
+        generateJsons("stone", "polished_blackstone_brick", "side");
     }
 
     private static void generateJsons(String oldMaterial, String newMaterial, String type) throws Exception {
