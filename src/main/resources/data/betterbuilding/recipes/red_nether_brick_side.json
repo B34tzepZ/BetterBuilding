@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:red_nether_brick"
+    }
+  },
+  "result": {
+    "item": "betterbuilding:red_nether_brick_side",
+    "count": 6
+  }
+}
