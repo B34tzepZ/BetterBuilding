@@ -86,7 +86,7 @@ public class CornerBlock extends Block implements Waterloggable {
 
     public CornerBlock(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH)
+        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.WEST)
                 .with(DIRECTION, RelativeDirection.LEFT)
                 .with(SHAPE, CornerShape.STRAIGHT)
                 .with(WATERLOGGED, false));
