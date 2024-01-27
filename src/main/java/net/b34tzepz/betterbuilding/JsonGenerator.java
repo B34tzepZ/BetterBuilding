@@ -1,45 +1,29 @@
-package net.b34tzepz.betterbuilding.block;
+package net.b34tzepz.betterbuilding;
 
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;
 
 public class JsonGenerator {
-    public static void main(String[] args) throws Exception {
-        generateJsons("stone", "cobblestone", "side");
-        generateJsons("stone", "brick", "side");
-        generateJsons("stone", "stone_brick", "side");
-        generateJsons("stone", "nether_brick", "side");
-        generateJsons("stone", "quartz", "side");
-        generateJsons("sandstone", "red_sandstone", "side");
-        generateJsons("cut_sandstone", "cut_red_sandstone", "side");
-        generateJsons("stone", "purpur", "side");
-        generateJsons("stone", "prismarine", "side");
-        generateJsons("stone", "prismarine_brick", "side");
-        generateJsons("stone", "dark_prismarine", "side");
-        generateJsons("stone", "polished_granite", "side");
-        generateJsons("sandstone", "smooth_red_sandstone", "side");
-        generateJsons("stone", "mossy_stone_brick", "side");
-        generateJsons("stone", "polished_diorite", "side");
-        generateJsons("stone", "mossy_cobblestone", "side");
-        generateJsons("stone", "end_stone_brick", "side");
-        generateJsons("sandstone", "smooth_sandstone", "side");
-        generateJsons("stone", "smooth_quartz", "side");
-        generateJsons("stone", "granite", "side");
-        generateJsons("stone", "andesite", "side");
-        generateJsons("stone", "red_nether_brick", "side");
-        generateJsons("stone", "polished_andesite", "side");
-        generateJsons("stone", "diorite", "side");
-        generateJsons("stone", "cobbled_deepslate", "side");
-        generateJsons("stone", "polished_deepslate", "side");
-        generateJsons("stone", "deepslate_brick", "side");
-        generateJsons("stone", "deepslate_tile", "side");
-        generateJsons("stone", "blackstone", "side");
-        generateJsons("stone", "polished_blackstone", "side");
-        generateJsons("stone", "polished_blackstone_brick", "side");
+    public static void main(String[] args) {
+        generateJsons("stone", "cut_copper", "corner");
+        generateJsons("stone", "waxed_cut_copper", "corner");
+        generateJsons("stone", "exposed_cut_copper", "corner");
+        generateJsons("stone", "waxed_exposed_cut_copper", "corner");
+        generateJsons("stone", "weathered_cut_copper", "corner");
+        generateJsons("stone", "waxed_weathered_cut_copper", "corner");
+        generateJsons("stone", "oxidized_cut_copper", "corner");
+        generateJsons("stone", "waxed_oxidized_cut_copper", "corner");
     }
 
-    private static void generateJsons(String oldMaterial, String newMaterial, String type) throws Exception {
+    /**
+     * Generates Blockstate, BlockModel, ItemModel, LootTable and Recipe Json based on a reference
+     *
+     * @param oldMaterial Reference as String
+     * @param newMaterial Replacement of oldMaterial
+     * @param type        Type of the Block, e.g. stairs or slabs
+     */
+    private static void generateJsons(String oldMaterial, String newMaterial, String type) {
         generateBlockstateJson(oldMaterial, newMaterial, type);
         generateBlockModelJson(oldMaterial, newMaterial, type);
         generateItemModelJson(oldMaterial, newMaterial, type);
@@ -47,37 +31,50 @@ public class JsonGenerator {
         generateRecipeJson(oldMaterial, newMaterial, type);
     }
 
-    private static void generateBlockstateJson(String oldMaterial, String newMaterial, String type) throws Exception {
+    private static void generateBlockstateJson(String oldMaterial, String newMaterial, String type) {
         String location = "src/main/resources/assets/betterbuilding/blockstates/";
         createJson(location, oldMaterial, newMaterial, type);
     }
 
-    private static void generateBlockModelJson(String oldMaterial, String newMaterial, String type) throws Exception {
+    private static void generateBlockModelJson(String oldMaterial, String newMaterial, String type) {
         String location = "src/main/resources/assets/betterbuilding/models/block/";
+        String pathname = location + oldMaterial + "_" + type;
+        File fileOuter = new File(pathname + "_outer.json");
+        File fileOuterMirrored = new File(pathname + "_outer_mirrored.json");
+
+        if (fileOuter.exists() && !fileOuter.isDirectory()) {
+            createJson(location, oldMaterial, newMaterial, type + "_outer");
+            createJson(location, oldMaterial, newMaterial, type + "_inner");
+
+            if (fileOuterMirrored.exists() && !fileOuterMirrored.isDirectory()) {
+                createJson(location, oldMaterial, newMaterial, type + "_outer_mirrored");
+            }
+        }
         createJson(location, oldMaterial, newMaterial, type);
     }
 
-    private static void generateItemModelJson(String oldMaterial, String newMaterial, String type) throws Exception {
+    private static void generateItemModelJson(String oldMaterial, String newMaterial, String type) {
         String location = "src/main/resources/assets/betterbuilding/models/item/";
         createJson(location, oldMaterial, newMaterial, type);
     }
 
-    private static void generateLootTableJson(String oldMaterial, String newMaterial, String type) throws Exception {
+    private static void generateLootTableJson(String oldMaterial, String newMaterial, String type) {
         String location = "src/main/resources/data/betterbuilding/loot_tables/blocks/";
         createJson(location, oldMaterial, newMaterial, type);
     }
 
-    private static void generateRecipeJson(String oldMaterial, String newMaterial, String type) throws Exception {
+    private static void generateRecipeJson(String oldMaterial, String newMaterial, String type) {
         String location = "src/main/resources/data/betterbuilding/recipes/";
         createJson(location, oldMaterial, newMaterial, type);
     }
 
-    private static void createJson(String location, String oldMaterial, String newMaterial, String type) throws Exception {
-        String path = location + oldMaterial + "_" + type + ".json";
-        String oldString = readFileAsString(path);
-        String newString = oldString.replace(oldMaterial, newMaterial);
-
+    private static void createJson(String location, String oldMaterial, String newMaterial, String type) {
         try {
+            String path = location + oldMaterial + "_" + type + ".json";
+            String oldString = readFileAsString(path);
+            String newString = oldString.replace(oldMaterial, newMaterial);
+
+
             File file = new File(location + newMaterial + "_" + type + ".json");
             FileWriter writer = new FileWriter(file);
             writer.write(newString);
@@ -87,7 +84,7 @@ public class JsonGenerator {
         }
     }
 
-    public static String readFileAsString(String file) throws Exception {
+    private static String readFileAsString(String file) throws Exception {
         return new String(Files.readAllBytes(Paths.get(file)));
     }
 
@@ -147,6 +144,9 @@ public class JsonGenerator {
         return result;
     }
 
+    /**
+     * Ab hier ist Absturz
+     **/
     private static ArrayList<String> findNewBlock() throws IOException {
         String file = "src/main/java/net/b34tzepz/betterbuilding/block/files/Blocks.txt";
         Scanner scanner = new Scanner(new File(file));
@@ -239,7 +239,7 @@ public class JsonGenerator {
 
     private static void createPillarItemModelJson(ArrayList<String> blocks) {
         try {
-            for (String block : blocks){
+            for (String block : blocks) {
                 File file = new File("src/main/resources/assets/betterbuilding/models/item/" + block.toLowerCase() + "_pillar.json");
                 FileWriter writer = new FileWriter(file);
                 writer.write("{\n" +
@@ -256,7 +256,7 @@ public class JsonGenerator {
         try {
             File file = new File("src/main/java/net/b34tzepz/betterbuilding/block/files/Translation.txt");
             FileWriter writer = new FileWriter(file);
-            for(String block : blocks){
+            for (String block : blocks) {
                 StringBuilder translation = new StringBuilder();
                 String[] words = block.toLowerCase().split("_");
                 for (String word : words) {
@@ -271,9 +271,9 @@ public class JsonGenerator {
         }
     }
 
-    private static void copyLootTable(ArrayList<String> blocks){
+    private static void copyLootTable(ArrayList<String> blocks) {
         try {
-            for (String block : blocks){
+            for (String block : blocks) {
                 if (block.equals("BEDROCK")) continue;
                 File file = new File("src/main/resources/data/betterbuilding/loot_tables/blocks/" + block.toLowerCase() + "_pillar.json");
                 FileWriter writer = new FileWriter(file);
