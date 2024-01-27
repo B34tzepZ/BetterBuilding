@@ -2,12 +2,13 @@ package net.b34tzepz.betterbuilding.block;
 
 import net.b34tzepz.betterbuilding.BetterBuilding;
 import net.b34tzepz.betterbuilding.block.custom.*;
+import net.b34tzepz.betterbuilding.block.custom.PillarBlock;
+import net.b34tzepz.betterbuilding.block.custom.StairsBlock;
 import net.b34tzepz.betterbuilding.item.ModItemGroup;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.Material;
+import net.minecraft.block.*;
+import net.minecraft.block.Oxidizable;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -26,6 +27,29 @@ public class ModBlocks {
             new Block(FabricBlockSettings.of(Material.WOOD).strength(3.5f, 5).sounds(BlockSoundGroup.WOOD)), ModItemGroup.Building);
 
     public static class Sides{
+        public static final Block CUT_COPPER_SIDE = registerBlock("cut_copper_side",
+                new OxidizableSideBlock(Oxidizable.OxidationLevel.UNAFFECTED, FabricBlockSettings.copyOf(Blocks.CUT_COPPER_SLAB)), ModItemGroup.Building);
+
+        public static final Block EXPOSED_CUT_COPPER_SIDE = registerBlock("exposed_cut_copper_side",
+                new OxidizableSideBlock(Oxidizable.OxidationLevel.EXPOSED, FabricBlockSettings.copyOf(Blocks.EXPOSED_CUT_COPPER_SLAB)), ModItemGroup.Building);
+
+        public static final Block WEATHERED_CUT_COPPER_SIDE = registerBlock("weathered_cut_copper_side",
+                new OxidizableSideBlock(Oxidizable.OxidationLevel.WEATHERED, FabricBlockSettings.copyOf(Blocks.WEATHERED_CUT_COPPER_SLAB)), ModItemGroup.Building);
+
+        public static final Block OXIDIZED_CUT_COPPER_SIDE = registerBlock("oxidized_cut_copper_side",
+                new OxidizableSideBlock(Oxidizable.OxidationLevel.OXIDIZED, FabricBlockSettings.copyOf(Blocks.OXIDIZED_CUT_COPPER_SLAB)), ModItemGroup.Building);
+
+        public static final Block WAXED_CUT_COPPER_SIDE = registerBlock("waxed_cut_copper_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.WAXED_CUT_COPPER_SLAB)), ModItemGroup.Building);
+
+        public static final Block WAXED_EXPOSED_CUT_COPPER_SIDE = registerBlock("waxed_exposed_cut_copper_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.WAXED_EXPOSED_CUT_COPPER_SLAB)), ModItemGroup.Building);
+        public static final Block WAXED_WEATHERED_CUT_COPPER_SIDE = registerBlock("waxed_weathered_cut_copper_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.WAXED_WEATHERED_CUT_COPPER_SLAB)), ModItemGroup.Building);
+
+        public static final Block WAXED_OXIDIZED_CUT_COPPER_SIDE = registerBlock("waxed_oxidized_cut_copper_side",
+                new SideBlock(FabricBlockSettings.copyOf(Blocks.WAXED_OXIDIZED_CUT_COPPER_SLAB)), ModItemGroup.Building);
+
         public static final Block OAK_SIDE = registerBlock("oak_side",
                 new SideBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB)), ModItemGroup.Building);
 
@@ -156,7 +180,40 @@ public class ModBlocks {
                 new SideBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_BLACKSTONE_BRICK_SLAB)), ModItemGroup.Building);
     }
 
+    public static final Block SMOOTH_STONE_STAIRS = registerBlock("smooth_stone_stairs",
+            new StairsBlock(Blocks.SMOOTH_STONE.getDefaultState(), FabricBlockSettings.copyOf(Blocks.SMOOTH_STONE)), ModItemGroup.Building);
+
+    public static final Block CUT_SANDSTONE_STAIRS = registerBlock("cut_sandstone_stairs",
+            new StairsBlock(Blocks.CUT_SANDSTONE.getDefaultState(), FabricBlockSettings.copyOf(Blocks.CUT_SANDSTONE)), ModItemGroup.Building);
+
+    public static final Block CUT_RED_SANDSTONE_STAIRS = registerBlock("cut_red_sandstone_stairs",
+            new StairsBlock(Blocks.CUT_RED_SANDSTONE.getDefaultState(), FabricBlockSettings.copyOf(Blocks.CUT_RED_SANDSTONE)), ModItemGroup.Building);
+
     public static class Corners{
+        public static final Block CUT_COPPER_CORNER = registerBlock("cut_copper_corner",
+                new OxidizableCornerBlock(Oxidizable.OxidationLevel.UNAFFECTED, FabricBlockSettings.copyOf(Blocks.CUT_COPPER_STAIRS)), ModItemGroup.Building);
+
+        public static final Block EXPOSED_CUT_COPPER_CORNER = registerBlock("exposed_cut_copper_corner",
+                new OxidizableCornerBlock(Oxidizable.OxidationLevel.EXPOSED, FabricBlockSettings.copyOf(Blocks.EXPOSED_CUT_COPPER_STAIRS)), ModItemGroup.Building);
+
+        public static final Block WEATHERED_CUT_COPPER_CORNER = registerBlock("weathered_cut_copper_corner",
+                new OxidizableCornerBlock(Oxidizable.OxidationLevel.WEATHERED, FabricBlockSettings.copyOf(Blocks.WEATHERED_CUT_COPPER_STAIRS)), ModItemGroup.Building);
+
+        public static final Block OXIDIZED_CUT_COPPER_CORNER = registerBlock("oxidized_cut_copper_corner",
+                new OxidizableCornerBlock(Oxidizable.OxidationLevel.OXIDIZED, FabricBlockSettings.copyOf(Blocks.OXIDIZED_CUT_COPPER_STAIRS)), ModItemGroup.Building);
+
+        public static final Block WAXED_CUT_COPPER_CORNER = registerBlock("waxed_cut_copper_corner",
+                new OxidizableCornerBlock(Oxidizable.OxidationLevel.UNAFFECTED, FabricBlockSettings.copyOf(Blocks.WAXED_CUT_COPPER_STAIRS)), ModItemGroup.Building);
+
+        public static final Block WAXED_EXPOSED_CUT_COPPER_CORNER = registerBlock("waxed_exposed_cut_copper_corner",
+                new OxidizableCornerBlock(Oxidizable.OxidationLevel.EXPOSED, FabricBlockSettings.copyOf(Blocks.WAXED_EXPOSED_CUT_COPPER_STAIRS)), ModItemGroup.Building);
+
+        public static final Block WAXED_WEATHERED_CUT_COPPER_CORNER = registerBlock("waxed_weathered_cut_copper_corner",
+                new OxidizableCornerBlock(Oxidizable.OxidationLevel.WEATHERED, FabricBlockSettings.copyOf(Blocks.WAXED_WEATHERED_CUT_COPPER_STAIRS)), ModItemGroup.Building);
+
+        public static final Block WAXED_OXIDIZED_CUT_COPPER_CORNER = registerBlock("waxed_oxidized_cut_copper_corner",
+                new OxidizableCornerBlock(Oxidizable.OxidationLevel.OXIDIZED, FabricBlockSettings.copyOf(Blocks.WAXED_OXIDIZED_CUT_COPPER_STAIRS)), ModItemGroup.Building);
+
         public static final Block OAK_CORNER = registerBlock("oak_corner",
                 new CornerBlock(FabricBlockSettings.copyOf(Blocks.OAK_STAIRS)), ModItemGroup.Building);
 
@@ -180,6 +237,113 @@ public class ModBlocks {
 
         public static final Block WARPED_CORNER = registerBlock("warped_corner",
                 new CornerBlock(FabricBlockSettings.copyOf(Blocks.WARPED_STAIRS)), ModItemGroup.Building);
+
+        public static final Block STONE_CORNER = registerBlock("stone_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.STONE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block SMOOTH_STONE_CORNER = registerBlock("smooth_stone_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(ModBlocks.SMOOTH_STONE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block SANDSTONE_CORNER = registerBlock("sandstone_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.SANDSTONE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block CUT_SANDSTONE_CORNER = registerBlock("cut_sandstone_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(ModBlocks.CUT_SANDSTONE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block COBBLESTONE_CORNER = registerBlock("cobblestone_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.COBBLESTONE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block BRICK_CORNER = registerBlock("brick_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.BRICK_STAIRS)), ModItemGroup.Building);
+
+        public static final Block STONE_BRICK_CORNER = registerBlock("stone_brick_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.STONE_BRICK_STAIRS)), ModItemGroup.Building);
+
+        public static final Block NETHER_BRICK_CORNER = registerBlock("nether_brick_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.NETHER_BRICK_STAIRS)), ModItemGroup.Building);
+
+        public static final Block QUARTZ_CORNER = registerBlock("quartz_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_STAIRS)), ModItemGroup.Building);
+
+        public static final Block RED_SANDSTONE_CORNER = registerBlock("red_sandstone_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.RED_SANDSTONE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block CUT_RED_SANDSTONE_CORNER = registerBlock("cut_red_sandstone_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(ModBlocks.CUT_RED_SANDSTONE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block PURPUR_CORNER = registerBlock("purpur_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.PURPUR_STAIRS)), ModItemGroup.Building);
+
+        public static final Block PRISMARINE_CORNER = registerBlock("prismarine_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.PRISMARINE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block PRISMARINE_BRICK_CORNER = registerBlock("prismarine_brick_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.PRISMARINE_BRICK_STAIRS)), ModItemGroup.Building);
+
+        public static final Block DARK_PRISMARINE_CORNER = registerBlock("dark_prismarine_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.DARK_PRISMARINE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block POLISHED_GRANITE_CORNER = registerBlock("polished_granite_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_GRANITE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block SMOOTH_RED_SANDSTONE_CORNER = registerBlock("smooth_red_sandstone_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_RED_SANDSTONE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block MOSSY_STONE_BRICK_CORNER = registerBlock("mossy_stone_brick_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.MOSSY_STONE_BRICK_STAIRS)), ModItemGroup.Building);
+
+        public static final Block POLISHED_DIORITE_CORNER = registerBlock("polished_diorite_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_DIORITE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block MOSSY_COBBLESTONE_CORNER = registerBlock("mossy_cobblestone_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.MOSSY_COBBLESTONE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block END_STONE_BRICK_CORNER = registerBlock("end_stone_brick_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.END_STONE_BRICK_STAIRS)), ModItemGroup.Building);
+
+        public static final Block SMOOTH_SANDSTONE_CORNER = registerBlock("smooth_sandstone_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_SANDSTONE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block SMOOTH_QUARTZ_CORNER = registerBlock("smooth_quartz_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_QUARTZ_STAIRS)), ModItemGroup.Building);
+
+        public static final Block GRANITE_CORNER = registerBlock("granite_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.GRANITE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block ANDESITE_CORNER = registerBlock("andesite_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.ANDESITE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block RED_NETHER_BRICK_CORNER = registerBlock("red_nether_brick_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.RED_NETHER_BRICK_STAIRS)), ModItemGroup.Building);
+
+        public static final Block POLISHED_ANDESITE = registerBlock("polished_andesite_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_ANDESITE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block DIORITE_CORNER = registerBlock("diorite_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.DIORITE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block COBBLED_DEEPSLATE_CORNER = registerBlock("cobbled_deepslate_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.COBBLED_DEEPSLATE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block POLISHED_DEEPSLATE_CORNER = registerBlock("polished_deepslate_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_DEEPSLATE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block DEEPSLATE_BRICK_CORNER = registerBlock("deepslate_brick_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICK_STAIRS)), ModItemGroup.Building);
+
+        public static final Block DEEPSLATE_TILE_CORNER = registerBlock("deepslate_tile_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_TILE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block BLACKSTONE_CORNER = registerBlock("blackstone_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.BLACKSTONE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block POLISHED_BLACKSTONE_CORNER = registerBlock("polished_blackstone_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_BLACKSTONE_STAIRS)), ModItemGroup.Building);
+
+        public static final Block POLISHED_BLACKSTONE_BRICK_CORNER = registerBlock("polished_blackstone_brick_corner",
+                new CornerBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS)), ModItemGroup.Building);
+
+
     }
 
     public static final Block OAK_CHAIR = registerBlock("oak_chair",
