@@ -20,7 +20,7 @@
       "uvlock": true
     },
     "type=double": {
-      "model": "minecraft:block/prismarine_brick"
+      "model": "minecraft:block/prismarine_bricks"
     }
   }
 }

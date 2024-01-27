@@ -36,6 +36,14 @@
     "betterbuilding:cobbled_deepslate_side",
     "betterbuilding:polished_deepslate_side",
     "betterbuilding:deepslate_tile_side",
-    "betterbuilding:deepslate_brick_side"
+    "betterbuilding:deepslate_brick_side",
+    "betterbuilding:waxed_weathered_cut_copper_side",
+    "betterbuilding:waxed_exposed_cut_copper_side",
+    "betterbuilding:waxed_cut_copper_side",
+    "betterbuilding:oxidized_cut_copper_side",
+    "betterbuilding:weathered_cut_copper_side",
+    "betterbuilding:exposed_cut_copper_side",
+    "betterbuilding:cut_copper_side",
+    "betterbuilding:waxed_oxidized_cut_copper_side"
   ]
 }

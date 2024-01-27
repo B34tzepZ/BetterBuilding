@@ -20,7 +20,7 @@
       "uvlock": true
     },
     "type=double": {
-      "model": "minecraft:block/red_nether_brick"
+      "model": "minecraft:block/red_nether_bricks"
     }
   }
 }

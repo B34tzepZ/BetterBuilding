@@ -20,7 +20,7 @@
       "uvlock": true
     },
     "type=double": {
-      "model": "minecraft:block/quartz"
+      "model": "minecraft:block/quartz_block"
     }
   }
 }

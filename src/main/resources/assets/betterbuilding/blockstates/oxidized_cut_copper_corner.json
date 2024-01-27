@@ -1,0 +1,205 @@
+{
+  "variants": {
+    "facing=east,relative_direction=left,shape=inner_bottom": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_inner",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=east,relative_direction=left,shape=inner_top": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_inner",
+      "x": 180,
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=east,relative_direction=left,shape=outer_bottom": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_outer",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=east,relative_direction=left,shape=outer_top": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_outer_mirrored",
+      "x": 180,
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=east,relative_direction=left,shape=straight": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=east,relative_direction=right,shape=inner_bottom": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_inner",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=east,relative_direction=right,shape=inner_top": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_inner",
+      "x": 180,
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=east,relative_direction=right,shape=outer_bottom": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_outer_mirrored",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=east,relative_direction=right,shape=outer_top": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_outer",
+      "x": 180,
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=east,relative_direction=right,shape=straight": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=north,relative_direction=left,shape=inner_bottom": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_inner",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=north,relative_direction=left,shape=inner_top": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_inner",
+      "x": 180,
+      "uvlock": true
+    },
+    "facing=north,relative_direction=left,shape=outer_bottom": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_outer",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=north,relative_direction=left,shape=outer_top": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_outer_mirrored",
+      "x": 180,
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=north,relative_direction=left,shape=straight": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=north,relative_direction=right,shape=inner_bottom": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_inner",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=north,relative_direction=right,shape=inner_top": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_inner",
+      "x": 180,
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=north,relative_direction=right,shape=outer_bottom": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_outer_mirrored",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=north,relative_direction=right,shape=outer_top": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_outer",
+      "x": 180,
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=north,relative_direction=right,shape=straight": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=south,relative_direction=left,shape=inner_bottom": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_inner",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=south,relative_direction=left,shape=inner_top": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_inner",
+      "x": 180,
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=south,relative_direction=left,shape=outer_bottom": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_outer",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=south,relative_direction=left,shape=outer_top": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_outer_mirrored",
+      "x": 180,
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=south,relative_direction=left,shape=straight": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=south,relative_direction=right,shape=inner_bottom": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_inner"
+    },
+    "facing=south,relative_direction=right,shape=inner_top": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_inner",
+      "x": 180,
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=south,relative_direction=right,shape=outer_bottom": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_outer_mirrored",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=south,relative_direction=right,shape=outer_top": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_outer",
+      "x": 180,
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=south,relative_direction=right,shape=straight": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner"
+    },
+    "facing=west,relative_direction=left,shape=inner_bottom": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_inner"
+    },
+    "facing=west,relative_direction=left,shape=inner_top": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_inner",
+      "x": 180,
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=west,relative_direction=left,shape=outer_bottom": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_outer"
+    },
+    "facing=west,relative_direction=left,shape=outer_top": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_outer_mirrored",
+      "x": 180,
+      "uvlock": true
+    },
+    "facing=west,relative_direction=left,shape=straight": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner"
+    },
+    "facing=west,relative_direction=right,shape=inner_bottom": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_inner",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=west,relative_direction=right,shape=inner_top": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_inner",
+      "x": 180,
+      "uvlock": true
+    },
+    "facing=west,relative_direction=right,shape=outer_bottom": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_outer_mirrored",
+      "uvlock": true
+    },
+    "facing=west,relative_direction=right,shape=outer_top": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner_outer",
+      "x": 180,
+      "uvlock": true
+    },
+    "facing=west,relative_direction=right,shape=straight": {
+      "model": "betterbuilding:block/oxidized_cut_copper_corner",
+      "y": 90,
+      "uvlock": true
+    }
+  }
+}

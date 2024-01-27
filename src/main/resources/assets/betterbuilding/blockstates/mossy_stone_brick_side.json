@@ -20,7 +20,7 @@
       "uvlock": true
     },
     "type=double": {
-      "model": "minecraft:block/mossy_stone_brick"
+      "model": "minecraft:block/mossy_stone_bricks"
     }
   }
 }

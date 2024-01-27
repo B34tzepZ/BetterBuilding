@@ -20,7 +20,7 @@
       "uvlock": true
     },
     "type=double": {
-      "model": "minecraft:block/purpur"
+      "model": "minecraft:block/purpur_block"
     }
   }
 }

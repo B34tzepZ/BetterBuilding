@@ -20,7 +20,7 @@
       "uvlock": true
     },
     "type=double": {
-      "model": "minecraft:block/deepslate_brick"
+      "model": "minecraft:block/deepslate_bricks"
     }
   }
 }

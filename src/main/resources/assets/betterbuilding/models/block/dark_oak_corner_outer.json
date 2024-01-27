@@ -1,5 +1,5 @@
 {
-  "parent": "betterbuilding:block/outer_corner",
+  "parent": "betterbuilding:block/corner_outer",
   "textures": {
     "bottom": "minecraft:block/dark_oak_planks",
     "top": "minecraft:block/dark_oak_planks",

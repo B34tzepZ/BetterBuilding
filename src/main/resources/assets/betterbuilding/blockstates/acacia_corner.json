@@ -2,12 +2,13 @@
   "variants": {
     "facing=east,relative_direction=left,shape=inner_bottom": {
       "model": "betterbuilding:block/acacia_corner_inner",
-      "y": 270,
+      "y": 180,
       "uvlock": true
     },
     "facing=east,relative_direction=left,shape=inner_top": {
       "model": "betterbuilding:block/acacia_corner_inner",
       "x": 180,
+      "y": 90,
       "uvlock": true
     },
     "facing=east,relative_direction=left,shape=outer_bottom": {
@@ -16,8 +17,8 @@
       "uvlock": true
     },
     "facing=east,relative_direction=left,shape=outer_top": {
-      "model": "betterbuilding:block/acacia_corner_outer",
-      "x": 90,
+      "model": "betterbuilding:block/acacia_corner_outer_mirrored",
+      "x": 180,
       "y": 180,
       "uvlock": true
     },
@@ -27,17 +28,18 @@
       "uvlock": true
     },
     "facing=east,relative_direction=right,shape=inner_bottom": {
-      "model": "betterbuilding:block/acacia_corner_inner"
+      "model": "betterbuilding:block/acacia_corner_inner",
+      "y": 270,
+      "uvlock": true
     },
     "facing=east,relative_direction=right,shape=inner_top": {
       "model": "betterbuilding:block/acacia_corner_inner",
       "x": 180,
-      "y": 90,
+      "y": 180,
       "uvlock": true
     },
     "facing=east,relative_direction=right,shape=outer_bottom": {
-      "model": "betterbuilding:block/acacia_corner_outer",
-      "x": 270,
+      "model": "betterbuilding:block/acacia_corner_outer_mirrored",
       "y": 180,
       "uvlock": true
     },
@@ -49,19 +51,17 @@
     },
     "facing=east,relative_direction=right,shape=straight": {
       "model": "betterbuilding:block/acacia_corner",
-      "x": 180,
-      "y": 180,
+      "y": 270,
       "uvlock": true
     },
     "facing=north,relative_direction=left,shape=inner_bottom": {
       "model": "betterbuilding:block/acacia_corner_inner",
-      "y": 180,
+      "y": 90,
       "uvlock": true
     },
     "facing=north,relative_direction=left,shape=inner_top": {
       "model": "betterbuilding:block/acacia_corner_inner",
       "x": 180,
-      "y": 270,
       "uvlock": true
     },
     "facing=north,relative_direction=left,shape=outer_bottom": {
@@ -70,8 +70,8 @@
       "uvlock": true
     },
     "facing=north,relative_direction=left,shape=outer_top": {
-      "model": "betterbuilding:block/acacia_corner_outer",
-      "x": 90,
+      "model": "betterbuilding:block/acacia_corner_outer_mirrored",
+      "x": 180,
       "y": 90,
       "uvlock": true
     },
@@ -82,17 +82,17 @@
     },
     "facing=north,relative_direction=right,shape=inner_bottom": {
       "model": "betterbuilding:block/acacia_corner_inner",
-      "y": 270,
+      "y": 180,
       "uvlock": true
     },
     "facing=north,relative_direction=right,shape=inner_top": {
       "model": "betterbuilding:block/acacia_corner_inner",
       "x": 180,
+      "y": 90,
       "uvlock": true
     },
     "facing=north,relative_direction=right,shape=outer_bottom": {
-      "model": "betterbuilding:block/acacia_corner_outer",
-      "x": 270,
+      "model": "betterbuilding:block/acacia_corner_outer_mirrored",
       "y": 90,
       "uvlock": true
     },
@@ -104,17 +104,18 @@
     },
     "facing=north,relative_direction=right,shape=straight": {
       "model": "betterbuilding:block/acacia_corner",
-      "x": 180,
-      "y": 90,
+      "y": 180,
       "uvlock": true
     },
     "facing=south,relative_direction=left,shape=inner_bottom": {
-      "model": "betterbuilding:block/acacia_corner_inner"
+      "model": "betterbuilding:block/acacia_corner_inner",
+      "y": 270,
+      "uvlock": true
     },
     "facing=south,relative_direction=left,shape=inner_top": {
       "model": "betterbuilding:block/acacia_corner_inner",
       "x": 180,
-      "y": 90,
+      "y": 180,
       "uvlock": true
     },
     "facing=south,relative_direction=left,shape=outer_bottom": {
@@ -123,8 +124,8 @@
       "uvlock": true
     },
     "facing=south,relative_direction=left,shape=outer_top": {
-      "model": "betterbuilding:block/acacia_corner_outer",
-      "x": 90,
+      "model": "betterbuilding:block/acacia_corner_outer_mirrored",
+      "x": 180,
       "y": 270,
       "uvlock": true
     },
@@ -134,19 +135,16 @@
       "uvlock": true
     },
     "facing=south,relative_direction=right,shape=inner_bottom": {
-      "model": "betterbuilding:block/acacia_corner_inner",
-      "y": 90,
-      "uvlock": true
+      "model": "betterbuilding:block/acacia_corner_inner"
     },
     "facing=south,relative_direction=right,shape=inner_top": {
       "model": "betterbuilding:block/acacia_corner_inner",
       "x": 180,
-      "y": 180,
+      "y": 270,
       "uvlock": true
     },
     "facing=south,relative_direction=right,shape=outer_bottom": {
-      "model": "betterbuilding:block/acacia_corner_outer",
-      "x": 270,
+      "model": "betterbuilding:block/acacia_corner_outer_mirrored",
       "y": 270,
       "uvlock": true
     },
@@ -157,28 +155,23 @@
       "uvlock": true
     },
     "facing=south,relative_direction=right,shape=straight": {
-      "model": "betterbuilding:block/acacia_corner",
-      "x": 180,
-      "y": 270,
-      "uvlock": true
+      "model": "betterbuilding:block/acacia_corner"
     },
     "facing=west,relative_direction=left,shape=inner_bottom": {
-      "model": "betterbuilding:block/acacia_corner_inner",
-      "y": 90,
-      "uvlock": true
+      "model": "betterbuilding:block/acacia_corner_inner"
     },
     "facing=west,relative_direction=left,shape=inner_top": {
       "model": "betterbuilding:block/acacia_corner_inner",
       "x": 180,
-      "y": 180,
+      "y": 270,
       "uvlock": true
     },
     "facing=west,relative_direction=left,shape=outer_bottom": {
       "model": "betterbuilding:block/acacia_corner_outer"
     },
     "facing=west,relative_direction=left,shape=outer_top": {
-      "model": "betterbuilding:block/acacia_corner_outer",
-      "x": 90,
+      "model": "betterbuilding:block/acacia_corner_outer_mirrored",
+      "x": 180,
       "uvlock": true
     },
     "facing=west,relative_direction=left,shape=straight": {
@@ -186,18 +179,16 @@
     },
     "facing=west,relative_direction=right,shape=inner_bottom": {
       "model": "betterbuilding:block/acacia_corner_inner",
-      "y": 180,
+      "y": 90,
       "uvlock": true
     },
     "facing=west,relative_direction=right,shape=inner_top": {
       "model": "betterbuilding:block/acacia_corner_inner",
       "x": 180,
-      "y": 270,
       "uvlock": true
     },
     "facing=west,relative_direction=right,shape=outer_bottom": {
-      "model": "betterbuilding:block/acacia_corner_outer",
-      "x": 270,
+      "model": "betterbuilding:block/acacia_corner_outer_mirrored",
       "uvlock": true
     },
     "facing=west,relative_direction=right,shape=outer_top": {
@@ -207,7 +198,7 @@
     },
     "facing=west,relative_direction=right,shape=straight": {
       "model": "betterbuilding:block/acacia_corner",
-      "x": 180,
+      "y": 90,
       "uvlock": true
     }
   }

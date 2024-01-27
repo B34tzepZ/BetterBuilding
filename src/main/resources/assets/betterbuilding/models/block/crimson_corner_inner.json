@@ -1,5 +1,5 @@
 {
-  "parent": "betterbuilding:block/inner_corner",
+  "parent": "betterbuilding:block/corner_inner",
   "textures": {
     "bottom": "minecraft:block/crimson_planks",
     "top": "minecraft:block/crimson_planks",
