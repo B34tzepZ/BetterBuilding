@@ -42,9 +42,8 @@ public class ModRegistries {
         registry.add(ModBlocks.Sides.CRIMSON_SIDE, 0, 0);
         registry.add(ModBlocks.Sides.WARPED_SIDE, 0, 0);
 
-        //registry.add(ModTags.Blocks.WOODEN_SIDES,20,5);
+        //registry.add(ModTags.Blocks.WOODEN_SIDES,20,5);       Registry already frozen
         //registry.remove(ModTags.Blocks.NON_FLAMMABLE_WOOD);
-        //registry.add(ModTags.Blocks.NON_FLAMMABLE_WOOD, 0,0);
 
         registry.add(ModBlocks.Corners.OAK_CORNER,20,5);
         registry.add(ModBlocks.Corners.SPRUCE_CORNER,20,5);
@@ -52,8 +51,6 @@ public class ModRegistries {
         registry.add(ModBlocks.Corners.JUNGLE_CORNER,20,5);
         registry.add(ModBlocks.Corners.ACACIA_CORNER,20,5);
         registry.add(ModBlocks.Corners.DARK_OAK_CORNER,20,5);
-        registry.add(ModBlocks.Corners.CRIMSON_CORNER,0,0);
-        registry.add(ModBlocks.Corners.WARPED_CORNER,0,0);
 
         registry.add(ModBlocks.OAK_CHAIR,20,5);
         registry.add(ModBlocks.SPRUCE_CHAIR,20,5);
@@ -63,10 +60,5 @@ public class ModRegistries {
         registry.add(ModBlocks.DARK_OAK_CHAIR,20,5);
 
         registry.add(ModBlocks.OAK_TABLE,20,5);
-
-        registry.add(ModBlocks.TELEPORTER_BLOCK, 0,0);
-
-        registry.add(ModBlocks.FABRICATOR_BLOCK, 0,0);
-
     }
 }

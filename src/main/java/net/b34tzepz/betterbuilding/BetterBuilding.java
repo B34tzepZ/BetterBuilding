@@ -20,7 +20,7 @@ public class BetterBuilding implements ModInitializer {
 		ModItems.registerModItems();
 		ModBlockEntities.registerAllEntities();
 		ModRegistries.registerModStuffs();
-		ModScreenHandlers.registerAllScreenHandlers();;
+		ModScreenHandlers.registerAllScreenHandlers();
 		ModRecipes.registerRecipes();
 
 	}
