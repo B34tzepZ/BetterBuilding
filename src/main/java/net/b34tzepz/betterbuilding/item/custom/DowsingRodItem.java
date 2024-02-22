@@ -5,8 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
@@ -38,7 +37,7 @@ public class DowsingRodItem extends Item {
 
             if (!foundBlock) {
                 assert player != null;
-                player.sendMessage(new TranslatableText("item.betterbuilding.dowsing_rod.no_valuables"), false);
+                player.sendMessage(Text.translatable("item.betterbuilding.dowsing_rod.no_valuables"), false);
             }
         }
 
@@ -52,6 +51,6 @@ public class DowsingRodItem extends Item {
     }
 
     private void outputValuableCoordinates(BlockPos blockPos, PlayerEntity player, Block blockBelow) {
-        player.sendMessage(new LiteralText("Found " + blockBelow.asItem().getName().getString() + " at " + blockPos.getY()), false);
+        player.sendMessage(Text.of("Found " + blockBelow.asItem().getName().getString() + " at " + blockPos.getY()), false);
     }
 }

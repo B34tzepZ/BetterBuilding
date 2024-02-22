@@ -4,10 +4,9 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 
-import java.util.Random;
-
-public class OxidizableCornerBlock extends CornerBlock implements Oxidizable{
+public class OxidizableCornerBlock extends CornerBlock implements Oxidizable {
     private final net.minecraft.block.Oxidizable.OxidationLevel oxidationLevel;
 
     public OxidizableCornerBlock(net.minecraft.block.Oxidizable.OxidationLevel oxidationLevel, AbstractBlock.Settings settings) {

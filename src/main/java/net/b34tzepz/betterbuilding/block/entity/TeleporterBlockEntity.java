@@ -12,7 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -49,7 +48,7 @@ public class TeleporterBlockEntity extends BlockEntity implements NamedScreenHan
 
     @Override
     public Text getDisplayName() {
-        return new LiteralText("Teleporter Block");
+        return Text.of("Teleporter Block");
     }
 
     @Nullable

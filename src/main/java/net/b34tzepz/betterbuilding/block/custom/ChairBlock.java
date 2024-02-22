@@ -34,8 +34,8 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
+import net.minecraft.util.math.random.Random;
 
-import java.util.Random;
 import java.util.stream.Stream;
 
 public class ChairBlock extends BlockWithEntity implements BlockEntityProvider {

@@ -17,9 +17,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -112,7 +110,7 @@ public class FabricatorBlockEntity extends BlockEntity implements NamedScreenHan
 
     @Override
     public Text getDisplayName() {
-        return new TranslatableText("block.betterbuilding.fabricator");
+        return Text.translatable("block.betterbuilding.fabricator");
     }
 
     @Nullable

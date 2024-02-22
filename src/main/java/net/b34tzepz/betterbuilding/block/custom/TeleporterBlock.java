@@ -21,7 +21,7 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -40,9 +40,9 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
 
     public TeleporterBlock(Settings settings) {
         super(settings);
-        this.setDefaultState((BlockState)this.getDefaultState().with(PLAYING_SOUND, false));
-        this.setDefaultState((BlockState)this.getDefaultState().with(SOUND_COOLDOWN, 0));
-        this.setDefaultState((BlockState)this.getDefaultState().with(TELEPORT_COOLDOWN, 0));
+        this.setDefaultState(this.getDefaultState().with(PLAYING_SOUND, false));
+        this.setDefaultState(this.getDefaultState().with(SOUND_COOLDOWN, 0));
+        this.setDefaultState(this.getDefaultState().with(TELEPORT_COOLDOWN, 0));
     }
 
 
@@ -141,12 +141,12 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
             }
             else if(destnumber<1){
                 if (!world.isClient) if (entity instanceof PlayerEntity) ((PlayerEntity) entity).
-                        sendMessage(new TranslatableText("item.betterbuilding.teleporter_block.error_single"), false);
+                        sendMessage(Text.translatable("item.betterbuilding.teleporter_block.error_single"), false);
             }
             else {
                 if (!world.isClient) if (entity instanceof PlayerEntity) ((PlayerEntity) entity)
-                        .sendMessage(new TranslatableText("item.betterbuilding.teleporter_block.error_multiple" )
-                                .append(Integer.toString(+ (destnumber+1))), false);
+                        .sendMessage(Text.translatable("item.betterbuilding.teleporter_block.error_multiple" )
+                                .append(Integer.toString(destnumber+1)), false);
             }
 
             world.setBlockState(pos, state.with(TELEPORT_COOLDOWN, 0), NOTIFY_ALL);
