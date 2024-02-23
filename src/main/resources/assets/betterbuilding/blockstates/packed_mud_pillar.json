@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "betterbuilding:block/packed_mud_pillar",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "betterbuilding:block/packed_mud_pillar"
+    },
+    "axis=z": {
+      "model": "betterbuilding:block/packed_mud_pillar",
+      "x": 90
+    }
+  }
+}
