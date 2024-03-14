@@ -394,6 +394,8 @@ public class ModBlocks {
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.ANDESITE)), ModItemGroup.Pillars);
         public static final Block POLISHED_ANDESITE_PILLAR = registerBlock("polished_andesite_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_ANDESITE)), ModItemGroup.Pillars);
+        public static final Block DEEPSLATE_PILLAR = registerBlock("deepslate_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE)), ModItemGroup.Pillars);
         public static final Block DIRT_PILLAR = registerBlock("dirt_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.DIRT)), ModItemGroup.Pillars);
         public static final Block COARSE_DIRT_PILLAR = registerBlock("coarse_dirt_pillar",
@@ -414,9 +416,15 @@ public class ModBlocks {
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_PLANKS)), ModItemGroup.Pillars);
         public static final Block DARK_OAK_PLANK_PILLAR = registerBlock("dark_oak_plank_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.DARK_OAK_PLANKS)), ModItemGroup.Pillars);
+        public static final Block MANGROVE_PLANK_PILLAR = registerBlock("mangrove_plank_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.MANGROVE_PLANKS)), ModItemGroup.Pillars);
+        public static final Block CRIMSON_PLANK_PILLAR = registerBlock("crimson_plank_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_PLANKS)), ModItemGroup.Pillars);
+        public static final Block WARPED_PLANK_PILLAR = registerBlock("warped_plank_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.WARPED_PLANKS)), ModItemGroup.Pillars);
         public static final Block BEDROCK_PILLAR = registerBlock("bedrock_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.BEDROCK)), ModItemGroup.Pillars);
-        public static final Block LAPIS_BLOCK_PILLAR = registerBlock("lapis_block_pillar",
+        public static final Block LAPIS_PILLAR = registerBlock("lapis_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_BLOCK)), ModItemGroup.Pillars);
         public static final Block SANDSTONE_PILLAR = registerBlock("sandstone_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.SANDSTONE)), ModItemGroup.Pillars);
@@ -456,10 +464,12 @@ public class ModBlocks {
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.RED_WOOL)), ModItemGroup.Pillars);
         public static final Block BLACK_WOOL_PILLAR = registerBlock("black_wool_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.BLACK_WOOL)), ModItemGroup.Pillars);
-        public static final Block GOLD_BLOCK_PILLAR = registerBlock("gold_block_pillar",
+        public static final Block GOLD_PILLAR = registerBlock("gold_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.GOLD_BLOCK)), ModItemGroup.Pillars);
-        public static final Block IRON_BLOCK_PILLAR = registerBlock("iron_block_pillar",
+        public static final Block IRON_PILLAR = registerBlock("iron_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK)), ModItemGroup.Pillars);
+        public static final Block COPPER_PILLAR = registerBlock("copper_pillar",
+                new OxidizablePillarBlock(Oxidizable.OxidationLevel.UNAFFECTED ,FabricBlockSettings.copyOf(Blocks.COPPER_BLOCK)), ModItemGroup.Pillars);
         public static final Block BRICK_PILLAR = registerBlock("brick_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.BRICKS)), ModItemGroup.Pillars);
         public static final Block BOOKSHELF_PILLAR = registerBlock("bookshelf_pillar",
@@ -468,14 +478,20 @@ public class ModBlocks {
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.MOSSY_COBBLESTONE)), ModItemGroup.Pillars);
         public static final Block OBSIDIAN_PILLAR = registerBlock("obsidian_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.OBSIDIAN)), ModItemGroup.Pillars);
-        public static final Block DIAMOND_BLOCK_PILLAR = registerBlock("diamond_block_pillar",
+        public static final Block DIAMOND_PILLAR = registerBlock("diamond_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK)), ModItemGroup.Pillars);
-        public static final Block SNOW_BLOCK_PILLAR = registerBlock("snow_block_pillar",
+        public static final Block SNOW_PILLAR = registerBlock("snow_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.SNOW_BLOCK)), ModItemGroup.Pillars);
         public static final Block CLAY_PILLAR = registerBlock("clay_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.CLAY)), ModItemGroup.Pillars);
+        public static final Block SOUL_SAND_PILLAR = registerBlock("soul_sand_pillar",
+                new PillarSoulSandBlock(FabricBlockSettings.copyOf(Blocks.SOUL_SAND)), ModItemGroup.Pillars);
         public static final Block SOUL_SOIL_PILLAR = registerBlock("soul_soil_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.SOUL_SOIL)), ModItemGroup.Pillars);
+        public static final Block BASALT_PILLAR = registerBlock("basalt_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.BASALT)), ModItemGroup.Pillars);
+        public static final Block POLISHED_BASALT_PILLAR = registerBlock("polished_basalt_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_BASALT)), ModItemGroup.Pillars);
         public static final Block GLOWSTONE_PILLAR = registerBlock("glowstone_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.GLOWSTONE)), ModItemGroup.Pillars);
         public static final Block STONE_BRICK_PILLAR = registerBlock("stone_brick_pillar",
@@ -494,11 +510,11 @@ public class ModBlocks {
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.NETHER_BRICKS)), ModItemGroup.Pillars);
         public static final Block END_STONE_PILLAR = registerBlock("end_stone_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.END_STONE)), ModItemGroup.Pillars);
-        public static final Block EMERALD_BLOCK_PILLAR = registerBlock("emerald_block_pillar",
+        public static final Block EMERALD_PILLAR = registerBlock("emerald_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.EMERALD_BLOCK)), ModItemGroup.Pillars);
-        public static final Block QUARTZ_BLOCK_PILLAR = registerBlock("quartz_block_pillar",
+        public static final Block QUARTZ_PILLAR = registerBlock("quartz_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK)), ModItemGroup.Pillars);
-        public static final Block CHISELED_QUARTZ_BLOCK_PILLAR = registerBlock("chiseled_quartz_block_pillar",
+        public static final Block CHISELED_QUARTZ_PILLAR = registerBlock("chiseled_quartz_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.CHISELED_QUARTZ_BLOCK)), ModItemGroup.Pillars);
         public static final Block WHITE_TERRACOTTA_PILLAR = registerBlock("white_terracotta_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.WHITE_TERRACOTTA)), ModItemGroup.Pillars);
@@ -542,7 +558,7 @@ public class ModBlocks {
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.SEA_LANTERN)), ModItemGroup.Pillars);
         public static final Block TERRACOTTA_PILLAR = registerBlock("terracotta_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.TERRACOTTA)), ModItemGroup.Pillars);
-        public static final Block COAL_BLOCK_PILLAR = registerBlock("coal_block_pillar",
+        public static final Block COAL_PILLAR = registerBlock("coal_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.COAL_BLOCK)), ModItemGroup.Pillars);
         public static final Block PACKED_ICE_PILLAR = registerBlock("packed_ice_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.PACKED_ICE)), ModItemGroup.Pillars);
@@ -552,6 +568,8 @@ public class ModBlocks {
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.CHISELED_RED_SANDSTONE)), ModItemGroup.Pillars);
         public static final Block CUT_RED_SANDSTONE_PILLAR = registerBlock("cut_red_sandstone_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.CUT_RED_SANDSTONE)), ModItemGroup.Pillars);
+        public static final Block MAGMA_PILLAR = registerBlock("magma_pillar",
+                new PillarMagmaBlock(FabricBlockSettings.copyOf(Blocks.MAGMA_BLOCK)), ModItemGroup.Pillars);
         public static final Block SMOOTH_STONE_PILLAR = registerBlock("smooth_stone_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_STONE)), ModItemGroup.Pillars);
         public static final Block SMOOTH_SANDSTONE_PILLAR = registerBlock("smooth_sandstone_pillar",
@@ -560,14 +578,20 @@ public class ModBlocks {
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_QUARTZ)), ModItemGroup.Pillars);
         public static final Block SMOOTH_RED_SANDSTONE_PILLAR = registerBlock("smooth_red_sandstone_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_RED_SANDSTONE)), ModItemGroup.Pillars);
-        public static final Block PURPUR_BLOCK_PILLAR = registerBlock("purpur_block_pillar",
+        public static final Block PURPUR_PILLAR = registerBlock("purpur_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.PURPUR_BLOCK)), ModItemGroup.Pillars);
+        public static final Block PURPUR_PILLAR_PILLAR = registerBlock("purpur_pillar_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.PURPUR_PILLAR)), ModItemGroup.Pillars);
+        public static final Block ICE_PILLAR = registerBlock("ice_pillar",
+                new PillarIceBlock(FabricBlockSettings.copyOf(Blocks.ICE)), ModItemGroup.Pillars);
         public static final Block END_STONE_BRICK_PILLAR = registerBlock("end_stone_brick_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.END_STONE_BRICKS)), ModItemGroup.Pillars);
-        public static final Block NETHER_WART_BLOCK_PILLAR = registerBlock("nether_wart_block_pillar",
+        public static final Block NETHER_WART_PILLAR = registerBlock("nether_wart_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.NETHER_WART_BLOCK)), ModItemGroup.Pillars);
         public static final Block RED_NETHER_BRICK_PILLAR = registerBlock("red_nether_brick_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.RED_NETHER_BRICKS)), ModItemGroup.Pillars);
+        public static final Block BONE_PILLAR = registerBlock("bone_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.BONE_BLOCK)), ModItemGroup.Pillars);
         public static final Block WHITE_CONCRETE_PILLAR = registerBlock("white_concrete_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.WHITE_CONCRETE)), ModItemGroup.Pillars);
         public static final Block ORANGE_CONCRETE_PILLAR = registerBlock("orange_concrete_pillar",
@@ -600,34 +624,62 @@ public class ModBlocks {
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.RED_CONCRETE)), ModItemGroup.Pillars);
         public static final Block BLACK_CONCRETE_PILLAR = registerBlock("black_concrete_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.BLACK_CONCRETE)), ModItemGroup.Pillars);
-        public static final Block DRIED_KELP_BLOCK_PILLAR = registerBlock("dried_kelp_block_pillar",
+        public static final Block DRIED_KELP_PILLAR = registerBlock("dried_kelp_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.DRIED_KELP_BLOCK)), ModItemGroup.Pillars);
-        public static final Block DEAD_TUBE_CORAL_BLOCK_PILLAR = registerBlock("dead_tube_coral_block_pillar",
+        public static final Block DEAD_TUBE_CORAL_PILLAR = registerBlock("dead_tube_coral_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.DEAD_TUBE_CORAL_BLOCK)), ModItemGroup.Pillars);
-        public static final Block DEAD_BRAIN_CORAL_BLOCK_PILLAR = registerBlock("dead_brain_coral_block_pillar",
+        public static final Block DEAD_BRAIN_CORAL_PILLAR = registerBlock("dead_brain_coral_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.DEAD_BRAIN_CORAL_BLOCK)), ModItemGroup.Pillars);
-        public static final Block DEAD_BUBBLE_CORAL_BLOCK_PILLAR = registerBlock("dead_bubble_coral_block_pillar",
+        public static final Block DEAD_BUBBLE_CORAL_PILLAR = registerBlock("dead_bubble_coral_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.DEAD_BUBBLE_CORAL_BLOCK)), ModItemGroup.Pillars);
-        public static final Block DEAD_FIRE_CORAL_BLOCK_PILLAR = registerBlock("dead_fire_coral_block_pillar",
+        public static final Block DEAD_FIRE_CORAL_PILLAR = registerBlock("dead_fire_coral_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.DEAD_FIRE_CORAL_BLOCK)), ModItemGroup.Pillars);
-        public static final Block DEAD_HORN_CORAL_BLOCK_PILLAR = registerBlock("dead_horn_coral_block_pillar",
+        public static final Block DEAD_HORN_CORAL_PILLAR = registerBlock("dead_horn_coral_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.DEAD_HORN_CORAL_BLOCK)), ModItemGroup.Pillars);
-        public static final Block WARPED_WART_BLOCK_PILLAR = registerBlock("warped_wart_block_pillar",
+        public static final Block TUBE_CORAL_PILLAR = registerBlock("tube_coral_pillar",
+                new PillarCoralBlock(DEAD_TUBE_CORAL_PILLAR, FabricBlockSettings.copyOf(Blocks.TUBE_CORAL_BLOCK)), ModItemGroup.Pillars);
+        public static final Block BRAIN_CORAL_PILLAR = registerBlock("brain_coral_pillar",
+                new PillarCoralBlock(DEAD_BRAIN_CORAL_PILLAR, FabricBlockSettings.copyOf(Blocks.BRAIN_CORAL_BLOCK)), ModItemGroup.Pillars);
+        public static final Block BUBBLE_CORAL_PILLAR = registerBlock("bubble_coral_pillar",
+                new PillarCoralBlock(DEAD_BUBBLE_CORAL_PILLAR, FabricBlockSettings.copyOf(Blocks.BUBBLE_CORAL_BLOCK)), ModItemGroup.Pillars);
+        public static final Block FIRE_CORAL_PILLAR = registerBlock("fire_coral_pillar",
+                new PillarCoralBlock(DEAD_FIRE_CORAL_PILLAR, FabricBlockSettings.copyOf(Blocks.FIRE_CORAL_BLOCK)), ModItemGroup.Pillars);
+        public static final Block HORN_CORAL_PILLAR = registerBlock("horn_coral_pillar",
+                new PillarCoralBlock(DEAD_HORN_CORAL_PILLAR, FabricBlockSettings.copyOf(Blocks.HORN_CORAL_BLOCK)), ModItemGroup.Pillars);
+        public static final Block BLUE_ICE_PILLAR = registerBlock("blue_ice_pillar",
+                new PillarTransparentBlock(FabricBlockSettings.copyOf(Blocks.BLUE_ICE)), ModItemGroup.Pillars);
+        public static final Block REDSTONE_PILLAR = registerBlock("redstone_pillar",
+                new PillarRedstoneBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_BLOCK)), ModItemGroup.Pillars);
+        public static final Block TNT_PILLAR = registerBlock("tnt_pillar",
+                new PillarTntBlock(FabricBlockSettings.copyOf(Blocks.TNT)), ModItemGroup.Pillars);
+        public static final Block WARPED_WART_PILLAR = registerBlock("warped_wart_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.WARPED_WART_BLOCK)), ModItemGroup.Pillars);
         public static final Block SHROOMLIGHT_PILLAR = registerBlock("shroomlight_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.SHROOMLIGHT)), ModItemGroup.Pillars);
-        public static final Block CRIMSON_PLANK_PILLAR = registerBlock("crimson_plank_pillar",
-                new PillarBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_PLANKS)), ModItemGroup.Pillars);
-        public static final Block WARPED_PLANK_PILLAR = registerBlock("warped_plank_pillar",
-                new PillarBlock(FabricBlockSettings.copyOf(Blocks.WARPED_PLANKS)), ModItemGroup.Pillars);
-        public static final Block HONEYCOMB_BLOCK_PILLAR = registerBlock("honeycomb_block_pillar",
+        public static final Block HONEYCOMB_PILLAR = registerBlock("honeycomb_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.HONEYCOMB_BLOCK)), ModItemGroup.Pillars);
-        public static final Block NETHERITE_BLOCK_PILLAR = registerBlock("netherite_block_pillar",
+        public static final Block NETHERITE_PILLAR = registerBlock("netherite_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.NETHERITE_BLOCK)), ModItemGroup.Pillars);
+        public static final Block EXPOSED_COPPER_PILLAR = registerBlock("exposed_copper_pillar",
+                new OxidizablePillarBlock(Oxidizable.OxidationLevel.EXPOSED, FabricBlockSettings.copyOf(Blocks.EXPOSED_COPPER)), ModItemGroup.Pillars);
+        public static final Block WEATHERED_COPPER_PILLAR = registerBlock("weathered_copper_pillar",
+                new OxidizablePillarBlock(Oxidizable.OxidationLevel.WEATHERED, FabricBlockSettings.copyOf(Blocks.WEATHERED_COPPER)), ModItemGroup.Pillars);
+        public static final Block OXIDIZED_COPPER_PILLAR = registerBlock("oxidized_copper_pillar",
+                new OxidizablePillarBlock(Oxidizable.OxidationLevel.OXIDIZED, FabricBlockSettings.copyOf(Blocks.OXIDIZED_COPPER)), ModItemGroup.Pillars);
+        public static final Block CUT_COPPER_PILLAR = registerBlock("cut_copper_pillar",
+                new OxidizablePillarBlock(Oxidizable.OxidationLevel.UNAFFECTED ,FabricBlockSettings.copyOf(Blocks.CUT_COPPER)), ModItemGroup.Pillars);
+        public static final Block EXPOSED_CUT_COPPER_PILLAR = registerBlock("exposed_cut_copper_pillar",
+                new OxidizablePillarBlock(Oxidizable.OxidationLevel.EXPOSED ,FabricBlockSettings.copyOf(Blocks.EXPOSED_CUT_COPPER)), ModItemGroup.Pillars);
+        public static final Block WEATHERED_CUT_COPPER_PILLAR = registerBlock("weathered_cut_copper_pillar",
+                new OxidizablePillarBlock(Oxidizable.OxidationLevel.WEATHERED ,FabricBlockSettings.copyOf(Blocks.WEATHERED_CUT_COPPER)), ModItemGroup.Pillars);
+        public static final Block OXIDIZED_CUT_COPPER_PILLAR = registerBlock("oxidized_cut_copper_pillar",
+                new OxidizablePillarBlock(Oxidizable.OxidationLevel.OXIDIZED ,FabricBlockSettings.copyOf(Blocks.OXIDIZED_CUT_COPPER)), ModItemGroup.Pillars);
         public static final Block ANCIENT_DEBRIS_PILLAR = registerBlock("ancient_debris_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.ANCIENT_DEBRIS)), ModItemGroup.Pillars);
         public static final Block LODESTONE_PILLAR = registerBlock("lodestone_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.LODESTONE)), ModItemGroup.Pillars);
+        public static final Block CRYING_OBSIDIAN_PILLAR = registerBlock("crying_obsidian_pillar",
+                new PillarCryingObsidianBlock(FabricBlockSettings.copyOf(Blocks.CRYING_OBSIDIAN)), ModItemGroup.Pillars);
         public static final Block BLACKSTONE_PILLAR = registerBlock("blackstone_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.BLACKSTONE)), ModItemGroup.Pillars);
         public static final Block POLISHED_BLACKSTONE_PILLAR = registerBlock("polished_blackstone_pillar",
@@ -646,11 +698,47 @@ public class ModBlocks {
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.CRACKED_NETHER_BRICKS)), ModItemGroup.Pillars);
         public static final Block QUARTZ_BRICK_PILLAR = registerBlock("quartz_brick_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_BRICKS)), ModItemGroup.Pillars);
+        public static final Block QUARTZ_PILLAR_PILLAR = registerBlock("quartz_pillar_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_PILLAR)), ModItemGroup.Pillars);
+        public static final Block HAY_PILLAR = registerBlock("hay_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.HAY_BLOCK)), ModItemGroup.Pillars);
+        public static final Block WHITE_STAINED_GLASS_PILLAR = registerBlock("white_stained_glass_pillar",
+                new PillarGlassBlock(FabricBlockSettings.copyOf(Blocks.WHITE_STAINED_GLASS)), ModItemGroup.Pillars);
+        public static final Block ORANGE_STAINED_GLASS_PILLAR = registerBlock("orange_stained_glass_pillar",
+                new PillarGlassBlock(FabricBlockSettings.copyOf(Blocks.ORANGE_STAINED_GLASS)), ModItemGroup.Pillars);
+        public static final Block MAGENTA_STAINED_GLASS_PILLAR = registerBlock("magenta_stained_glass_pillar",
+                new PillarGlassBlock(FabricBlockSettings.copyOf(Blocks.MAGENTA_STAINED_GLASS)), ModItemGroup.Pillars);
+        public static final Block LIGHT_BLUE_STAINED_GLASS_PILLAR = registerBlock("light_blue_stained_glass_pillar",
+                new PillarGlassBlock(FabricBlockSettings.copyOf(Blocks.LIGHT_BLUE_STAINED_GLASS)), ModItemGroup.Pillars);
+        public static final Block YELLOW_STAINED_GLASS_PILLAR = registerBlock("yellow_stained_glass_pillar",
+                new PillarGlassBlock(FabricBlockSettings.copyOf(Blocks.YELLOW_STAINED_GLASS)), ModItemGroup.Pillars);
+        public static final Block LIME_STAINED_GLASS_PILLAR = registerBlock("lime_stained_glass_pillar",
+                new PillarGlassBlock(FabricBlockSettings.copyOf(Blocks.LIME_STAINED_GLASS)), ModItemGroup.Pillars);
+        public static final Block PINK_STAINED_GLASS_PILLAR = registerBlock("pink_stained_glass_pillar",
+                new PillarGlassBlock(FabricBlockSettings.copyOf(Blocks.PINK_STAINED_GLASS)), ModItemGroup.Pillars);
+        public static final Block GRAY_STAINED_GLASS_PILLAR = registerBlock("gray_stained_glass_pillar",
+                new PillarGlassBlock(FabricBlockSettings.copyOf(Blocks.GRAY_STAINED_GLASS)), ModItemGroup.Pillars);
+        public static final Block LIGHT_GRAY_STAINED_GLASS_PILLAR = registerBlock("light_gray_stained_glass_pillar",
+                new PillarGlassBlock(FabricBlockSettings.copyOf(Blocks.LIGHT_GRAY_STAINED_GLASS)), ModItemGroup.Pillars);
+        public static final Block CYAN_STAINED_GLASS_PILLAR = registerBlock("cyan_stained_glass_pillar",
+                new PillarGlassBlock(FabricBlockSettings.copyOf(Blocks.CYAN_STAINED_GLASS)), ModItemGroup.Pillars);
+        public static final Block PURPLE_STAINED_GLASS_PILLAR = registerBlock("purple_stained_glass_pillar",
+                new PillarGlassBlock(FabricBlockSettings.copyOf(Blocks.PURPLE_STAINED_GLASS)), ModItemGroup.Pillars);
+        public static final Block BLUE_STAINED_GLASS_PILLAR = registerBlock("blue_stained_glass_pillar",
+                new PillarGlassBlock(FabricBlockSettings.copyOf(Blocks.BLUE_STAINED_GLASS)), ModItemGroup.Pillars);
+        public static final Block BROWN_STAINED_GLASS_PILLAR = registerBlock("brown_stained_glass_pillar",
+                new PillarGlassBlock(FabricBlockSettings.copyOf(Blocks.BROWN_STAINED_GLASS)), ModItemGroup.Pillars);
+        public static final Block GREEN_STAINED_GLASS_PILLAR = registerBlock("green_stained_glass_pillar",
+                new PillarGlassBlock(FabricBlockSettings.copyOf(Blocks.GREEN_STAINED_GLASS)), ModItemGroup.Pillars);
+        public static final Block RED_STAINED_GLASS_PILLAR = registerBlock("red_stained_glass_pillar",
+                new PillarGlassBlock(FabricBlockSettings.copyOf(Blocks.RED_STAINED_GLASS)), ModItemGroup.Pillars);
+        public static final Block BLACK_STAINED_GLASS_PILLAR = registerBlock("black_stained_glass_pillar",
+                new PillarGlassBlock(FabricBlockSettings.copyOf(Blocks.BLACK_STAINED_GLASS)), ModItemGroup.Pillars);
         public static final Block TUFF_PILLAR = registerBlock("tuff_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.TUFF)), ModItemGroup.Pillars);
         public static final Block CALCITE_PILLAR = registerBlock("calcite_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.CALCITE)), ModItemGroup.Pillars);
-        public static final Block WAXED_COPPER_BLOCK_PILLAR = registerBlock("waxed_copper_block_pillar",
+        public static final Block WAXED_COPPER_PILLAR = registerBlock("waxed_copper_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.WAXED_COPPER_BLOCK)), ModItemGroup.Pillars);
         public static final Block WAXED_WEATHERED_COPPER_PILLAR = registerBlock("waxed_weathered_copper_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.WAXED_WEATHERED_COPPER)), ModItemGroup.Pillars);
@@ -658,15 +746,91 @@ public class ModBlocks {
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.WAXED_EXPOSED_COPPER)), ModItemGroup.Pillars);
         public static final Block WAXED_OXIDIZED_COPPER_PILLAR = registerBlock("waxed_oxidized_copper_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.WAXED_OXIDIZED_COPPER)), ModItemGroup.Pillars);
-        public static final Block WAXED_OXIDIZED_CUT_COPPER_PILLAR = registerBlock("waxed_oxidized_cut_copper_pillar",
-                new PillarBlock(FabricBlockSettings.copyOf(Blocks.WAXED_OXIDIZED_CUT_COPPER)), ModItemGroup.Pillars);
-        public static final Block WAXED_WEATHERED_CUT_COPPER_PILLAR = registerBlock("waxed_weathered_cut_copper_pillar",
-                new PillarBlock(FabricBlockSettings.copyOf(Blocks.WAXED_WEATHERED_CUT_COPPER)), ModItemGroup.Pillars);
-        public static final Block WAXED_EXPOSED_CUT_COPPER_PILLAR = registerBlock("waxed_exposed_cut_copper_pillar",
-                new PillarBlock(FabricBlockSettings.copyOf(Blocks.WAXED_EXPOSED_CUT_COPPER)), ModItemGroup.Pillars);
         public static final Block WAXED_CUT_COPPER_PILLAR = registerBlock("waxed_cut_copper_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.WAXED_CUT_COPPER)), ModItemGroup.Pillars);
-        public static final Block DRIPSTONE_BLOCK_PILLAR = registerBlock("dripstone_block_pillar",
+        public static final Block WAXED_EXPOSED_CUT_COPPER_PILLAR = registerBlock("waxed_exposed_cut_copper_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.WAXED_EXPOSED_CUT_COPPER)), ModItemGroup.Pillars);
+        public static final Block WAXED_WEATHERED_CUT_COPPER_PILLAR = registerBlock("waxed_weathered_cut_copper_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.WAXED_WEATHERED_CUT_COPPER)), ModItemGroup.Pillars);
+        public static final Block WAXED_OXIDIZED_CUT_COPPER_PILLAR = registerBlock("waxed_oxidized_cut_copper_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.WAXED_OXIDIZED_CUT_COPPER)), ModItemGroup.Pillars);
+        public static final Block OAK_LOG_PILLAR = registerBlock("oak_log_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG)), ModItemGroup.Pillars);
+        public static final Block SPRUCE_LOG_PILLAR = registerBlock("spruce_log_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.SPRUCE_LOG)), ModItemGroup.Pillars);
+        public static final Block BIRCH_LOG_PILLAR = registerBlock("birch_log_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.BIRCH_LOG)), ModItemGroup.Pillars);
+        public static final Block JUNGLE_LOG_PILLAR = registerBlock("jungle_log_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.JUNGLE_LOG)), ModItemGroup.Pillars);
+        public static final Block ACACIA_LOG_PILLAR = registerBlock("acacia_log_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_LOG)), ModItemGroup.Pillars);
+        public static final Block DARK_OAK_LOG_PILLAR = registerBlock("dark_oak_log_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.DARK_OAK_LOG)), ModItemGroup.Pillars);
+        public static final Block MANGROVE_LOG_PILLAR = registerBlock("mangrove_log_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.MANGROVE_LOG)), ModItemGroup.Pillars);
+        public static final Block CRIMSON_STEM_PILLAR = registerBlock("crimson_stem_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_STEM)), ModItemGroup.Pillars);
+        public static final Block WARPED_STEM_PILLAR = registerBlock("warped_stem_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.WARPED_STEM)), ModItemGroup.Pillars);
+        public static final Block STRIPPED_OAK_LOG_PILLAR = registerBlock("stripped_oak_log_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_LOG)), ModItemGroup.Pillars);
+        public static final Block STRIPPED_SPRUCE_LOG_PILLAR = registerBlock("stripped_spruce_log_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_SPRUCE_LOG)), ModItemGroup.Pillars);
+        public static final Block STRIPPED_BIRCH_LOG_PILLAR = registerBlock("stripped_birch_log_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_BIRCH_LOG)), ModItemGroup.Pillars);
+        public static final Block STRIPPED_JUNGLE_LOG_PILLAR = registerBlock("stripped_jungle_log_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_JUNGLE_LOG)), ModItemGroup.Pillars);
+        public static final Block STRIPPED_ACACIA_LOG_PILLAR = registerBlock("stripped_acacia_log_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_ACACIA_LOG)), ModItemGroup.Pillars);
+        public static final Block STRIPPED_DARK_OAK_LOG_PILLAR = registerBlock("stripped_dark_oak_log_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_DARK_OAK_LOG)), ModItemGroup.Pillars);
+        public static final Block STRIPPED_MANGROVE_LOG_PILLAR = registerBlock("stripped_mangrove_log_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_MANGROVE_LOG)), ModItemGroup.Pillars);
+        public static final Block STRIPPED_CRIMSON_STEM_PILLAR = registerBlock("stripped_crimson_stem_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_CRIMSON_STEM)), ModItemGroup.Pillars);
+        public static final Block STRIPPED_WARPED_STEM_PILLAR = registerBlock("stripped_warped_stem_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_WARPED_STEM)), ModItemGroup.Pillars);
+        public static final Block STRIPPED_OAK_WOOD_PILLAR = registerBlock("stripped_oak_wood_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_WOOD)), ModItemGroup.Pillars);
+        public static final Block STRIPPED_SPRUCE_WOOD_PILLAR = registerBlock("stripped_spruce_wood_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_SPRUCE_WOOD)), ModItemGroup.Pillars);
+        public static final Block STRIPPED_BIRCH_WOOD_PILLAR = registerBlock("stripped_birch_wood_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_BIRCH_WOOD)), ModItemGroup.Pillars);
+        public static final Block STRIPPED_JUNGLE_WOOD_PILLAR = registerBlock("stripped_jungle_wood_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_JUNGLE_WOOD)), ModItemGroup.Pillars);
+        public static final Block STRIPPED_ACACIA_WOOD_PILLAR = registerBlock("stripped_acacia_wood_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_ACACIA_WOOD)), ModItemGroup.Pillars);
+        public static final Block STRIPPED_DARK_OAK_WOOD_PILLAR = registerBlock("stripped_dark_oak_wood_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_DARK_OAK_WOOD)), ModItemGroup.Pillars);
+        public static final Block STRIPPED_MANGROVE_WOOD_PILLAR = registerBlock("stripped_mangrove_wood_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_MANGROVE_WOOD)), ModItemGroup.Pillars);
+        public static final Block STRIPPED_CRIMSON_HYPHAE_PILLAR = registerBlock("stripped_crimson_hyphae_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_CRIMSON_HYPHAE)), ModItemGroup.Pillars);
+        public static final Block STRIPPED_WARPED_HYPHAE_PILLAR = registerBlock("stripped_warped_hyphae_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_WARPED_HYPHAE)), ModItemGroup.Pillars);
+        public static final Block OAK_WOOD_PILLAR = registerBlock("oak_wood_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD)), ModItemGroup.Pillars);
+        public static final Block SPRUCE_WOOD_PILLAR = registerBlock("spruce_wood_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.SPRUCE_WOOD)), ModItemGroup.Pillars);
+        public static final Block BIRCH_WOOD_PILLAR = registerBlock("birch_wood_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.BIRCH_WOOD)), ModItemGroup.Pillars);
+        public static final Block JUNGLE_WOOD_PILLAR = registerBlock("jungle_wood_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.JUNGLE_WOOD)), ModItemGroup.Pillars);
+        public static final Block ACACIA_WOOD_PILLAR = registerBlock("acacia_wood_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.ACACIA_WOOD)), ModItemGroup.Pillars);
+        public static final Block DARK_OAK_WOOD_PILLAR = registerBlock("dark_oak_wood_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.DARK_OAK_WOOD)), ModItemGroup.Pillars);
+        public static final Block MANGROVE_WOOD_PILLAR = registerBlock("mangrove_wood_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.MANGROVE_WOOD)), ModItemGroup.Pillars);
+        public static final Block CRIMSON_HYPHAE_PILLAR = registerBlock("crimson_hyphae_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.CRIMSON_HYPHAE)), ModItemGroup.Pillars);
+        public static final Block WARPED_HYPHAE_PILLAR = registerBlock("warped_hyphae_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.WARPED_HYPHAE)), ModItemGroup.Pillars);
+        public static final Block GLASS_PILLAR = registerBlock("glass_pillar",
+                new PillarGlassBlock(FabricBlockSettings.copyOf(Blocks.GLASS)), ModItemGroup.Pillars);
+        public static final Block TINTED_GLASS_PILLAR = registerBlock("tinted_glass_pillar",
+                new PillarTintedGlassBlock(FabricBlockSettings.copyOf(Blocks.TINTED_GLASS)), ModItemGroup.Pillars);
+        public static final Block DRIPSTONE_PILLAR = registerBlock("dripstone_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.DRIPSTONE_BLOCK)), ModItemGroup.Pillars);
         public static final Block COBBLED_DEEPSLATE_PILLAR = registerBlock("cobbled_deepslate_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.COBBLED_DEEPSLATE)), ModItemGroup.Pillars);
@@ -678,18 +842,28 @@ public class ModBlocks {
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS)), ModItemGroup.Pillars);
         public static final Block CHISELED_DEEPSLATE_PILLAR = registerBlock("chiseled_deepslate_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.CHISELED_DEEPSLATE)), ModItemGroup.Pillars);
+        public static final Block MUSHROOM_STEM_PILLAR = registerBlock("mushroom_stem_pillar",
+                new PillarMushroomBlock(FabricBlockSettings.copyOf(Blocks.MUSHROOM_STEM)), ModItemGroup.Pillars);
         public static final Block CRACKED_DEEPSLATE_BRICK_PILLAR = registerBlock("cracked_deepslate_brick_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.CRACKED_DEEPSLATE_BRICKS)), ModItemGroup.Pillars);
         public static final Block CRACKED_DEEPSLATE_TILE_PILLAR = registerBlock("cracked_deepslate_tile_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.CRACKED_DEEPSLATE_TILES)), ModItemGroup.Pillars);
         public static final Block SMOOTH_BASALT_PILLAR = registerBlock("smooth_basalt_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.SMOOTH_BASALT)), ModItemGroup.Pillars);
-        public static final Block RAW_IRON_BLOCK_PILLAR = registerBlock("raw_iron_block_pillar",
+        public static final Block RAW_IRON_PILLAR = registerBlock("raw_iron_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.RAW_IRON_BLOCK)), ModItemGroup.Pillars);
-        public static final Block RAW_COPPER_BLOCK_PILLAR = registerBlock("raw_copper_block_pillar",
+        public static final Block RAW_COPPER_PILLAR = registerBlock("raw_copper_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.RAW_COPPER_BLOCK)), ModItemGroup.Pillars);
-        public static final Block RAW_GOLD_BLOCK_PILLAR = registerBlock("raw_gold_block_pillar",
+        public static final Block RAW_GOLD_PILLAR = registerBlock("raw_gold_pillar",
                 new PillarBlock(FabricBlockSettings.copyOf(Blocks.RAW_GOLD_BLOCK)), ModItemGroup.Pillars);
+        public static final Block AMETHYST_PILLAR = registerBlock("amethyst_pillar",
+                new PillarAmethystBlock(FabricBlockSettings.copyOf(Blocks.AMETHYST_BLOCK)), ModItemGroup.Pillars);
+        public static final Block OCHRE_FROGLIGHT_PILLAR = registerBlock("ochre_froglight_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.OCHRE_FROGLIGHT)), ModItemGroup.Pillars);
+        public static final Block VERDANT_FROGLIGHT_PILLAR = registerBlock("verdant_froglight_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.VERDANT_FROGLIGHT)), ModItemGroup.Pillars);
+        public static final Block PEARLESCENT_FROGLIGHT_PILLAR = registerBlock("pearlescent_froglight_pillar",
+                new PillarBlock(FabricBlockSettings.copyOf(Blocks.PEARLESCENT_FROGLIGHT)), ModItemGroup.Pillars);
     }
 
     private static Block registerBlock(String name, Block block, ItemGroup group) {
