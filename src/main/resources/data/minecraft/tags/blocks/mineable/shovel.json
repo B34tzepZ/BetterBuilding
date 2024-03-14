@@ -1,10 +1,12 @@
 {
   "replace": false,
   "values": [
-    "betterbuilding:clay_pillar",
     "betterbuilding:dirt_pillar",
     "betterbuilding:coarse_dirt_pillar",
-    "betterbuilding:snow_block_pillar",
+    "betterbuilding:mud_pillar",
+    "betterbuilding:snow_pillar",
+    "betterbuilding:clay_pillar",
+    "betterbuilding:soul_sand_pillar",
     "betterbuilding:soul_soil_pillar"
   ]
 }
