@@ -18,7 +18,14 @@ public interface Oxidizable extends Degradable<net.minecraft.block.Oxidizable.Ox
             .put(ModBlocks.Sides.WEATHERED_CUT_COPPER_SIDE, ModBlocks.Sides.OXIDIZED_CUT_COPPER_SIDE)
             .put(ModBlocks.Corners.CUT_COPPER_CORNER, ModBlocks.Corners.EXPOSED_CUT_COPPER_CORNER)
             .put(ModBlocks.Corners.EXPOSED_CUT_COPPER_CORNER, ModBlocks.Corners.WEATHERED_CUT_COPPER_CORNER)
-            .put(ModBlocks.Corners.WEATHERED_CUT_COPPER_CORNER, ModBlocks.Corners.OXIDIZED_CUT_COPPER_CORNER)).build());
+            .put(ModBlocks.Corners.WEATHERED_CUT_COPPER_CORNER, ModBlocks.Corners.OXIDIZED_CUT_COPPER_CORNER)
+            .put(ModBlocks.Pillars.COPPER_PILLAR, ModBlocks.Pillars.EXPOSED_COPPER_PILLAR)
+            .put(ModBlocks.Pillars.EXPOSED_COPPER_PILLAR, ModBlocks.Pillars.WEATHERED_COPPER_PILLAR)
+            .put(ModBlocks.Pillars.WEATHERED_COPPER_PILLAR, ModBlocks.Pillars.OXIDIZED_COPPER_PILLAR)
+            .put(ModBlocks.Pillars.CUT_COPPER_PILLAR, ModBlocks.Pillars.EXPOSED_CUT_COPPER_PILLAR)
+            .put(ModBlocks.Pillars.EXPOSED_CUT_COPPER_PILLAR, ModBlocks.Pillars.WEATHERED_CUT_COPPER_PILLAR)
+            .put(ModBlocks.Pillars.WEATHERED_CUT_COPPER_PILLAR, ModBlocks.Pillars.OXIDIZED_CUT_COPPER_PILLAR))
+            .build());
 
     Supplier<BiMap<Block, Block>> OXIDATION_LEVEL_DECREASES = Suppliers.memoize(() -> OXIDATION_LEVEL_INCREASES.get().inverse());
 
