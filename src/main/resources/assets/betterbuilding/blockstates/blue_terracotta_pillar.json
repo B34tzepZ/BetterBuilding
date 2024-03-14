@@ -3,14 +3,16 @@
     "axis=x": {
       "model": "betterbuilding:block/blue_terracotta_pillar",
       "x": 90,
-      "y": 90
+      "y": 90,
+      "uvlock": true
     },
     "axis=y": {
       "model": "betterbuilding:block/blue_terracotta_pillar"
     },
     "axis=z": {
       "model": "betterbuilding:block/blue_terracotta_pillar",
-      "x": 90
+      "x": 90,
+      "uvlock": true
     }
   }
 }

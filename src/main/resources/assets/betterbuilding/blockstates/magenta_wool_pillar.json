@@ -3,14 +3,16 @@
     "axis=x": {
       "model": "betterbuilding:block/magenta_wool_pillar",
       "x": 90,
-      "y": 90
+      "y": 90,
+      "uvlock": true
     },
     "axis=y": {
       "model": "betterbuilding:block/magenta_wool_pillar"
     },
     "axis=z": {
       "model": "betterbuilding:block/magenta_wool_pillar",
-      "x": 90
+      "x": 90,
+      "uvlock": true
     }
   }
 }
