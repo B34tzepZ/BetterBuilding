@@ -42,7 +42,7 @@ public class PillarBlock extends net.minecraft.block.PillarBlock implements Wate
 
     public PillarBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(WATERLOGGED, false));
+        this.setDefaultState(this.getDefaultState().with(AXIS, Direction.Axis.Y).with(WATERLOGGED, false));
     }
 
     @Override
