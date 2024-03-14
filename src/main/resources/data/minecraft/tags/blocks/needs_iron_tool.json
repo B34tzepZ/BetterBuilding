@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "betterbuilding:diamond_block_pillar",
-    "betterbuilding:emerald_block_pillar",
-    "betterbuilding:gold_block_pillar",
-    "betterbuilding:raw_gold_block_pillar"
+    "betterbuilding:raw_gold_pillar",
+    "betterbuilding:gold_pillar",
+    "betterbuilding:diamond_pillar",
+    "betterbuilding:emerald_pillar"
   ]
 }

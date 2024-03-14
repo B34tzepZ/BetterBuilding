@@ -2,7 +2,8 @@
   "replace": false,
   "values": [
     "betterbuilding:obsidian_pillar",
-    "betterbuilding:netherite_block_pillar",
+    "betterbuilding:crying_obsidian_pillar",
+    "betterbuilding:netherite_pillar",
     "betterbuilding:ancient_debris_pillar"
   ]
 }

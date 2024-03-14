@@ -9,6 +9,7 @@
     "betterbuilding:waxed_exposed_cut_copper_side",
     "betterbuilding:waxed_weathered_cut_copper_side",
     "betterbuilding:waxed_oxidized_cut_copper_side",
+
     "betterbuilding:cut_copper_corner",
     "betterbuilding:exposed_cut_copper_corner",
     "betterbuilding:weathered_cut_copper_corner",
@@ -17,17 +18,26 @@
     "betterbuilding:waxed_exposed_cut_copper_corner",
     "betterbuilding:waxed_weathered_cut_copper_corner",
     "betterbuilding:waxed_oxidized_cut_copper_corner",
-    "betterbuilding:iron_block_pillar",
-    "betterbuilding:raw_iron_block_pillar",
-    "betterbuilding:lapis_block_pillar",
-    "betterbuilding:raw_copper_block_pillar",
-    "betterbuilding:waxed_copper_block_pillar",
+
+    "betterbuilding:raw_iron_pillar",
+    "betterbuilding:raw_copper_pillar",
+    "betterbuilding:iron_pillar",
+    "betterbuilding:copper_pillar",
+    "betterbuilding:exposed_copper_pillar",
+    "betterbuilding:weathered_copper_pillar",
+    "betterbuilding:oxidized_copper_pillar",
+    "betterbuilding:cut_copper_pillar",
+    "betterbuilding:exposed_cut_copper_pillar",
+    "betterbuilding:weathered_cut_copper_pillar",
+    "betterbuilding:oxidized_cut_copper_pillar",
+    "betterbuilding:waxed_copper_pillar",
     "betterbuilding:waxed_cut_copper_pillar",
     "betterbuilding:waxed_weathered_copper_pillar",
     "betterbuilding:waxed_weathered_cut_copper_pillar",
     "betterbuilding:waxed_exposed_copper_pillar",
     "betterbuilding:waxed_exposed_cut_copper_pillar",
     "betterbuilding:waxed_oxidized_copper_pillar",
-    "betterbuilding:waxed_oxidized_cut_copper_pillar"
+    "betterbuilding:waxed_oxidized_cut_copper_pillar",
+    "betterbuilding:lapis_pillar"
   ]
 }
