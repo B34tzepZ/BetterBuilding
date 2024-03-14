@@ -6,14 +6,15 @@ import java.util.*;
 
 public class JsonGenerator {
     public static void main(String[] args) {
-        generateJsons("stone", "cut_copper", "corner");
-        generateJsons("stone", "waxed_cut_copper", "corner");
-        generateJsons("stone", "exposed_cut_copper", "corner");
-        generateJsons("stone", "waxed_exposed_cut_copper", "corner");
-        generateJsons("stone", "weathered_cut_copper", "corner");
-        generateJsons("stone", "waxed_weathered_cut_copper", "corner");
-        generateJsons("stone", "oxidized_cut_copper", "corner");
-        generateJsons("stone", "waxed_oxidized_cut_copper", "corner");
+        generateJsons("ice", "blue_ice", "pillar");
+        generateJsons("granite", "redstone", "pillar");
+        generateJsons("granite", "tnt", "pillar");
+        generateJsons("granite", "crying_obsidian", "pillar");
+        generateJsons("granite", "ochre_froglight", "pillar");
+        generateJsons("granite", "verdant_froglight", "pillar");
+        generateJsons("granite", "pearlescent_froglight", "pillar");
+
+
     }
 
     /**
@@ -28,7 +29,7 @@ public class JsonGenerator {
         generateBlockModelJson(oldMaterial, newMaterial, type);
         generateItemModelJson(oldMaterial, newMaterial, type);
         generateLootTableJson(oldMaterial, newMaterial, type);
-        generateRecipeJson(oldMaterial, newMaterial, type);
+        //generateRecipeJson(oldMaterial, newMaterial, type);
     }
 
     private static void generateBlockstateJson(String oldMaterial, String newMaterial, String type) {
