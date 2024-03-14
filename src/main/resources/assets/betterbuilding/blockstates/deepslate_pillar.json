@@ -1,0 +1,62 @@
+{
+  "variants": {
+    "axis=x": [
+      {
+        "model": "betterbuilding:block/deepslate_pillar",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "betterbuilding:block/deepslate_pillar_mirrored",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "betterbuilding:block/deepslate_pillar",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "betterbuilding:block/deepslate_pillar_mirrored",
+        "x": 90,
+        "y": 270
+      }
+    ],
+    "axis=y": [
+      {
+        "model": "betterbuilding:block/deepslate_pillar"
+      },
+      {
+        "model": "betterbuilding:block/deepslate_pillar_mirrored"
+      },
+      {
+        "model": "betterbuilding:block/deepslate_pillar",
+        "y": 180
+      },
+      {
+        "model": "betterbuilding:block/deepslate_pillar_mirrored",
+        "y": 180
+      }
+    ],
+    "axis=z": [
+      {
+        "model": "betterbuilding:block/deepslate_pillar",
+        "x": 90
+      },
+      {
+        "model": "betterbuilding:block/deepslate_pillar_mirrored",
+        "x": 90
+      },
+      {
+        "model": "betterbuilding:block/deepslate_pillar",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "betterbuilding:block/deepslate_pillar_mirrored",
+        "x": 90,
+        "y": 180
+      }
+    ]
+  }
+}

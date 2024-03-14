@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "betterbuilding:block/crimson_hyphae_pillar",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "betterbuilding:block/crimson_hyphae_pillar"
+    },
+    "axis=z": {
+      "model": "betterbuilding:block/crimson_hyphae_pillar",
+      "x": 90
+    }
+  }
+}
