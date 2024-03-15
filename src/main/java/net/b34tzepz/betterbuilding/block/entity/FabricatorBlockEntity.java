@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -134,11 +135,11 @@ public class FabricatorBlockEntity extends BlockEntity implements NamedScreenHan
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, FabricatorBlockEntity entity) {
-        Optional<FabricatorCraftingRecipe> match = checkMatch(entity);
-        if (canCraftRecipe(entity, match)) {
+        Optional<FabricatorCraftingRecipe> match = checkMatch(world, entity);
+        if (canCraftRecipe(world, entity, match)) {
             entity.progress++;
             if (entity.progress > entity.maxProgress) {
-                craftItem(entity, match);
+                craftItem(world, entity, match);
                 consumeIngredients(entity);
             }
         } else {
@@ -146,25 +147,24 @@ public class FabricatorBlockEntity extends BlockEntity implements NamedScreenHan
         }
     }
 
-    private static Optional<FabricatorCraftingRecipe> checkMatch(FabricatorBlockEntity entity) {
-        World world = entity.world;
+    private static Optional<FabricatorCraftingRecipe> checkMatch(World world, FabricatorBlockEntity entity) {
         SimpleInventory inventory = new SimpleInventory(entity.inventory.size());
         for (int i = 0; i < entity.inventory.size(); i++) {
             inventory.setStack(i, entity.getStack(i));
         }
 
-        return world.getRecipeManager().getFirstMatch(ModRecipes.FABRICATOR_CRAFTING, inventory, world);
+        return world.getRecipeManager().getFirstMatch(ModRecipes.FABRICATOR_CRAFTING, inventory, world).map(RecipeEntry::value);
 
     }
 
-    private static boolean canCraftRecipe(FabricatorBlockEntity entity, Optional<FabricatorCraftingRecipe> match) {
+    private static boolean canCraftRecipe(World world, FabricatorBlockEntity entity, Optional<FabricatorCraftingRecipe> match) {
         SimpleInventory inventory = new SimpleInventory(entity.inventory.size());
         for (int i = 0; i < entity.inventory.size(); i++) {
             inventory.setStack(i, entity.getStack(i));
         }
 
         return match.isPresent() && canInsertAmountIntoOutputSlot(inventory) && hasIngredients(inventory)
-                && canInsertItemIntoOutputSlot(inventory, match.get().getOutput());
+                && canInsertItemIntoOutputSlot(inventory, match.get().getResult(world.getRegistryManager()));
     }
 
     private static boolean hasIngredients(SimpleInventory inventory) {
@@ -185,15 +185,15 @@ public class FabricatorBlockEntity extends BlockEntity implements NamedScreenHan
         return neededItems.isEmpty();
     }
 
-    private static void craftItem(FabricatorBlockEntity entity, Optional<FabricatorCraftingRecipe> match) {
+    private static void craftItem(World world, FabricatorBlockEntity entity, Optional<FabricatorCraftingRecipe> match) {
         SimpleInventory inventory = new SimpleInventory(entity.inventory.size());
         for (int i = 0; i < entity.inventory.size(); i++) {
             inventory.setStack(i, entity.getStack(i));
         }
 
         if (match.isPresent()) {
-            entity.setStack(9, new ItemStack(match.get().getOutput().getItem(),
-                    entity.getStack(9).getCount() + match.get().getOutput().getCount()));
+            entity.setStack(9, new ItemStack(match.get().getResult(world.getRegistryManager()).getItem(),
+                    entity.getStack(9).getCount() + match.get().getResult(world.getRegistryManager()).getCount()));
 
             entity.resetProgress();
         }

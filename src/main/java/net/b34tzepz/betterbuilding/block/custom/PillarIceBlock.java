@@ -2,16 +2,13 @@ package net.b34tzepz.betterbuilding.block.custom;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
@@ -22,25 +19,22 @@ public class PillarIceBlock extends PillarBlock{
         super(settings);
     }
 
-    @Override
-    public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
-        if (stateFrom.isOf(this)) {
-            return true;
-        }
-        return super.isSideInvisible(state, stateFrom, direction);
+    public static BlockState getMeltedState() {
+        return Blocks.WATER.getDefaultState();
     }
 
     @Override
-    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
-        super.afterBreak(world, player, pos, state, blockEntity, stack);
-        if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) == 0) {
+    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
+        super.afterBreak(world, player, pos, state, blockEntity, tool);
+        if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, tool) == 0) {
             if (world.getDimension().ultrawarm()) {
                 world.removeBlock(pos, false);
                 return;
             }
-            Material material = world.getBlockState(pos.down()).getMaterial();
-            if (material.blocksMovement() || material.isLiquid()) {
-                world.setBlockState(pos, Blocks.WATER.getDefaultState());
+
+            BlockState blockState = world.getBlockState(pos.down());
+            if (blockState.blocksMovement() || blockState.isLiquid()) {
+                world.setBlockState(pos, getMeltedState());
             }
         }
     }
@@ -55,14 +49,9 @@ public class PillarIceBlock extends PillarBlock{
     protected void melt(BlockState state, World world, BlockPos pos) {
         if (world.getDimension().ultrawarm()) {
             world.removeBlock(pos, false);
-            return;
+        } else {
+            world.setBlockState(pos, getMeltedState());
+            world.updateNeighbor(pos, getMeltedState().getBlock(), pos);
         }
-        world.setBlockState(pos, Blocks.WATER.getDefaultState());
-        world.updateNeighbor(pos, Blocks.WATER, pos);
-    }
-
-    @Override
-    public PistonBehavior getPistonBehavior(BlockState state) {
-        return PistonBehavior.NORMAL;
     }
 }

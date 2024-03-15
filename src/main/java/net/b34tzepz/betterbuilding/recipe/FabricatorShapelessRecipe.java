@@ -1,8 +1,8 @@
 package net.b34tzepz.betterbuilding.recipe;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.google.gson.*;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
@@ -10,21 +10,21 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeMatcher;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.ShapedRecipe;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 
 public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
 
-    private final Identifier id;
     private final ItemStack output;
     private final DefaultedList<Ingredient> recipeItems; //Rezept Items
 
-    public FabricatorShapelessRecipe(Identifier id, ItemStack output, DefaultedList<Ingredient> recipeItems) {
-        this.id = id;
+    public FabricatorShapelessRecipe(ItemStack output, DefaultedList<Ingredient> recipeItems) {
         this.output = output;
         this.recipeItems = recipeItems;
     }
@@ -52,7 +52,7 @@ public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
     }
 
     @Override
-    public ItemStack craft(SimpleInventory inventory) {
+    public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) {
         return output;
     }
 
@@ -62,13 +62,8 @@ public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
     }
 
     @Override
-    public ItemStack getOutput() {
+    public ItemStack getResult(DynamicRegistryManager registryManager) {
         return output.copy();
-    }
-
-    @Override
-    public Identifier getId() {
-        return id;
     }
 
     @Override
@@ -82,8 +77,8 @@ public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
         // this is the name given in the json file
 
         @Override
-        public FabricatorShapelessRecipe read(Identifier id, JsonObject json) {
-            DefaultedList<Ingredient> ingredients = FabricatorShapelessRecipe.Serializer.getIngredients(JsonHelper.getArray(json, "ingredients"));
+        public FabricatorShapelessRecipe read(JsonObject json) {
+            DefaultedList<Ingredient> ingredients = getIngredients(JsonHelper.getArray(json, "ingredients"));
             if (ingredients.isEmpty()) {
                 throw new JsonParseException("No ingredients for shapeless recipe");
             }
@@ -91,7 +86,7 @@ public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
                 throw new JsonParseException("Too many ingredients for shapeless recipe");
             }
             ItemStack result = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "result"));
-            return new FabricatorShapelessRecipe(id, result, ingredients);
+            return new FabricatorShapelessRecipe(result, ingredients);
         }
 
         private static DefaultedList<Ingredient> getIngredients(JsonArray json) {
@@ -105,7 +100,12 @@ public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
         }
 
         @Override
-        public FabricatorShapelessRecipe read(Identifier id, PacketByteBuf buf) {
+        public Codec<FabricatorShapelessRecipe> codec() {
+            return new FabricatorShapelessRecipe(result, ingrdients);
+        }
+
+        @Override
+        public FabricatorShapelessRecipe read(PacketByteBuf buf) {
             DefaultedList<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(), Ingredient.EMPTY);
 
             for (int i = 0; i < inputs.size(); i++) {
@@ -113,7 +113,7 @@ public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
             }
 
             ItemStack output = buf.readItemStack();
-            return new FabricatorShapelessRecipe(id, output, inputs);
+            return new FabricatorShapelessRecipe(output, inputs);
         }
 
         @Override
@@ -122,7 +122,9 @@ public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.write(buf);
             }
-            buf.writeItemStack(recipe.getOutput());
+            //TODO: Irgendwas wie world.getRegistryManager()
+            //siehe FabricatorBlockEntity.java
+            buf.writeItemStack(recipe.getResult());
         }
     }
 

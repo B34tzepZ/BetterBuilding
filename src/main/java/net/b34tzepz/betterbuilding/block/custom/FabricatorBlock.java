@@ -63,6 +63,6 @@ public class FabricatorBlock extends BlockWithEntity implements BlockEntityProvi
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.FABRICATOR_BLOCK, FabricatorBlockEntity::tick);
+        return validateTicker(type, ModBlockEntities.FABRICATOR_BLOCK, FabricatorBlockEntity::tick);
     }
 }

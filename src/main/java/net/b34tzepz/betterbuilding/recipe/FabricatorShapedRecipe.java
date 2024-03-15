@@ -6,12 +6,14 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
+import com.mojang.serialization.Codec;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.ShapedRecipe;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
@@ -24,14 +26,12 @@ import java.util.Map;
 
 public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
 
-    private final Identifier id;
     private final ItemStack output;
     private final DefaultedList<Ingredient> recipeItems; //Rezept Items
     private final int width;
     private final int height;
 
-    public FabricatorShapedRecipe(Identifier id, ItemStack output, DefaultedList<Ingredient> recipeItems, int width, int height){
-        this.id = id;
+    public FabricatorShapedRecipe(ItemStack output, DefaultedList<Ingredient> recipeItems, int width, int height){
         this.output = output;
         this.recipeItems = recipeItems;
         this.width = width;
@@ -55,6 +55,11 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
         return false;
     }
 
+    @Override
+    public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) {
+        return output;
+    }
+
     private boolean matchesPattern(SimpleInventory inv, int offsetX, int offsetY, boolean flipped) {
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
@@ -72,23 +77,13 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
     }
 
     @Override
-    public ItemStack craft(SimpleInventory inventory) {
-        return output;
-    }
-
-    @Override
     public boolean fits(int width, int height) {
         return true;
     }
 
     @Override
-    public ItemStack getOutput() {
+    public ItemStack getResult(DynamicRegistryManager registryManager) {
         return output.copy();
-    }
-
-    @Override
-    public Identifier getId() {
-        return id;
     }
 
     @Override
@@ -202,7 +197,7 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
         // this is the name given in the json file
 
         @Override
-        public FabricatorShapedRecipe read(Identifier id, JsonObject json) {
+        public FabricatorShapedRecipe read(JsonObject json) {
             ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "result"));
             Map<String, Ingredient> map = FabricatorShapedRecipe.mapSymbolsToIngredients(JsonHelper.getObject(json, "key"));
 
@@ -211,11 +206,16 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
             int height = strings.length;
             DefaultedList<Ingredient> inputs = FabricatorShapedRecipe.createPatternMatrix(strings, map, width, height);
 
-            return new FabricatorShapedRecipe(id, output, inputs, width, height);
+            return new FabricatorShapedRecipe(output, inputs, width, height);
         }
 
         @Override
-        public FabricatorShapedRecipe read(Identifier id, PacketByteBuf buf) {
+        public Codec<FabricatorShapedRecipe> codec() {
+            return null;
+        }
+
+        @Override
+        public FabricatorShapedRecipe read(PacketByteBuf buf) {
             DefaultedList<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(), Ingredient.EMPTY);
             int width = buf.readVarInt();
             int height = buf.readVarInt();
@@ -225,7 +225,7 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
             }
 
             ItemStack output = buf.readItemStack();
-            return new FabricatorShapedRecipe(id, output, inputs, width, height);
+            return new FabricatorShapedRecipe(output, inputs, width, height);
         }
 
         @Override
@@ -236,7 +236,7 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.write(buf);
             }
-            buf.writeItemStack(recipe.getOutput());
+            buf.writeItemStack(recipe.getResult());
         }
     }
 
@@ -248,7 +248,6 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
         }
 
         return "FabricatorShapedRecipe{" +
-                "id=" + id +
                 ", output=" + output +
                 ", recipeItems=" + ingrs +
                 ", width=" + width +

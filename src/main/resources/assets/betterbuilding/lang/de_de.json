@@ -148,7 +148,6 @@
   "block.betterbuilding.mangrove_plank_pillar": "Mangrovenholzbrettsäule",
   "block.betterbuilding.crimson_plank_pillar": "Karmesinbrettsäule",
   "block.betterbuilding.warped_plank_pillar": "Wirrbrettsäule",
-  "block.betterbuilding.bedrock_pillar": "Grundgesteinsäule",
   "block.betterbuilding.lapis_pillar": "Lapislazulisäule",
   "block.betterbuilding.sandstone_pillar": "Sandsteinsäule",
   "block.betterbuilding.chiseled_sandstone_pillar": "Gemeißelte Sandsteinsäule",
@@ -375,11 +374,9 @@
   "block.betterbuilding.teleporter_block": "Teleporter",
 
   "item.betterbuilding.screw": "Schraube",
-  "item.betterbuilding.dowsing_rod": "Wünschelrute",
   "item.betterbuilding.table_leg": "Tischbein",
   "item.betterbuilding.chisel": "Meißel",
 
-  "item.betterbuilding.dowsing_rod.no_valuables": "Es wurde nichts gefunden!",
   "item.betterbuilding.teleporter_block.error_single": "Es gibt keinen anderen Teleporter mit diesem Item.",
   "item.betterbuilding.teleporter_block.error_multiple": "Es gibt zu viele Teleporter mit diesem Item: ",
 

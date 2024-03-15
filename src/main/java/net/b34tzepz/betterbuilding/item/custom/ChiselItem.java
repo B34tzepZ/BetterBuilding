@@ -40,7 +40,6 @@ public class ChiselItem extends Item {
             .put(Blocks.ACACIA_PLANKS, ModBlocks.Pillars.ACACIA_PLANK_PILLAR)
             .put(Blocks.DARK_OAK_PLANKS, ModBlocks.Pillars.DARK_OAK_PLANK_PILLAR)
             .put(Blocks.MANGROVE_PLANKS, ModBlocks.Pillars.MANGROVE_PLANK_PILLAR)
-            .put(Blocks.BEDROCK, ModBlocks.Pillars.BEDROCK_PILLAR)
             .put(Blocks.LAPIS_BLOCK, ModBlocks.Pillars.LAPIS_PILLAR)
             .put(Blocks.SANDSTONE, ModBlocks.Pillars.SANDSTONE_PILLAR)
             .put(Blocks.CHISELED_SANDSTONE, ModBlocks.Pillars.CHISELED_SANDSTONE_PILLAR)

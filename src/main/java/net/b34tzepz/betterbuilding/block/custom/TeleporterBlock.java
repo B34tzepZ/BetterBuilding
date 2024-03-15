@@ -49,7 +49,7 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
     }
 
 
@@ -207,6 +207,6 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 
-        return checkType(type, ModBlockEntities.TELEPORTER_BLOCK, TeleporterBlockEntity::tick);
+        return validateTicker(type, ModBlockEntities.TELEPORTER_BLOCK, TeleporterBlockEntity::tick);
     }
 }

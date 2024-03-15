@@ -12,8 +12,6 @@ import net.minecraft.world.World;
 
 public class TeleporterBlockScreenHandler extends ScreenHandler {
     private final Inventory inventory;
-    private final World world;
-
     public TeleporterBlockScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, new SimpleInventory(1));
     }
@@ -22,7 +20,6 @@ public class TeleporterBlockScreenHandler extends ScreenHandler {
         super(ModScreenHandlers.TELEPORTER_BLOCK_SCREEN_HANDLER, syncId);
         checkSize(inventory, 1);
         this.inventory = inventory;
-        this.world = playerInventory.player.world;
         inventory.onOpen(playerInventory.player);
 
         this.addSlot(new ModSymbolSlot(inventory, 0, 81, 36));
@@ -37,7 +34,7 @@ public class TeleporterBlockScreenHandler extends ScreenHandler {
     }
 
     @Override
-    public ItemStack transferSlot(PlayerEntity player, int invSlot) {
+    public ItemStack quickMove(PlayerEntity player, int invSlot) {
         ItemStack newStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(invSlot);
         if (slot != null && slot.hasStack()) {

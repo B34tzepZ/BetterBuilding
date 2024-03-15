@@ -7,7 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.Waterloggable;
-import net.minecraft.entity.ai.pathing.NavigationType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
-import net.minecraft.tag.FluidTags;
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -78,7 +78,7 @@ public class SideBlock extends Block implements Waterloggable {
         }
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
         BlockState blockState = getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
-        Direction facing = ctx.getPlayerFacing();
+        Direction facing = ctx.getHorizontalPlayerFacing();
         if (facing.getHorizontal() % 2 == 1) {
             if (ctx.getHitPos().x - (double) blockPos.getX() < 0.5) {
                 return blockState.with(TYPE, SideType.WEST);
@@ -133,17 +133,14 @@ public class SideBlock extends Block implements Waterloggable {
     }
 
     @Override
-    public boolean canFillWithFluid(BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
-        if (state.get(TYPE) != SideType.DOUBLE) {
-            return Waterloggable.super.canFillWithFluid(world, pos, state, fluid);
-        }
-        return false;
+    public boolean canFillWithFluid(@Nullable PlayerEntity player, BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
+        return state.get(TYPE) != SideType.DOUBLE && Waterloggable.super.canFillWithFluid(player, world, pos, state, fluid);
     }
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (state.get(WATERLOGGED)) {
-            world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
         return state;
     }

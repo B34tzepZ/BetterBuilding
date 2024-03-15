@@ -148,7 +148,6 @@
   "block.betterbuilding.mangrove_plank_pillar": "Mangrove Plank Pillar",
   "block.betterbuilding.crimson_plank_pillar": "Crimson Plank Pillar",
   "block.betterbuilding.warped_plank_pillar": "Warped Plank Pillar",
-  "block.betterbuilding.bedrock_pillar": "Bedrock Pillar",
   "block.betterbuilding.lapis_pillar": "Lapis Pillar",
   "block.betterbuilding.sandstone_pillar": "Sandstone Pillar",
   "block.betterbuilding.chiseled_sandstone_pillar": "Chiseled Sandstone Pillar",
@@ -375,11 +374,9 @@
   "block.betterbuilding.teleporter_block": "Teleporter",
 
   "item.betterbuilding.screw": "Screw",
-  "item.betterbuilding.dowsing_rod": "Dowsing Rod",
   "item.betterbuilding.table_leg": "Table Leg",
   "item.betterbuilding.chisel": "Chisel",
 
-  "item.betterbuilding.dowsing_rod.no_valuables": "Nothing to be found!",
   "item.betterbuilding.teleporter_block.error_single": "There is no different teleporter with this identifier item.",
   "item.betterbuilding.teleporter_block.error_multiple": "There are too many teleporters with this identifier item: ",
 

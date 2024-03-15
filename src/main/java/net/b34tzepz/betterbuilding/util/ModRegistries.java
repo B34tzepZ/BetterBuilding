@@ -6,7 +6,7 @@ import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 
 public class ModRegistries {
-    public static void registerModStuffs() {
+    public static void registerModRegistries() {
         registerFuels();
         registerFlammables();
     }

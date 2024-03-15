@@ -2,6 +2,7 @@ package net.b34tzepz.betterbuilding;
 
 import net.b34tzepz.betterbuilding.block.ModBlocks;
 import net.b34tzepz.betterbuilding.block.entity.ModBlockEntities;
+import net.b34tzepz.betterbuilding.item.ModItemGroup;
 import net.b34tzepz.betterbuilding.item.ModItems;
 import net.b34tzepz.betterbuilding.recipe.ModRecipes;
 import net.b34tzepz.betterbuilding.screen.ModScreenHandlers;
@@ -18,8 +19,9 @@ public class BetterBuilding implements ModInitializer {
 	public void onInitialize() {
 		ModBlocks.registerModBlocks();
 		ModItems.registerModItems();
+		ModItemGroup.registerItemGroups();
 		ModBlockEntities.registerAllEntities();
-		ModRegistries.registerModStuffs();
+		ModRegistries.registerModRegistries();
 		ModScreenHandlers.registerAllScreenHandlers();
 		ModRecipes.registerRecipes();
 
