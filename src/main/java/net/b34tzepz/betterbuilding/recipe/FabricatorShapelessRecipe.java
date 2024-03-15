@@ -77,6 +77,7 @@ public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
         // this is the name given in the json file
 
         @Override
+        //TODO: die muss weg
         public FabricatorShapelessRecipe read(JsonObject json) {
             DefaultedList<Ingredient> ingredients = getIngredients(JsonHelper.getArray(json, "ingredients"));
             if (ingredients.isEmpty()) {
@@ -99,9 +100,10 @@ public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
             return ingredients;
         }
 
+        //TODO: die muss das wie FabricatorShapedRecipe read(JsonObject json)
         @Override
         public Codec<FabricatorShapelessRecipe> codec() {
-            return new FabricatorShapelessRecipe(result, ingrdients);
+            return null;
         }
 
         @Override

@@ -197,6 +197,7 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
         // this is the name given in the json file
 
         @Override
+        //TODO: die muss weg
         public FabricatorShapedRecipe read(JsonObject json) {
             ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "result"));
             Map<String, Ingredient> map = FabricatorShapedRecipe.mapSymbolsToIngredients(JsonHelper.getObject(json, "key"));
@@ -209,6 +210,7 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
             return new FabricatorShapedRecipe(output, inputs, width, height);
         }
 
+        //TODO: die muss das wie FabricatorShapedRecipe read(JsonObject json)
         @Override
         public Codec<FabricatorShapedRecipe> codec() {
             return null;
@@ -236,6 +238,8 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.write(buf);
             }
+            //TODO: Irgendwas wie world.getRegistryManager()
+            //siehe FabricatorBlockEntity.java
             buf.writeItemStack(recipe.getResult());
         }
     }
