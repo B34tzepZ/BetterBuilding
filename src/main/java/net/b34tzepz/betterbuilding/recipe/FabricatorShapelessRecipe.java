@@ -3,38 +3,45 @@ package net.b34tzepz.betterbuilding.recipe;
 import com.google.gson.*;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeMatcher;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.ShapedRecipe;
+import net.minecraft.recipe.*;
+import net.minecraft.registry.DefaultedRegistry;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import static net.b34tzepz.betterbuilding.item.inventory.ImplementedInventory.ofSize;
 
 public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
 
     private final ItemStack output;
-    private final DefaultedList<Ingredient> recipeItems; //Rezept Items
+    private final List<Ingredient> recipeItems; //Rezept Items
 
-    public FabricatorShapelessRecipe(ItemStack output, DefaultedList<Ingredient> recipeItems) {
+    public FabricatorShapelessRecipe(ItemStack output, List<Ingredient> recipeItems) {
         this.output = output;
         this.recipeItems = recipeItems;
     }
 
+    /**
+     * Checks if the inventory of the fabricator matches with a recipe.
+     * */
     @Override
     public boolean matches(SimpleInventory inventory, World world) {
-        ArrayList<Ingredient> neededItems = new ArrayList<>();
-        for (Ingredient ingr : recipeItems) {
-            neededItems.add(ingr);
+        if(world.isClient){
+            return false;
         }
+
+        ArrayList<Ingredient> neededItems = new ArrayList<>(recipeItems);
         for (int j = 0; j < 9; ++j) {
             ItemStack itemStack = inventory.getStack(j);
             if (itemStack.isEmpty()) continue;
@@ -63,7 +70,7 @@ public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
 
     @Override
     public ItemStack getResult(DynamicRegistryManager registryManager) {
-        return output.copy();
+        return output;
     }
 
     @Override
@@ -71,39 +78,32 @@ public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
         return Serializer.INSTANCE;
     }
 
+    @Override
+    public DefaultedList<Ingredient> getIngredients() {
+        DefaultedList<Ingredient> list = DefaultedList.ofSize(this.recipeItems.size());
+        list.addAll(recipeItems);
+        return list;
+    }
+
     public static class Serializer implements RecipeSerializer<FabricatorShapelessRecipe> {
         public static final FabricatorShapelessRecipe.Serializer INSTANCE = new FabricatorShapelessRecipe.Serializer();
-        public static final String ID = "fabricator_shapeless";
-        // this is the name given in the json file
+        public static final String ID = "fabricator_shapeless";     // this is the name given in the json file
 
-        @Override
-        //TODO: die muss weg
-        public FabricatorShapelessRecipe read(JsonObject json) {
-            DefaultedList<Ingredient> ingredients = getIngredients(JsonHelper.getArray(json, "ingredients"));
-            if (ingredients.isEmpty()) {
-                throw new JsonParseException("No ingredients for shapeless recipe");
-            }
-            if (ingredients.size() > 9) {
-                throw new JsonParseException("Too many ingredients for shapeless recipe");
-            }
-            ItemStack result = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "result"));
-            return new FabricatorShapelessRecipe(result, ingredients);
-        }
+        public static final Codec<FabricatorShapelessRecipe> CODEC = RecordCodecBuilder.create(in -> in.group(
+                RecipeCodecs.CRAFTING_RESULT.fieldOf("output").forGetter(r -> r.output),
+                validateAmount(Ingredient.DISALLOW_EMPTY_CODEC, 9).fieldOf("ingredients").forGetter(FabricatorShapelessRecipe::getIngredients)
+        ).apply(in, FabricatorShapelessRecipe::new));
 
-        private static DefaultedList<Ingredient> getIngredients(JsonArray json) {
-            DefaultedList<Ingredient> ingredients = DefaultedList.of();
-            for (int i = 0; i < json.size(); ++i) {
-                Ingredient ingredient = Ingredient.fromJson(json.get(i));
-                if (ingredient.isEmpty()) continue;
-                ingredients.add(ingredient);
-            }
-            return ingredients;
+        private static Codec<List<Ingredient>> validateAmount(Codec<Ingredient> delegate, int max){
+            return Codecs.validate(Codecs.validate(
+                    delegate.listOf(), list -> list.size() > max ? DataResult.error(() -> "Too many ingredients for shapeless recipe") : DataResult.success(list)
+            ), list -> list.isEmpty() ? DataResult.error(() -> "No ingredients for shapeless recipe") : DataResult.success(list));
         }
 
         //TODO: die muss das wie FabricatorShapedRecipe read(JsonObject json)
         @Override
         public Codec<FabricatorShapelessRecipe> codec() {
-            return null;
+            return CODEC;
         }
 
         @Override
@@ -126,7 +126,7 @@ public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
             }
             //TODO: Irgendwas wie world.getRegistryManager()
             //siehe FabricatorBlockEntity.java
-            buf.writeItemStack(recipe.getResult());
+            buf.writeItemStack(recipe.getResult(null));
         }
     }
 

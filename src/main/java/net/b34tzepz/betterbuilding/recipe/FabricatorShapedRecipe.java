@@ -7,10 +7,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.RecipeCodecs;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.registry.DynamicRegistryManager;
@@ -19,15 +21,12 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
 
     private final ItemStack output;
-    private final DefaultedList<Ingredient> recipeItems; //Rezept Items
+    private final List<Ingredient> recipeItems; //Rezept Items
     private final int width;
     private final int height;
 
@@ -38,10 +37,17 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
         this.height = height;
     }
 
+    /**
+     * Checks if the inventory of the fabricator matches with a recipe.
+     * */
     @Override
     public boolean matches(
             SimpleInventory inventory, //tatsächlich gegebene Items
             World world) {
+
+        if(world.isClient){
+            return false;
+        }
 
         for (int i = 0; i <= 3 - this.width; ++i) {
             for (int j = 0; j <= 3 - this.height; ++j) {
@@ -83,7 +89,7 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
 
     @Override
     public ItemStack getResult(DynamicRegistryManager registryManager) {
-        return output.copy();
+        return output;
     }
 
     @Override
@@ -196,6 +202,11 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
         public static final String ID = "fabricator_shaped";
         // this is the name given in the json file
 
+        public static final Codec<FabricatorShapelessRecipe> CODEC = RecordCodecBuilder.create(in -> in.group(
+                RecipeCodecs.CRAFTING_RESULT.fieldOf("output").forGetter(r -> r.output),
+                validateAmount(Ingredient.DISALLOW_EMPTY_CODEC, 9).fieldOf("ingredients").forGetter(FabricatorShapelessRecipe::getIngredients)
+        ).apply(in, FabricatorShapelessRecipe::new));
+
         @Override
         //TODO: die muss weg
         public FabricatorShapedRecipe read(JsonObject json) {
@@ -240,7 +251,7 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
             }
             //TODO: Irgendwas wie world.getRegistryManager()
             //siehe FabricatorBlockEntity.java
-            buf.writeItemStack(recipe.getResult());
+            buf.writeItemStack(recipe.getResult(null));
         }
     }
 
