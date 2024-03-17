@@ -9,7 +9,7 @@ The Chisel Tool allows you to reshape all non-functional blocks to a pillar.
 
 ## What versions is it available for?
 
-Right now BetterBuilding is only available for Minecraft Java Edition 1.18.2. An update to newer versions is planned and will be coming soon.  
+Right now BetterBuilding is available for Minecraft Java Edition 1.18.2 and 1.19. An update to newer versions is planned and will be coming soon.  
 Support for Minecraft Bedrock Edition is **not** planned.
 
 ## How to install BetterBuilding?
