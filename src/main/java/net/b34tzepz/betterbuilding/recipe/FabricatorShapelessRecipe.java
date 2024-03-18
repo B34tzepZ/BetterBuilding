@@ -1,26 +1,21 @@
 package net.b34tzepz.betterbuilding.recipe;
 
-import com.google.gson.*;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.*;
-import net.minecraft.registry.DefaultedRegistry;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.RecipeCodecs;
+import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.dynamic.Codecs;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static net.b34tzepz.betterbuilding.item.inventory.ImplementedInventory.ofSize;
 
 public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
 
@@ -34,10 +29,10 @@ public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
 
     /**
      * Checks if the inventory of the fabricator matches with a recipe.
-     * */
+     */
     @Override
     public boolean matches(SimpleInventory inventory, World world) {
-        if(world.isClient){
+        if (world.isClient) {
             return false;
         }
 
@@ -45,11 +40,11 @@ public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
         for (int j = 0; j < 9; ++j) {
             ItemStack itemStack = inventory.getStack(j);
             if (itemStack.isEmpty()) continue;
-            if(neededItems.isEmpty()){
+            if (neededItems.isEmpty()) {
                 return false;
             }
-            for(int k = 0; k < neededItems.size(); k++){
-                if(neededItems.get(k).test(itemStack)){
+            for (int k = 0; k < neededItems.size(); k++) {
+                if (neededItems.get(k).test(itemStack)) {
                     neededItems.remove(k);
                     break;
                 }
@@ -94,7 +89,7 @@ public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
                 validateAmount(Ingredient.DISALLOW_EMPTY_CODEC, 9).fieldOf("ingredients").forGetter(FabricatorShapelessRecipe::getIngredients)
         ).apply(in, FabricatorShapelessRecipe::new));
 
-        private static Codec<List<Ingredient>> validateAmount(Codec<Ingredient> delegate, int max){
+        private static Codec<List<Ingredient>> validateAmount(Codec<Ingredient> delegate, int max) {
             return Codecs.validate(Codecs.validate(
                     delegate.listOf(), list -> list.size() > max ? DataResult.error(() -> "Too many ingredients for shapeless recipe") : DataResult.success(list)
             ), list -> list.isEmpty() ? DataResult.error(() -> "No ingredients for shapeless recipe") : DataResult.success(list));

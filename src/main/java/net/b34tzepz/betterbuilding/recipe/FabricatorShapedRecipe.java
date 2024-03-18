@@ -1,12 +1,9 @@
 package net.b34tzepz.betterbuilding.recipe;
 
-import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
@@ -14,14 +11,16 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeCodecs;
 import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.world.World;
+import org.apache.commons.lang3.NotImplementedException;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 
 public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
 
@@ -30,7 +29,7 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
     private final int width;
     private final int height;
 
-    public FabricatorShapedRecipe(ItemStack output, DefaultedList<Ingredient> recipeItems, int width, int height){
+    public FabricatorShapedRecipe(ItemStack output, DefaultedList<Ingredient> recipeItems, int width, int height) {
         this.output = output;
         this.recipeItems = recipeItems;
         this.width = width;
@@ -39,13 +38,13 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
 
     /**
      * Checks if the inventory of the fabricator matches with a recipe.
-     * */
+     */
     @Override
     public boolean matches(
             SimpleInventory inventory, //tatsächlich gegebene Items
             World world) {
 
-        if(world.isClient){
+        if (world.isClient) {
             return false;
         }
 
@@ -97,31 +96,19 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
         return Serializer.INSTANCE;
     }
 
-    static Map<String, Ingredient> mapSymbolsToIngredients(JsonObject json){
-        HashMap<String, Ingredient> map = Maps.newHashMap();
-        for (Map.Entry<String, JsonElement> entry : json.entrySet()) {
-            if (entry.getKey().length() != 1) {
-                throw new JsonSyntaxException("Invalid key entry: '" + entry.getKey() + "' is an invalid symbol (must be 1 character only).");
-            }
-            if (" ".equals(entry.getKey())) {
-                throw new JsonSyntaxException("Invalid key entry: ' ' is a reserved symbol.");
-            }
-            map.put(entry.getKey(), Ingredient.fromJson(entry.getValue()));
-        }
-        map.put(" ", Ingredient.EMPTY);
-        return map;
-    }
-
-    static String[] removePadding(String ... pattern) {
-        int i = Integer.MAX_VALUE;
-        int j = 0;
+    /**
+     * Removes empty rows and columns from the pattern.
+     */
+    static String[] removePadding(List<String> pattern) {
+        int mostLeftIndex = Integer.MAX_VALUE;
+        int mostRightIndex = 0;
         int k = 0;
         int l = 0;
-        for (int m = 0; m < pattern.length; ++m) {
-            String string = pattern[m];
-            i = Math.min(i, FabricatorShapedRecipe.findFirstSymbol(string));
-            int n = FabricatorShapedRecipe.findLastSymbol(string);
-            j = Math.max(j, n);
+        for (int m = 0; m < pattern.size(); ++m) {
+            String row = pattern.get(m);
+            mostLeftIndex = Math.min(mostLeftIndex, FabricatorShapedRecipe.findFirstSymbol(row));
+            int n = FabricatorShapedRecipe.findLastSymbol(row);
+            mostRightIndex = Math.max(mostRightIndex, n);
             if (n < 0) {
                 if (k == m) {
                     ++k;
@@ -131,12 +118,12 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
             }
             l = 0;
         }
-        if (pattern.length == l) {
+        if (pattern.size() == l) {
             return new String[0];
         }
-        String[] m = new String[pattern.length - l - k];
+        String[] m = new String[pattern.size() - l - k];
         for (int string = 0; string < m.length; ++string) {
-            m[string] = pattern[string + k].substring(i, j + 1);
+            m[string] = pattern.get(string + k).substring(mostLeftIndex, mostRightIndex + 1);
         }
         return m;
     }
@@ -153,27 +140,6 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
         for (i = pattern.length() - 1; i >= 0 && pattern.charAt(i) == ' '; --i) {
         }
         return i;
-    }
-
-    static String[] getPattern(JsonArray json) {
-        String[] strings = new String[json.size()];
-        if (strings.length > 3) {
-            throw new JsonSyntaxException("Invalid pattern: too many rows, 3 is maximum");
-        }
-        if (strings.length == 0) {
-            throw new JsonSyntaxException("Invalid pattern: empty pattern not allowed");
-        }
-        for (int i = 0; i < strings.length; ++i) {
-            String string = JsonHelper.asString(json.get(i), "pattern[" + i + "]");
-            if (string.length() > 3) {
-                throw new JsonSyntaxException("Invalid pattern: too many columns, 3 is maximum");
-            }
-            if (i > 0 && strings[0].length() != string.length()) {
-                throw new JsonSyntaxException("Invalid pattern: each row must be the same width");
-            }
-            strings[i] = string;
-        }
-        return strings;
     }
 
     static DefaultedList<Ingredient> createPatternMatrix(String[] pattern, Map<String, Ingredient> symbols, int width, int height) {
@@ -202,29 +168,53 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
         public static final String ID = "fabricator_shaped";
         // this is the name given in the json file
 
-        public static final Codec<FabricatorShapelessRecipe> CODEC = RecordCodecBuilder.create(in -> in.group(
-                RecipeCodecs.CRAFTING_RESULT.fieldOf("output").forGetter(r -> r.output),
-                validateAmount(Ingredient.DISALLOW_EMPTY_CODEC, 9).fieldOf("ingredients").forGetter(FabricatorShapelessRecipe::getIngredients)
-        ).apply(in, FabricatorShapelessRecipe::new));
+        static final Codec<List<String>> PATTERN_CODEC = Codec.STRING.listOf().flatXmap(rows -> {
+            if (rows.size() > 3) {
+                return DataResult.error(() -> "Invalid pattern: too many rows, 3 is maximum");
+            }
+            if (rows.isEmpty()) {
+                return DataResult.error(() -> "Invalid pattern: empty pattern not allowed");
+            }
+            int i = (rows.get(0)).length();
+            for (String string : rows) {
+                if (string.length() > 3) {
+                    return DataResult.error(() -> "Invalid pattern: too many columns, 3 is maximum");
+                }
+                if (i == string.length()) continue;
+                return DataResult.error(() -> "Invalid pattern: each row must be the same width");
+            }
+            return DataResult.success(rows);
+        }, DataResult::success);
 
-        @Override
-        //TODO: die muss weg
-        public FabricatorShapedRecipe read(JsonObject json) {
-            ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "result"));
-            Map<String, Ingredient> map = FabricatorShapedRecipe.mapSymbolsToIngredients(JsonHelper.getObject(json, "key"));
+        static final Codec<String> KEY_ENTRY_CODEC = Codec.STRING.flatXmap(keyEntry -> {
+            if (keyEntry.length() != 1) {
+                return DataResult.error(() -> "Invalid key entry: '" + keyEntry + "' is an invalid symbol (must be 1 character only).");
+            }
+            if (" ".equals(keyEntry)) {
+                return DataResult.error(() -> "Invalid key entry: ' ' is a reserved symbol.");
+            }
+            return DataResult.success(keyEntry);
+        }, DataResult::success);
 
-            String[] strings = FabricatorShapedRecipe.removePadding(FabricatorShapedRecipe.getPattern(JsonHelper.getArray(json, "pattern")));
-            int width = strings[0].length();
-            int height = strings.length;
-            DefaultedList<Ingredient> inputs = FabricatorShapedRecipe.createPatternMatrix(strings, map, width, height);
+        /**
+         * Translates the raw recipe codec to a {@link FabricatorShapedRecipe}.
+         * */
+        public static final Codec<FabricatorShapedRecipe> CODEC = RawShapedRecipe.CODEC.flatXmap(recipe -> {
+            //recipeItems
+            String[] purePattern = FabricatorShapedRecipe.removePadding(recipe.pattern);
+            int width = purePattern[0].length();
+            int height = purePattern.length;
+            DefaultedList<Ingredient> recipeItems = createPatternMatrix(purePattern, recipe.key, width, height);
 
-            return new FabricatorShapedRecipe(output, inputs, width, height);
-        }
+            FabricatorShapedRecipe shapedRecipe = new FabricatorShapedRecipe(recipe.result, recipeItems, width, height);
+            return DataResult.success(shapedRecipe);
+            }, recipe -> {
+            throw new NotImplementedException("Serializing ShapedRecipe is not implemented yet.");
+        });
 
-        //TODO: die muss das wie FabricatorShapedRecipe read(JsonObject json)
         @Override
         public Codec<FabricatorShapedRecipe> codec() {
-            return null;
+            return CODEC;
         }
 
         @Override
@@ -249,28 +239,41 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.write(buf);
             }
-            //TODO: Irgendwas wie world.getRegistryManager()
-            //siehe FabricatorBlockEntity.java
             buf.writeItemStack(recipe.getResult(null));
+        }
+
+        record RawShapedRecipe(Map<String, Ingredient> key, List<String> pattern, ItemStack result) {
+            /**
+             * Collects the individual codecs.
+             * */
+            public static final Codec<FabricatorShapedRecipe.Serializer.RawShapedRecipe> CODEC =
+                    RecordCodecBuilder.create(instance -> instance.group(
+                            (Codecs.strictUnboundedMap(KEY_ENTRY_CODEC, Ingredient.DISALLOW_EMPTY_CODEC).fieldOf("key")).forGetter(recipe -> recipe.key),
+                            (PATTERN_CODEC.fieldOf("pattern")).forGetter(recipe -> recipe.pattern),
+                            (RecipeCodecs.CRAFTING_RESULT.fieldOf("result")).forGetter(recipe -> recipe.result)
+                            )
+                            .apply(instance, FabricatorShapedRecipe.Serializer.RawShapedRecipe::new));
+
         }
     }
 
     @Override
     public String toString() {
-        String ingrs = "";
-        for(Ingredient ingr : recipeItems){
-            ingrs += ingrToStr(ingr) + ", ";
+        StringBuilder ingredients = new StringBuilder();
+        for (Ingredient ingredient : recipeItems) {
+            ingredients.append(ingrToStr(ingredient)).append(", ");
         }
 
         return "FabricatorShapedRecipe{" +
                 ", output=" + output +
-                ", recipeItems=" + ingrs +
+                ", recipeItems=" + ingredients +
                 ", width=" + width +
                 ", height=" + height +
                 '}';
     }
 
-    private static String ingrToStr(Ingredient ingr){
+    private static String ingrToStr(Ingredient ingr) {
         return Arrays.toString(ingr.getMatchingStacks());
     }
 }
+
