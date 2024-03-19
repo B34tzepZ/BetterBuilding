@@ -95,7 +95,6 @@ public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
             ), list -> list.isEmpty() ? DataResult.error(() -> "No ingredients for shapeless recipe") : DataResult.success(list));
         }
 
-        //TODO: die muss das wie FabricatorShapedRecipe read(JsonObject json)
         @Override
         public Codec<FabricatorShapelessRecipe> codec() {
             return CODEC;
@@ -105,9 +104,7 @@ public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
         public FabricatorShapelessRecipe read(PacketByteBuf buf) {
             DefaultedList<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(), Ingredient.EMPTY);
 
-            for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromPacket(buf));
-            }
+            inputs.replaceAll(ignored -> Ingredient.fromPacket(buf));
 
             ItemStack output = buf.readItemStack();
             return new FabricatorShapelessRecipe(output, inputs);
@@ -119,8 +116,6 @@ public class FabricatorShapelessRecipe implements FabricatorCraftingRecipe {
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.write(buf);
             }
-            //TODO: Irgendwas wie world.getRegistryManager()
-            //siehe FabricatorBlockEntity.java
             buf.writeItemStack(recipe.getResult(null));
         }
     }

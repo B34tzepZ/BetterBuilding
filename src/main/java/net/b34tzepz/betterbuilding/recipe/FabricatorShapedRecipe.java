@@ -223,9 +223,7 @@ public class FabricatorShapedRecipe implements FabricatorCraftingRecipe {
             int width = buf.readVarInt();
             int height = buf.readVarInt();
 
-            for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromPacket(buf));
-            }
+            inputs.replaceAll(ignored -> Ingredient.fromPacket(buf));
 
             ItemStack output = buf.readItemStack();
             return new FabricatorShapedRecipe(output, inputs, width, height);

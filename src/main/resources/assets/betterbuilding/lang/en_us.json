@@ -380,6 +380,6 @@
   "item.betterbuilding.teleporter_block.error_single": "There is no different teleporter with this identifier item.",
   "item.betterbuilding.teleporter_block.error_multiple": "There are too many teleporters with this identifier item: ",
 
-  "itemGroup.betterbuilding.building": "Better Building",
-  "itemGroup.betterbuilding.pillars": "Pillars"
+  "itemgroup.building": "Better Building",
+  "itemgroup.pillars": "Pillars"
 }
