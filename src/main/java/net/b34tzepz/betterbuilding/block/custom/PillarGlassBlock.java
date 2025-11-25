@@ -32,7 +32,7 @@ public class PillarGlassBlock extends PillarBlock{
     }
 
     @Override
-    public boolean isTransparent(BlockState state, BlockView world, BlockPos pos) {
+    protected boolean isTransparent(BlockState state) {
         return true;
     }
 }

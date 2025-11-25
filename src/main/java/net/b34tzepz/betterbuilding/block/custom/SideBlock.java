@@ -1,13 +1,10 @@
 package net.b34tzepz.betterbuilding.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import net.b34tzepz.betterbuilding.block.enums.SideType;
 import net.b34tzepz.betterbuilding.state.property.Properties;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.block.Waterloggable;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.block.*;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -16,16 +13,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
-import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
+import net.minecraft.world.tick.ScheduledTickView;
 import org.jetbrains.annotations.Nullable;
 
-public class SideBlock extends Block implements Waterloggable {
+public class SideBlock extends HorizontalFacingBlock implements Waterloggable {
+    public static final MapCodec<SideBlock> CODEC = createCodec(SideBlock::new);
     public static final EnumProperty<SideType> TYPE = Properties.SIDE_TYPE;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     protected static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 16.0, 8.0);    //x: west -> east
@@ -36,6 +36,11 @@ public class SideBlock extends Block implements Waterloggable {
     public SideBlock(AbstractBlock.Settings settings) {
         super(settings);
         this.setDefaultState(getDefaultState().with(TYPE, SideType.NORTH).with(WATERLOGGED, false));
+    }
+
+    @Override
+    protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
+        return CODEC;
     }
 
     @Override
@@ -79,7 +84,7 @@ public class SideBlock extends Block implements Waterloggable {
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
         BlockState blockState = getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
         Direction facing = ctx.getHorizontalPlayerFacing();
-        if (facing.getHorizontal() % 2 == 1) {
+        if (facing.getHorizontalQuarterTurns() % 2 == 1) {
             if (ctx.getHitPos().x - (double) blockPos.getX() < 0.5) {
                 return blockState.with(TYPE, SideType.WEST);
             } else {
@@ -133,14 +138,14 @@ public class SideBlock extends Block implements Waterloggable {
     }
 
     @Override
-    public boolean canFillWithFluid(@Nullable PlayerEntity player, BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
-        return state.get(TYPE) != SideType.DOUBLE && Waterloggable.super.canFillWithFluid(player, world, pos, state, fluid);
+   public boolean canFillWithFluid(@Nullable LivingEntity filler, BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
+        return state.get(TYPE) != SideType.DOUBLE && Waterloggable.super.canFillWithFluid(filler, world, pos, state, fluid);
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+    protected BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, Random random) {
         if (state.get(WATERLOGGED)) {
-            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+            tickView.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
         return state;
     }

@@ -10,8 +10,10 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
+import net.minecraft.world.tick.ScheduledTickView;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -32,8 +34,9 @@ public abstract class PaneBlockMixin implements BlockAccessor{
     }
 
     @Inject(method = "getStateForNeighborUpdate", at = @At(value = "RETURN", ordinal = 0), cancellable = true)
-    protected void injectGetStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos, CallbackInfoReturnable<BlockState> cir){
-        if(neighborState.getBlock() instanceof SideBlock && neighborState.get(SideBlock.TYPE).asString().equals(direction.getName())){
+    protected void injectGetStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, Random
+        random, CallbackInfoReturnable<BlockState> cir){
+        if(neighborState.getBlock() instanceof SideBlock && neighborState.get(SideBlock.TYPE).asString().equals(direction.getId())){
             cir.setReturnValue(state);
         }
     }
@@ -42,16 +45,17 @@ public abstract class PaneBlockMixin implements BlockAccessor{
     protected void injectGetPlacementState(ItemPlacementContext ctx, CallbackInfoReturnable<BlockState> cir){
         BlockState defaultState = this.getDefaultState();
         World blockView = ctx.getWorld();
+        ScheduledTickView tickView = (ScheduledTickView) blockView.getBlockTickScheduler();
         BlockPos blockPos = ctx.getBlockPos();
         FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
         BlockState blockStateNorth = blockView.getBlockState(blockPos.north());
         BlockState blockStateSouth = blockView.getBlockState(blockPos.south());
         BlockState blockStateWest = blockView.getBlockState(blockPos.west());
         BlockState blockStateEast = blockView.getBlockState(blockPos.east());
-        defaultState = defaultState.getStateForNeighborUpdate(Direction.NORTH, blockStateNorth, blockView, blockPos, blockPos.north());
-        defaultState = defaultState.getStateForNeighborUpdate(Direction.SOUTH, blockStateSouth, blockView, blockPos, blockPos.south());
-        defaultState = defaultState.getStateForNeighborUpdate(Direction.WEST, blockStateWest, blockView, blockPos, blockPos.west());
-        defaultState = defaultState.getStateForNeighborUpdate(Direction.EAST, blockStateEast, blockView, blockPos, blockPos.east());
+        defaultState = defaultState.getStateForNeighborUpdate(blockView, tickView, blockPos, Direction.NORTH, blockPos.north(), blockStateNorth, Random.create());
+        defaultState = defaultState.getStateForNeighborUpdate(blockView, tickView, blockPos, Direction.SOUTH, blockPos.south(), blockStateSouth, Random.create());
+        defaultState = defaultState.getStateForNeighborUpdate(blockView, tickView, blockPos, Direction.WEST, blockPos.west(), blockStateWest, Random.create());
+        defaultState = defaultState.getStateForNeighborUpdate(blockView, tickView, blockPos, Direction.EAST, blockPos.east(), blockStateEast, Random.create());
         cir.setReturnValue(defaultState.with(PaneBlock.WATERLOGGED, fluidState.getFluid() == Fluids.WATER));
     }
 }

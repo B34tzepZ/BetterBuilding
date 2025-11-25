@@ -4,8 +4,7 @@ import net.b34tzepz.betterbuilding.block.ModBlocks;
 import net.b34tzepz.betterbuilding.block.entity.ModBlockEntities;
 import net.b34tzepz.betterbuilding.item.ModItemGroup;
 import net.b34tzepz.betterbuilding.item.ModItems;
-import net.b34tzepz.betterbuilding.recipe.ModRecipes;
-import net.b34tzepz.betterbuilding.screen.ModScreenHandlers;
+import net.b34tzepz.betterbuilding.screen.custom.ModScreenHandlers;
 import net.b34tzepz.betterbuilding.util.ModRegistries;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
@@ -23,7 +22,6 @@ public class BetterBuilding implements ModInitializer {
 		ModBlockEntities.registerAllEntities();
 		ModRegistries.registerModRegistries();
 		ModScreenHandlers.registerAllScreenHandlers();
-		ModRecipes.registerRecipes();
 
 	}
 }

@@ -10,12 +10,12 @@ public class PillarTintedGlassBlock extends PillarGlassBlock{
     }
 
     @Override
-    public boolean isTransparent(BlockState state, BlockView world, BlockPos pos) {
+    protected boolean isTransparent(BlockState state) {
         return false;
     }
 
     @Override
-    public int getOpacity(BlockState state, BlockView world, BlockPos pos) {
-        return world.getMaxLightLevel();
+    protected int getOpacity(BlockState state) {
+        return 15;
     }
 }

@@ -56,10 +56,10 @@ public class TableBlock extends Block {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        ItemStack itemStack = player.getStackInHand(hand);
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        ItemStack itemStack = player.getStackInHand(player.getActiveHand());
 
-        if (itemStack.isOf(Items.BOWL) && hand == Hand.MAIN_HAND) {
+        if (itemStack.isOf(Items.BOWL) && player.getActiveHand() == Hand.MAIN_HAND) {
             return placeBowl(state, world, pos, player, itemStack);
         } else {
             return takeBowl(state, world, pos, player);

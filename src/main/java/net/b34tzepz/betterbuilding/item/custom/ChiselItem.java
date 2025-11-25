@@ -290,7 +290,7 @@ public class ChiselItem extends Item {
         if (!world.isClient) {
             world.setBlockState(blockPos, blockState2, Block.NOTIFY_ALL | Block.REDRAW_ON_MAIN_THREAD);
             if (playerEntity != null) {
-                context.getStack().damage(1, playerEntity, p -> p.sendToolBreakStatus(context.getHand()));
+                context.getStack().damage(1, playerEntity);
             }
         }
         return super.useOnBlock(context);

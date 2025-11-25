@@ -37,7 +37,7 @@ public class ModResultSlot extends Slot {
 
     @Override
     protected void onCrafted(ItemStack stack) {
-        stack.onCraft(this.player.getWorld(), this.player, this.amount);
+        stack.getItem().onCraft(stack, this.player.getWorld());
         this.amount = 0;
     }
 }

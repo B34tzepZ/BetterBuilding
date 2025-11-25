@@ -1,7 +1,9 @@
 package net.b34tzepz.betterbuilding.block.custom;
 
+import com.mojang.serialization.MapCodec;
 import net.b34tzepz.betterbuilding.block.entity.ModBlockEntities;
 import net.b34tzepz.betterbuilding.block.entity.TeleporterBlockEntity;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -14,25 +16,29 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
+import java.util.HashSet;
 
 
 public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvider {
-    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
+    public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
+    public static final MapCodec<TeleporterBlock> CODEC = Block.createCodec(TeleporterBlock::new);
     public static final BooleanProperty PLAYING_SOUND = BooleanProperty.of("playing_sound");
     public static final IntProperty SOUND_COOLDOWN = IntProperty.of("sound_cooldown",0,25);
     public static final IntProperty TELEPORT_COOLDOWN = IntProperty.of("teleport_cooldown",0,110);
@@ -43,6 +49,11 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
         this.setDefaultState(this.getDefaultState().with(PLAYING_SOUND, false));
         this.setDefaultState(this.getDefaultState().with(SOUND_COOLDOWN, 0));
         this.setDefaultState(this.getDefaultState().with(TELEPORT_COOLDOWN, 0));
+    }
+
+    @Override
+    protected MapCodec<? extends BlockWithEntity> getCodec() {
+        return CODEC;
     }
 
 
@@ -87,8 +98,9 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
     }
 
     @Override
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (state.getBlock() != newState.getBlock()) {
+    protected void onStateReplaced(BlockState state, ServerWorld world, BlockPos pos, boolean moved) {
+    //public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        //if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof TeleporterBlockEntity) {
                 ItemScatterer.spawn(world, pos, (TeleporterBlockEntity)blockEntity);
@@ -96,18 +108,18 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
             }
             TeleporterBlockEntity.teleporters.remove(pos);
             TeleporterBlockEntity.arraylength=TeleporterBlockEntity.teleporters.size();
-            super.onStateReplaced(state, world, pos, newState, moved);
-        }
+            super.onStateReplaced(state, world, pos, moved);
+        //}
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos,
-                              PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient) {
-            NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
+            //NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
+            TeleporterBlockEntity teleporterBlockEntity = (TeleporterBlockEntity)world.getBlockEntity(pos);
 
-            if (screenHandlerFactory != null) {
-                player.openHandledScreen(screenHandlerFactory);
+            if (teleporterBlockEntity != null) {
+                player.openHandledScreen(teleporterBlockEntity);
             }
         }
 
@@ -137,7 +149,7 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
                 }
             }
             if(destnumber==1){
-                entity.teleport(destination.getX(),destination.getY()+1,destination.getZ());
+                entity.teleport((ServerWorld) world, destination.getX(),destination.getY()+1,destination.getZ(), new HashSet<>(), entity.getYaw(), entity.getPitch(), false);
             }
             else if(destnumber<1){
                 if (!world.isClient) if (entity instanceof PlayerEntity) ((PlayerEntity) entity).
@@ -177,7 +189,7 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
         super.onSteppedOn(world, pos, state, entity);
     }
 
-
+    @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         if(state.get(TELEPORT_COOLDOWN)>0)world.setBlockState(pos, state.with(TELEPORT_COOLDOWN, state.get(TELEPORT_COOLDOWN)-1), NOTIFY_ALL);
         if(!state.get(PLAYING_SOUND)&&state.get(SOUND_COOLDOWN)<25) {
@@ -193,7 +205,7 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
         double d = (double)pos.getX() + random.nextDouble();
         double e = (double)pos.getY() + 0.8;
         double f = (double)pos.getZ() + random.nextDouble();
-        world.addParticle(ParticleTypes.PORTAL, d, e, f, 0.0, 0.0, 0.0);
+        world.addParticleClient(ParticleTypes.PORTAL, d, e, f, 0.0, 0.0, 0.0);
     }
 
 

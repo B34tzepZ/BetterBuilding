@@ -11,13 +11,7 @@ public class ModSymbolSlot extends Slot {
     }
 
     @Override
-    public boolean canInsert(ItemStack stack) {
-        return true;
-    }
-
-    @Override
     public int getMaxItemCount(ItemStack stack) {
         return 1;
-
     }
 }

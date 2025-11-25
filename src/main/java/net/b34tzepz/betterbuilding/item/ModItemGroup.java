@@ -13,7 +13,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class ModItemGroup {
-    public static ItemGroup BUILDING = Registry.register(Registries.ITEM_GROUP, new Identifier(BetterBuilding.MOD_ID, "building"),
+    public static ItemGroup BUILDING = Registry.register(Registries.ITEM_GROUP, Identifier.of(BetterBuilding.MOD_ID, "building"),
             FabricItemGroup.builder()
                     .displayName(Text.translatable("itemgroup.building"))
                     .icon(()->new ItemStack(ModItems.SCREW)).entries((displayContext, entries) -> {
@@ -127,7 +127,7 @@ public class ModItemGroup {
                         entries.add(ModItems.CHISEL);
                     }).build());
 
-    public static ItemGroup PILLARS = Registry.register(Registries.ITEM_GROUP, new Identifier(BetterBuilding.MOD_ID, "pillars"),
+    public static ItemGroup PILLARS = Registry.register(Registries.ITEM_GROUP, Identifier.of(BetterBuilding.MOD_ID, "pillars"),
             FabricItemGroup.builder()
                     .displayName(Text.translatable("itemgroup.pillars"))
                     .icon(()->new ItemStack(ModBlocks.Pillars.STONE_PILLAR)).entries((displayContext, entries) -> {
