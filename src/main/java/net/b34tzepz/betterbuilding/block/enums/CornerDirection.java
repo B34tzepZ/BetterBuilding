@@ -2,13 +2,15 @@ package net.b34tzepz.betterbuilding.block.enums;
 
 import net.minecraft.util.StringIdentifiable;
 
-public enum RelativeDirection implements StringIdentifiable {
-    LEFT("left"),
-    RIGHT("right");
+public enum CornerDirection implements StringIdentifiable {
+    NORTHWEST("northwest"),
+    NORTHEAST("northeast"),
+    SOUTHEAST("southeast"),
+    SOUTHWEST("southwest");
 
     private final String name;
 
-    RelativeDirection(String name) {
+    CornerDirection(String name) {
         this.name = name;
     }
 
