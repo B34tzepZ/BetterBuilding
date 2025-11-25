@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "betterbuilding:block/reinforced_oak_planks"
-  }
-}
