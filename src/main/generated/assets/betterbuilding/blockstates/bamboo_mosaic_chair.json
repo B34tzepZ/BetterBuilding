@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "betterbuilding:block/bamboo_mosaic_chair",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "betterbuilding:block/bamboo_mosaic_chair"
+    },
+    "facing=south": {
+      "model": "betterbuilding:block/bamboo_mosaic_chair",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "betterbuilding:block/bamboo_mosaic_chair",
+      "y": 270
+    }
+  }
+}

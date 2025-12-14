@@ -1,6 +1,7 @@
 package net.b34tzepz.betterbuilding.datagen;
 
 import net.b34tzepz.betterbuilding.block.ModBlocks;
+import net.b34tzepz.betterbuilding.item.ModItems;
 import net.b34tzepz.betterbuilding.util.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -21,6 +22,43 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModBlocks.CUT_SANDSTONE_STAIRS.asItem())
                 .add(ModBlocks.CUT_RED_SANDSTONE_STAIRS.asItem());
 
+        valueLookupBuilder(ItemTags.NON_FLAMMABLE_WOOD)
+                .add(ModBlocks.Sides.CRIMSON_SIDE.asItem())
+                .add(ModBlocks.Sides.WARPED_SIDE.asItem())
+                .add(ModBlocks.Corners.CRIMSON_CORNER.asItem())
+                .add(ModBlocks.Corners.WARPED_CORNER.asItem())
+                .add(ModBlocks.CRIMSON_CHAIR.asItem())
+                .add(ModBlocks.WARPED_CHAIR.asItem())
+                .add(ModBlocks.CRIMSON_TABLE.asItem())
+                .add(ModBlocks.WARPED_TABLE.asItem());
+
+        valueLookupBuilder(ItemTags.DURABILITY_ENCHANTABLE)
+                .add(ModItems.CHISEL);
+
+        valueLookupBuilder(ModTags.Items.REINFORCED_BLOCKS)
+                .addTag(ModTags.Items.REINFORCED_PLANKS)
+                .addTag(ModTags.Items.REINFORCED_LOGS)
+                .addTag(ModTags.Items.REINFORCED_WOODS);
+
+        valueLookupBuilder(ModTags.Items.REINFORCED_PLANKS)
+                .add(ModBlocks.REINFORCED_OAK_PLANKS.asItem())
+                .add(ModBlocks.REINFORCED_SPRUCE_PLANKS.asItem())
+                .add(ModBlocks.REINFORCED_BIRCH_PLANKS.asItem())
+                .add(ModBlocks.REINFORCED_JUNGLE_PLANKS.asItem())
+                .add(ModBlocks.REINFORCED_ACACIA_PLANKS.asItem())
+                .add(ModBlocks.REINFORCED_DARK_OAK_PLANKS.asItem())
+                .add(ModBlocks.REINFORCED_MANGROVE_PLANKS.asItem())
+                .add(ModBlocks.REINFORCED_CHERRY_PLANKS.asItem())
+                .add(ModBlocks.REINFORCED_PALE_OAK_PLANKS.asItem())
+                .add(ModBlocks.REINFORCED_BAMBOO_PLANKS.asItem())
+                .add(ModBlocks.REINFORCED_BAMBOO_MOSAIC.asItem())
+                .add(ModBlocks.REINFORCED_CRIMSON_PLANKS.asItem())
+                .add(ModBlocks.REINFORCED_WARPED_PLANKS.asItem());
+
+        valueLookupBuilder(ModTags.Items.REINFORCED_LOGS);
+
+        valueLookupBuilder(ModTags.Items.REINFORCED_WOODS);
+
         valueLookupBuilder(ModTags.Items.SIDES)
                 .addTag(ModTags.Items.WOODEN_SIDES)
                 .add(ModBlocks.Sides.STONE_SIDE.asItem())
@@ -39,6 +77,12 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModBlocks.Sides.POLISHED_DEEPSLATE_SIDE.asItem())
                 .add(ModBlocks.Sides.DEEPSLATE_BRICK_SIDE.asItem())
                 .add(ModBlocks.Sides.DEEPSLATE_TILE_SIDE.asItem())
+                .add(ModBlocks.Sides.TUFF_SIDE.asItem())
+                .add(ModBlocks.Sides.POLISHED_TUFF_SIDE.asItem())
+                .add(ModBlocks.Sides.TUFF_BRICK_SIDE.asItem())
+                .add(ModBlocks.Sides.BRICK_SIDE.asItem())
+                .add(ModBlocks.Sides.MUD_BRICK_SIDE.asItem())
+                .add(ModBlocks.Sides.RESIN_BRICK_SIDE.asItem())
                 .add(ModBlocks.Sides.SANDSTONE_SIDE.asItem())
                 .add(ModBlocks.Sides.SMOOTH_SANDSTONE_SIDE.asItem())
                 .add(ModBlocks.Sides.CUT_SANDSTONE_SIDE.asItem())
@@ -73,6 +117,11 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModBlocks.Sides.JUNGLE_SIDE.asItem())
                 .add(ModBlocks.Sides.ACACIA_SIDE.asItem())
                 .add(ModBlocks.Sides.DARK_OAK_SIDE.asItem())
+                .add(ModBlocks.Sides.MANGROVE_SIDE.asItem())
+                .add(ModBlocks.Sides.CHERRY_SIDE.asItem())
+                .add(ModBlocks.Sides.PALE_OAK_SIDE.asItem())
+                .add(ModBlocks.Sides.BAMBOO_SIDE.asItem())
+                .add(ModBlocks.Sides.BAMBOO_MOSAIC_SIDE.asItem())
                 .add(ModBlocks.Sides.CRIMSON_SIDE.asItem())
                 .add(ModBlocks.Sides.WARPED_SIDE.asItem());
 
@@ -94,6 +143,12 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModBlocks.Corners.POLISHED_DEEPSLATE_CORNER.asItem())
                 .add(ModBlocks.Corners.DEEPSLATE_BRICK_CORNER.asItem())
                 .add(ModBlocks.Corners.DEEPSLATE_TILE_CORNER.asItem())
+                .add(ModBlocks.Corners.TUFF_CORNER.asItem())
+                .add(ModBlocks.Corners.POLISHED_TUFF_CORNER.asItem())
+                .add(ModBlocks.Corners.TUFF_BRICK_CORNER.asItem())
+                .add(ModBlocks.Corners.BRICK_CORNER.asItem())
+                .add(ModBlocks.Corners.MUD_BRICK_CORNER.asItem())
+                .add(ModBlocks.Corners.RESIN_BRICK_CORNER.asItem())
                 .add(ModBlocks.Corners.SANDSTONE_CORNER.asItem())
                 .add(ModBlocks.Corners.SMOOTH_SANDSTONE_CORNER.asItem())
                 .add(ModBlocks.Corners.CUT_SANDSTONE_CORNER.asItem())
@@ -128,11 +183,112 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModBlocks.Corners.JUNGLE_CORNER.asItem())
                 .add(ModBlocks.Corners.ACACIA_CORNER.asItem())
                 .add(ModBlocks.Corners.DARK_OAK_CORNER.asItem())
+                .add(ModBlocks.Corners.MANGROVE_CORNER.asItem())
+                .add(ModBlocks.Corners.CHERRY_CORNER.asItem())
+                .add(ModBlocks.Corners.PALE_OAK_CORNER.asItem())
+                .add(ModBlocks.Corners.BAMBOO_CORNER.asItem())
+                .add(ModBlocks.Corners.BAMBOO_MOSAIC_CORNER.asItem())
                 .add(ModBlocks.Corners.CRIMSON_CORNER.asItem())
                 .add(ModBlocks.Corners.WARPED_CORNER.asItem());
 
-        valueLookupBuilder(ModTags.Items.PILLARS);
+        valueLookupBuilder(ModTags.Items.PILLARS)
+                .addTag(ModTags.Items.WOODEN_PILLARS);
 
-        valueLookupBuilder(ModTags.Items.WOODEN_PILLARS);
+        valueLookupBuilder(ModTags.Items.WOODEN_PILLARS)
+                .addTag(ModTags.Items.PLANK_PILLARS)
+                .addTag(ModTags.Items.LOG_PILLARS)
+                .add(ModBlocks.Pillars.BAMBOO_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_BAMBOO_PILLAR.asItem())
+                .add(ModBlocks.Pillars.BAMBOO_MOSAIC_PILLAR.asItem());
+
+        valueLookupBuilder(ModTags.Items.PLANK_PILLARS)
+                .add(ModBlocks.Pillars.OAK_PLANK_PILLAR.asItem())
+                .add(ModBlocks.Pillars.SPRUCE_PLANK_PILLAR.asItem())
+                .add(ModBlocks.Pillars.BIRCH_PLANK_PILLAR.asItem())
+                .add(ModBlocks.Pillars.JUNGLE_PLANK_PILLAR.asItem())
+                .add(ModBlocks.Pillars.ACACIA_PLANK_PILLAR.asItem())
+                .add(ModBlocks.Pillars.DARK_OAK_PLANK_PILLAR.asItem())
+                .add(ModBlocks.Pillars.MANGROVE_PLANK_PILLAR.asItem())
+                .add(ModBlocks.Pillars.CHERRY_PLANK_PILLAR.asItem())
+                .add(ModBlocks.Pillars.PALE_OAK_PLANK_PILLAR.asItem())
+                .add(ModBlocks.Pillars.BAMBOO_PLANK_PILLAR.asItem())
+                .add(ModBlocks.Pillars.CRIMSON_PLANK_PILLAR.asItem())
+                .add(ModBlocks.Pillars.WARPED_PLANK_PILLAR.asItem());
+
+        valueLookupBuilder(ModTags.Items.LOG_PILLARS)
+                .add(ModBlocks.Pillars.OAK_LOG_PILLAR.asItem())
+                .add(ModBlocks.Pillars.OAK_WOOD_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_OAK_LOG_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_OAK_WOOD_PILLAR.asItem())
+                .add(ModBlocks.Pillars.SPRUCE_LOG_PILLAR.asItem())
+                .add(ModBlocks.Pillars.SPRUCE_WOOD_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_SPRUCE_LOG_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_SPRUCE_WOOD_PILLAR.asItem())
+                .add(ModBlocks.Pillars.BIRCH_LOG_PILLAR.asItem())
+                .add(ModBlocks.Pillars.BIRCH_WOOD_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_BIRCH_LOG_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_BIRCH_WOOD_PILLAR.asItem())
+                .add(ModBlocks.Pillars.JUNGLE_LOG_PILLAR.asItem())
+                .add(ModBlocks.Pillars.JUNGLE_WOOD_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_JUNGLE_LOG_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_JUNGLE_WOOD_PILLAR.asItem())
+                .add(ModBlocks.Pillars.ACACIA_LOG_PILLAR.asItem())
+                .add(ModBlocks.Pillars.ACACIA_WOOD_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_ACACIA_LOG_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_ACACIA_WOOD_PILLAR.asItem())
+                .add(ModBlocks.Pillars.DARK_OAK_LOG_PILLAR.asItem())
+                .add(ModBlocks.Pillars.DARK_OAK_WOOD_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_DARK_OAK_LOG_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_DARK_OAK_WOOD_PILLAR.asItem())
+                .add(ModBlocks.Pillars.MANGROVE_LOG_PILLAR.asItem())
+                .add(ModBlocks.Pillars.MANGROVE_WOOD_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_MANGROVE_LOG_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_MANGROVE_WOOD_PILLAR.asItem())
+                .add(ModBlocks.Pillars.CHERRY_LOG_PILLAR.asItem())
+                .add(ModBlocks.Pillars.CHERRY_WOOD_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_CHERRY_LOG_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_CHERRY_WOOD_PILLAR.asItem())
+                .add(ModBlocks.Pillars.PALE_OAK_LOG_PILLAR.asItem())
+                .add(ModBlocks.Pillars.PALE_OAK_WOOD_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_PALE_OAK_LOG_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_PALE_OAK_WOOD_PILLAR.asItem())
+                .add(ModBlocks.Pillars.CRIMSON_STEM_PILLAR.asItem())
+                .add(ModBlocks.Pillars.CRIMSON_HYPHAE_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_CRIMSON_STEM_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_CRIMSON_HYPHAE_PILLAR.asItem())
+                .add(ModBlocks.Pillars.WARPED_STEM_PILLAR.asItem())
+                .add(ModBlocks.Pillars.WARPED_HYPHAE_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_WARPED_STEM_PILLAR.asItem())
+                .add(ModBlocks.Pillars.STRIPPED_WARPED_HYPHAE_PILLAR.asItem());
+
+        valueLookupBuilder(ModTags.Items.CHAIRS)
+                .add(ModBlocks.OAK_CHAIR.asItem())
+                .add(ModBlocks.SPRUCE_CHAIR.asItem())
+                .add(ModBlocks.BIRCH_CHAIR.asItem())
+                .add(ModBlocks.JUNGLE_CHAIR.asItem())
+                .add(ModBlocks.ACACIA_CHAIR.asItem())
+                .add(ModBlocks.DARK_OAK_CHAIR.asItem())
+                .add(ModBlocks.MANGROVE_CHAIR.asItem())
+                .add(ModBlocks.CHERRY_CHAIR.asItem())
+                .add(ModBlocks.PALE_OAK_CHAIR.asItem())
+                .add(ModBlocks.BAMBOO_CHAIR.asItem())
+                .add(ModBlocks.BAMBOO_MOSAIC_CHAIR.asItem())
+                .add(ModBlocks.CRIMSON_CHAIR.asItem())
+                .add(ModBlocks.WARPED_CHAIR.asItem());
+
+        valueLookupBuilder(ModTags.Items.TABLES)
+                .add(ModBlocks.OAK_TABLE.asItem())
+                .add(ModBlocks.SPRUCE_TABLE.asItem())
+                .add(ModBlocks.BIRCH_TABLE.asItem())
+                .add(ModBlocks.JUNGLE_TABLE.asItem())
+                .add(ModBlocks.ACACIA_TABLE.asItem())
+                .add(ModBlocks.DARK_OAK_TABLE.asItem())
+                .add(ModBlocks.MANGROVE_TABLE.asItem())
+                .add(ModBlocks.CHERRY_TABLE.asItem())
+                .add(ModBlocks.PALE_OAK_TABLE.asItem())
+                .add(ModBlocks.BAMBOO_TABLE.asItem())
+                .add(ModBlocks.BAMBOO_MOSAIC_TABLE.asItem())
+                .add(ModBlocks.CRIMSON_TABLE.asItem())
+                .add(ModBlocks.WARPED_TABLE.asItem());
     }
 }

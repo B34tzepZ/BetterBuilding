@@ -1,0 +1,191 @@
+{
+  "variants": {
+    "direction=northeast,shape=inner_bottom": {
+      "model": "betterbuilding:block/deepslate_brick_corner_inner",
+      "uvlock": true,
+      "y": 180
+    },
+    "direction=northeast,shape=inner_top": {
+      "model": "betterbuilding:block/deepslate_brick_corner_inner",
+      "uvlock": true,
+      "x": 90,
+      "y": 180
+    },
+    "direction=northeast,shape=outer_double_bottom": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_double",
+      "uvlock": true,
+      "y": 180
+    },
+    "direction=northeast,shape=outer_double_top": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_double",
+      "uvlock": true,
+      "x": 90,
+      "y": 180
+    },
+    "direction=northeast,shape=outer_next_bottom": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_next",
+      "uvlock": true,
+      "y": 270
+    },
+    "direction=northeast,shape=outer_next_top": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_next",
+      "uvlock": true,
+      "x": 90,
+      "y": 270
+    },
+    "direction=northeast,shape=outer_prev_bottom": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_prev",
+      "uvlock": true,
+      "y": 180
+    },
+    "direction=northeast,shape=outer_prev_top": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_prev",
+      "uvlock": true,
+      "x": 90,
+      "y": 180
+    },
+    "direction=northeast,shape=straight": {
+      "model": "betterbuilding:block/deepslate_brick_corner",
+      "uvlock": true,
+      "y": 180
+    },
+    "direction=northwest,shape=inner_bottom": {
+      "model": "betterbuilding:block/deepslate_brick_corner_inner",
+      "uvlock": true,
+      "y": 90
+    },
+    "direction=northwest,shape=inner_top": {
+      "model": "betterbuilding:block/deepslate_brick_corner_inner",
+      "uvlock": true,
+      "x": 90,
+      "y": 90
+    },
+    "direction=northwest,shape=outer_double_bottom": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_double",
+      "uvlock": true,
+      "y": 90
+    },
+    "direction=northwest,shape=outer_double_top": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_double",
+      "uvlock": true,
+      "x": 90,
+      "y": 90
+    },
+    "direction=northwest,shape=outer_next_bottom": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_next",
+      "uvlock": true,
+      "y": 180
+    },
+    "direction=northwest,shape=outer_next_top": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_next",
+      "uvlock": true,
+      "x": 90,
+      "y": 180
+    },
+    "direction=northwest,shape=outer_prev_bottom": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_prev",
+      "uvlock": true,
+      "y": 90
+    },
+    "direction=northwest,shape=outer_prev_top": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_prev",
+      "uvlock": true,
+      "x": 90,
+      "y": 90
+    },
+    "direction=northwest,shape=straight": {
+      "model": "betterbuilding:block/deepslate_brick_corner",
+      "uvlock": true,
+      "y": 90
+    },
+    "direction=southeast,shape=inner_bottom": {
+      "model": "betterbuilding:block/deepslate_brick_corner_inner",
+      "uvlock": true,
+      "y": 270
+    },
+    "direction=southeast,shape=inner_top": {
+      "model": "betterbuilding:block/deepslate_brick_corner_inner",
+      "uvlock": true,
+      "x": 90,
+      "y": 270
+    },
+    "direction=southeast,shape=outer_double_bottom": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_double",
+      "uvlock": true,
+      "y": 270
+    },
+    "direction=southeast,shape=outer_double_top": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_double",
+      "uvlock": true,
+      "x": 90,
+      "y": 270
+    },
+    "direction=southeast,shape=outer_next_bottom": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_next",
+      "uvlock": true
+    },
+    "direction=southeast,shape=outer_next_top": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_next",
+      "uvlock": true,
+      "x": 90
+    },
+    "direction=southeast,shape=outer_prev_bottom": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_prev",
+      "uvlock": true,
+      "y": 270
+    },
+    "direction=southeast,shape=outer_prev_top": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_prev",
+      "uvlock": true,
+      "x": 90,
+      "y": 270
+    },
+    "direction=southeast,shape=straight": {
+      "model": "betterbuilding:block/deepslate_brick_corner",
+      "uvlock": true,
+      "y": 270
+    },
+    "direction=southwest,shape=inner_bottom": {
+      "model": "betterbuilding:block/deepslate_brick_corner_inner",
+      "uvlock": true
+    },
+    "direction=southwest,shape=inner_top": {
+      "model": "betterbuilding:block/deepslate_brick_corner_inner",
+      "uvlock": true,
+      "x": 90
+    },
+    "direction=southwest,shape=outer_double_bottom": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_double",
+      "uvlock": true
+    },
+    "direction=southwest,shape=outer_double_top": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_double",
+      "uvlock": true,
+      "x": 90
+    },
+    "direction=southwest,shape=outer_next_bottom": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_next",
+      "uvlock": true,
+      "y": 90
+    },
+    "direction=southwest,shape=outer_next_top": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_next",
+      "uvlock": true,
+      "x": 90,
+      "y": 90
+    },
+    "direction=southwest,shape=outer_prev_bottom": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_prev",
+      "uvlock": true
+    },
+    "direction=southwest,shape=outer_prev_top": {
+      "model": "betterbuilding:block/deepslate_brick_corner_outer_prev",
+      "uvlock": true,
+      "x": 90
+    },
+    "direction=southwest,shape=straight": {
+      "model": "betterbuilding:block/deepslate_brick_corner",
+      "uvlock": true
+    }
+  }
+}

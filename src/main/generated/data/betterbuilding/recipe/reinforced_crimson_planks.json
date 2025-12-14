@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "minecraft:crimson_planks",
+    "/": "betterbuilding:screw"
+  },
+  "pattern": [
+    "/ /",
+    " # ",
+    "/ /"
+  ],
+  "result": {
+    "count": 1,
+    "id": "betterbuilding:reinforced_crimson_planks"
+  }
+}

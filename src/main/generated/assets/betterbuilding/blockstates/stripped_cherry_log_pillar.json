@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "betterbuilding:block/stripped_cherry_log_pillar",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "betterbuilding:block/stripped_cherry_log_pillar"
+    },
+    "axis=z": {
+      "model": "betterbuilding:block/stripped_cherry_log_pillar",
+      "x": 90
+    }
+  }
+}

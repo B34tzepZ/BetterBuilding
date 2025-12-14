@@ -1,0 +1,7 @@
+{
+  "parent": "betterbuilding:block/pillar_column",
+  "textures": {
+    "end": "minecraft:block/mangrove_planks",
+    "side": "minecraft:block/mangrove_planks"
+  }
+}

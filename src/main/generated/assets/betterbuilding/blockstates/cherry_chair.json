@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "betterbuilding:block/cherry_chair",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "betterbuilding:block/cherry_chair"
+    },
+    "facing=south": {
+      "model": "betterbuilding:block/cherry_chair",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "betterbuilding:block/cherry_chair",
+      "y": 270
+    }
+  }
+}

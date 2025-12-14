@@ -1,8 +1,0 @@
-{
-  "parent": "block/cube_bottom_top",
-  "textures": {
-    "top": "betterbuilding:block/fabricator_top",
-    "bottom": "betterbuilding:block/fabricator_bottom",
-    "side": "betterbuilding:block/fabricator_side"
-  }
-}

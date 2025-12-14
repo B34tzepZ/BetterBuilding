@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "betterbuilding:block/rooted_dirt_pillar",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "betterbuilding:block/rooted_dirt_pillar"
+    },
+    "axis=z": {
+      "model": "betterbuilding:block/rooted_dirt_pillar",
+      "x": 90
+    }
+  }
+}

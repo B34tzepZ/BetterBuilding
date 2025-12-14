@@ -1,0 +1,7 @@
+{
+  "parent": "betterbuilding:block/pillar_column",
+  "textures": {
+    "end": "minecraft:block/diamond_block",
+    "side": "minecraft:block/diamond_block"
+  }
+}

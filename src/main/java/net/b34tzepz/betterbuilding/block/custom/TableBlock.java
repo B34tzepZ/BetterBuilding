@@ -23,26 +23,25 @@ import java.util.stream.Stream;
 public class TableBlock extends Block {
 
 
-    public static final BooleanProperty NORTHBOWLPLACED = BooleanProperty.of("north_bowl_placed");
-    public static final BooleanProperty SOUTHBOWLPLACED = BooleanProperty.of("south_bowl_placed");
-    public static final BooleanProperty EASTBOWLPLACED = BooleanProperty.of("east_bowl_placed");
-    public static final BooleanProperty WESTBOWLPLACED = BooleanProperty.of("west_bowl_placed");
+    public static final BooleanProperty NORTH_BOWL_PLACED = BooleanProperty.of("north_bowl_placed");
+    public static final BooleanProperty SOUTH_BOWL_PLACED = BooleanProperty.of("south_bowl_placed");
+    public static final BooleanProperty EAST_BOWL_PLACED = BooleanProperty.of("east_bowl_placed");
+    public static final BooleanProperty WEST_BOWL_PLACED = BooleanProperty.of("west_bowl_placed");
 
-    public static VoxelShape SHAPE = Stream.of(
-            Block.createCuboidShape(12, 0, 2, 14, 14, 4),
-            Block.createCuboidShape(12, 0, 12, 14, 14, 14),
-            Block.createCuboidShape(2, 0, 2, 4, 14, 4),
-            Block.createCuboidShape(2, 0, 12, 4, 14, 14),
-            Block.createCuboidShape(0, 14, 0, 16, 16, 16)
-    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
+    public static final VoxelShape legNW = Block.createCuboidShape(2, 0, 2, 4, 14, 4);
+    public static final VoxelShape legNE = Block.createCuboidShape(12, 0, 2, 14, 14, 4);
+    public static final VoxelShape legSW = Block.createCuboidShape(2, 0, 12, 4, 14, 14);
+    public static final VoxelShape legSE = Block.createCuboidShape(12, 0, 12, 14, 14, 14);
+    public static final VoxelShape plate = Block.createCuboidShape(0, 14, 0, 16, 16, 16);
+    public static VoxelShape SHAPE = VoxelShapes.union(legNW, legNE, legSW, legSE, plate);
 
     public TableBlock(Settings settings) {
         super(settings);
         this.setDefaultState((((this.stateManager.getDefaultState()
-                .with(NORTHBOWLPLACED, false))
-                .with(SOUTHBOWLPLACED, false))
-                .with(EASTBOWLPLACED, false))
-                .with(WESTBOWLPLACED, false));
+                .with(NORTH_BOWL_PLACED, false))
+                .with(SOUTH_BOWL_PLACED, false))
+                .with(EAST_BOWL_PLACED, false))
+                .with(WEST_BOWL_PLACED, false));
     }
 
     @Override
@@ -52,7 +51,7 @@ public class TableBlock extends Block {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(NORTHBOWLPLACED, SOUTHBOWLPLACED, EASTBOWLPLACED, WESTBOWLPLACED);
+        builder.add(NORTH_BOWL_PLACED, SOUTH_BOWL_PLACED, EAST_BOWL_PLACED, WEST_BOWL_PLACED);
     }
 
     @Override
@@ -71,10 +70,10 @@ public class TableBlock extends Block {
 
         if(!state.get(getOppositeBowlPropertyByDir(dir))){
             world.setBlockState(pos, state.with(getOppositeBowlPropertyByDir(dir), true), NOTIFY_ALL);
-            itemStack.decrement(1);
+            itemStack.decrementUnlessCreative(1, player);
+            return ActionResult.SUCCESS;
         }
-
-        return ActionResult.SUCCESS;
+        return ActionResult.PASS_TO_DEFAULT_BLOCK_ACTION;
     }
 
     private ActionResult takeBowl(BlockState state, World world, BlockPos pos, PlayerEntity player) {
@@ -83,16 +82,16 @@ public class TableBlock extends Block {
         if(state.get(getOppositeBowlPropertyByDir(dir))){
             world.setBlockState(pos, state.with(getOppositeBowlPropertyByDir(dir), false), NOTIFY_ALL);
             dropBowl(world, pos);
+            return ActionResult.SUCCESS;
         }
-
-        return ActionResult.SUCCESS;
+        return ActionResult.PASS_TO_DEFAULT_BLOCK_ACTION;
     }
 
     private void dropBowl(World world, BlockPos pos) {
         if (!world.isClient) {
-            double d = (double) (world.random.nextFloat() * 0.7f) + (double) 0.15f;
-            double e = (double) (world.random.nextFloat() * 0.7f) + 0.06000000238418579 + 0.6;
-            double g = (double) (world.random.nextFloat() * 0.7f) + (double) 0.15f;
+            double d = (world.random.nextDouble() * 0.7f) + 0.15;
+            double e = (world.random.nextDouble() * 0.7f) + 0.66;
+            double g = (world.random.nextDouble() * 0.7f) + 0.15;
             ItemEntity itemEntity = new ItemEntity(world, (double) pos.getX() + d, (double) pos.getY() + e, (double) pos.getZ() + g, new ItemStack(Items.BOWL));
             itemEntity.setToDefaultPickupDelay();
             world.spawnEntity(itemEntity);
@@ -101,10 +100,10 @@ public class TableBlock extends Block {
 
     private BooleanProperty getOppositeBowlPropertyByDir(Direction dir){
         return switch (dir) {
-            case SOUTH -> NORTHBOWLPLACED;
-            case NORTH -> SOUTHBOWLPLACED;
-            case WEST -> EASTBOWLPLACED;
-            case EAST -> WESTBOWLPLACED;
+            case SOUTH -> NORTH_BOWL_PLACED;
+            case NORTH -> SOUTH_BOWL_PLACED;
+            case WEST -> EAST_BOWL_PLACED;
+            case EAST -> WEST_BOWL_PLACED;
             default -> null;
         };
     }

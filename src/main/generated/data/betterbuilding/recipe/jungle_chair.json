@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "minecraft:stick",
+    "/": "betterbuilding:jungle_side",
+    "_": "minecraft:jungle_slab"
+  },
+  "pattern": [
+    "/ ",
+    "__",
+    "##"
+  ],
+  "result": {
+    "count": 1,
+    "id": "betterbuilding:jungle_chair"
+  }
+}

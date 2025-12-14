@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_mangrove_side": {
+      "conditions": {
+        "items": [
+          {
+            "items": "betterbuilding:mangrove_side"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_mangrove_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:mangrove_slab"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterbuilding:mangrove_chair"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_mangrove_side",
+      "has_mangrove_slab"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterbuilding:mangrove_chair"
+    ]
+  }
+}

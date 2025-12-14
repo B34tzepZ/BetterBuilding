@@ -1,9 +1,8 @@
 package net.b34tzepz.betterbuilding.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import net.b34tzepz.betterbuilding.block.entity.ModBlockEntities;
+import net.b34tzepz.betterbuilding.block.entity.ModEntities;
 import net.b34tzepz.betterbuilding.block.entity.TeleporterBlockEntity;
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -15,7 +14,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -219,6 +217,6 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 
-        return validateTicker(type, ModBlockEntities.TELEPORTER_BLOCK, TeleporterBlockEntity::tick);
+        return validateTicker(type, ModEntities.TELEPORTER_BLOCK, TeleporterBlockEntity::tick);
     }
 }

@@ -1,29 +1,42 @@
 package net.b34tzepz.betterbuilding.block.entity;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.BlockPos;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
+import net.minecraft.world.World;
 
-public class ChairEntity extends BlockEntity implements NamedScreenHandlerFactory {
-    public ChairEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.OAK_CHAIR, pos, state);
+public class ChairEntity extends Entity {
+
+    public ChairEntity(EntityType<?> type, World world) {
+        super(type, world);
     }
 
-
     @Override
-    public Text getDisplayName() {
-        return Text.literal("Chair");
+    protected void initDataTracker(DataTracker.Builder builder) {
     }
 
-    @Nullable
     @Override
-    public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return null;
+    public boolean damage(ServerWorld world, DamageSource source, float amount) {
+        return false;
+    }
+
+    @Override
+    protected void readCustomData(ReadView view) {
+    }
+
+    @Override
+    protected void writeCustomData(WriteView view) {
+    }
+
+    @Override
+    protected void removePassenger (Entity passenger) {
+        super.removePassenger(passenger);
+        if(!this.getWorld().isClient()) {
+            this.kill(((ServerWorld) this.getWorld()));
+        }
     }
 }

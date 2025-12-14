@@ -1,0 +1,7 @@
+{
+  "parent": "betterbuilding:block/pillar_column",
+  "textures": {
+    "end": "minecraft:block/black_stained_glass",
+    "side": "minecraft:block/black_stained_glass"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "betterbuilding:block/dark_oak_chair",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "betterbuilding:block/dark_oak_chair"
+    },
+    "facing=south": {
+      "model": "betterbuilding:block/dark_oak_chair",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "betterbuilding:block/dark_oak_chair",
+      "y": 270
+    }
+  }
+}

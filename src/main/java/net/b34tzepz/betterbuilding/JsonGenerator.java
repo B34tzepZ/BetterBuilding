@@ -1,20 +1,62 @@
 package net.b34tzepz.betterbuilding;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.*;
 
 public class JsonGenerator {
-    public static void main(String[] args) {
-        generateJsons("ice", "blue_ice", "pillar");
+    public static void main(String[] args) throws IOException {
+        Path file = Paths.get("src/main/resources/assets/betterbuilding/models/block/oak_table.json");
+        Path file1 = Paths.get("src/main/resources/assets/betterbuilding/models/block/oak_table_1bowl.json");
+        Path file2 = Paths.get("src/main/resources/assets/betterbuilding/models/block/oak_table_2bowls1.json");
+        Path file22 = Paths.get("src/main/resources/assets/betterbuilding/models/block/oak_table_2bowls2.json");
+        Path file3 = Paths.get("src/main/resources/assets/betterbuilding/models/block/oak_table_3bowls.json");
+        Path file4 = Paths.get("src/main/resources/assets/betterbuilding/models/block/oak_table_4bowls.json");
+
+        copyAndReplace(file, "oak", "bamboo_mosaic");
+        copyAndReplace(file1, "oak", "bamboo_mosaic");
+        copyAndReplace(file2, "oak", "bamboo_mosaic");
+        copyAndReplace(file22, "oak", "bamboo_mosaic");
+        copyAndReplace(file3, "oak", "bamboo_mosaic");
+        copyAndReplace(file4, "oak", "bamboo_mosaic");
+
+        /*generateJsons("ice", "blue_ice", "pillar");
         generateJsons("granite", "redstone", "pillar");
         generateJsons("granite", "tnt", "pillar");
         generateJsons("granite", "crying_obsidian", "pillar");
         generateJsons("granite", "ochre_froglight", "pillar");
         generateJsons("granite", "verdant_froglight", "pillar");
-        generateJsons("granite", "pearlescent_froglight", "pillar");
+        generateJsons("granite", "pearlescent_froglight", "pillar");*/
 
+    }
 
+    public static Path copyAndReplace(
+            Path sourceFile,
+            String search,
+            String replace
+    ) throws IOException {
+
+        // Verzeichnis der Quelldatei
+        Path directory = sourceFile.getParent();
+
+        // Neuer Dateiname mit ersetztem String
+        String newFileName = sourceFile.getFileName()
+                .toString()
+                .replace(search, replace);
+
+        Path targetFile = directory.resolve(newFileName);
+
+        // Dateiinhalt lesen
+        String content = Files.readString(sourceFile, StandardCharsets.UTF_8);
+
+        // String im Inhalt ersetzen
+        content = content.replace(search, replace);
+
+        // Neue Datei schreiben
+        Files.writeString(targetFile, content, StandardCharsets.UTF_8);
+
+        return targetFile;
     }
 
     /**

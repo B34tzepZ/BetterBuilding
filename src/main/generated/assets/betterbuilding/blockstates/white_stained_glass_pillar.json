@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "betterbuilding:block/white_stained_glass_pillar",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "betterbuilding:block/white_stained_glass_pillar"
+    },
+    "axis=z": {
+      "model": "betterbuilding:block/white_stained_glass_pillar",
+      "x": 90
+    }
+  }
+}

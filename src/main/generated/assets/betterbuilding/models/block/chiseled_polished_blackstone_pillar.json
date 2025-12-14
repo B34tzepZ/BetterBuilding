@@ -1,0 +1,7 @@
+{
+  "parent": "betterbuilding:block/pillar_column",
+  "textures": {
+    "end": "minecraft:block/chiseled_polished_blackstone",
+    "side": "minecraft:block/chiseled_polished_blackstone"
+  }
+}

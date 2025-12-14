@@ -1,0 +1,7 @@
+{
+  "parent": "betterbuilding:block/pillar_column",
+  "textures": {
+    "end": "minecraft:block/dark_prismarine",
+    "side": "minecraft:block/dark_prismarine"
+  }
+}

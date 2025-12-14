@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "type=double": {
+      "model": "minecraft:block/spruce_planks",
+      "uvlock": true
+    },
+    "type=east": {
+      "model": "betterbuilding:block/spruce_side",
+      "uvlock": true
+    },
+    "type=north": {
+      "model": "betterbuilding:block/spruce_side",
+      "uvlock": true,
+      "y": 270
+    },
+    "type=south": {
+      "model": "betterbuilding:block/spruce_side",
+      "uvlock": true,
+      "y": 90
+    },
+    "type=west": {
+      "model": "betterbuilding:block/spruce_side",
+      "uvlock": true,
+      "y": 180
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "betterbuilding:block/pillar_column",
+  "textures": {
+    "end": "minecraft:block/glowstone",
+    "side": "minecraft:block/glowstone"
+  }
+}

@@ -15,26 +15,12 @@ public class ModItems {
     public static final Item SCREW = registerItem("screw",              //Screw is colored because it's the icon of ModItemGroup.Building
             Item::new, new Item.Settings());
 
-    public static final Item TABLE_LEG = registerItem("table_leg",
-            Item::new, new Item.Settings());
-
     public static final Item CHISEL = registerItem("chisel",
             ChiselItem::new, new Item.Settings().maxDamage(64));
 
-    private static Item registerItem(String name, Item item) {
-        RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(BetterBuilding.MOD_ID, name));
-
-        return Registry.register(Registries.ITEM, itemKey, item);
-    }
-
     public static Item registerItem(String name, Function<Item.Settings, Item> itemFactory, Item.Settings settings) {
-        // Create the item key.
         RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(BetterBuilding.MOD_ID, name));
-
-        // Create the item instance.
         Item item = itemFactory.apply(settings.registryKey(itemKey));
-
-        // Register the item.
         return Registry.register(Registries.ITEM, itemKey, item);
     }
 

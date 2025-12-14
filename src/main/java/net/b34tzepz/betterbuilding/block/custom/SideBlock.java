@@ -2,7 +2,7 @@ package net.b34tzepz.betterbuilding.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import net.b34tzepz.betterbuilding.block.enums.SideType;
-import net.b34tzepz.betterbuilding.state.property.Properties;
+import net.b34tzepz.betterbuilding.state.property.ModProperties;
 import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.fluid.Fluid;
@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -26,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class SideBlock extends HorizontalFacingBlock implements Waterloggable {
     public static final MapCodec<SideBlock> CODEC = createCodec(SideBlock::new);
-    public static final EnumProperty<SideType> TYPE = Properties.SIDE_TYPE;
+    public static final EnumProperty<SideType> TYPE = ModProperties.SIDE_TYPE;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     protected static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 16.0, 8.0);    //x: west -> east
     protected static final VoxelShape EAST_SHAPE = Block.createCuboidShape(8.0, 0.0, 0.0, 16.0, 16.0, 16.0);    //z: north -> south

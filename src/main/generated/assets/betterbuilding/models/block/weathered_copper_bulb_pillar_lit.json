@@ -1,0 +1,7 @@
+{
+  "parent": "betterbuilding:block/pillar_column",
+  "textures": {
+    "end": "minecraft:block/weathered_copper_bulb_lit",
+    "side": "minecraft:block/weathered_copper_bulb_lit"
+  }
+}

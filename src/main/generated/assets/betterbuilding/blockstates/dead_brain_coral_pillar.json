@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "betterbuilding:block/dead_brain_coral_pillar",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "betterbuilding:block/dead_brain_coral_pillar"
+    },
+    "axis=z": {
+      "model": "betterbuilding:block/dead_brain_coral_pillar",
+      "x": 90
+    }
+  }
+}

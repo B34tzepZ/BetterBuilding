@@ -1,0 +1,6 @@
+{
+  "parent": "betterbuilding:block/chair",
+  "textures": {
+    "all": "minecraft:block/warped_planks"
+  }
+}

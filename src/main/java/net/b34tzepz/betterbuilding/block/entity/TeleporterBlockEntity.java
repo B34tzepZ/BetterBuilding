@@ -31,7 +31,7 @@ public class TeleporterBlockEntity extends BlockEntity implements ImplementedInv
     public static int[] posZ = new int[arraylength];
 
     public TeleporterBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.TELEPORTER_BLOCK, pos, state);
+        super(ModEntities.TELEPORTER_BLOCK, pos, state);
     }
 
     @Override

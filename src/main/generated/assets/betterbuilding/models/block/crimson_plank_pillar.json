@@ -1,0 +1,7 @@
+{
+  "parent": "betterbuilding:block/pillar_column",
+  "textures": {
+    "end": "minecraft:block/crimson_planks",
+    "side": "minecraft:block/crimson_planks"
+  }
+}

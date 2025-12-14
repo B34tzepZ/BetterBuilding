@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "type=double": {
+      "model": "minecraft:block/dark_oak_planks",
+      "uvlock": true
+    },
+    "type=east": {
+      "model": "betterbuilding:block/dark_oak_side",
+      "uvlock": true
+    },
+    "type=north": {
+      "model": "betterbuilding:block/dark_oak_side",
+      "uvlock": true,
+      "y": 270
+    },
+    "type=south": {
+      "model": "betterbuilding:block/dark_oak_side",
+      "uvlock": true,
+      "y": 90
+    },
+    "type=west": {
+      "model": "betterbuilding:block/dark_oak_side",
+      "uvlock": true,
+      "y": 180
+    }
+  }
+}

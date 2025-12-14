@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_bamboo_side": {
+      "conditions": {
+        "items": [
+          {
+            "items": "betterbuilding:bamboo_side"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_bamboo_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:bamboo_slab"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterbuilding:bamboo_chair"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_bamboo_side",
+      "has_bamboo_slab"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterbuilding:bamboo_chair"
+    ]
+  }
+}

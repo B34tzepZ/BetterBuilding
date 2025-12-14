@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "type=double": {
+      "model": "minecraft:block/birch_planks",
+      "uvlock": true
+    },
+    "type=east": {
+      "model": "betterbuilding:block/birch_side",
+      "uvlock": true
+    },
+    "type=north": {
+      "model": "betterbuilding:block/birch_side",
+      "uvlock": true,
+      "y": 270
+    },
+    "type=south": {
+      "model": "betterbuilding:block/birch_side",
+      "uvlock": true,
+      "y": 90
+    },
+    "type=west": {
+      "model": "betterbuilding:block/birch_side",
+      "uvlock": true,
+      "y": 180
+    }
+  }
+}

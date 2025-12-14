@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_spruce_side": {
+      "conditions": {
+        "items": [
+          {
+            "items": "betterbuilding:spruce_side"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_spruce_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:spruce_slab"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterbuilding:spruce_chair"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_spruce_side",
+      "has_spruce_slab"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterbuilding:spruce_chair"
+    ]
+  }
+}

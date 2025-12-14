@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_oak_side": {
+      "conditions": {
+        "items": [
+          {
+            "items": "betterbuilding:oak_side"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_oak_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:oak_slab"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterbuilding:oak_chair"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_oak_side",
+      "has_oak_slab"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterbuilding:oak_chair"
+    ]
+  }
+}

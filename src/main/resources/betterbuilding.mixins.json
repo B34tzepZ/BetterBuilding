@@ -4,8 +4,9 @@
   "package": "net.b34tzepz.betterbuilding.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "BlockAccessor",
     "PaneBlockMixin",
-    "BlockAccessor"
+    "PointedDripstoneBlockMixin"
   ],
   "client": [
     "ExampleMixin"

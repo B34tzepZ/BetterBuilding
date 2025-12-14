@@ -1,0 +1,6 @@
+{
+  "parent": "betterbuilding:block/chair",
+  "textures": {
+    "all": "minecraft:block/spruce_planks"
+  }
+}

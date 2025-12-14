@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "betterbuilding:block/quartz_pillar_pillar",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "betterbuilding:block/quartz_pillar_pillar"
+    },
+    "axis=z": {
+      "model": "betterbuilding:block/quartz_pillar_pillar",
+      "x": 90
+    }
+  }
+}

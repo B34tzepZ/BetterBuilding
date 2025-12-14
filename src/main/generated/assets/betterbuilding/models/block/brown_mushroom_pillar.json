@@ -1,0 +1,7 @@
+{
+  "parent": "betterbuilding:block/pillar_column",
+  "textures": {
+    "end": "minecraft:block/brown_mushroom_block",
+    "side": "minecraft:block/brown_mushroom_block"
+  }
+}

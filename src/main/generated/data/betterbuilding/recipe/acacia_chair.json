@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "minecraft:stick",
+    "/": "betterbuilding:acacia_side",
+    "_": "minecraft:acacia_slab"
+  },
+  "pattern": [
+    "/ ",
+    "__",
+    "##"
+  ],
+  "result": {
+    "count": 1,
+    "id": "betterbuilding:acacia_chair"
+  }
+}

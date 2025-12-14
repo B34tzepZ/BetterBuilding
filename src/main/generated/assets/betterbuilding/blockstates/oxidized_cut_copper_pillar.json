@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "betterbuilding:block/oxidized_cut_copper_pillar",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "betterbuilding:block/oxidized_cut_copper_pillar"
+    },
+    "axis=z": {
+      "model": "betterbuilding:block/oxidized_cut_copper_pillar",
+      "x": 90
+    }
+  }
+}

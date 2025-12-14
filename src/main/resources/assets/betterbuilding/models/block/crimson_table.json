@@ -1,0 +1,6 @@
+{
+	"parent": "betterbuilding:block/table",
+	"textures": {
+		"all": "minecraft:block/crimson_planks"
+	}
+}

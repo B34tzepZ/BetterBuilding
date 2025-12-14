@@ -1,7 +1,7 @@
 {
 	"parent": "betterbuilding:block/table_2bowls2",
 	"textures": {
-		"0": "minecraft:block/oak_planks",
-		"1": "betterbuilding:block/table_bowl"
+		"all": "minecraft:block/oak_planks",
+		"bowl": "betterbuilding:block/table_bowl"
 	}
 }

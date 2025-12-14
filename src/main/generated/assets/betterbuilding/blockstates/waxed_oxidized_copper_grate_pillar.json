@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "betterbuilding:block/waxed_oxidized_copper_grate_pillar",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "betterbuilding:block/waxed_oxidized_copper_grate_pillar"
+    },
+    "axis=z": {
+      "model": "betterbuilding:block/waxed_oxidized_copper_grate_pillar",
+      "x": 90
+    }
+  }
+}

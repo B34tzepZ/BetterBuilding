@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "minecraft:stick",
+    "/": "betterbuilding:cherry_side",
+    "_": "minecraft:cherry_slab"
+  },
+  "pattern": [
+    "/ ",
+    "__",
+    "##"
+  ],
+  "result": {
+    "count": 1,
+    "id": "betterbuilding:cherry_chair"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "minecraft:stick",
+    "/": "betterbuilding:crimson_side",
+    "_": "minecraft:crimson_slab"
+  },
+  "pattern": [
+    "/ ",
+    "__",
+    "##"
+  ],
+  "result": {
+    "count": 1,
+    "id": "betterbuilding:crimson_chair"
+  }
+}

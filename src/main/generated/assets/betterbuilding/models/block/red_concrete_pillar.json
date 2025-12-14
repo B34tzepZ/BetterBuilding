@@ -1,0 +1,7 @@
+{
+  "parent": "betterbuilding:block/pillar_column",
+  "textures": {
+    "end": "minecraft:block/red_concrete",
+    "side": "minecraft:block/red_concrete"
+  }
+}

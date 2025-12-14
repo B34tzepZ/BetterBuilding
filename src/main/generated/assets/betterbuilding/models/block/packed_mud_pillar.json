@@ -1,0 +1,7 @@
+{
+  "parent": "betterbuilding:block/pillar_column",
+  "textures": {
+    "end": "minecraft:block/packed_mud",
+    "side": "minecraft:block/packed_mud"
+  }
+}

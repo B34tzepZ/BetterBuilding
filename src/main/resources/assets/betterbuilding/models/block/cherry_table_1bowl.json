@@ -1,0 +1,7 @@
+{
+	"parent": "betterbuilding:block/table_1bowl",
+	"textures": {
+		"all": "minecraft:block/cherry_planks",
+		"bowl": "betterbuilding:block/table_bowl"
+	}
+}

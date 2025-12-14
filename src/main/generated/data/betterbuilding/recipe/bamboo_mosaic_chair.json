@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "minecraft:stick",
+    "/": "betterbuilding:bamboo_mosaic_side",
+    "_": "minecraft:bamboo_mosaic_slab"
+  },
+  "pattern": [
+    "/ ",
+    "__",
+    "##"
+  ],
+  "result": {
+    "count": 1,
+    "id": "betterbuilding:bamboo_mosaic_chair"
+  }
+}

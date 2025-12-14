@@ -40,27 +40,24 @@ public class PillarTntBlock extends PillarBlock{
     }
 
     @Override
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        if (oldState.isOf(state.getBlock())) {
-            return;
-        }
-        if (world.isReceivingRedstonePower(pos)) {
-            primeTnt(world, pos);
-            world.removeBlock(pos, false);
+    protected void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+        if (!oldState.isOf(state.getBlock())) {
+            if (world.isReceivingRedstonePower(pos) && primeTnt(world, pos)) {
+                world.removeBlock(pos, false);
+            }
         }
     }
 
     @Override
     protected void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, @Nullable WireOrientation wireOrientation, boolean notify) {
-        if (world.isReceivingRedstonePower(pos)) {
-            primeTnt(world, pos);
+        if (world.isReceivingRedstonePower(pos) && primeTnt(world, pos)) {
             world.removeBlock(pos, false);
         }
     }
 
     @Override
     public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!world.isClient() && !player.getAbilities().creativeMode && (Boolean)state.get(UNSTABLE)) {
+        if (!world.isClient() && !player.getAbilities().creativeMode && state.get(UNSTABLE)) {
             primeTnt(world, pos);
         }
 

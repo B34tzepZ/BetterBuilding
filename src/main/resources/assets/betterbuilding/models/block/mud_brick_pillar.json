@@ -1,6 +1,0 @@
-{
-  "parent": "betterbuilding:block/pillar_all",
-  "textures": {
-    "all": "minecraft:block/mud_bricks"
-  }
-}

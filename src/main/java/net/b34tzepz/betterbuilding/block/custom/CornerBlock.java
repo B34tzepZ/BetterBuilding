@@ -3,7 +3,7 @@ package net.b34tzepz.betterbuilding.block.custom;
 import com.google.common.collect.Maps;
 import net.b34tzepz.betterbuilding.block.enums.CornerDirection;
 import net.b34tzepz.betterbuilding.block.enums.CornerShape;
-import net.b34tzepz.betterbuilding.state.property.Properties;
+import net.b34tzepz.betterbuilding.state.property.ModProperties;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.BlockHalf;
 import net.minecraft.block.enums.StairShape;
@@ -14,6 +14,7 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
@@ -25,9 +26,8 @@ import net.minecraft.world.tick.ScheduledTickView;
 import java.util.Map;
 
 public class CornerBlock extends Block implements Waterloggable {
-    //public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
-    public static final EnumProperty<CornerDirection> DIRECTION = Properties.CORNER_DIRECTION;
-    public static final EnumProperty<CornerShape> SHAPE = Properties.CORNER_SHAPE;
+    public static final EnumProperty<CornerDirection> DIRECTION = ModProperties.CORNER_DIRECTION;
+    public static final EnumProperty<CornerShape> SHAPE = ModProperties.CORNER_SHAPE;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     protected static final VoxelShape BOTTOM_NORTH_WEST_CUBE = Block.createCuboidShape(0.0, 0.0, 0.0, 8.0, 8.0, 8.0);
     protected static final VoxelShape BOTTOM_SOUTH_WEST_CUBE = Block.createCuboidShape(0.0, 0.0, 8.0, 8.0, 8.0, 16.0);
@@ -43,12 +43,12 @@ public class CornerBlock extends Block implements Waterloggable {
     private static final VoxelShape INNER_SHAPE = VoxelShapes.union(STRAIGHT_SHAPE, BOTTOM_SOUTH_WEST_CUBE);
     private static final Map<CornerDirection, VoxelShape> OUTER_DOUBLE_BOTTOM_SHAPES = createHorizontalFacingShapeMap(OUTER_DOUBLE_SHAPE);
     private static final Map<CornerDirection, VoxelShape> OUTER_PREV_BOTTOM_SHAPES = createHorizontalFacingShapeMap(OUTER_SHAPE);
-    private static final Map<CornerDirection, VoxelShape> OUTER_NEXT_BOTTOM_SHAPES = createHorizontalFacingShapeMap(VoxelShapes.transform(OUTER_SHAPE, DirectionTransformation.fromRotations(AxisRotation.R90, AxisRotation.R270)));
+    private static final Map<CornerDirection, VoxelShape> OUTER_NEXT_BOTTOM_SHAPES = createHorizontalFacingShapeMap(VoxelShapes.transform(OUTER_SHAPE, DirectionTransformation.fromRotations(AxisRotation.R270, AxisRotation.R270)));
     private static final Map<CornerDirection, VoxelShape> STRAIGHT_SHAPES = createHorizontalFacingShapeMap(STRAIGHT_SHAPE);
     private static final Map<CornerDirection, VoxelShape> INNER_BOTTOM_SHAPES = createHorizontalFacingShapeMap(INNER_SHAPE);
     private static final Map<CornerDirection, VoxelShape> OUTER_DOUBLE_TOP_SHAPES = createHorizontalFacingShapeMap(VoxelShapes.transform(OUTER_DOUBLE_SHAPE,  DirectionTransformation.INVERT_Y));
     private static final Map<CornerDirection, VoxelShape> OUTER_PREV_TOP_SHAPES = createHorizontalFacingShapeMap(VoxelShapes.transform(OUTER_SHAPE,  DirectionTransformation.INVERT_Y));
-    private static final Map<CornerDirection, VoxelShape> OUTER_NEXT_TOP_SHAPES = createHorizontalFacingShapeMap(VoxelShapes.transform(VoxelShapes.transform(OUTER_SHAPE, DirectionTransformation.fromRotations(AxisRotation.R90, AxisRotation.R270)),  DirectionTransformation.INVERT_Y));
+    private static final Map<CornerDirection, VoxelShape> OUTER_NEXT_TOP_SHAPES = createHorizontalFacingShapeMap(VoxelShapes.transform(VoxelShapes.transform(OUTER_SHAPE, DirectionTransformation.fromRotations(AxisRotation.R270, AxisRotation.R270)),  DirectionTransformation.INVERT_Y));
     private static final Map<CornerDirection, VoxelShape> INNER_TOP_SHAPES = createHorizontalFacingShapeMap(VoxelShapes.transform(INNER_SHAPE, DirectionTransformation.INVERT_Y));
 
     private static Map<CornerDirection, VoxelShape> createHorizontalFacingShapeMap(VoxelShape shape) {
@@ -185,11 +185,7 @@ public class CornerBlock extends Block implements Waterloggable {
         if (StairsBlock.isStairs(clockwiseNeighbor)) {
             if (clockwiseNeighbor.get(StairsBlock.FACING) == counterClockwiseDirection) {
                 if (!(clockwiseNeighbor.get(StairsBlock.SHAPE) == StairShape.INNER_LEFT || clockwiseNeighbor.get(StairsBlock.SHAPE) == StairShape.OUTER_RIGHT)) {
-                    if (clockwiseNeighbor.get(StairsBlock.HALF) == BlockHalf.BOTTOM) {
-                        tempShape = CornerShape.OUTER_NEXT_BOTTOM;
-                    } else {
-                        tempShape = CornerShape.OUTER_NEXT_TOP;
-                    }
+                    tempShape = clockwiseNeighbor.get(StairsBlock.HALF) == BlockHalf.BOTTOM ? CornerShape.OUTER_NEXT_BOTTOM : CornerShape.OUTER_NEXT_TOP;
                 }
             }
         }
@@ -197,24 +193,18 @@ public class CornerBlock extends Block implements Waterloggable {
         if (StairsBlock.isStairs(counterClockwiseNeighbor)) {
             if (counterClockwiseNeighbor.get(StairsBlock.FACING) == clockwiseDirection) {
                 if (!(counterClockwiseNeighbor.get(StairsBlock.SHAPE) == StairShape.INNER_RIGHT || counterClockwiseNeighbor.get(StairsBlock.SHAPE) == StairShape.OUTER_LEFT)) {
-                    if (tempShape != CornerShape.STRAIGHT && counterClockwiseNeighbor.get(StairsBlock.HALF) == clockwiseNeighbor.get(StairsBlock.HALF)) {
-                        if (counterClockwiseNeighbor.get(StairsBlock.HALF) == BlockHalf.BOTTOM) {
-                            return CornerShape.OUTER_DOUBLE_BOTTOM;
-                        } else  {
-                            return CornerShape.OUTER_DOUBLE_TOP;
-                        }
-                    }
-                    if (tempShape == CornerShape.STRAIGHT) {
-                        if (counterClockwiseNeighbor.get(StairsBlock.HALF) == BlockHalf.BOTTOM) {
-                            return CornerShape.OUTER_PREV_BOTTOM;
+                    if (tempShape != CornerShape.STRAIGHT) {
+                        if (counterClockwiseNeighbor.get(StairsBlock.HALF) == clockwiseNeighbor.get(StairsBlock.HALF)) {
+                            return counterClockwiseNeighbor.get(StairsBlock.HALF) == BlockHalf.BOTTOM ? CornerShape.OUTER_DOUBLE_BOTTOM : CornerShape.OUTER_DOUBLE_TOP;
                         } else {
-                            return CornerShape.OUTER_PREV_TOP;
+                            return CornerShape.STRAIGHT;
                         }
+                    } else {
+                        return  counterClockwiseNeighbor.get(StairsBlock.HALF) == BlockHalf.BOTTOM ? CornerShape.OUTER_PREV_BOTTOM : CornerShape.OUTER_PREV_TOP;
                     }
                 }
             }
         }
-
         return tempShape;
     }
 

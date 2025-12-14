@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "direction=northeast,shape=straight": {
-            "model": "betterbuilding:block/oak_corner",
-            "uvlock": true
-        }
-    }
-}

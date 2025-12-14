@@ -1,0 +1,7 @@
+{
+  "parent": "betterbuilding:block/pillar_column",
+  "textures": {
+    "end": "minecraft:block/cracked_nether_bricks",
+    "side": "minecraft:block/cracked_nether_bricks"
+  }
+}
