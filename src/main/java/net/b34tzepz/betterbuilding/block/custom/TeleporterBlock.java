@@ -84,7 +84,7 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
 
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        if (world.isClient) {
+        if (world.isClient()) {
             TeleporterBlockEntity.teleporters.add(pos);
             TeleporterBlockEntity.arraylength=TeleporterBlockEntity.teleporters.size();
         }
@@ -112,7 +112,7 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
 
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        if (!world.isClient) {
+        if (!world.isClient()) {
             //NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
             TeleporterBlockEntity teleporterBlockEntity = (TeleporterBlockEntity)world.getBlockEntity(pos);
 
@@ -150,11 +150,11 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
                 entity.teleport((ServerWorld) world, destination.getX(),destination.getY()+1,destination.getZ(), new HashSet<>(), entity.getYaw(), entity.getPitch(), false);
             }
             else if(destnumber<1){
-                if (!world.isClient) if (entity instanceof PlayerEntity) ((PlayerEntity) entity).
+                if (!world.isClient()) if (entity instanceof PlayerEntity) ((PlayerEntity) entity).
                         sendMessage(Text.translatable("item.betterbuilding.teleporter_block.error_single"), false);
             }
             else {
-                if (!world.isClient) if (entity instanceof PlayerEntity) ((PlayerEntity) entity)
+                if (!world.isClient()) if (entity instanceof PlayerEntity) ((PlayerEntity) entity)
                         .sendMessage(Text.translatable("item.betterbuilding.teleporter_block.error_multiple" )
                                 .append(Integer.toString(destnumber+1)), false);
             }
@@ -162,7 +162,7 @@ public class TeleporterBlock extends BlockWithEntity implements BlockEntityProvi
             world.setBlockState(pos, state.with(TELEPORT_COOLDOWN, 0), NOTIFY_ALL);
         }
 
-        if (world.isClient) {
+        if (world.isClient()) {
             if (!play_sound &&state.get(SOUND_COOLDOWN) == 0) {
                 play_sound=true;
                 world.setBlockState(pos, state.with(PLAYING_SOUND, false), NOTIFY_ALL);

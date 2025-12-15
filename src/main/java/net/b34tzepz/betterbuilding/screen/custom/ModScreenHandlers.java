@@ -11,15 +11,9 @@ import net.minecraft.util.math.BlockPos;
 public class ModScreenHandlers {
     public static ScreenHandlerType<TeleporterBlockScreenHandler> TELEPORTER_BLOCK_SCREEN_HANDLER;
 
-    //public static ScreenHandlerType<FabricatorScreenHandler> FABRICATOR_SCREEN_HANDLER;
-
     public static void registerAllScreenHandlers() {
         TELEPORTER_BLOCK_SCREEN_HANDLER =
                 Registry.register(Registries.SCREEN_HANDLER, Identifier.of(BetterBuilding.MOD_ID, "teleporter_block"),
                         new ExtendedScreenHandlerType<>(TeleporterBlockScreenHandler::new, BlockPos.PACKET_CODEC));
-
-        /*FABRICATOR_SCREEN_HANDLER =
-                Registry.register(Registries.SCREEN_HANDLER, Identifier.of(BetterBuilding.MOD_ID, "fabricator_block"),
-                        new ExtendedScreenHandlerType<>(FabricatorScreenHandler::new, BlockPos.PACKET_CODEC));*/
     }
 }

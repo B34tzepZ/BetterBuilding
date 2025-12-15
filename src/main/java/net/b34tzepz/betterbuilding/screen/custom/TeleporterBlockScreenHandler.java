@@ -15,7 +15,7 @@ public class TeleporterBlockScreenHandler extends ScreenHandler {
     private final Inventory inventory;
 
     public TeleporterBlockScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos pos) {
-        this(syncId, playerInventory, playerInventory.player.getWorld().getBlockEntity(pos));
+        this(syncId, playerInventory, playerInventory.player.getEntityWorld().getBlockEntity(pos));
     }
 
     public TeleporterBlockScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity) {

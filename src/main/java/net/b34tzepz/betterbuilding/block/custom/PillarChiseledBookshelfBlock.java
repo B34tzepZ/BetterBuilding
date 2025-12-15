@@ -134,7 +134,7 @@ public class PillarChiseledBookshelfBlock extends PillarBlock implements BlockEn
     }
 
     private static void tryAddBook(World world, BlockPos pos, PlayerEntity player, ChiseledBookshelfBlockEntity blockEntity, ItemStack stack, int slot) {
-        if (!world.isClient) {
+        if (!world.isClient()) {
             player.incrementStat(Stats.USED.getOrCreateStat(stack.getItem()));
             SoundEvent soundEvent = stack.isOf(Items.ENCHANTED_BOOK)
                     ? SoundEvents.BLOCK_CHISELED_BOOKSHELF_INSERT_ENCHANTED
@@ -145,7 +145,7 @@ public class PillarChiseledBookshelfBlock extends PillarBlock implements BlockEn
     }
 
     private static void tryRemoveBook(World world, BlockPos pos, PlayerEntity player, ChiseledBookshelfBlockEntity blockEntity, int slot) {
-        if (!world.isClient) {
+        if (!world.isClient()) {
             ItemStack itemStack = blockEntity.removeStack(slot, 1);
             SoundEvent soundEvent = itemStack.isOf(Items.ENCHANTED_BOOK)
                     ? SoundEvents.BLOCK_CHISELED_BOOKSHELF_PICKUP_ENCHANTED
@@ -197,7 +197,7 @@ public class PillarChiseledBookshelfBlock extends PillarBlock implements BlockEn
     }
 
     @Override
-    protected int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+    protected int getComparatorOutput(BlockState state, World world, BlockPos pos, Direction direction) {
         if (world.isClient()) {
             return 0;
         } else {

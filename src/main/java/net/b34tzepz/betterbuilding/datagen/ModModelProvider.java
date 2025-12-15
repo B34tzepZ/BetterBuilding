@@ -739,6 +739,6 @@ public class ModModelProvider extends FabricModelProvider {
     private void registerChairBlock(BlockStateModelGenerator gen, Block chairBlock, Block baseBlock) {
         Identifier chairModelId = CHAIR.upload(chairBlock, new TextureMap().put(TextureKey.ALL, TextureMap.getId(baseBlock)), gen.modelCollector);
         gen.registerParentedItemModel(chairBlock, chairModelId);
-        gen.registerNorthDefaultHorizontalRotation(chairBlock);
+        gen.registerNorthDefaultHorizontalRotatable(chairBlock);
     }
 }

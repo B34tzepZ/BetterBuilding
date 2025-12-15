@@ -88,7 +88,7 @@ public class TableBlock extends Block {
     }
 
     private void dropBowl(World world, BlockPos pos) {
-        if (!world.isClient) {
+        if (!world.isClient()) {
             double d = (world.random.nextDouble() * 0.7f) + 0.15;
             double e = (world.random.nextDouble() * 0.7f) + 0.66;
             double g = (world.random.nextDouble() * 0.7f) + 0.15;

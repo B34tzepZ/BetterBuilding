@@ -58,7 +58,7 @@ public class PillarCreakingHeartBlock extends PillarBlock implements BlockEntity
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        if (world.isClient) {
+        if (world.isClient()) {
             return null;
         } else {
             return state.get(ACTIVE) != CreakingHeartState.UPROOTED
@@ -191,7 +191,7 @@ public class PillarCreakingHeartBlock extends PillarBlock implements BlockEntity
     }
 
     @Override
-    protected int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+    protected int getComparatorOutput(BlockState state, World world, BlockPos pos, Direction direction) {
         if (state.get(ACTIVE) == CreakingHeartState.UPROOTED) {
             return 0;
         } else {

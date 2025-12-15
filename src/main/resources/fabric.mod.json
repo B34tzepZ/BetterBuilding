@@ -4,13 +4,13 @@
   "version": "${version}",
 
   "name": "Better Building",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "Minecraft Mod for advanced building options",
   "authors": [
-    "B34tzepZ!"
+    "B34tzepZ"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/B34tzepZ/BetterBuilding"
   },
 
   "license": "MIT",

@@ -57,7 +57,7 @@ public class PillarSculkCatalystBlock extends PillarBlock implements BlockEntity
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? null : validateTicker(type, SculkCatalystBlockEntity::tick);
+        return world.isClient() ? null : validateTicker(type, SculkCatalystBlockEntity::tick);
     }
 
     @Override

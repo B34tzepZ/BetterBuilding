@@ -349,7 +349,7 @@ public class ChiselItem extends Item {
                 blockState2 = blockState2.with(PillarBlock.AXIS, side.getAxis());
             }
         }
-        if (!world.isClient) {
+        if (!world.isClient()) {
             world.setBlockState(blockPos, blockState2, Block.NOTIFY_ALL | Block.REDRAW_ON_MAIN_THREAD);
             if (context.getPlayer() != null) {
                 context.getStack().damage(1, (ServerWorld) world, (ServerPlayerEntity) context.getPlayer(),

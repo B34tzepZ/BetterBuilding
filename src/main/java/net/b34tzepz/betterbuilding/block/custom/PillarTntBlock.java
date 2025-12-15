@@ -66,7 +66,7 @@ public class PillarTntBlock extends PillarBlock{
 
     @Override
     public void onDestroyedByExplosion(ServerWorld world, BlockPos pos, Explosion explosion) {
-        if (world.isClient) {
+        if (world.isClient()) {
             return;
         }
         TntEntity tntEntity = new TntEntity(world, (double)pos.getX() + 0.5, pos.getY(), (double)pos.getZ() + 0.5, explosion.getCausingEntity());
@@ -100,7 +100,7 @@ public class PillarTntBlock extends PillarBlock{
                 world.setBlockState(pos, Blocks.AIR.getDefaultState(), Block.NOTIFY_ALL_AND_REDRAW);
                 Item item = stack.getItem();
                 if (stack.isOf(Items.FLINT_AND_STEEL)) {
-                    stack.damage(1, player, LivingEntity.getSlotForHand(hand));
+                    stack.damage(1, player, hand.getEquipmentSlot());
                 } else {
                     stack.decrementUnlessCreative(1, player);
                 }

@@ -35,8 +35,8 @@ public class ChairEntity extends Entity {
     @Override
     protected void removePassenger (Entity passenger) {
         super.removePassenger(passenger);
-        if(!this.getWorld().isClient()) {
-            this.kill(((ServerWorld) this.getWorld()));
+        if(!this.getEntityWorld().isClient()) {
+            this.kill(((ServerWorld) this.getEntityWorld()));
         }
     }
 }
