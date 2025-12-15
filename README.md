@@ -35,7 +35,7 @@ Support for Minecraft Bedrock Edition is **not** planned.
 
 ## How to use the features added by BetterBuilding?
 
-For additional information see the [Wiki](https://github.com/B34tzepZ/BetterBuilding/wiki)
+For additional information see the [Wiki](https://github.com/B34tzepZ/BetterBuilding/wiki/BetterBuilding-Guide)
 
 ## Contributors
 
