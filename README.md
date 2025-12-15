@@ -4,7 +4,7 @@
 
 BetterBuilding is a Minecraft Mod developed to expand your possibilities when creating interior and exterior design.  
 It contains Reinforced Planks, Sides (Vertical Slabs), and Corners for spatial management and functional Chairs and Tables to sit down or place bowls on.  
-The Chisel Tool allows you to reshape almost all nonblocks into a pillar along an axis.
+The Chisel Tool allows you to reshape almost all blocks into a pillar along an axis.
 
 ## What versions is it available for?
 
