@@ -24,7 +24,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.GameRules;
+import net.minecraft.world.rule.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.block.WireOrientation;
 import net.minecraft.world.event.GameEvent;
@@ -80,7 +80,7 @@ public class PillarTntBlock extends PillarBlock{
     }
 
     private static boolean primeTnt(World world, BlockPos pos, @Nullable LivingEntity igniter) {
-        if (world instanceof ServerWorld serverWorld && serverWorld.getGameRules().getBoolean(GameRules.TNT_EXPLODES)) {
+        if (world instanceof ServerWorld serverWorld && serverWorld.getGameRules().getValue(GameRules.TNT_EXPLODES)) {
             TntEntity tntEntity = new TntEntity(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, igniter);
             world.spawnEntity(tntEntity);
             world.playSound(null, tntEntity.getX(), tntEntity.getY(), tntEntity.getZ(), SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
@@ -106,7 +106,7 @@ public class PillarTntBlock extends PillarBlock{
                 }
 
                 player.incrementStat(Stats.USED.getOrCreateStat(item));
-            } else if (world instanceof ServerWorld serverWorld && !serverWorld.getGameRules().getBoolean(GameRules.TNT_EXPLODES)) {
+            } else if (world instanceof ServerWorld serverWorld && !serverWorld.getGameRules().getValue(GameRules.TNT_EXPLODES)) {
                 player.sendMessage(Text.translatable("block.minecraft.tnt.disabled"), true);
                 return ActionResult.PASS;
             }

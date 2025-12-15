@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
+import net.minecraft.world.attribute.EnvironmentAttributes;
 import org.jetbrains.annotations.Nullable;
 
 public class PillarIceBlock extends PillarBlock{
@@ -28,7 +29,7 @@ public class PillarIceBlock extends PillarBlock{
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
         super.afterBreak(world, player, pos, state, blockEntity, tool);
         if (!EnchantmentHelper.hasAnyEnchantmentsIn(tool, EnchantmentTags.PREVENTS_ICE_MELTING)) {
-            if (world.getDimension().ultrawarm()) {
+            if (world.getEnvironmentAttributes().getAttributeValue(EnvironmentAttributes.WATER_EVAPORATES_GAMEPLAY, pos)) {
                 world.removeBlock(pos, false);
                 return;
             }
@@ -48,7 +49,7 @@ public class PillarIceBlock extends PillarBlock{
     }
 
     protected void melt(BlockState state, World world, BlockPos pos) {
-        if (world.getDimension().ultrawarm()) {
+        if (world.getEnvironmentAttributes().getAttributeValue(EnvironmentAttributes.WATER_EVAPORATES_GAMEPLAY, pos)) {
             world.removeBlock(pos, false);
         } else {
             world.setBlockState(pos, getMeltedState());

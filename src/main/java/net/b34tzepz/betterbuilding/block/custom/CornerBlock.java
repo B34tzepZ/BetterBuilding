@@ -43,12 +43,12 @@ public class CornerBlock extends Block implements Waterloggable {
     private static final VoxelShape INNER_SHAPE = VoxelShapes.union(STRAIGHT_SHAPE, BOTTOM_SOUTH_WEST_CUBE);
     private static final Map<CornerDirection, VoxelShape> OUTER_DOUBLE_BOTTOM_SHAPES = createHorizontalFacingShapeMap(OUTER_DOUBLE_SHAPE);
     private static final Map<CornerDirection, VoxelShape> OUTER_PREV_BOTTOM_SHAPES = createHorizontalFacingShapeMap(OUTER_SHAPE);
-    private static final Map<CornerDirection, VoxelShape> OUTER_NEXT_BOTTOM_SHAPES = createHorizontalFacingShapeMap(VoxelShapes.transform(OUTER_SHAPE, DirectionTransformation.fromRotations(AxisRotation.R270, AxisRotation.R270)));
+    private static final Map<CornerDirection, VoxelShape> OUTER_NEXT_BOTTOM_SHAPES = createHorizontalFacingShapeMap(VoxelShapes.transform(OUTER_SHAPE, DirectionTransformation.ROT_120_NPP));
     private static final Map<CornerDirection, VoxelShape> STRAIGHT_SHAPES = createHorizontalFacingShapeMap(STRAIGHT_SHAPE);
     private static final Map<CornerDirection, VoxelShape> INNER_BOTTOM_SHAPES = createHorizontalFacingShapeMap(INNER_SHAPE);
     private static final Map<CornerDirection, VoxelShape> OUTER_DOUBLE_TOP_SHAPES = createHorizontalFacingShapeMap(VoxelShapes.transform(OUTER_DOUBLE_SHAPE,  DirectionTransformation.INVERT_Y));
     private static final Map<CornerDirection, VoxelShape> OUTER_PREV_TOP_SHAPES = createHorizontalFacingShapeMap(VoxelShapes.transform(OUTER_SHAPE,  DirectionTransformation.INVERT_Y));
-    private static final Map<CornerDirection, VoxelShape> OUTER_NEXT_TOP_SHAPES = createHorizontalFacingShapeMap(VoxelShapes.transform(VoxelShapes.transform(OUTER_SHAPE, DirectionTransformation.fromRotations(AxisRotation.R270, AxisRotation.R270)),  DirectionTransformation.INVERT_Y));
+    private static final Map<CornerDirection, VoxelShape> OUTER_NEXT_TOP_SHAPES = createHorizontalFacingShapeMap(VoxelShapes.transform(VoxelShapes.transform(OUTER_SHAPE, DirectionTransformation.ROT_120_NPP),  DirectionTransformation.INVERT_Y));
     private static final Map<CornerDirection, VoxelShape> INNER_TOP_SHAPES = createHorizontalFacingShapeMap(VoxelShapes.transform(INNER_SHAPE, DirectionTransformation.INVERT_Y));
 
     private static Map<CornerDirection, VoxelShape> createHorizontalFacingShapeMap(VoxelShape shape) {
@@ -56,11 +56,11 @@ public class CornerBlock extends Block implements Waterloggable {
                         CornerDirection.NORTHEAST,
                         shape,
                         CornerDirection.SOUTHEAST,
-                        VoxelShapes.transform(shape, DirectionTransformation.fromRotations(AxisRotation.R0, AxisRotation.R90)),
+                        VoxelShapes.transform(shape, DirectionTransformation.ROT_90_Y_NEG),
                         CornerDirection.SOUTHWEST,
-                        VoxelShapes.transform(shape, DirectionTransformation.fromRotations(AxisRotation.R0, AxisRotation.R180)),
+                        VoxelShapes.transform(shape, DirectionTransformation.ROT_180_FACE_XZ),
                         CornerDirection.NORTHWEST,
-                        VoxelShapes.transform(shape, DirectionTransformation.fromRotations(AxisRotation.R0, AxisRotation.R270))
+                        VoxelShapes.transform(shape, DirectionTransformation.ROT_90_Y_POS)
                 )
         );
     }

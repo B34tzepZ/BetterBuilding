@@ -27,6 +27,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import net.minecraft.world.attribute.EnvironmentAttributes;
 import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionImpl;
 import net.minecraft.world.tick.ScheduledTickView;
@@ -67,13 +68,9 @@ public class PillarCreakingHeartBlock extends PillarBlock implements BlockEntity
         }
     }
 
-    public static boolean isNightAndNatural(World world) {
-        return world.isNightAndNatural();
-    }
-
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if (isNightAndNatural(world)) {
+        if (world.getEnvironmentAttributes().getAttributeValue(EnvironmentAttributes.CREAKING_ACTIVE_GAMEPLAY, pos)) {
             if (state.get(ACTIVE) != CreakingHeartState.UPROOTED) {
                 if (random.nextInt(16) == 0 && isSurroundedByPaleOakLogs(world, pos)) {
                     world.playSoundClient(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_CREAKING_HEART_IDLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
@@ -108,7 +105,14 @@ public class PillarCreakingHeartBlock extends PillarBlock implements BlockEntity
     private static BlockState enableIfValid(BlockState state, World world, BlockPos pos) {
         boolean bl = shouldBeEnabled(state, world, pos);
         boolean bl2 = state.get(ACTIVE) == CreakingHeartState.UPROOTED;
-        return bl && bl2 ? state.with(ACTIVE, isNightAndNatural(world) ? CreakingHeartState.AWAKE : CreakingHeartState.DORMANT) : state;
+        return bl && bl2
+                ? state.with(
+                ACTIVE,
+                world.getEnvironmentAttributes().getAttributeValue(EnvironmentAttributes.CREAKING_ACTIVE_GAMEPLAY, pos)
+                        ? CreakingHeartState.AWAKE
+                        : CreakingHeartState.DORMANT
+        )
+                : state;
     }
 
     public static boolean shouldBeEnabled(BlockState state, WorldView world, BlockPos pos) {

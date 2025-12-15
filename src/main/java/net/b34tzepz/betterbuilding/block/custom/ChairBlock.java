@@ -62,11 +62,11 @@ import java.util.List;
         protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
             return switch (state.get(FACING)) {
                 case EAST ->
-                        VoxelShapes.transform(SHAPE, DirectionTransformation.fromRotations(AxisRotation.R0, AxisRotation.R90));
+                        VoxelShapes.transform(SHAPE, DirectionTransformation.ROT_90_Y_NEG);
                 case SOUTH ->
-                        VoxelShapes.transform(SHAPE, DirectionTransformation.fromRotations(AxisRotation.R0, AxisRotation.R180));
+                        VoxelShapes.transform(SHAPE, DirectionTransformation.ROT_180_FACE_XZ);
                 case WEST ->
-                        VoxelShapes.transform(SHAPE, DirectionTransformation.fromRotations(AxisRotation.R0, AxisRotation.R270));
+                        VoxelShapes.transform(SHAPE, DirectionTransformation.ROT_90_Y_POS);
                 case null, default -> SHAPE;
             };
         }
