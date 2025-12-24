@@ -1425,6 +1425,9 @@ public class ModBlocks {
 //                PillarCreakingHeartBlock::new, (Settings.copy(Blocks.CREAKING_HEART)));
     }
 
+    public static final Block HORIZONTAL_GLASS_PANE = registerBlock("horizontal_glass_pane", Block::new,
+            (Settings.copy(Blocks.GLASS_PANE)));
+
     private static Block registerBlock(String name, Function<Settings, Block> function, Settings settings) {
         RegistryKey<Block> blockKey = RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(BetterBuilding.MOD_ID, name));
         Block block = function.apply(settings.registryKey(blockKey));

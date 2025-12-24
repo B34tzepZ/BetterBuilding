@@ -43,6 +43,7 @@ public class BetterBuildingClient implements ClientModInitializer {
         BlockRenderLayerMap.putBlock(ModBlocks.Pillars.WAXED_EXPOSED_COPPER_GRATE_PILLAR, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(ModBlocks.Pillars.WAXED_WEATHERED_COPPER_GRATE_PILLAR, BlockRenderLayer.CUTOUT);
         BlockRenderLayerMap.putBlock(ModBlocks.Pillars.WAXED_OXIDIZED_COPPER_GRATE_PILLAR, BlockRenderLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(ModBlocks.HORIZONTAL_GLASS_PANE, BlockRenderLayer.TRANSLUCENT);
         //BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks./*Add Block here*/, RenderLayer.getCutout()); //for blocks with transparency like doors, many other options for rendering instead of getCutout()-
     }
 }
